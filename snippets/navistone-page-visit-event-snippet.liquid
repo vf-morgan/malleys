@@ -1,0 +1,14 @@
+{% comment %}
+    Renders a javascript code snippet that tracks a single page visit event for transaction reporting.
+     Page visits are recorded and used to produce attribution metrics.
+
+    Usage:
+    {% render 'navistone-page-visit-event-snippet' %}
+{% endcomment %}
+
+<script defer async>
+MGX = typeof MGX === 'undefined' ? [] : MGX;
+MGX.push({
+  AccessKey: 'D5E9B25E30DC'
+});
+</script>

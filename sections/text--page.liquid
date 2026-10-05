@@ -1,0 +1,162 @@
+<section class="homepage-sections-wrapper">
+
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-12">
+          <div class="title-bar custom-font">
+            {% if section.settings.subheading != blank %}
+              <h3 class="type-subheading type-subheading--1 wow typography--padding-bottom">{{ section.settings.subheading | escape }}</h3>
+            {% endif %}
+            {% if section.settings.page_title %}
+                <h2 class="wow">{% if section.settings.page != blank %}{{ pages[ section.settings.page ].title | escape }}{% else %}Your page title{% endif %}</h2>
+            {% endif %}
+          </div>
+      </div>
+
+      <div class="homepage-indiv-section-wrapper grid--full homepage-page-wrapper wow">
+        {% case section.settings.width %}
+          {% when 'small' %}
+            <div class="col-md-6 offset-md-3 homepage-page">
+          {% when 'medium' %}
+            <div class="col-md-8 offset-md-2 homepage-page">
+          {% when 'large' %}
+            <div class="col-md-10 offset-md-1 homepage-page">
+          {% when 'full-width' %}
+            <div class="col-md-12 homepage-page">
+        {% endcase %}
+
+          <div class="rte featured-row__subtext content">
+            {% if section.settings.page != blank %}
+              {{ pages[ section.settings.page ].content }}
+            {% else %}
+              Please select a page to include. Pages contain information that rarely changes or that customers will reference often, such as an "About Us" page, or a "Contact Us" page.
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+    "name": {
+        "en": "Page",
+        "de": "Seite",
+        "es": "Página",
+        "fr": "Page",
+        "pt-PT": "Página"
+    },
+    "class": "homepage-section--page-wrapper",
+    "settings": [
+        {
+            "type": "select",
+            "id": "width",
+            "label": {
+                "en": "Width",
+                "de": "Breite",
+                "es": "Ancho",
+                "fr": "Largeur",
+                "pt-PT": "Largura"
+            },
+            "default": "medium",
+            "options": [
+                {
+                    "value": "small",
+                    "label": {
+                        "en": "Small",
+                        "de": "Klein",
+                        "es": "Pequeño",
+                        "fr": "Petite",
+                        "pt-PT": "Pequeno"
+                    }
+                },
+                {
+                    "value": "medium",
+                    "label": {
+                        "en": "Medium",
+                        "de": "Mittel",
+                        "es": "Mediano",
+                        "fr": "Moyenne",
+                        "pt-PT": "Médio"
+                    }
+                },
+                {
+                    "value": "large",
+                    "label": {
+                        "en": "Large",
+                        "de": "Groß",
+                        "es": "Grande",
+                        "fr": "Grande",
+                        "pt-PT": "Grande"
+                    }
+                },
+                {
+                    "value": "full-width",
+                    "label": {
+                        "en": "Full width",
+                        "de": "Volle Breite",
+                        "es": "Ancho completo",
+                        "fr": "Pleine largeur",
+                        "pt-PT": "Largura total"
+                    }
+                }
+            ]
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": {
+            "en": "Subheading",
+            "de": "Unterüberschrift",
+            "es": "Subencabezado",
+            "fr": "Sous-rubrique",
+            "pt-PT": "Subtítulo"
+          }
+        },
+        {
+            "type": "page",
+            "id": "page",
+            "label": {
+                "en": "Content page",
+                "de": "Inhaltsseite",
+                "es": "Página de contenido",
+                "fr": "Page de contenu",
+                "pt-PT": "Página de Conteúdos"
+            },
+            "info": "The contact form will not be displayed in this section"
+        },
+        {
+            "type": "checkbox",
+            "id": "page_title",
+            "default": true,
+            "label": {
+                "en": "Show page title",
+                "de": "Seitentitel anzeigen",
+                "es": "Mostrar título de la página",
+                "fr": "Afficher le titre de la page",
+                "pt-PT": "Mostrar título da página"
+            }
+        }
+    ],
+    "presets": [
+        {
+            "name": {
+                "en": "Page",
+                "de": "Seite",
+                "es": "Página",
+                "fr": "Page",
+                "pt-PT": "Página"
+            },
+            "category": {
+                "en": "Text",
+                "de": "Text",
+                "es": "Texto",
+                "fr": "Texte",
+                "pt-PT": "Texto"
+            }
+        }
+    ]
+}
+{% endschema %}

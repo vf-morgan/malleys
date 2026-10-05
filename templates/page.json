@@ -1,0 +1,29 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "template--page",
+      "settings": {}
+    },
+    "newsletter_newsletter_iVWeCR": {
+      "type": "newsletter--newsletter",
+      "settings": {
+        "subheading": "Stay up-to-date",
+        "title": "Join our mailing list",
+        "newsletter_description": "<p><strong>You Can Also</strong> <a href=\"/pages/text-message-signup\" title=\"Text Message Signup\"><strong>Sign Up for Tasty Text Message Alerts!</strong></a></p>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "newsletter_newsletter_iVWeCR"
+  ]
+}

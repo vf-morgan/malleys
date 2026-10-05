@@ -1,0 +1,41 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "template--collections-list",
+      "blocks": {
+        "product_vendor": {
+          "type": "product-card-vendor",
+          "settings": {}
+        },
+        "product_title": {
+          "type": "product-card-title",
+          "settings": {}
+        },
+        "product_price": {
+          "type": "product-card-price",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "product_vendor",
+        "product_title",
+        "product_price"
+      ],
+      "settings": {
+        "products-per-collection": 3
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

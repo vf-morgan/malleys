@@ -1,0 +1,307 @@
+{{ 'section-service-list.min.css' | asset_url | stylesheet_tag }}
+
+{% assign service-list--subheading = section.settings.service-list--subheading %}
+{% assign service-list--title = section.settings.service-list--heading %}
+
+<section class="homepage-sections-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {% if service-list--title != blank or service-list--subheading != blank %}
+                <div class="title-bar custom-font">
+                    {% if service-list--subheading != blank %}
+                    <h3 class="type-subheading type-subheading--1 wow fadeIn{% if service-list--title != blank %} typography--padding-bottom{% endif %}">{{ service-list--subheading | escape }}</h3>
+                    {% endif %}
+                    {% if service-list--title != blank %}
+                    <h2 class="wow fadeIn{% if service-list--subheading != blank %} delay-1{% endif %}">{{ service-list--title | escape }}</h2>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row justify-content-center service-list--col-max-width">
+            
+                {% assign total_headers = section.blocks | where: 'type', 'text' | size %}
+                {% assign first_block = section.blocks | map: 'type' | first %}
+
+                {%- case first_block -%}
+                    {%- when "content-list" -%}
+                        {%- capture column_width -%}
+                            {%- case total_headers -%}
+                                {%- when 0 -%}
+                                    col-10 col-sm-8 col-md-6 col-lg-5 col-xl-4
+                                {%- when 1 -%}
+                                    col-10 col-8 col-sm-8 col-md-5
+                                {%- when 2 -%}
+                                    col-10 col-8 col-sm-8 col-md-6 col-lg-4
+                                {%- when 3 -%}
+                                    col-10 col-8 col-sm-8 col-md-5
+                                {%- else -%}
+                                    col-10 col-8 col-sm-8 col-md-6 col-lg-4
+                            {%- endcase -%}
+                        {%- endcapture -%}
+                    {%- when "text" -%}
+                        {%- capture column_width -%}
+                            {%- case total_headers -%}
+                                {%- when 1 -%}
+                                    col-10 col-sm-8 col-md-6 col-lg-5 col-xl-4
+                                {%- when 2 -%}
+                                    col-10 col-8 col-sm-8 col-md-5
+                                {%- when 3 -%}
+                                    col-10 col-8 col-sm-8 col-md-6 col-lg-4
+                                {%- when 4 -%}
+                                    col-10 col-8 col-sm-8 col-md-5
+                                {%- else -%}
+                                    col-10 col-8 col-sm-8 col-md-6 col-lg-4
+                                {%- endcase -%}
+                        {%- endcapture -%}
+                {%- endcase -%}
+
+                {% assign previous_block_type = "" %}
+
+                {% for block in section.blocks %}
+
+                    {% if block.type == 'text' %}
+                        {% if previous_block_type == 'content-list' %}
+                                </ul>
+                            </div>
+                            <div class="{{ column_width }}" {{ block.shopify_attributes }}>
+                        {% endif %}
+
+                        {% if previous_block_type == 'text' %}
+                            </div>
+                            <div class="{{ column_width }}" {{ block.shopify_attributes }}>
+                        {% endif %}
+
+                        {% if forloop.first %}
+                            <div class="{{ column_width }}" {{ block.shopify_attributes }}>
+                        {% endif %%}
+
+                        <h3 class="service-list--block-title">{{ block.settings.service-list--title }}</h3>
+
+                        {% if forloop.last %}
+                            </div>
+                        {% endif %}
+                    {% endif %}
+
+                    {% if block.type == 'content-list' %}
+                        {% if forloop.first %}
+                            {% assign colum_no_header = true %}
+                            <div class="{{ column_width }}">
+                        {% endif %}
+
+                        {% if previous_block_type == 'text' or forloop.first %}
+                            <ul class="service-list--list">
+                        {% endif %}
+
+                        <li class="service-list--block" {{ block.shopify_attributes }}>
+                            <div class="service-list--info row">
+                                <div class="service-list--info-title col-9">
+                                    <p>{{ block.settings.content-list-title }}</p>
+                                </div>
+
+                                {% unless block.settings.content-list-price == blank %}                                    
+                                    <div class="service-list--price col-3">
+                                        {% assign price_value = block.settings.content-list-price %}
+                                        {% assign price = price_value | times: 100 %}
+                                        <p>{{ price | money }}</p>
+                                    </div>
+                                {% endunless %}
+
+                            </div>
+
+                            {% if block.settings.content-list-richtext != blank %}
+                                <div class="service-list--description">
+                                    {{ block.settings.content-list-richtext }}
+                                </div>         
+                            {% endif %}
+                        </li>
+                    {% endif %}
+
+                    {% assign previous_block_type = block.type %}
+
+                    {% if forloop.last and previous_block_type == 'content-list' %}
+                            </ul>
+                        </div>
+                    {% endif %}
+
+                {% endfor %}
+
+
+        </div>
+    </div>
+</section>
+
+
+
+{% schema %}
+{
+	"name": {
+		"en": "Service list",
+		"de": "Serviceliste",
+		"es": "Lista de servicios",
+		"fr": "Liste des services",
+		"pt-PT": "Lista de serviços"
+	},
+	"class": "homepage-section--service-list",
+	"settings": [
+		{
+			"type": "text",
+			"id": "service-list--subheading",
+			"label": {
+				"en": "Subheading",
+				"de": "Unterüberschrift",
+				"es": "Subencabezado",
+				"fr": "Sous-rubrique",
+				"pt-PT": "Subtítulo"
+			},
+			"default": {
+				"en": "Subheading",
+				"de": "Unterüberschrift",
+				"es": "Subencabezado",
+				"fr": "Sous-rubrique",
+				"pt-PT": "Subtítulo"
+			}
+		},
+		{
+			"type": "text",
+			"id": "service-list--heading",
+			"label": {
+				"en": "Heading",
+				"de": "Überschrift",
+				"es": "Encabezado",
+				"fr": "Rubrique",
+				"pt-PT": "Título"
+			},
+			"default": {
+				"en": "Delivery charges",
+                "de": "Zustellgebühren",
+                "es": "Gastos de envío",
+                "fr": "Frais de livraison",
+                "pt-PT": "Taxas de entrega"
+			}
+		}
+	],
+	"blocks": [
+        {
+            "type": "text",
+            "name": {
+				"en": "Header",
+				"de": "Überschrift",
+				"es": "Encabezado",
+				"fr": "En-tête",
+				"pt-PT": "Cabeçalho"
+            },
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "service-list--title",
+                    "label": {
+						"en": "Header",
+						"de": "Überschrift",
+						"es": "Encabezado",
+						"fr": "En-tête",
+						"pt-PT": "Cabeçalho"
+                    },
+                    "default": {
+						"en": "Title",
+						"de": "Titel",
+						"es": "Título",
+						"fr": "Titre",
+						"pt-PT": "Título"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "content-list",
+            "name": {
+                "en": "List item",
+                "de": "Listenelement",
+                "es": "Elemento de la lista",
+                "fr": "Élément de liste",
+                "pt-PT": "Item da lista"
+            },
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "content-list-title",
+                    "label": {
+						"en": "Title",
+						"de": "Titel",
+						"es": "Título",
+						"fr": "Titre",
+						"pt-PT": "Título"
+                    },
+                    "default": {
+                        "en": "Item",
+						"de": "Artikel",
+						"es": "Artículo",
+						"fr": "Article",
+						"pt-PT": "Item"
+                    }
+                },
+                {
+                    "type": "text",
+                    "id": "content-list-price",
+                    "label": {
+						"en": "Price",
+						"de": "Preis",
+						"es": "Precio",
+						"fr": "Prix",
+						"pt-PT": "Preço"
+                    },
+                    "default": {
+                        "en": "4.99",
+                        "de": "4.99",
+                        "es": "4.99",
+                        "fr": "4.99",
+                        "pt-PT": "4.99"
+                    }
+                },
+                {
+                    "type": "richtext",
+                    "id": "content-list-richtext",
+                    "label": {
+                        "en": "Description",
+                        "de": "Beschreibung",
+                        "es": "Descripción",
+                        "fr": "Description",
+                        "pt-PT": "Descrição"
+                    }
+                }
+            ]
+        }
+	],
+	"presets": [
+        {
+            "name": {
+                "en": "Service list",
+                "de": "Serviceliste",
+                "es": "Lista de servicios",
+                "fr": "Liste des services",
+                "pt-PT": "Lista de serviços"
+            },
+            "category": {
+                "en": "Text",
+                "de": "Text",
+                "es": "Texto",
+                "fr": "Texte",
+                "pt-PT": "Texto"
+            },
+            "blocks": [
+                {
+                    "type": "text"
+                },
+                {
+                    "type": "content-list"
+                },
+                {
+                    "type": "content-list"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

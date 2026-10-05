@@ -1,0 +1,84 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "wrapper": "div.collection-wrapper.main-search-wrapper",
+  "sections": {
+    "search_header": {
+      "type": "template--search-header",
+      "settings": {}
+    },
+    "main": {
+      "type": "template--search",
+      "blocks": {
+        "product_vendor": {
+          "type": "product-card-vendor",
+          "settings": {}
+        },
+        "product_title": {
+          "type": "product-card-title",
+          "settings": {}
+        },
+        "product_price": {
+          "type": "product-card-price",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "product_vendor",
+        "product_title",
+        "product_price"
+      ],
+      "settings": {
+        "article-hover-effect": "zoom",
+        "desktop_position": "topbar",
+        "enable_filtering": true,
+        "enable_sorting": true
+      }
+    },
+    "collection-list": {
+      "type": "collection--collection-list",
+      "disabled": true,
+      "blocks": {
+        "collection-list-0": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "collection-list-1": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "collection-list-2": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection-list-0",
+        "collection-list-1",
+        "collection-list-2"
+      ],
+      "settings": {
+        "subheading": "",
+        "title": ""
+      }
+    }
+  },
+  "order": [
+    "search_header",
+    "main",
+    "collection-list"
+  ]
+}

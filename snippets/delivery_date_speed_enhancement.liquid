@@ -1,0 +1,51 @@
+
+          <div id='delivery_date_speed_enhancement' style="display:none;">
+            {
+              "version": "***0.0.1***",
+              "shop": "{{ shop.permanent_domain }}",
+              "product": {
+                "handle": "{{ product.handle }}",
+                "id": "{{ product.id }}",
+                "tags": "{{ product.tags | join: ',' }}",
+                "title": "{{ product.title }}",
+                "product_url": "{{ product.url }}"
+              },
+              "cart": {
+                "items": [
+                  {% for item in cart.items %}
+                    {
+                      "id": "{{ item.id }}",
+                      "product_id": "{{ item.product_id }}",
+                      "variant_id" : "{{ item.variant_id }}",
+                      "tags": "{{ item.product.tags | join: ',' }}",
+                      "properties": {
+                        {% unless item.properties == empty %}
+                          {% for property in item.properties %}
+                            "{{ property | first }}": "{{ property | last }}"
+                            {% if forloop.last != true %}
+                              ,
+                            {% endif %}
+                          {% endfor %}
+                        {% endunless %}
+                      },
+                      "attributes": {
+                        {% unless item.attributes == empty %}
+                          {% for attribute in cart.attributes %}
+                            "{{ attribute | first }}": "{{ attribute | last }}"
+                            {% if forloop.last != true %}
+                              ,
+                            {% endif %}
+                          {% endfor %}
+                        {% endunless %}
+                      }
+                    }
+                          {% if forloop.last != true %}
+                              ,
+                          {% endif %}
+                  {% endfor %}
+                ]
+              }
+            }
+            
+          </div>
+        

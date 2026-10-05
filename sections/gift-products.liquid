@@ -1,0 +1,67 @@
+<style>
+  .gift-pagination{
+    width: 100%
+  }
+</style>
+    <section class="gift__products">
+        <div class="container">
+            <div class="gift__products--cols">
+            {% if section.settings.collection != blank %}
+            {% assign collectionTemp = collections[section.settings.collection.handle] %}
+              {%- paginate collectionTemp.products by  50 -%}
+                {% for product in collectionTemp.products %}
+                  <div class="gift__products--column">
+                    <a href="{{ product.url }}" style="text-decoration: none">
+                      <div class="gift__cards">
+                        <div class="gift__products--image">
+                          {% if product.featured_image != blank %}
+                            {{ product.featured_image | image_url: width: 939 | image_tag: loading: 'lazy', sizes: sizes, widths: '457, 550, 720, 990, 1100, 1500, 2200, 3000' }}
+                          {% else %}
+                            {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+                          {% endif %}
+                        </div>
+                        <div class="gift__product--details">
+                          <div class="gift__product--details--block">
+                            <h3 class="gift__product--heading">{{ product.title }}</h3>
+                            <span class="gift__product--price">{{ product.price | money_with_currency  }}</span>
+                            {% if product.metafields.custom.gift_volume_discount != blank %}
+                              <ul class="gift__product--discountVol">
+                                {% for value in product.metafields.custom.gift_volume_discount.value %}
+                                  <li>{{ value }}</li>
+                                {% endfor %}
+                              </ul>
+                            {% endif %}
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                {% endfor %}
+                <div class="gift-pagination">
+                  {{ paginate | default_pagination }}
+                </div>
+              {% endpaginate %}
+            {% endif %}
+          </div>
+
+        </div>
+    </section>
+
+
+{% schema %}
+  {
+    "name" : "Gift Products",
+    "settings":[
+       {
+        "type": "collection",
+        "id": "collection",
+        "label": "Collection"
+      }
+    ],
+    "presets":[
+      {
+        "name" : "Gift Products"
+      }
+    ]
+  }
+{% endschema %}

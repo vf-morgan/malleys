@@ -1,0 +1,42 @@
+{{ 'gift-page.css' | asset_url | stylesheet_tag }}
+
+<div class="gift__tempalte">
+  {% section 'gift-banner' %}
+  {% section 'gift-products' %}
+  {% section 'gift-products-2' %}
+  {% section 'gift-form' %}
+</div>
+
+<script defer>
+  window.addEventListener('load', ()=>{
+    // Email Script
+    function gtag_report_link_conversion(url) {
+      var callback = function () {
+      if (typeof(url) != 'undefined') {
+      window.location = url;
+      }
+      };
+      gtag('event', 'conversion', {
+      'send_to': 'AW-993985712/uwqMCIu8pekYELCJ_NkD',
+      'event_callback': callback
+      });
+      return false;
+    }
+    let banner = document.querySelector('#shopify-section-gift-banner');
+    if(banner){
+      let links = banner.querySelectorAll('a[href]');
+      links.forEach(ele=>{
+        ele.addEventListener('click', (e)=>{
+          e.preventDefault();
+          gtag_report_link_conversion(e.target.href)
+        })
+      })
+    }
+    document.querySelectorAll('a[href^="mailto:"]').forEach(ele=>{
+      ele.addEventListener('click', (e)=>{
+        e.preventDefault();
+        gtag_report_email_conversion(e.target.href)
+      })
+    })
+  })
+</script>

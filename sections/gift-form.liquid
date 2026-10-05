@@ -1,0 +1,164 @@
+  <style>
+    .globo-form-control label{
+      width: 100%;
+      display: inline-block;
+      color: #451405 !important;
+      font-family: Poppins;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 131.523%;
+      letter-spacing: .48px;
+      margin-bottom: 10px;
+    }
+    .globo-form-control label span{
+      color: #451405 !important;
+    }
+    .globo-form-control .checkbox-wrapper .checkbox-input {
+        display: none !important;
+    }
+    .globo-form-control .checkbox-wrapper label.globo-label span.label-content {
+      color: #4514054d !important;
+      text-align: left !important;
+  }
+    .globo-form-control .checkbox-wrapper label.globo-label span.label-content a {
+          display: inline-block;
+    color: #4514054d !important;
+    text-decoration-line: underline;
+  }
+    .globo-form-app button.submit, .globo-form-app button.submit:focus{
+          color: #fff;
+          font-family: Poppins;
+          font-size: 18px !important;
+          font-style: normal !important;
+          font-weight: 600 !important;
+          line-height: 126.523% !important;
+          letter-spacing: .54px !important;
+          padding: 24px 42px !important;
+          border: none !important;
+          background: #451405 !important;
+    }
+    .globo-form-app button.submit:hover{
+      background: #280700 !important;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+  </style>
+    <section class="gift_form">
+        <div class="container">
+            <!-- <form action=""> -->
+              <div class="globo-formbuilder" data-id="MTUyOTA="></div>
+              {% comment %}
+              {% form 'contact' %}
+                <p class="success-msg form-success{% unless form.posted_successfully? %} hide{% endunless %}">
+        			{{ 'contact.form.post_success' | t }}
+        
+        		</p>
+        
+        		{% render 'form-errors-custom', form: form %}
+                <div class="gift_form--fields">
+                    <div class="gift__form--field">
+                        <label for="Fname">First Name</label>
+                        <input type="text" name="contact[name]" id="Fname">
+                    </div>
+                    <div class="gift__form--field">
+                        <label for="Lname">Last Name</label>
+                        <input type="text" name="contact[last-name]" id="Lname">
+                    </div>
+                </div>
+                <div class="gift_form--fields">
+                    <div class="gift__form--field">
+                        <label for="email">Email</label>
+                        <input type="email" name="contact[email]" id="email">
+                    </div>
+                    <div class="gift__form--field">
+                        <label for="company">Company <span>(optional)</span></label>
+                        <input type="text" name="contact[company]" id="company">
+                    </div>
+                </div>
+                <!-- <div class="gift_form--fields">
+                    <div class="gift__form--field">
+                        <label for="orderQuantity">Order Quantity</label>
+                        <select name="orderQuantity" id="orderQuantity">
+                            <option value="">Click to show options</option>
+                            <option value="1">1</option>
+                            <option value="1">1</option>
+                            <option value="1">1</option>
+                        </select>
+                    </div>
+                    <div class="gift__form--field">
+                        <label for="desiredDeliveryDate">Desired Delivery Date</label>
+                        <input type="text" name="desiredDeliveryDate" id="desiredDeliveryDate" placeholder="Desired Delivery Date">
+                    </div>
+                </div> -->
+                <!-- <div class="product__itemBox">
+                    <h3 class="product__itemBox--heading">Item</h3>
+                    <div class="product__itemBox--item">
+                        <div class="product__itemBox--product">
+                            <div class="itemBox__productImage">
+                                <img src="./images/image_6.png" alt="">
+                            </div>
+                            <div class="itemBox__productDetails">
+                                <h3 class="itemBox__productDetails--heading">Gourmet Dark Chocolate Mint Bar</h3>
+                                <p class="itemBox__productDetails--price"><span>Subtotal </span> $ 2.40</p>
+                                <ul class="itemBox__productDetails--discountVol">
+                                    <li>$500-$999 - 5% Discount</li>
+                                    <li>$1,000-$1,999 - 10% Discount</li>
+                                    <li>$2,000 + 15% Discount</li>
+                                </ul>
+                            </div>
+                            <div class="deleteItem__Icon">
+                                <button>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 38 38" fill="none">
+                                        <circle cx="19" cy="19" r="19" fill="#F5F5F5"/>
+                                        <path d="M26.3241 12.6667L12.6665 26.3243" stroke="#AEAEAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M12.6665 12.6667L26.3241 26.3243" stroke="#AEAEAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                      </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- <div class="form__shippingAddress">
+
+                    <p class="shippingAddress__label">Shipping Address</p>
+                    <div class="inputRadioButtons__block">
+                        <div class="inputRadio">
+                            <input type="radio" id="One" name="shippingAddress">
+                            <label for="One">One</label>
+                        </div>
+                        <div class="inputRadio">
+                            <input type="radio" id="Multiple" name="shippingAddress">
+                            <label for="Multiple">Multiple</label>
+                        </div>
+                    </div>
+                    <p class="radioBtn__instruction">Select “one” if every gift in your order is being shipped to a single address. Select “multiple” if gifts in your order are being shipped to multiple addresses.</p>
+                </div> -->
+
+                <div class="formTextArea__fields">
+                    <div class="gift__form--field">
+                        <label for="yourAddress">Your address</label>
+                        <!-- <textarea name="yourAddress" id="yourAddress" cols="30" rows="2"></textarea> -->
+                       <input type="text" name="contact[address]" id="Lname">
+                    </div>
+                </div>
+                <div class="notes__TextAreaField">
+                    <div class="gift__form--field">
+                        <label for="Notes">Notes <span>(optional)</span></label>
+                        <textarea name="contact[notes]" id="Notes" cols="30" rows="10" placeholder="Notes"></textarea>
+                    </div>
+                </div>
+                <div class="form__footer">
+                    <div class="form__termAndCondition">
+                        <input type="checkbox"  name="contact[terms-and-condition]" id="termAndCondition">
+                        <label for="termAndCondition">Email me news and special offers. I agree to the <a href="#."> Terms & Condition </a> and <a href="#."> Privacy Policy </a></label>
+                    </div>
+                    <div class="form__submissionBtn">
+                        <!-- <button type="button">Submit Order Request</button> -->
+                        <input type="submit" value="Contact Us" />
+                    </div>
+                </div>
+              {% endform %}
+            <!-- </form> -->
+            {% endcomment %}
+        </div>
+    </section>

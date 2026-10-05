@@ -1,0 +1,203 @@
+{% assign crop_setting = settings.product-grid %}
+{% assign image_crop = nil %}
+{% if crop_setting == "square" %}
+    {% assign image_crop = "aspect-ratio--square" %}
+{% elsif crop_setting == "tall" %}
+    {% assign image_crop = "aspect-ratio--tall" %}
+{% elsif crop_setting == "wide" %}
+    {% assign image_crop = "aspect-ratio--wide" %}
+{% endif %}
+
+{%- assign productPaddingClass = '' -%}
+
+{% if settings.product_padding_enable == true %}
+  {% assign productPaddingClass = ' has-product-padding' %}
+{% endif %}
+
+{%- capture hoverClass -%}
+  {% case settings.hover_effect %}
+      {% when "shadow" %} has-shadow-hover
+      {% when "zoom" %} has-text-hover
+      {% when "text-only" %} has-text-hover
+  {% endcase %}
+{%- endcapture -%}
+
+{% assign bordersClass = '' %}
+
+{% if settings.borders_enable == true %}
+  {% assign bordersClass = ' has-borders' %}
+{% endif %}
+
+{% assign textCenterClass = '' %}
+
+{% if settings.center_align == true %}
+  {% assign textCenterClass = ' has-text-center' %}
+{% endif %}
+
+{% liquid 
+  assign is_corporate_gift = false
+  assign corporate_gift_collection_handle = "corporate-page"
+
+  for collection in liquidObject.collections
+    if collection.handle == corporate_gift_collection_handle
+       assign is_corporate_gift = true
+    endif
+  endfor
+%}
+
+{%  unless is_corporate_gift %}
+<article class="indiv-product {{ hoverClass }} {{ productPaddingClass }}{{ bordersClass }}{{ textCenterClass }}">
+  <script type="application/json" id="product-grid-{{ liquidObject.id }}" class="product-grid-json">
+    {{ liquidObject | json }}
+  </script>
+
+  <div class="position-relative indiv-product__image-wrapper">
+    {% if settings.hover_effect == 'zoom' %}
+      <div class="collection-image--zoom-effect">
+        <div class="zoom-effect--inner">
+          <a
+            class="grid__image"
+            href="{{ liquidObject.url | within: collection }}"
+            tabindex="-1"
+          >
+            {% if image_crop %}<div class="aspect-ratio {{ image_crop }}">{% endif %}
+              {% render 'responsive-image' with liquidObject.media[0].preview_image, alt: liquidObject.media[0].alt %}
+            {% if image_crop %}</div>{% endif %}
+          </a>
+        </div>
+      </div>
+    {% else %}
+        <a
+          class="grid__image"
+          href="{{ liquidObject.url | within: collection }}"
+          tabindex="-1"
+        >
+            {% if image_crop %}<div class="aspect-ratio {{ image_crop }}">{% endif %}
+                {% render 'responsive-image' with liquidObject.media[0].preview_image, alt: liquidObject.media[0].alt %}
+            {% if image_crop %}</div>{% endif %}
+        </a>
+    {% endif %}
+
+    {% if liquidObject.available %}
+      {% if liquidObject.compare_at_price_max > liquidObject.price and settings.show_sale_badge %}
+        <div class="fresh-badge sale-badge">{{ 'products.general.sale' | t }}</div>
+      {% endif %}
+    {% elsif settings.sold_out_badge %}
+      <div class="fresh-badge sold-out-badge">{{ 'products.product.sold_out' | t }}</div>
+    {% endif %}
+  </div>
+
+  {% assign quickAddPositionClass = 'flex-grow-1 flex-column justify-content-between' %}
+
+  {% if settings.quick_add_position == 'above_product_details' %}
+    {% assign quickAddPositionClass = 'flex-column-reverse' %}
+  {% endif %}
+
+
+  <div class="d-flex {{ quickAddPositionClass }} {% if settings.quick_add_position == 'below_product_details' %}add-padding-details{% endif %}">
+    <div class="hp-title">
+      {% if section.id contains 'recommendations' %}
+
+        <div class="indiv-product-vendor-text">{{ liquidObject.vendor | link_to_vendor }}</div>
+
+        <a href="{{ liquidObject.url | within: collection }}" class="indiv-product__link">
+
+          <span class="indiv-product-title-text">{{ liquidObject.title }}</span>
+
+            <span class="money-styling">
+              <span class="current-price">
+                {% if liquidObject.price_varies %}
+                  <small>{{ 'products.general.from' | t }}</small> <span class="money">{{ liquidObject.price_min | money }}</span>
+                {% else %}
+                  <span class="money">{{ liquidObject.price_min | money }}</span>
+                {% endif %}
+              </span>
+
+              {% if liquidObject.compare_at_price_max > liquidObject.price and settings.show_sale_price %}
+                <span class="compare-at-price">
+                  <span class="sr-only">compare at </span>
+                  <span class="money">{{ liquidObject.compare_at_price_max | money }}</span>
+                </span>
+              {% endif %}
+
+              {% assign first_variant = liquidObject.variants[0] %}
+              {% render 'unit-price-measurement-grid', variant: first_variant %}
+
+            </span>
+        </a>
+
+      {% else %}
+        {% for block in section.blocks %}
+          {% case block.type %}
+
+          {% when 'product-card-vendor' %}
+
+            <div class="indiv-product-vendor-text" {{ block.shopify_attributes }}>{{ liquidObject.vendor | link_to_vendor }}</div>
+
+          {% when 'product-card-title' %}
+            <a href="{{ liquidObject.url | within: collection }}" class="indiv-product__link"{{ block.shopify_attributes }}>
+
+              <span class="indiv-product-title-text">{{ liquidObject.title }}</span>
+            </a>
+
+          {% when 'product-card-price' %}
+              <a href="{{ liquidObject.url | within: collection }}" class="indiv-product__link"{{ block.shopify_attributes }}>
+                <span class="money-styling">
+                  <span class="current-price">
+                    {% if liquidObject.price_varies %}
+                      <small>{{ 'products.general.from' | t }}</small> <span class="money">{{ liquidObject.price_min | money }}</span>
+                    {% else %}
+                      <span class="money">{{ liquidObject.price_min | money }}</span>
+                    {% endif %}
+                  </span>
+
+                  {% if liquidObject.compare_at_price_max > liquidObject.price and settings.show_sale_price %}
+                    <span class="compare-at-price">
+                      <span class="sr-only">compare at </span>
+                      <span class="money">{{ liquidObject.compare_at_price_max | money }}</span>
+                    </span>
+                  {% endif %}
+
+                  {% assign first_variant = liquidObject.variants[0] %}
+                  {% render 'unit-price-measurement-grid', variant: first_variant %}
+
+                </span>
+              </a>
+          {% endcase %}
+        {% endfor %}
+      {% endif %}
+    </div>
+
+    {% unless settings.quick_add_position == 'none' %}
+      {% unless hideBtns == true %}
+        <div class="quick-add-wrapper{% if liquidObject.variants.size == 1 %} is-singular{% endif %}">
+          {% if liquidObject.variants.size > 1 and liquidObject.available %}
+
+            <a class="btn quick-add-button-variants alt-focus w-100 my-0" tabindex="0" href="{{ liquidObject.url | within: collection }}">{{ 'collections.general.view_options' | t }} <span class="sr-only">{{ liquidObject.title }}</span></a>
+          {% elsif liquidObject.available %}
+
+
+              {% form 'product', liquidObject %}
+                <input type="hidden" name="id" value="{{ liquidObject.variants.first.id }}" />
+
+                <button
+                  class="btn quick-add-button alt-focus w-100 my-0"
+                  type="submit"
+                  name="add"
+                  tabindex="0"
+                >
+                  {{ 'products.product.add_to_cart' | t }}
+                </button>
+              {% endform %}
+
+
+          {% else %}
+            <p class="btn sold-out-button w-100 my-0">{{ 'products.product.sold_out' | t }}</p>
+          {% endif %}
+        </div>
+      {% endunless %}
+    {% endunless %}
+  </div>
+
+</article>
+{%  endunless %}

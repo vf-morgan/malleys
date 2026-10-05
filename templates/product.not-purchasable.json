@@ -1,0 +1,176 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "wrapper": "div",
+  "sections": {
+    "main": {
+      "type": "template--product",
+      "blocks": {
+        "f2ab13cb-5257-499c-a840-64222670b5a3": {
+          "type": "custom-liquid",
+          "settings": {
+            "custom-liquid": "<div style=\"margin: 1rem 0;\"></div>"
+          }
+        },
+        "product-title": {
+          "type": "product-title",
+          "settings": {}
+        },
+        "product-price": {
+          "type": "product-price",
+          "settings": {
+            "show_discount": "value",
+            "tax_included": false,
+            "shipping_policy": false
+          }
+        },
+        "f9ca822f-ac5e-44d2-bc51-c1af9112d01b": {
+          "type": "vendor-sku",
+          "settings": {
+            "show_vendor": false,
+            "show_sku": true
+          }
+        },
+        "product-options": {
+          "type": "product-options",
+          "settings": {}
+        },
+        "quantity-selector": {
+          "type": "quantity-selector",
+          "disabled": true,
+          "settings": {}
+        },
+        "401f58d7-789f-4f79-a5f5-916156f1547a": {
+          "type": "location",
+          "settings": {
+            "title": "Please choose location"
+          }
+        },
+        "payment-buttons": {
+          "type": "payment-buttons",
+          "disabled": true,
+          "settings": {
+            "show_smart_checkout": false
+          }
+        },
+        "shop-pay": {
+          "type": "shop-pay",
+          "disabled": true,
+          "settings": {}
+        },
+        "3f39d937-ca61-4d37-a604-bd0bb5512ed8": {
+          "type": "product-description",
+          "settings": {}
+        },
+        "social-sharing": {
+          "type": "social-sharing",
+          "settings": {
+            "social_align": "left",
+            "social_sharing_facebook": true,
+            "social_sharing_twitter": true,
+            "social_sharing_pinterest": false
+          }
+        }
+      },
+      "block_order": [
+        "f2ab13cb-5257-499c-a840-64222670b5a3",
+        "product-title",
+        "product-price",
+        "f9ca822f-ac5e-44d2-bc51-c1af9112d01b",
+        "product-options",
+        "quantity-selector",
+        "401f58d7-789f-4f79-a5f5-916156f1547a",
+        "payment-buttons",
+        "shop-pay",
+        "3f39d937-ca61-4d37-a604-bd0bb5512ed8",
+        "social-sharing"
+      ],
+      "settings": {
+        "show_out_of_stock_email": false,
+        "out_of_stock_email_position": "above-details",
+        "hide_out_of_stock": true,
+        "thumbnail_changes_variant": true,
+        "image_display": "thumbnails",
+        "enable_zoom": true,
+        "enable_video_loop": true
+      }
+    },
+    "product-recommendations": {
+      "type": "template--product--recommendations",
+      "disabled": true,
+      "custom_css": [
+        "h2 {margin-top: 48px;}"
+      ],
+      "settings": {
+        "show_product_recommendations": true,
+        "product_recommendations_heading": "You may also like"
+      }
+    },
+    "1656622972007e5cb6": {
+      "type": "apps",
+      "blocks": {
+        "assortion_recommendation_9HKr3N": {
+          "type": "shopify://apps/assortion/blocks/recommendation/5588d7f9-a5bc-4f4a-9c54-39b7e081dd23",
+          "settings": {
+            "type": "recommendation",
+            "id": ""
+          }
+        }
+      },
+      "block_order": [
+        "assortion_recommendation_9HKr3N"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "featured-collection": {
+      "type": "collection--featured-collection",
+      "blocks": {
+        "featured-collection-1": {
+          "type": "product-card-title",
+          "settings": {}
+        },
+        "featured-collection-2": {
+          "type": "product-card-price",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "featured-collection-1",
+        "featured-collection-2"
+      ],
+      "settings": {
+        "subheading": "Popular With Other Customers",
+        "title": "Flavorful Fan Favorites",
+        "collection": "customer-favorites",
+        "grid": 4,
+        "rows": 1,
+        "hide_add_to_cart": false,
+        "show_view_all": true
+      }
+    },
+    "newsletter_newsletter_WteCNE": {
+      "type": "newsletter--newsletter",
+      "settings": {
+        "subheading": "Stay up-to-date",
+        "title": "Join our mailing list",
+        "newsletter_description": "<p><strong>You Can Also</strong> <a href=\"/pages/text-message-signup\" title=\"Text Message Signup\"><strong>Sign Up for Tasty Text Message Alerts!</strong></a></p>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product-recommendations",
+    "1656622972007e5cb6",
+    "featured-collection",
+    "newsletter_newsletter_WteCNE"
+  ]
+}

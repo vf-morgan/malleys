@@ -1,0 +1,462 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "wrapper": "div.index-sections",
+  "sections": {
+    "3a874cce-b06d-4a1e-a47b-0eee6f08e8b4": {
+      "type": "single-banner-slider",
+      "blocks": {
+        "slide_PFkr7N": {
+          "type": "slide",
+          "name": "Pre-order",
+          "settings": {
+            "single__slide-image": "shopify://shop_images/SweetestDay_WebBanner_Web_Graphics_TEMPLATE_1608x605_copy_2.png",
+            "single__slide-mobile--image": "shopify://shop_images/SweetestDay_WebBanner_Web_Graphics_TEMPLATE_1080x1080_copy_2.png",
+            "banner_image_url": "https://malleys-chocolates-preorders.square.site"
+          }
+        },
+        "slide_ECtUEA": {
+          "type": "slide",
+          "name": "Malley Bar house",
+          "settings": {
+            "single__slide-image": "shopify://shop_images/Halloween_WebBanner_Web_Graphics_TEMPLATE_1608x605_copy.png",
+            "single__slide-mobile--image": "shopify://shop_images/Halloween_WebBanner_Web_Graphics_TEMPLATE_1080x1080_copy.png",
+            "banner_image_url": "shopify://collections/chocolate-bars"
+          }
+        },
+        "slide_7NcLfL": {
+          "type": "slide",
+          "name": "Snuggles",
+          "settings": {
+            "single__slide-image": "shopify://shop_images/9-30-26_snuggles_web.png",
+            "single__slide-mobile--image": "shopify://shop_images/9-30-26_Snuggles_mobile.png",
+            "banner_image_url": "shopify://products/snuggles"
+          }
+        },
+        "slide_HiEfJB": {
+          "type": "slide",
+          "name": "Sweetest Day",
+          "settings": {
+            "single__slide-image": "shopify://shop_images/SweetestDay_WebBanner_Web_Graphics_TEMPLATE_1608x605_f43de80e-2213-401e-bc42-0e11d6fbc542.png",
+            "single__slide-mobile--image": "shopify://shop_images/SweetestDay_WebBanner_Web_Graphics_TEMPLATE_1080x1080_94617ba4-67c6-4fa6-9f94-cf445d586aa7.png",
+            "banner_image_url": "shopify://collections/best-sellers-1"
+          }
+        },
+        "slide_RchrMB": {
+          "type": "slide",
+          "name": "Halloween",
+          "settings": {
+            "single__slide-image": "shopify://shop_images/9-30-26_Halloween_candy_web.png",
+            "single__slide-mobile--image": "shopify://shop_images/9-30-26_Halloween_candy_mobile.png",
+            "banner_image_url": "shopify://collections/halloween"
+          }
+        },
+        "slide_wNmcPJ": {
+          "type": "slide",
+          "name": "Tailgate",
+          "disabled": true,
+          "settings": {
+            "single__slide-image": "shopify://shop_images/8-31-26_Win_the_Tailgate_browser.png",
+            "single__slide-mobile--image": "shopify://shop_images/8-31-26_Win_the_Tailgate_mobile.png",
+            "banner_image_url": "shopify://collections/game-day-snacks"
+          }
+        },
+        "slide_YhetX9": {
+          "type": "slide",
+          "name": "Berries + Grapes Now",
+          "disabled": true,
+          "settings": {
+            "single__slide-image": "shopify://shop_images/SweetestDay_WebBanner_Web_Graphics_TEMPLATE_1608x605_copy.png",
+            "single__slide-mobile--image": "shopify://shop_images/SweetestDay_WebBanner_Web_Graphics_TEMPLATE_1080x1080_copy.png",
+            "banner_image_url": "shopify://pages/locations"
+          }
+        }
+      },
+      "block_order": [
+        "slide_PFkr7N",
+        "slide_ECtUEA",
+        "slide_7NcLfL",
+        "slide_HiEfJB",
+        "slide_RchrMB",
+        "slide_wNmcPJ",
+        "slide_YhetX9"
+      ],
+      "settings": {}
+    },
+    "collection_featured_collection_JhgmDh": {
+      "type": "collection--featured-collection",
+      "blocks": {
+        "product_card_vendor_QqdcRH": {
+          "type": "product-card-vendor",
+          "disabled": true,
+          "settings": {}
+        },
+        "product_card_title_wbn8g3": {
+          "type": "product-card-title",
+          "settings": {}
+        },
+        "product_card_price_FE7gcc": {
+          "type": "product-card-price",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "product_card_vendor_QqdcRH",
+        "product_card_title_wbn8g3",
+        "product_card_price_FE7gcc"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "section {margin-top: -32px; margin-bottom: 16px;}",
+        "h2 {margin-bottom: -10px;}"
+      ],
+      "name": "Featured collection",
+      "settings": {
+        "subheading": "",
+        "title": "Lunchbox Favorites",
+        "collection": "fill-your-pencil-pouch",
+        "grid": 4,
+        "rows": 1,
+        "hide_add_to_cart": false,
+        "show_view_all": true
+      }
+    },
+    "collection_featured_collection_carousel_YPwB69": {
+      "type": "collection--featured-collection-carousel",
+      "blocks": {
+        "product_card_vendor_UNetUe": {
+          "type": "product-card-vendor",
+          "disabled": true,
+          "settings": {}
+        },
+        "product_card_title_qcd9d8": {
+          "type": "product-card-title",
+          "settings": {}
+        },
+        "product_card_price_pkT7wL": {
+          "type": "product-card-price",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "product_card_vendor_UNetUe",
+        "product_card_title_qcd9d8",
+        "product_card_price_pkT7wL"
+      ],
+      "custom_css": [
+        "section {margin-top: -32px; margin-bottom: 16px;}",
+        "h2 {margin-bottom: -10px;}"
+      ],
+      "name": "Featured Carousel",
+      "settings": {
+        "subheading": "",
+        "title": "Best Sellers",
+        "collection": "best-sellers",
+        "products_to_show": 8,
+        "grid": 4,
+        "hide_add_to_cart": false,
+        "show_view_all": false,
+        "enable_arrows": true,
+        "autoplay": false,
+        "autoplay_speed": 5
+      }
+    },
+    "text_image_with_text_47hLEQ": {
+      "type": "text--image-with-text",
+      "disabled": true,
+      "custom_css": [
+        ".feature-row {display: block; text-align: center;}",
+        ".feature-row__image {padding-top: 3rem; max-width: 580px; width: 60vw; margin: 0 auto 1rem;}",
+        ".feature-row__text {max-width: 960px; margin: 0 auto 0; padding-bottom: 0; font-size: 1.2em;}",
+        ".feature-row__text h2 {text-align: center; font-size: 1.5em;}"
+      ],
+      "settings": {
+        "image-width": "large",
+        "image": "shopify://shop_images/oc.svg",
+        "layout": "left",
+        "subheading": "",
+        "title": "Cleveland Style Chocolate Since 1935",
+        "text_block": "<p>For over 80 years, Malley’s has been crafting the richest, most delicious, most uniquely charming chocolate in the Midwest. Meet some of our iconic confections—and at least <em>try </em>to keep your drool off the screen.  </p>",
+        "button_link": "",
+        "button_label": ""
+      }
+    },
+    "text_image_with_text_TNggTL": {
+      "type": "text--image-with-text",
+      "disabled": true,
+      "settings": {
+        "image-width": "extra-large",
+        "image": "shopify://shop_images/prod-malley-ohs_c8f26c26-5f81-484d-9499-3c7b4318a28d.png",
+        "layout": "left",
+        "subheading": "",
+        "title": "Malley Ohs!",
+        "text_block": "<p>America’s number one cookie surrounded by Malley’s velvety smooth milk chocolate. We wanted to call them “Malley Omigosh-Are-You-Even-Kidding-How-Are-These-So-Goods,” but that didn’t fit on the box.</p>",
+        "button_link": "shopify://products/malley-ohs-8-oz",
+        "button_label": "Shop now"
+      }
+    },
+    "text_image_with_text_6AnTdq": {
+      "type": "text--image-with-text",
+      "disabled": true,
+      "settings": {
+        "image-width": "extra-large",
+        "image": "shopify://shop_images/prod-bordeaux_c4005284-04fa-40dc-9c68-a179561bd12f.png",
+        "layout": "right",
+        "subheading": "",
+        "title": "Bordeaux",
+        "text_block": "<p>English toffee, roasted almonds, Malley’s milk chocolate, and a nutty chopped almond topping? Oui oui, indeed.</p>",
+        "button_link": "shopify://products/bordeaux",
+        "button_label": "Shop now"
+      }
+    },
+    "text_image_with_text_Chn4zw": {
+      "type": "text--image-with-text",
+      "disabled": true,
+      "settings": {
+        "image-width": "extra-large",
+        "image": "shopify://shop_images/prod-billybobs_c08db84f-849b-4c4e-ad20-ec6f72fa4947.png",
+        "layout": "left",
+        "subheading": "",
+        "title": "Pecan BillyBobs",
+        "text_block": "<p>Snap up our version of chocolate turtles. Buttery smooth caramel and roasted, salted pecans, all drenched in rich milk chocolate. Warning: they may inspire you to name your firstborn “BillyBob.” </p>",
+        "button_link": "shopify://products/pecan-billybobs-14-oz",
+        "button_label": "Shop now"
+      }
+    },
+    "text_image_with_text_4K7Wzk": {
+      "type": "text--image-with-text",
+      "disabled": true,
+      "settings": {
+        "image-width": "extra-large",
+        "image": "shopify://shop_images/prod-choc-covered-pretzels_030246e6-682a-4d09-859c-516d48396ef3.png",
+        "layout": "right",
+        "subheading": "",
+        "title": "Chocolate  Covered Pretzels",
+        "text_block": "<p>Salty pretzels covered in Malley’s classic milk or dark chocolate. Is it our most popular gift item? Yes. Should you also gift one to yourself? Also yes. </p>",
+        "button_link": "shopify://products/dark-chocolate-covered-pretzels-14-oz",
+        "button_label": "Shop now"
+      }
+    },
+    "text_image_with_text_y9LKT3": {
+      "type": "text--image-with-text",
+      "disabled": true,
+      "settings": {
+        "image-width": "extra-large",
+        "image": "shopify://shop_images/prod-gold-mix_2378c0b7-d7be-40e5-a867-adb421e3b535.png",
+        "layout": "left",
+        "subheading": "",
+        "title": "Gold Cup Mix",
+        "text_block": "<p>Our finest selection of nut clusters, caramels, honeycomb pieces, almond crunch, nougats, and more. The hardest part is deciding where to start. But don’t worry, they’re all gold.</p>",
+        "button_link": "shopify://products/gold-cup-mixed",
+        "button_label": "Shop now"
+      }
+    },
+    "text_image_with_text_DUi9P3": {
+      "type": "text--image-with-text",
+      "disabled": true,
+      "custom_css": [
+        ".feature-row {padding-bottom: 3rem;}"
+      ],
+      "settings": {
+        "image-width": "extra-large",
+        "image": "shopify://shop_images/prod-buckeyes_8bc3c5a8-a4a4-4c2d-9f2b-2530a29a04a1.png",
+        "layout": "right",
+        "subheading": "",
+        "title": "Buckeyes",
+        "text_block": "<p>O-H-Y-E-A-H. Creamy peanut butter combines with Malley’s rich milk chocolate for THE tastiest treat in the land. (Best enjoyed while humming “Hang On Sloopy.”)</p>",
+        "button_link": "shopify://products/buckeyes-14-5-oz-box",
+        "button_label": "Shop now"
+      }
+    },
+    "advanced_layout_custom_html_pCRmUj": {
+      "type": "advanced-layout--custom-html",
+      "blocks": {
+        "html_TKTKMM": {
+          "type": "html",
+          "settings": {
+            "code": "<div class=\"container ingredient-nav mb-5 pb-5\">\n\t<div class=\"row justify-content-center align-items-start\">\n\t\t<div class=\"col-12 mb-3\">\n\t\t\t<h4 class=\"type-subheading\"><strong>What are you in the mood for? <br><a href=\"https://malleys.com/collections/customer-favorites\">Shop Malley’s Classics</a></strong></h4>\n\t\t</div>\n\t\t<div class=\"col p-3\">\n\t\t\t<a href=\"https://malleys.com/collections/dark-chocolate\">\n\t\t\t\t<span class=\"img-circle\">\n\t\t\t\t\t<img src=\"data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==\" data-src=\"//cdn.shopify.com/s/files/1/0627/8476/6124/files/bg-dark-choc_430x.jpg?v=1726758225\" class=\"lazyload\" alt=\"Dark Chocolate\">\n\t\t\t\t</span>\n\t\t\t\tDark<br> Chocolate\n\t\t\t</a>\n\t\t</div>\n\t\t<div class=\"col p-3\">\n\t\t\t<a href=\"https://malleys.com/collections/milk-chocolate\">\n\t\t\t\t<span class=\"img-circle\">\n\t\t\t\t\t<img src=\"data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==\" data-src=\"//cdn.shopify.com/s/files/1/0627/8476/6124/files/bg-milk-choc_430x.jpg?v=1726758225\" class=\"lazyload\" alt=\"Milk Chocolate\">\n\t\t\t\t</span>\n\t\t\t\tMilk<br> Chocolate\n\t\t\t</a>\n\t\t</div>\n\t\t<div class=\"col p-3\">\n\t\t\t<a href=\"https://malleys.com/collections/fruity\">\n\t\t\t\t<span class=\"img-circle\">\n\t\t\t\t\t<img src=\"data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==\" data-src=\"//cdn.shopify.com/s/files/1/0627/8476/6124/files/bg-fruit_430x.jpg?v=1726758225\" class=\"lazyload\" alt=\"Fruit\">\n\t\t\t\t</span>\n\t\t\t\tFruity\n\t\t\t</a>\n\t\t</div>\n\t\t<div class=\"col p-3\">\n\t\t\t<a href=\"https://malleys.com/collections/sweet-salty\">\n\t\t\t\t<span class=\"img-circle\">\n\t\t\t\t\t<img src=\"data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==\" data-src=\"//cdn.shopify.com/s/files/1/0627/8476/6124/files/bg-salty_430x.jpg?v=1726758225\" class=\"lazyload\" alt=\"Sweet and Salty\">\n\t\t\t\t</span>\n\t\t\t\tSweet &amp;<br> Salty\n\t\t\t</a>\n\t\t</div>\n\t\t<div class=\"col p-3\">\n\t\t\t<a href=\"https://malleys.com/collections/nutty\">\n\t\t\t\t<span class=\"img-circle\">\n\t\t\t\t\t<img src=\"data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==\" data-src=\"//cdn.shopify.com/s/files/1/0627/8476/6124/files/bg-nutty_430x.jpg?v=1726758225\" class=\"lazyload\" alt=\"Nutty\">\n\t\t\t\t</span>\n\t\t\t\tNutty\n\t\t\t</a>\n\t\t</div>\n\t\t<div class=\"col p-3\">\n\t\t\t<a href=\"https://malleys.com/collections/all\">\n\t\t\t\t<span class=\"img-circle\">+</span>\n\t\t\t\tAll\n\t\t\t</a>\n\t\t</div>\n\t</div>\n</div>\n<style>\n\t.ingredient-nav {\n\t\ttext-align:center;\n\t\tline-height:1;\n\t}\n\t.ingredient-nav a {\n\t\ttext-decoration:none;\n\t}\n\t.ingredient-nav .col {\n\t\tflex:0 0 10rem;\n\t}\n\t.ingredient-nav .img-circle {\n\t\tposition:relative;\n\t\tbackground:#E34A8A;\n\t\tborder:5px solid #FDADC7;\n\t\tdisplay:flex;\n\t\tjustify-content:center;\n\t\talign-items:center;\n\t\tcolor:white;\n\t\tfont-size:1.3rem;\n\t\twidth:8rem;\n\t\theight:8rem;\n\t\tborder-radius:100%;\n\t\toverflow:hidden;\n\t\ttransition:.5s ease-in-out all;\n\t\tmargin-bottom:1rem;\n\t}\n\t.ingredient-nav .img-circle:hover {\n\t\tborder-color:#E34A8A;\n\t}\n\t.ingredient-nav .img-circle img {\n\t\tposition:absolute;\n\t\ttop:0;\n\t\tleft:0;\n\t\twidth:100%;\n\t\theight:100%;\n\t\tobject-fit: cover;\n\t\tobject-position: center;\n\t}\n</style>",
+            "width": "100%"
+          }
+        }
+      },
+      "block_order": [
+        "html_TKTKMM"
+      ],
+      "custom_css": [],
+      "settings": {}
+    },
+    "collection_featured_collection_WKD8WN": {
+      "type": "collection--featured-collection",
+      "blocks": {
+        "product_card_vendor_4VymqG": {
+          "type": "product-card-vendor",
+          "disabled": true,
+          "settings": {}
+        },
+        "product_card_title_UNnYNc": {
+          "type": "product-card-title",
+          "settings": {}
+        },
+        "product_card_price_na7EC7": {
+          "type": "product-card-price",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "product_card_vendor_4VymqG",
+        "product_card_title_UNnYNc",
+        "product_card_price_na7EC7"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "h2 {margin-top: -72px;}"
+      ],
+      "name": "Featured collection",
+      "settings": {
+        "subheading": "",
+        "title": "Best Sellers",
+        "collection": "best-sellers-1",
+        "grid": 4,
+        "rows": 1,
+        "hide_add_to_cart": false,
+        "show_view_all": true
+      }
+    },
+    "collection_featured_collection_carousel_wpftpJ": {
+      "type": "collection--featured-collection-carousel",
+      "blocks": {
+        "product_card_vendor_PjbhCE": {
+          "type": "product-card-vendor",
+          "disabled": true,
+          "settings": {}
+        },
+        "product_card_title_RRFPd6": {
+          "type": "product-card-title",
+          "settings": {}
+        },
+        "product_card_price_YrAhJ7": {
+          "type": "product-card-price",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "product_card_vendor_PjbhCE",
+        "product_card_title_RRFPd6",
+        "product_card_price_YrAhJ7"
+      ],
+      "custom_css": [
+        "h2 {margin-top: -72px;}"
+      ],
+      "name": "Featured Carousel",
+      "settings": {
+        "subheading": "",
+        "title": "Fall Treats",
+        "collection": "halloween",
+        "products_to_show": 12,
+        "grid": 4,
+        "hide_add_to_cart": false,
+        "show_view_all": true,
+        "enable_arrows": true,
+        "autoplay": false,
+        "autoplay_speed": 5
+      }
+    },
+    "collection_featured_collection_eqhy3m": {
+      "type": "collection--featured-collection",
+      "blocks": {
+        "product_card_vendor_4TRWDx": {
+          "type": "product-card-vendor",
+          "disabled": true,
+          "settings": {}
+        },
+        "product_card_title_caChwE": {
+          "type": "product-card-title",
+          "settings": {}
+        },
+        "product_card_price_AAwhWE": {
+          "type": "product-card-price",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "product_card_vendor_4TRWDx",
+        "product_card_title_caChwE",
+        "product_card_price_AAwhWE"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "h2 {margin-top: -60px; font-size: 32px;}"
+      ],
+      "settings": {
+        "subheading": "",
+        "title": "Halloween Treats",
+        "collection": "halloween",
+        "grid": 4,
+        "rows": 1,
+        "hide_add_to_cart": false,
+        "show_view_all": true
+      }
+    },
+    "image_image_with_text_overlay_tQ7crC": {
+      "type": "image--image-with-text-overlay",
+      "custom_css": [
+        ".hero__text {font-size: 1.2em; color: #faecd9;}",
+        ".title-bar {background: url(https://cdn.shopify.com/s/files/1/0627/8476/6124/files/cleveland-style-chocolate_430x.png?v=1726752466) no-repeat center; background-size: contain; height: 6rem;}",
+        ".title-bar h2 {display: none;}"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/about-bg.jpg",
+        "subheading": "",
+        "title": "Cleveland Style Chocolate Since 1935",
+        "text": "<p>Malley’s has grown from our grandfather’s first storefront in Lakewood to <a href=\"https://malleys.com/find-a-store/\" target=\"_blank\"><span style=\"text-decoration:underline\"><strong>18 retail locations</strong></span></a>  across Northeast Ohio. From Avon to North Canton to Mentor, our customer service and selection is second-to-none. </p><p>Learn <a href=\"https://malleys.com/pages/about-us/\" target=\"_blank\"><span style=\"text-decoration:underline\"><strong>how we got here</strong></span></a> or skip straight to dessert.</p>",
+        "parallax": true,
+        "alignment": "center",
+        "hero_size": "x-large",
+        "text-over-image-width": "full-width",
+        "button_link": "",
+        "button_label": ""
+      }
+    },
+    "advanced_layout_custom_html_KFxiFn": {
+      "type": "advanced-layout--custom-html",
+      "blocks": {
+        "html_L9mtmU": {
+          "type": "html",
+          "settings": {
+            "code": "<div class=\"container text-center py-5\">\n\t<div class=\"row g-4 py-4\">\n\t\t<div class=\"col-12 col-md-6 p-4\">\n\t\t\t<figure class=\"mb-4 cta-image\">\n\t\t\t\t<a href=\"/pages/loyalty-1\"><img src=\"data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==\" data-src=\"https://cdn.shopify.com/s/files/1/0627/8476/6124/files/choc_430x.png?v=1726756175\" alt=\"CHOC Club\" class=\"lazyload\"></a>\n\t\t\t</figure>\n\t\t\t<h2 class=\"mb-0\">Join the CHOC Club</h2>\n\t\t\t<p class=\"lead\">Earn rewards for indulging in your favorite treats</p>\n\t\t\t<a href=\"/pages/loyalty-1\" class=\"btn\">Learn More<span class=\"sr-only\"> about the CHOC Club</span></a>\n\t\t</div>\n\t\t<div class=\"col-12 col-md-6 p-4\">\n\t\t\t<figure class=\"mb-4 cta-image\">\n\t\t\t\t<a href=\"/pages/sweet-deals\"><img src=\"data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==\" data-src=\"https://cdn.shopify.com/s/files/1/0627/8476/6124/files/choc-capital_430x.png?v=1726756174\" alt=\"The Chocolate Capital of Cleveland\" class=\"lazyload\"></a>\n\t\t\t</figure>\n\t\t\t<h2 class=\"mb-0\">Never miss a deal</h2>\n\t\t\t<p class=\"lead\">Join our mailing list</p>\n\t\t\t<a href=\"/pages/sweet-deals\" class=\"btn\">Subscribe</a>\n\t\t</div>\n\t</div>\n</div>\n<style>\n\tfigure.cta-image img {\n\t\twidth:100%;\n\t\theight:6rem;\n\t\tobject-fit: contain;\n\t\tobject-position: center;\n\t}\n</style>",
+            "width": "100%"
+          }
+        }
+      },
+      "block_order": [
+        "html_L9mtmU"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "3a874cce-b06d-4a1e-a47b-0eee6f08e8b4",
+    "collection_featured_collection_JhgmDh",
+    "collection_featured_collection_carousel_YPwB69",
+    "text_image_with_text_47hLEQ",
+    "text_image_with_text_TNggTL",
+    "text_image_with_text_6AnTdq",
+    "text_image_with_text_Chn4zw",
+    "text_image_with_text_4K7Wzk",
+    "text_image_with_text_y9LKT3",
+    "text_image_with_text_DUi9P3",
+    "advanced_layout_custom_html_pCRmUj",
+    "collection_featured_collection_WKD8WN",
+    "collection_featured_collection_carousel_wpftpJ",
+    "collection_featured_collection_eqhy3m",
+    "image_image_with_text_overlay_tQ7crC",
+    "advanced_layout_custom_html_KFxiFn"
+  ]
+}

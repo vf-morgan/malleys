@@ -1,0 +1,214 @@
+<style>
+  main#main>#shopify-section-template--16167850836140__main{
+  padding-bottom: 0!important;
+}
+  main#main>#shopify-section-template--16167850836140__1694760649670a134e{
+    padding-top: 0 !important;
+  }
+</style>
+<article id="{{ template.name }}-{{page.handle}}" class="page hentry container">
+  <header>
+    <div class="title-bar custom-font">
+      <h1 class="main-heading">{{ page.title }}</h1>
+    </div>
+  </header>
+  <section class="entry-content">
+    {{ page.content }}
+    {% if section.settings.show_contact_form %}
+      {% form 'contact' %}
+        <p class="success-msg form-success{% unless form.posted_successfully? %} hide{% endunless %}">
+          {{ 'contact.form.post_success' | t }}
+        </p>
+        {% if form.posted_successfully? %}
+          <script>
+            window.location.href = '/pages/thankyou?form=fundraising'
+          </script>
+        {% endif %}
+        {% render 'form-errors-custom', form: form %}
+
+        <div id="contact-form">
+          <div class="row">
+            <div class="col-md-6 col-12">
+              <div class="form-group">
+                <label for="first-name">First Name</label>
+                <input
+                  type="text"
+                  name="contact[first-name]"
+                  id="first-name"
+                  class="form-control"
+                >
+              </div>
+            </div>
+            <div class="col-md-6 col-12">
+              <div class="form-group">
+                <label for="last-name">Last Name</label>
+                <input
+                  type="text"
+                  name="contact[last-name]"
+                  id="last-name"
+                  class="form-control"
+                >
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-12">
+              <div class="form-group">
+                <label for="company-or-organization">Company/Organization</label>
+                <input
+                  type="text"
+                  name="contact[company-or-organization]"
+                  id="company-or-organization"
+                  class="form-control"
+                  value="{% if customer %}{{ customer.name }}{% endif %}"
+                >
+              </div>
+            </div>
+
+            <div class="col-md-6 col-12">
+              <div class="form-group">
+                <label for="email">{{ 'contact.form.email' | t }}</label>
+                <input
+                  type="email"
+                  name="contact[email]"
+                  id="email"
+                  class="form-control"
+                  value="{% if customer %}{{ customer.email }}{% endif %}"
+                  spellcheck="false"
+                  autocomplete="off"
+                  autocapitalize="off"
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="phone">{{ 'contact.form.phone' | t }}</label>
+                <input
+                  type="tel"
+                  name="contact[phone]"
+                  class="form-control"
+                  id="phone"
+                  value="{% if customer %}{{ customer.phone }}{% endif %}"
+                  pattern="[0-9\-]*"
+                >
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="fundraising-program">Please specify which fundraising program you’re interested in?</label>
+                <select id="fundraising-program" class="form-control" name="contact[fundraising-program]" aria-label="Please specify which fundraising program you’re interested in?">
+                  <option selected disabled>Please Choose Option</option>
+                  <option value="Chocolate Bars">Chocolate Bars</option>
+                  <option value="Easter">Easter</option>
+                  <option value="Both">Both</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="message">{{ 'contact.form.message' | t }}</label>
+                <textarea id="message" rows="10" class="form-control" name="contact[body]"></textarea>
+              </div>
+            </div>
+          </div>
+
+          {{ 'shopify.online_store.spam_detection.disclaimer_html' | t }}
+
+          <div class="row">
+            <div class="col-md-12 btn-contact--wrapper">
+              <div class="form-group" id="newsletter-wrapper-{{ page.title | handle }}">
+                <input type="submit" class="btn" value="{{ 'contact.form.send' | t }}">
+              </div>
+              <div class="lds-dual-ring newsletter-spinner hide"></div>
+            </div>
+          </div>
+        </div>
+      {% endform %}
+    {% endif %}
+  </section>
+</article>
+<script async src="
+https://www.googletagmanager.com/gtag/js?id=AW-993985712
+"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());  gtag('config', 'AW-993985712');
+</script>
+
+<script defer>
+  window.addEventListener('load', ()=>{
+    // Email Script
+    function gtag_report_email_conversion(url) {
+      var callback = function () {
+      if (typeof(url) != 'undefined') {
+      window.location = url;
+      }
+      };
+      gtag('event', 'conversion', {
+      'send_to': 'AW-993985712/uwqMCIu8pekYELCJ_NkD',
+      'event_callback': callback
+      });
+      return false;
+    }
+    document.querySelectorAll('a[href^="mailto:"]').forEach(ele=>{
+      ele.addEventListener('click', (e)=>{
+        e.preventDefault();
+        gtag_report_email_conversion(e.target.href)
+      })
+    })
+
+    // Phone Number Script
+    function gtag_report_phone_conversion(url) {
+      var callback = function () {
+      if (typeof(url) != 'undefined') {
+      window.location = url;
+      }
+      };
+      gtag('event', 'conversion', {
+      'send_to': 'AW-993985712/KUIqCIi8pekYELCJ_NkD',
+      'event_callback': callback
+      });
+      return false;
+      }
+    document.querySelectorAll('a[href^="tel:"]').forEach(ele=>{
+      ele.addEventListener('click', (e)=>{
+        e.preventDefault();
+        gtag_report_phone_conversion(e.target.href)
+      })
+    })
+  })
+</script>
+
+<!--
+  <div id="col-main" class="content container">
+  	<div class="row">
+  		<div class="col-md-8 offset-md-2 col-12">
+
+
+  	  </div>
+  	</div>
+  </div>
+-->
+
+{% schema %}
+{
+  "name": "Template Page Fundraising",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_contact_form",
+      "label": "Show Contact Form",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

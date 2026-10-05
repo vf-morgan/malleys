@@ -1,0 +1,317 @@
+{{ 'section-testimonials.min.css' | asset_url | stylesheet_tag }}
+
+<section class="homepage-sections-wrapper">
+
+  <div class="container testimonial-section--{{ section.id }}" data-wetheme-section-type="text--testimonials" data-wetheme-section-id="{{ section.id }}">
+    <div class="row">
+      <div class="page-width col-md-12">
+        {% if section.settings.title != blank or section.settings.subheading != blank %}
+          <div class="title-bar custom-font">
+            {% if section.settings.subheading != blank %}
+              <h3 class="type-subheading type-subheading--1 wow{% if section.settings.title != blank %} typography--padding-bottom{% endif %}">{{ section.settings.subheading | escape }}</h3>
+            {% endif %}
+            {% if section.settings.title != blank %}
+              <h2 class="wow">{{ section.settings.title | escape }}</h2>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% case section.blocks.size %}
+          {% when 0 %}
+            <div class="placeholder-noblocks">
+              {{ 'general.onboarding.no_content' | t }}
+            </div>
+          {% when 1 %}
+            <div class="row">
+              <div class="col-md-12">
+                <ul class="slides testimonial-slides" style="width: {{ section.blocks | size | times:100 }}%;">
+                  {% for block in section.blocks %}
+                    <li {{ block.shopify_attributes }} class="slider-block--{{ block.id }}">
+                      <div class="testimonial-container">
+                        <div class="testimonial-content">
+                          <figure>
+
+                            {% if block.settings.testimonial != blank %}
+                              <div class="testimonial-text">
+                                <blockquote>
+                                  {{ block.settings.testimonial }}
+                                </blockquote>
+                              </div>
+                            {% endif %}
+                            {% if block.settings.link != blank and block.settings.author != blank %}
+                              <a href="{{ block.settings.link }}" target="_blank">
+                                <h3 class="type-subheading type-subheading--1"><cite class="author">{{ block.settings.author | escape }}</cite></h3>
+                              </a>
+                            {% elsif block.settings.author != blank %}
+                              <h3 class="type-subheading type-subheading--1"><cite class="author">{{ block.settings.author | escape }}</cite></h3>
+                            {% endif %}
+                          </figure>
+                        </div>
+                      </div>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          {% else %}            
+            <div class="slider-homepage-testimonial">
+              <ul class="testimonial-slides row justify-content-center">
+                {% assign number_of_slides_float = section.blocks | size | times:1.0 %}
+                {% for block in section.blocks %}
+                  <li class="col-md-4" {{ block.shopify_attributes }}>
+                    <div class="testimonial-container">
+                      <div class="testimonial-content {% if section.settings.show-slide-arrows %}testimonial--arrow-padding{% else %}testimonial--no-arrow-padding{% endif %}">
+                        <figure>
+                          {% if block.settings.testimonial != blank %}
+
+                            {% if block.settings.testimonialImage != blank %}
+                              <img src="{{ block.settings.testimonialImage | img_url: '200x200', crop: 'center' }}" alt="{{ block.settings.author | escape }}" class="testimonial-indiv--circle">
+                            {% endif %}
+
+                            {% if block.settings.stars != blank and block.settings.stars != "0" %}
+                                <div class="testimonial-stars" data-rating="{{ block.settings.stars }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                </div>
+                            {% endif %}
+                            <figcaption class="testimonial-text">
+                              <span class="sr-only">{{ block.settings.stars }}</span>
+                              <blockquote>
+                                {{ block.settings.testimonial }}
+                              </blockquote>
+                            </figcaption>
+                          {% endif %}
+                          {% if block.settings.link != blank and block.settings.author != blank %}
+                            <a href="{{ block.settings.link }}" target="_blank">
+                              <h3 class="type-subheading type-subheading--1"><cite class="author">{{ block.settings.author | escape }}</cite></h3>
+                            </a>
+                          {% elsif block.settings.author != blank %}
+                            <h3 class="type-subheading type-subheading--1"><cite class="author">{{ block.settings.author | escape }}</cite></h3>
+                          {% endif %}
+                        </figure>
+                      </div>
+                    </div>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+        {% endcase %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonial-stars {
+    --testimonial-stars-color: {{ section.settings.stars-color }};
+  }
+</style>
+
+{% schema %}
+{
+    "name": {
+        "en": "Testimonials",
+        "de": "Erfahrungsberichte",
+        "es": "Testimonios",
+        "fr": "Témoignages",
+        "pt-PT": "Testemunhos"
+    },
+    "class": "homepage-section--testimonials-wrapper",
+    "max_blocks": 9,
+    "settings": [
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": {
+            "en": "Subheading",
+            "de": "Unterüberschrift",
+            "es": "Subencabezado",
+            "fr": "Sous-rubrique",
+            "pt-PT": "Subtítulo"
+          }
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "default": {
+            "en": "Testimonials",
+            "de": "Erfahrungsberichte",
+            "es": "Testimonios",
+            "fr": "Témoignages",
+            "pt-PT": "Testemunhos"
+          },
+          "label": {
+            "en": "Heading",
+            "de": "Überschrift",
+            "es": "Encabezado",
+            "fr": "Rubrique",
+            "pt-PT": "Título"
+          }
+        },
+        {
+          "type": "color",
+          "id": "stars-color",
+          "label": {
+            "en": "Star color",
+            "de": "Farbe der Sterne",
+            "es": "Color de la estrella",
+            "fr": "Couleur étoile",
+            "pt-PT": "Cor da estrela"
+          },
+          "default": "#FF9529"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "textarea",
+            "name": {
+                "en": "Testimonial",
+                "de": "Erfahrungsbericht",
+                "es": "Testimonio",
+                "fr": "Témoignage",
+                "pt-PT": "Testemunho"
+            },
+            "settings": [
+                {
+                    "type": "select",
+                    "id": "stars",
+                    "label": {
+                        "en": "Review stars",
+                        "de": "Sterne überprüfen",
+                        "es": "Estrellas de evaluación",
+                        "fr": "Évaluer les étoiles",
+                        "pt-PT": "Estrelas de avaliação"
+                    },
+                    "info": {
+                        "en": "Optional",
+                        "de": "Optional",
+                        "es": "Opcional",
+                        "fr": "Facultatif",
+                        "pt-PT": "Opcional"
+                    },
+                    "options": [
+                        { "value": "0", "label": "None"},
+                        { "value": "1", "label": "1"},
+                        { "value": "2", "label": "2"},
+                        { "value": "3", "label": "3"},
+                        { "value": "4", "label": "4"},
+                        { "value": "5", "label": "5"}
+                    ],
+                    "default": "5"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "testimonialImage",
+                    "label": {
+                        "en": "Image",
+                        "de": "Bild",
+                        "es": "Imagen",
+                        "fr": "Image",
+                        "pt-PT": "Imagem"
+                    },
+                    "info": {
+                        "en": "200 x 200px recommended",
+                        "de": "200 x 200 px empfohlen",
+                        "es": "Recomendado 200 x 200 px",
+                        "fr": "200 x 200 px recommandé",
+                        "pt-PT": "200 x 200px, recomendado"
+                    }
+                },
+                {
+                    "type": "richtext",
+                    "id": "testimonial",
+                    "label": {
+                        "en": "Text",
+                        "de": "Text",
+                        "es": "Texto",
+                        "fr": "Texte",
+                        "pt-PT": "Texto"
+                    },
+                    "default": {
+                        "en": "<p>Show off incredible feedback from your customers</p>",
+                        "de": "<p>Stellen Sie das unglaubliche Feedback Ihrer Kunden zur Schau</p>",
+                        "es": "<p>Muestra comentarios increíbles de tus clientes</p>",
+                        "fr": "<p>Mettre en avant les retours incroyables de vos clients</p>",
+                        "pt-PT": "<p>Exiba as opiniões maravilhosas dos seus clientes</p>"
+                    }
+                },
+                {
+                    "type": "text",
+                    "id": "author",
+                    "label": {
+                        "en": "Author",
+                        "de": "Autor",
+                        "es": "Autor",
+                        "fr": "Auteur",
+                        "pt-PT": "Autor"
+                    },
+                    "info": {
+                        "en": "Optional",
+                        "de": "Optional",
+                        "es": "Opcional",
+                        "fr": "Facultatif",
+                        "pt-PT": "Opcional"
+                    },
+                    "default": {
+                        "en": "John Doe",
+                        "de": "John Doe",
+                        "es": "John Doe",
+                        "fr": "John Doe",
+                        "pt-PT": "John Doe"
+                    }
+                },
+                {
+                    "type": "url",
+                    "id": "link",
+                    "label": {
+                        "en": "Link",
+                        "de": "Link",
+                        "es": "Enlace",
+                        "fr": "Lien",
+                        "pt-PT": "Ligação"
+                    },
+                    "info": {
+                        "en": "Optional",
+                        "de": "Optional",
+                        "es": "Opcional",
+                        "fr": "Facultatif",
+                        "pt-PT": "Opcional"
+                    }
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": {
+                "en": "Testimonials",
+                "de": "Erfahrungsberichte",
+                "es": "Testimonios",
+                "fr": "Témoignages",
+                "pt-PT": "Testemunhos"
+            },
+            "category": {
+                "en": "Text",
+                "de": "Text",
+                "es": "Texto",
+                "fr": "Texte",
+                "pt-PT": "Texto"
+            },
+            "blocks": [
+                {
+                    "type": "textarea"
+                },
+                {
+                    "type": "textarea"
+                },
+                {
+                    "type": "textarea"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

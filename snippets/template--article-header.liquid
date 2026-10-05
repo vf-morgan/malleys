@@ -1,0 +1,25 @@
+{% if article.image %}
+	<style>
+	{% capture selector %}.article-image-wrapper .img{% endcapture %}
+	{% assign scale = 1 %}
+	{% render 'responsive-background-image--no-formatting' with article.image, selector: selector, scale: scale %}
+
+	</style>
+
+    <div class="article-image-wrapper">
+        <div class="article-image__container">
+            <div class="img"></div>
+
+            <div class="article-header">
+				<div class="article-header__inner">
+					{% if collection.handle == 'all' %}
+						<h2 class="collection-header__title">{{ 'products.general.products_title' | t }}</h2>
+					{% else %}
+						<h2 class="collection-header__title">{{ collection.title }}</h2>
+					{% endif %}
+				</div>
+			</div>
+        </div>
+    </div>
+
+{% endif %}

@@ -1,0 +1,1215 @@
+<style>
+  .site-header__logo-image img,
+  .overlay-logo-image {
+    max-width: {{ section.settings.logo_max_width }}px;
+  }
+
+  @media screen and (min-width: 992px) {
+    .site-header__logo-image img,
+    .overlay-logo-image {
+      width: {{ section.settings.logo_max_width }}px;
+    }
+    .header-content--logo {
+      width: {{ section.settings.logo_max_width }}px;
+      flex-basis: {{ section.settings.logo_max_width }}px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    #site-header svg, .sticky-header-wrapper svg {
+        height: 24px;
+    }
+  }
+
+  .header-wrapper:not(.header-search--expanded) .top-search #search-wrapper {
+    background: {% if settings.header-background-color == "rgba(0,0,0,0)" %}var(--page-background){% else %}var(--header-background){% endif %}!important;
+    border: 1px solid transparent !important;
+    border-bottom: 1px solid {% if settings.header-background-color == "rgba(0,0,0,0)" %}var(--page-background){% else %}var(--header-background){% endif %}!important;
+  }
+
+  .header-wrapper:not(.header-search--expanded) .top-search input {
+    color: {% if settings.header-background-color == "rgba(0,0,0,0)" %}var(--color-primary){% else %}var(--header-text){% endif %}!important;
+  }
+
+  .header-wrapper:not(.header-search--expanded)  #top-search-wrapper #search_text::placeholder {
+    color: {% if settings.header-background-color == "rgba(0,0,0,0)" %}var(--color-primary){% else %}var(--header-text){% endif %};
+  }
+
+  .header-wrapper:not(.header-search--expanded) #top-search-wrapper #search_text::-webkit-input-placeholder {
+    color: {% if settings.header-background-color == "rgba(0,0,0,0)" %}var(--color-primary){% else %}var(--header-text){% endif %};
+  }
+
+  .header-wrapper:not(.header-search--expanded) #top-search-wrapper #search_text:-ms-input-placeholder {
+    color: {% if settings.header-background-color == "rgba(0,0,0,0)" %}var(--color-primary){% else %}var(--header-text){% endif %};
+  }
+
+  .header-wrapper:not(.header-search--expanded) #top-search-wrapper #search_text::-moz-placeholder {
+    color: {% if settings.header-background-color == "rgba(0,0,0,0)" %}var(--color-primary){% else %}var(--header-text){% endif %};
+  }
+
+  .header-wrapper:not(.header-search--expanded) #top-search-wrapper #search_text:-moz-placeholder {
+    color: {% if settings.header-background-color == "rgba(0,0,0,0)" %}var(--color-primary){% else %}var(--header-text){% endif %};
+  }
+
+  .header-wrapper .predictive-search-group {
+    background-color: {% if settings.header-background-color == "rgba(0,0,0,0)" %}var(--page-background){% else %}var(--header-background){% endif %}!important;
+  }
+
+  .header-wrapper .search-results__meta {
+    background: {% if settings.header-background-color == "rgba(0,0,0,0)" %}var(--page-background){% else %}var(--header-background){% endif %}!important;
+  }
+
+  .header-wrapper .search-results__meta-view-all a {
+    color: {% if settings.header-background-color == "rgba(0,0,0,0)" %}var(--color-primary){% else %}var(--header-text){% endif %}!important;
+  }
+
+  .header-wrapper .search-results-panel .predictive-search-group h2 {
+    color: {% if settings.header-background-color == "rgba(0,0,0,0)" %}var(--color-primary){% else %}var(--header-text){% endif %};
+  }
+
+  .header-wrapper .search-results-panel .predictive-search-group .search-vendor, .search-results-panel .predictive-search-group .money {
+    color: {% if settings.header-background-color == "rgba(0,0,0,0)" %}var(--color-primary){% else %}var(--header-text){% endif %};
+  }
+
+  .header-wrapper .search--result-group h5 a {
+    color: {% if settings.header-background-color == "rgba(0,0,0,0)" %}var(--color-primary){% else %}var(--header-text){% endif %}!important;
+  }
+
+  .header-wrapper .predictive-loading {
+    color: {% if settings.header-background-color == "rgba(0,0,0,0)" %}var(--color-primary){% else %}var(--header-text){% endif %}!important;
+  }
+
+  .header-wrapper,
+  .header-content--top-bar,
+  .sticky-header-wrapper {
+    border-bottom: {% if section.settings.show_border %}1px solid var(--header-border-color){% else %}none{% endif %};
+  }
+
+  .mega-menu--dropdown-wrapper .dropdown-menu:not(.dropdown-menu--mega) {
+    border: {% if section.settings.show_border %}1px solid var(--header-border-color){% else %}none{% endif %};
+  }
+
+  .mega-menu--dropdown-wrapper .dropdown-menu--mega {
+    border-top: {% if section.settings.show_border %}1px solid var(--header-border-color){% else %}none{% endif %};
+  }
+
+  .mega-menu .dropdown-submenu {
+    border-right: {% if section.settings.show_border %}1px solid var(--header-border-color){% else %}none{% endif %};
+  }
+
+</style>
+
+{% assign expanded_search_display = 'hidden' %}
+{% if section.settings.search-expand %}
+  {% if section.settings.logo-placement == 'left' or section.settings.top_bar_linklist == blank %}
+    {% assign expanded_search_display = 'bottom' %}
+  {% else %}
+    {% assign expanded_search_display = 'top' %}
+  {% endif %}
+{% endif %}
+
+{% capture header_logo %}
+
+<div class="site-header__logo h1" itemscope itemtype="http://schema.org/Organization">
+
+  {% capture props %}itemprop="logo"{% endcapture %}
+
+  {% comment %}If main logo but no overlay logo{% endcomment %}
+	{% if section.settings.logo and section.settings.overlay_logo == blank %}
+		<a href="{{ routes.root_url }}" itemprop="url" class="site-header__logo-image">
+			{% capture alt %}{{ section.settings.logo.alt | default: shop.name }}{% endcapture %}
+			{% render 'responsive-image' with section.settings.logo, alt: alt, blur: false, props: props %}
+		</a>
+
+  {% comment %}If overlay logo enabled but not main{% endcomment %}
+  {% elsif section.settings.overlay_logo and section.settings.logo == blank %}
+    {% capture overlayAlt %}{{ section.settings.overlay_logo.alt | default: shop.name }}{% endcapture %}
+
+    {% if template == 'index' and section.settings.overlay_header %}
+      <a href="{{ routes.root_url }}" itemprop="url" class="site-header__logo-image">
+        {% render 'responsive-image' with section.settings.overlay_logo, alt: overlayAlt, blur: false, props: props, class: "overlay-logo-image" %}
+      </a>
+      <a class="site-header__logo-link alt-focus header-link custom-font overlay-logo-image--sticky" href="{{ routes.root_url }}" itemprop="url">{{ shop.name }}</a>
+    {% else %}
+      <a class="site-header__logo-link alt-focus header-link custom-font" href="{{ routes.root_url }}" itemprop="url">{{ shop.name }}</a>
+    {% endif %}
+
+  {% comment %}If both logos are enabled{% endcomment %}
+  {% elsif section.settings.overlay_logo and section.settings.logo %}
+    <a href="{{ routes.root_url }}" itemprop="url" class="site-header__logo-image">
+      {% capture alt %}{{ section.settings.logo.alt | default: shop.name }}{% endcapture %}
+      {% capture overlayAlt %}{{ section.settings.overlay_logo.alt | default: shop.name }}{% endcapture %}
+
+      {% if template == 'index' and section.settings.overlay_header %}
+        {% render 'responsive-image' with section.settings.overlay_logo, alt: overlayAlt, blur: false, props: props, class: "overlay-logo-image" %}
+        {% render 'responsive-image' with section.settings.logo, alt: alt, blur: false, props: props, class: "overlay-logo-image--sticky" %}
+      {% else %}
+         {% render 'responsive-image' with section.settings.logo, alt: alt, blur: false, props: props %}
+      {% endif %}
+    </a>
+
+  {% comment %}Show text title{% endcomment %}
+	{% else %}
+		<a class="site-header__logo-link alt-focus header-link custom-font" href="{{ routes.root_url }}" itemprop="url">{{ shop.name }}</a>
+	{% endif %}
+</div>
+{% endcapture %}
+
+<div class="header-wrapper{% if section.settings.logo-placement == 'left' %} logo-placement--left{% else %} logo-placement--center{% endif %}{% if section.settings.overlay_header %} overlay--active{% endif %}{% if section.settings.sticky_header == "enable-scroll-up"%} sticky-scroll-up{% endif %}{% if section.settings.search-expand %} header-search--expanded search-expand{% endif %}" data-wetheme-section-type="header" data-wetheme-section-id="{{ section.id }}">
+
+{% if section.settings.sticky_header != 'disable' %}
+<div class="sticky-header-wrapper{% if section.settings.sticky_header_logo == false %} hide-sticky-logo{% endif %}">
+  <div class="sticky-header-wrapper__inner">
+    <div class="sticky-desktop-header d-none d-lg-block"></div>
+    <div class="sticky-desktop-menu d-none d-lg-block {% if section.settings.logo-placement == 'left' %} nav-placement--left{% endif %}"></div>
+    <ul class="sticky-header-search d-none d-lg-block">
+      <li class="sticky-header-search-icon">
+        {% if settings.predictive_search_enabled %}
+          <button
+            type="button"
+            class="icons--inline search-show alt-focus header-link header-link--button"
+            title="{{ 'layout.header.search' | t }}" tabindex="0"
+            aria-label="{{ 'general.search.open_search' | t }}"
+            aria-controls="top-search-wrapper"
+          >
+            {% if section.settings.icon-enable %}
+              <span class="header-icon">
+                {% render 'icon-search' %}
+              </span>
+            {% else %}
+              <span class="header--supporting-text">{{ 'layout.header.search' | t }}</span>
+            {% endif %}
+          </button>
+        {% else %}
+          <a href="{{ routes.search_url }}" class="icons--inline alt-focus header-link" title="{{ 'layout.header.search' | t }}" tabindex="0">
+            {% if section.settings.icon-enable %}
+              <span class="header-icon">
+                {% render 'icon-search' %}
+              </span>
+            {% else %}
+              <span class="header--supporting-text">{{ 'layout.header.search' | t }}</span>
+            {% endif %}
+          </a>
+        {% endif %}
+      </li>
+    </ul>
+    <div class="sticky-mobile-header d-lg-none">
+      {% comment %}Mobile menu will be copied here{% endcomment %}
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<div class="header-logo-wrapper{% if expanded_search_display == 'top' %} expanded-search--top{% endif %}" data-section-id="{{ section.id }}" data-section-type="header-section">
+
+<nav
+  id="theme-menu"
+  class="mobile-menu-wrapper slideout-panel-hidden"
+  role="dialog"
+  aria-label="{{ 'general.menu.nav_label' | t }}"
+  
+>
+  {% render 'nav-mobile' %}
+</nav>
+
+<div class="d-flex d-lg-none">
+  <div class="mobile-header--wrapper{% if section.settings.logo-placement == 'left'%} mobile-logo--left{% endif %}">
+		<div class="mobile-side-column mobile-header-wrap--icons">
+			<button
+        type="button"
+        class="slide-menu slide-menu-mobile alt-focus header-link header-link--button"
+        aria-label="{{ 'general.menu.open_nav' | t }}"
+        aria-controls="mobile-menu--main-menu"
+      >
+        <i id="iconAnim" data-feather="menu"></i>
+			</button>
+		</div>
+
+		<div class="mobile-logo-column mobile-header-wrap--icons">
+			{{ header_logo }}
+		</div>
+
+		<div class="js mobile-side-column mobile-header-wrap--icons mobile-header-right">
+        <button
+          type="button"
+          class="icons--inline search-show alt-focus header-link header-link--button"
+          title="{{ 'layout.header.search' | t }}"
+          aria-label="{{ 'general.search.open_search' | t }}"
+          aria-controls="top-search-wrapper"
+        >
+          <span class="header-icon">
+            {% render 'icon-search' %}
+          </span>
+        </button>
+
+
+      {% if settings.cart-type != 'page' %}
+        <button
+          type="button"
+          class="alt-focus header-link header-link--button slide-menu slide-menu-cart"
+          aria-label="toggle menu"
+          aria-controls="cartSlideoutAside"
+        >
+          <span class="header-icon">
+            {% render 'icon-basket' %}
+          </span>
+        </button>
+      {% else %}
+        <a href="{{ routes.cart_url }}" class="alt-focus header-link slide-menu">
+          <span class="header-icon">
+            {% render 'icon-basket' %}
+          </span>
+        </a>
+      {% endif %}
+    </div>
+
+    <noscript>
+      <div class="mobile-side-column mobile-header-wrap--icons mobile-header-right">
+        <a href="{{ routes.search_url }}" class="icons--inline search-show alt-focus header-link" title="{{ 'layout.header.search' | t }}" tabindex="0">
+          <span class="header-icon">
+            {% render 'icon-search' %}
+          </span>
+        </a>
+
+        <a href="{{ routes.cart_url }}" class="alt-focus header-link slide-menu">
+          <span class="header-icon">
+            {% render 'icon-basket' %}
+          </span>
+        </a>
+      </div>
+    </noscript>
+
+  </div>
+
+  {% assign class = 'search-expanded--top-links' %}
+      {% render 'search-bar' with section: section, class: class %}
+</div>
+
+
+
+{% capture locale %}
+  {% render 'localization-form' with show_currency_selector: section.settings.show_currency_selector, show_locale_selector: section.settings.show_locale_selector %}
+{% endcapture %}
+
+{% capture locale_alternative %}
+  {% if section.settings.show_locale_selector or section.settings.show_currency_selector %}
+    <div class="localization-selectors--right">
+      {{ locale }}
+    </div>
+  {% endif %}
+{% endcapture%}
+
+{% capture main_icons %}
+    <div class="js header-icons cart-link">
+        <ul>
+            {% if section.settings.search-expand == false %}
+                <li>
+                    {% if settings.predictive_search_enabled %}
+                      <button
+                        type="button"
+                        class="icons--inline search-show alt-focus header-link header-link--button"
+                        title="{{ 'layout.header.search' | t }}" tabindex="0"
+                        aria-label="{{ 'general.search.open_search' | t }}"
+                        aria-controls="top-search-wrapper"
+                      >
+                        {% if section.settings.icon-enable %}
+                          <span class="header-icon">
+                            {% render 'icon-search' %}
+                          </span>
+                        {% else %}
+                          <span class="header--supporting-text">{{ 'layout.header.search' | t }}</span>
+                        {% endif %}
+                      </button>
+                    {% else %}
+                      <a href="{{ routes.search_url }}" class="icons--inline search-show alt-focus header-link" title="{{ 'layout.header.search' | t }}" tabindex="0">
+                        {% if section.settings.icon-enable %}
+                          <span class="header-icon">
+                            {% render 'icon-search' %}
+                          </span>
+                        {% else %}
+                          <span class="header--supporting-text">{{ 'layout.header.search' | t }}</span>
+                        {% endif %}
+                      </a>
+                    {% endif %}
+                </li>
+            {%  endif %}
+
+            {% if shop.customer_accounts_enabled %}
+                {% if customer %}
+                    <li{% if section.settings.search-expand %} class="login-no-padding"{% endif %}>
+                        <a
+                          href="{{ routes.account_url }}"
+                          class="icons--inline alt-focus header-link"
+                          aria-label="{{ 'customer.account.title' | t }}"
+                          title="{{ 'customer.account.title' | t }}"
+                        >
+                          {% if section.settings.icon-enable %}
+                            <span class="header-icon">
+                              {% render 'icon-account' %}
+                            </span>
+                          {% else %}
+                            <span class="header--supporting-text">{{ 'layout.header.account' | t }}</span>
+                          {% endif %}
+                        </a>
+                    </li>
+                {% else %}
+                    <li{% if section.settings.search-expand %} class="login-no-padding"{% endif %}>
+                        <a
+                          href="{{ routes.account_login_url }}"
+                          class="icons--inline alt-focus header-link"
+                          aria-label="{{ 'layout.customer.log_in' | t }}"
+                          title="{{ 'layout.customer.log_in' | t }}"
+                        >
+                          {% if section.settings.icon-enable %}
+                            <span class="header-icon">
+                              {% render 'icon-account' %}
+                            </span>
+                          {% else %}
+                            <span class="header--supporting-text">{{ 'layout.header.account' | t }}</span>
+                          {% endif %}
+                        </a>
+                    </li>
+                {% endif %}
+            {% endif %}
+            <li>
+                {% if settings.cart-type != 'page' %}
+                  <button
+                    type="button"
+                    class="icons--inline alt-focus header-link header-link--button btn-normalize slide-menu{% if settings.cart-type != 'page' %} slide-menu-cart{% endif %}"
+                    aria-label="toggle menu"
+                    aria-controls="cartSlideoutAside"
+                  >
+                    {% if section.settings.icon-enable %}
+                      <span class="header-icon">
+                        {% render 'icon-basket' %}
+                      </span>
+                      {% case section.settings.cart-number %}
+                          {% when 'quantity' %}
+                              <span class="header--supporting-text"><span class="cart-item-count-header cart-item-count-header--quantity">{{ cart.item_count }}</span></span>
+                          {% when 'total' %}
+                              <span class="header--supporting-text"><span class="cart-item-count-header cart-item-count-header--total js-cart-total">{{ cart.total_price | money }}</span></span>
+                      {% endcase %}
+                    {% else %}
+                      <span class="header--supporting-text">{{ 'layout.header.your_cart' | t }}
+                          {% case section.settings.cart-number %}
+                          {% when 'quantity' %}
+                              - <span class="cart-item-count-header cart-item-count-header--quantity">{{ cart.item_count }}</span>
+                          {% when 'total' %}
+                              - <span class="cart-item-count-header cart-item-count-header--total js-cart-total">{{ cart.total_price | money }}</span>
+                          {% endcase %}
+                      </span>
+                    {% endif %}
+                  </button>
+                {% else %}
+                  <a href="{{ routes.cart_url }}" class="icons--inline header-link slide-menu{% if settings.cart-type != 'page' %} slide-menu-cart{% endif %}" title="{{ 'layout.header.your_cart' | t }}">
+                      {% if section.settings.icon-enable %}
+                        <span class="header-icon">
+                          {% render 'icon-basket' %}
+                        </span>
+                          {% case section.settings.cart-number %}
+                              {% when 'quantity' %}
+                                  <span class="header--supporting-text"><span class="cart-item-count-header cart-item-count-header--quantity">{{ cart.item_count }}</span></span>
+                              {% when 'total' %}
+                                  <span class="header--supporting-text"><span class="cart-item-count-header cart-item-count-header--total js-cart-total">{{ cart.total_price | money }}</span></span>
+                          {% endcase %}
+                      {% else %}
+                        <span class="header--supporting-text">{{ 'layout.header.your_cart' | t }}
+                            {% case section.settings.cart-number %}
+                            {% when 'quantity' %}
+                                - <span class="cart-item-count-header cart-item-count-header--quantity">{{ cart.item_count }}</span>
+                            {% when 'total' %}
+                                - <span class="cart-item-count-header cart-item-count-header--total js-cart-total">{{ cart.total_price | money }}</span>
+                            {% endcase %}
+                        </span>
+                      {% endif %}
+                  </a>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+    <noscript>
+      <div class="no-js header-icons cart-link">
+        <ul>
+          {% if section.settings.search-expand == false %}
+          <li>
+            <a href="{{ routes.search_url }}" class="icons--inline search-show alt-focus header-link" title="{{ 'layout.header.search' | t }}" tabindex="0">
+              {% if section.settings.icon-enable %}
+                <span class="header-icon">
+                  {% render 'icon-search' %}
+                </span>
+              {% else %}
+                <span class="header--supporting-text">{{ 'layout.header.search' | t }}</span>
+              {% endif %}
+            </a>
+          </li>
+          {% endif %}
+          {% if shop.customer_accounts_enabled %}
+            {% if customer %}
+              <li>
+                  <a
+                    href="{{ routes.account_url }}"
+                    class="icons--inline alt-focus header-link"
+                    aria-label="{{ 'customer.account.title' | t }}"
+                    title="{{ 'customer.account.title' | t }}"
+                  >
+                    {% if section.settings.icon-enable %}
+                      <span class="header-icon">
+                        {% render 'icon-account' %}
+                      </span>
+                    {% else %}
+                      <span class="header--supporting-text">{{ 'layout.header.account' | t }}</span>
+                    {% endif %}
+                  </a>
+              </li>
+            {% else %}
+              <li>
+                  <a
+                    href="{{ routes.account_login_url }}"
+                    class="icons--inline alt-focus header-link"
+                    aria-label="{{ 'layout.customer.log_in' | t }}"
+                    title="{{ 'layout.customer.log_in' | t }}"
+                  >
+                    {% if section.settings.icon-enable %}
+                      <span class="header-icon">
+                        {% render 'icon-account' %}
+                      </span>
+                    {% else %}
+                      <span class="header--supporting-text">{{ 'layout.header.account' | t }}</span>
+                    {% endif %}
+                  </a>
+              </li>
+            {% endif %}
+          {% endif %}
+          <li>
+            <a href="{{ routes.cart_url }}" class="icons--inline header-link slide-menu{% if settings.cart-type != 'page' %} slide-menu-cart{% endif %}" title="{{ 'layout.header.your_cart' | t }}">
+                {% if section.settings.icon-enable %}
+                  <span class="header-icon">
+                    {% render 'icon-basket' %}
+                  </span>
+                    {% case section.settings.cart-number %}
+                        {% when 'quantity' %}
+                            <span class="header--supporting-text"><span class="cart-item-count-header cart-item-count-header--quantity">{{ cart.item_count }}</span></span>
+                        {% when 'total' %}
+                            <span class="header--supporting-text"><span class="cart-item-count-header cart-item-count-header--total js-cart-total">{{ cart.total_price | money }}</span></span>
+                    {% endcase %}
+                {% else %}
+                  <span class="header--supporting-text">{{ 'layout.header.your_cart' | t }}
+                      {% case section.settings.cart-number %}
+                      {% when 'quantity' %}
+                          - <span class="cart-item-count-header cart-item-count-header--quantity">{{ cart.item_count }}</span>
+                      {% when 'total' %}
+                          - <span class="cart-item-count-header cart-item-count-header--total js-cart-total">{{ cart.total_price | money }}</span>
+                      {% endcase %}
+                  </span>
+                {% endif %}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </noscript>
+{% endcapture %}
+
+{% capture main_icons_locale %}
+  <div class="main-icons-with-locale">
+      {{ main_icons }}
+      {{ locale_alternative }}
+  </div>
+{% endcapture %}
+
+{% capture top_bar %}
+  <div class="header-content--top-bar{% if section.settings.show-sticky-top-bar == false %} sticky-hide{% endif %}">
+    <nav class="navbar nav-bar__top-nav" aria-label="Secondary">
+      <div>
+        {% render 'nav--top' with section.settings.top_bar_linklist, class: 'nav-pills' %}
+      </div>
+    </nav>
+    {{ main_icons_locale }}
+  </div>
+{% endcapture %}
+
+<header id="site-header" class="clearfix d-none d-lg-block
+{% if section.settings.top_bar_linklist != blank %} top-bar-enabled{% endif %}">
+    <div>
+
+      {% if section.settings.top_bar_linklist != blank %}
+        {{ top_bar }}
+      {% endif %}
+
+      <div class="header-content">
+
+        {% if section.settings.logo-placement == 'center' %}
+          <div class="header-content__item{% if section.settings.show_locale_selector == false and section.settings.show_currency_selector == false %} empty{% endif %}">
+            {% if section.settings.top_bar_linklist == blank %}
+              {{ locale }}
+            {% endif %}
+          </div>
+        {% endif %}
+
+        <div class="header-content__item header-logo-container{% if section.settings.logo %} header-content--logo{% endif %}{% if section.settings.logo-placement == 'left' %} logo-placement--left{% endif %}">
+            {{ header_logo }}
+        </div>
+
+        <div class="header-content__item header-icons-container">
+          {% if section.settings.top_bar_linklist == blank %}
+            {% case section.settings.logo-placement %}
+              {% when 'center' %}
+                {{ main_icons }}
+              {% when 'left' %}
+                {{ main_icons_locale }}
+            {% endcase %}
+          {% else %}
+            {% if expanded_search_display == 'top' %}
+              {% assign class = 'search-expanded--top-links' %}
+              {% render 'search-bar' with section: section, class: class %}
+            {% endif %}
+          {% endif %}
+        </div>
+
+      </div>
+
+  	</div>
+
+  </header>
+
+  {% if section.settings.search-expand == false %}
+    {% render 'search-bar' with section: section %}
+  {% endif %}
+
+  </div>
+
+  <div class="header-row{% if section.settings.logo-placement == 'left' or expanded_search_display == 'bottom' %} nav-placement--left{% endif %}">
+
+    <div class="header-menu-wrapper d-none d-lg-block{% if section.settings.logo-placement == 'left' %} header-menu--expanded-search{% endif %}">
+      {% if section.settings.main_linklist != '' %}
+        <div class="main-navigation-wrapper-main">
+          <div id="main-navigation-wrapper" class="main-navigation-wrapper{% if section.blocks.size > 0 %} mega-menu-wrapper{% endif %}">
+            {% render 'nav--main' with section.settings.main_linklist, class: 'nav-pills', section: section %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    {% if expanded_search_display == 'bottom' %}
+      {% render 'search-bar' with section: section %}
+    {% endif %}
+
+  </div>
+
+  <noscript>
+    {% if section.settings.main_linklist != blank %}
+      {% assign navMobile = linklists[section.settings.main_linklist] %}
+    {% endif %}
+    <ul class="no-js-mobile-menu">
+    {% for link in navMobile.links %}
+      {% if link.links != blank %}
+        <li>
+            <a href="{{ link.url }}">{{ link.title }}</a>
+            <ul>
+            {%- for sub_link in link.links -%}
+              {% if sub_link.levels > 0 %}
+                <li>
+                  <a href="{{ sub_link.url }}">{{ sub_link.title | escape }}</a>
+                  <ul>
+                    {%- for sub_sub_link in sub_link.links -%}
+                      <li>
+                        <a href="{{ sub_sub_link.url  }}">{{ sub_sub_link.title | escape }}</a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                </li>
+              {% else %}
+                <li>
+                  <a href="{{ sub_link.url }}">{{ sub_link.title | escape }}</a>
+                </li>
+              {% endif %}
+            {%- endfor -%}
+            </ul>
+        </li>
+      {% else %}
+        <li>
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        </li>
+      {% endif %}
+    {% endfor %}
+    </ul>
+  </noscript>
+
+</div>
+
+
+
+{% schema %}
+{
+    "name": {
+        "en": "Header",
+        "de": "Überschrift",
+        "es": "Encabezado",
+        "fr": "En-tête",
+        "pt-PT": "Cabeçalho"
+    },
+    "settings": [
+        {
+            "type": "select",
+            "id": "sticky_header",
+            "label": {
+                "en": "'Sticky' header",
+                "de": "Feststehende Kopfzeile",
+                "es": "Encabezado «permanente»",
+                "fr": "En-tête collant",
+                "pt-PT": "Cabeçalho \"adesivo\""
+            },
+            "info": {
+              "en": "Sticky header will only work when Fixed cart is disabled in Theme settings > Cart.",
+              "de": "Sticky Header funktioniert nur, wenn Fixed Cart in Theme-Einstellungen > Cart deaktiviert ist.",
+              "es": "El encabezado fijo solo funcionará cuando el carro fijo esté desactivado en Configuración del tema > Carro.",
+              "fr": "L'en-tête adhésif ne fonctionnera qu'après la désactivation du panier fixe, dans Paramètres du thème > Panier.",
+              "pt-PT": "O cabeçalho pegajoso apenas funcionará quando o carrinho de compras Fixo está desativado em definições do Tema > Carrinho de Compras."
+            },
+            "options": [
+                {
+                    "value": "enable",
+                    "label": {
+                        "en": "Enable",
+                        "de": "Aktivieren",
+                        "es": "Aktivieren",
+                        "fr": "Activer",
+                        "pt-PT": "Ativar"
+                    }
+                },
+                {
+                    "value": "enable-scroll-up",
+                    "label": {
+                        "en": "Enable on scroll up",
+                        "de": "Aktivieren beim Hochscrollen",
+                        "es": "Activar al desplazarse hacia arriba",
+                        "fr": "Activer lors du défilement vers le haut",
+                        "pt-PT": "Ativar ao deslocar para cima"
+                    }
+                },
+                {
+                    "value": "disable",
+                    "label": {
+                        "en": "Disable",
+                        "de": "Deaktivieren",
+                        "es": "Desactivar",
+                        "fr": "Désactiver",
+                        "pt-PT": "Desativar"
+                    }
+                }
+            ],
+            "default": "enable"
+        },
+        {
+            "type": "checkbox",
+            "id": "overlay_header",
+            "label": {
+                "en": "Overlay header on homepage",
+                "de": "Overlay-Kopfzeile auf Homepage",
+                "es": "Encabezado de superposición en la página de inicio",
+                "fr": "Superposition d'en-tête sur la page d'accueil",
+                "pt-PT": "Cabeçalho de sobreposição na página inicial"
+            },
+            "info": {
+                "en": "This setting will only work if the first section is a slideshow or full-width image",
+                "de": "Diese Einstellung funktioniert nur, wenn der erste Abschnitt eine Diashow oder ein Bild mit voller Breite ist",
+                "es": "Esta configuración solo funcionará en caso de que la primera sección sea una presentación de diapositivas o una imagen de anchura completa",
+                "fr": "Ce paramètre ne fonctionne que si la première section est un diaporama ou une image en pleine largeur",
+                "pt-PT": "Esta definição apenas irá funcionar se a primeira secção for uma apresentação de slides ou uma imagem de largura total"
+            }
+        },
+        {
+            "type": "checkbox",
+            "id": "show_border",
+            "label": {
+                "en": "Show border",
+                "de": "Grenzen anzeigen",
+                "es": "Mostrar bordes",
+                "fr": "Afficher les bordures",
+                "pt-PT": "Mostrar margens"
+            },
+            "default": true
+        },
+        {
+            "type": "header",
+            "content": {
+                "en": "Logo",
+                "de": "Logo",
+                "es": "Logotipo",
+                "fr": "Logo",
+                "pt-PT": "Logótipo"
+            }
+        },
+        {
+            "type": "image_picker",
+            "id": "logo",
+            "label": {
+                "en": "Logo image",
+                "de": "Logobild",
+                "es": "Imagen del logotipo",
+                "fr": "Image du logo",
+                "pt-PT": "Imagem do logótipo"
+            },
+            "info": {
+                "en": "250 x 133px recommended",
+                "de": "250 x 133 px empfohlen",
+                "es": "Recomendado 250 x 133 px",
+                "fr": "250 x 133 px recommandé",
+                "pt-PT": "250 x 133px, recomendado"
+            }
+        },
+        {
+            "type": "image_picker",
+            "id": "overlay_logo",
+            "label": {
+                "en": "Overlay logo image (optional)",
+                "de": "Überlagerung des Logobilds (optional)",
+                "es": "Imagen del logo superpuesto (opcional)",
+                "fr": "Superposition du logo (facultatif)",
+                "pt-PT": "Sobrepor imagem do logótipo (Opcional)"
+            },
+            "info": {
+                "en": "250 x 133px recommended",
+                "de": "250 x 133 px empfohlen",
+                "es": "Recomendado 250 x 133 px",
+                "fr": "250 x 133 px recommandé",
+                "pt-PT": "250 x 133px, recomendado"
+            }
+        },
+        {
+            "type": "range",
+            "id": "logo_max_width",
+            "min": 50,
+            "max": 350,
+            "step": 10,
+            "unit": {
+                "en": "px",
+                "de": "px",
+                "es": "px",
+                "fr": "px",
+                "pt-PT": "px"
+            },
+            "label": {
+              "en": "Preferred width",
+              "de": "Bevorzugte Breite",
+              "es": "Ancho preferido",
+              "fr": "Largeur préférée",
+              "pt-PT": "Largura preferida"
+            },
+            "default": 200
+        },
+        {
+            "type": "select",
+            "id": "logo-placement",
+            "label": {
+                "en": "Logo placement",
+                "de": "Logoplatzierung",
+                "es": "Ubicación del logotipo",
+                "fr": "Placement du logo",
+                "pt-PT": "Colocação do logótipo"
+            },
+            "options": [
+                {
+                    "value": "left",
+                    "label": {
+                        "en": "Left",
+                        "de": "Links",
+                        "es": "Izquierda",
+                        "fr": "Gauche",
+                        "pt-PT": "Esquerda"
+                    }
+                },
+                {
+                    "value": "center",
+                    "label": {
+                        "en": "Center",
+                        "de": "Mitte",
+                        "es": "Centro",
+                        "fr": "Centre",
+                        "pt-PT": "Centro"
+                    }
+                }
+            ],
+            "default": "center"
+        },
+        {
+            "type": "checkbox",
+            "id": "sticky_header_logo",
+            "label": {
+                "en": "Show logo in sticky header on desktop",
+                "de": "Logo auf fixiertem Header zeigen (Desktop)",
+                "es": "Mostrar logotipo en el encabezado fijo en el escritorio",
+                "fr": "Afficher le logo sur l'en-tête incorporé sur le bureau",
+                "pt-PT": "Mostrar logótipo no cabeçalho fixo ao usar um computador"
+            },
+            "default": true
+        },
+        {
+            "type": "header",
+            "content": {
+                "en": "Icons",
+                "de": "Symbole",
+                "es": "Iconos",
+                "fr": "Icônes",
+                "pt-PT": "Ícones"
+            }
+        },
+        {
+            "type": "checkbox",
+            "id": "search-expand",
+            "label": {
+                "en": "Expand search on desktop",
+                "de": "Suche auf dem Desktop erweitern",
+                "es": "Expandir la búsqueda en el escritorio",
+                "fr": "Élargir la recherche sur le bureau",
+                "pt-PT": "Expandir a pesquisa ao usar um computador"
+            },
+            "default": false
+        },
+        {
+            "type": "text",
+            "id": "search-message",
+            "label": {
+                "en": "Search box message",
+                "de": "Suchfeld-Hinweis",
+                "es": "Mensaje del recuadro de búsqueda",
+                "fr": "Message du champ de recherche",
+                "pt-PT": "Mensagem da caixa de pesquisa"
+            },
+            "default": {
+              "en": "Search our store...",
+              "de": "Durchsuchen Sie unseren Shop...",
+              "es": "Buscar en nuestra tienda...",
+              "fr": "Rechercher dans la boutique...",
+              "pt-PT": "Pesquisar a nossa loja..."
+            }
+        },
+        {
+            "type": "checkbox",
+            "id": "icon-enable",
+            "label": {
+                "en": "Show icons on desktop",
+                "de": "Symbole auf dem Desktop zeigen",
+                "es": "Mostrar iconos en el escritorio",
+                "fr": "Afficher les icônes sur le bureau",
+                "pt-PT": "Mostrar os ícones ao usar um computador"
+            },
+            "default": true,
+            "info": {
+                "en": "Show account, search and cart icons instead of text labels",
+                "de": "Konto-, Such- und Warenkorb-Symbole anstelle von Textbeschriftungen anzeigen",
+                "es": "Mostrar iconos de cuenta, búsqueda y carrito en lugar de etiquetas de texto",
+                "fr": "Afficher les icônes de compte, de recherche et de panier au lieu des étiquettes de texte",
+                "pt-PT": "Mostrar os ícones da conta, da pesquisa e do carrinho em vez das etiquetas de texto"
+            }
+        },
+        {
+            "type": "radio",
+            "id": "cart-number",
+            "label": {
+                "en": "Cart number (desktop)",
+                "de": "Einkaufswagen-Nummer (Desktop)",
+                "es": "Número en el carrito (escritorio)",
+                "fr": "Numéro de panier (ordinateur de bureau)",
+                "pt-PT": "Número do carrinho (ambiente de trabalho)"
+            },
+            "options": [
+                {
+                    "value": "quantity",
+                    "label": {
+                        "en": "Quantity",
+                        "de": "Anzahl",
+                        "es": "Cantidad",
+                        "fr": "Quantité",
+                        "pt-PT": "Quantidade"
+                    }
+                },
+                {
+                    "value": "total",
+                    "label": {
+                        "en": "Cart total",
+                        "de": "Einkaufswagen-Summe",
+                        "es": "Total de la cesta",
+                        "fr": "Total du panier",
+                        "pt-PT": "Total do carrinho"
+                    }
+                },
+                {
+                    "value": "none",
+                    "label": {
+                        "en": "None",
+                        "de": "Keiner",
+                        "es": "Ninguno",
+                        "fr": "Aucun",
+                        "pt-PT": "Nenhum"
+                    }
+                }
+            ],
+            "default": "quantity"
+        },
+        {
+          "type": "header",
+          "content": {
+              "en": "Country\/region selector",
+              "de": "Auswahl für Land\/Region",
+              "es": "Selector de país\/región",
+              "fr": "Sélecteur de pays\/région",
+              "pt-PT": "Seletor de país\/região"
+          },
+          "info": {
+            "en": "To add a country\/region, go to your [market settings.](\/admin\/settings\/markets)",
+            "de": "Gehe zu den [Markteinstellungen](\/admin\/settings\/markets), um ein Land \/ eine Region hinzuzufügen.",
+            "es": "Para agregar un país\/región, ve a tu [configuración de mercado.](\/admin\/settings\/markets)",
+            "fr": "Pour ajouter un pays\/une région, allez à vos [paramètres du marché.](\/admin\/settings\/markets)",
+            "pt-PT": "Para adicionar um país\/região, vá a [configurações de mercado.](\/admin\/settings\/markets)"
+          }
+        },
+        {
+          "type": "checkbox",
+          "id": "show_currency_selector",
+          "label": {
+              "en": "Enable country\/region selector on desktop",
+              "de": "Länder\/Regionsauswahl auf dem Desktop aktivieren",
+              "es": "Activar selector de país\/región en el escritorio",
+              "fr": "Activer le sélecteur de pays\/région sur le bureau",
+              "pt-PT": "Ativar seletor de país\/região ao usar um computador"
+          },
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": {
+            "en": "Language selector",
+            "de": "Sprachauswahl",
+            "es": "Selector de idioma",
+            "fr": "Sélecteur de langue",
+            "pt-PT": "Seletor de idioma"
+          },
+          "info": {
+            "en": "To add a language, go to your [language settings.](\/admin\/settings\/languages)",
+            "de": "Gehe zu den [Spracheinstellungen](\/admin\/settings\/languages), um eine Sprache hinzuzufügen.",
+            "es": "Para agregar un idioma, ve a tu [configuración de idiomas.](\/admin\/settings\/languages)",
+            "fr": "Pour ajouter une langue, allez à vos [paramètres de langue.](\/admin\/settings\/languages)",
+            "pt-PT": "Para adicionar um idioma, vá a [definições de idioma.](\/admin\/settings\/languages)"
+          }
+        },
+        {
+            "type": "checkbox",
+            "id": "show_locale_selector",
+            "label": {
+              "en": "Enable language selector",
+              "de": "Sprachauswahl aktivieren",
+              "es": "Activar selector de idioma",
+              "fr": "Activer le sélecteur de langue",
+              "pt-PT": "Ativar seletor de idioma"
+            },
+            "default": true
+        },
+        {
+            "type": "header",
+            "content": {
+                "en": "Menus",
+                "de": "Menüs",
+                "es": "Menú",
+                "fr": "Menus",
+                "pt-PT": "Menus"
+            }
+        },
+        {
+            "type": "link_list",
+            "id": "main_linklist",
+            "label": {
+                "en": "Main menu",
+                "de": "Hauptmenü",
+                "es": "Menú principal",
+                "fr": "Menu principal",
+                "pt-PT": "Menu principal"
+            },
+            "default": "main-menu"
+        },
+        {
+            "type": "link_list",
+            "id": "top_bar_linklist",
+            "label": {
+                "en": "Top Bar",
+                "de": "Obere Leiste",
+                "es": "Barra superior",
+                "fr": "Barre supérieure",
+                "pt-PT": "Barra Superior"
+            },
+            "info": {
+                "en": "Optional",
+                "de": "Optional",
+                "es": "Opcional",
+                "fr": "Facultatif",
+                "pt-PT": "Opcional"
+            }
+        },
+        {
+            "type": "checkbox",
+            "id": "show-sticky-top-bar",
+            "label": {
+                "en": "Show top bar in sticky header",
+                "de": "Top-Leiste im Sticky-Header anzeigen",
+                "es": "Mostrar barra superior en encabezado fijo",
+                "fr": "Afficher la barre supérieure dans l'en-tête flottant",
+                "pt-PT": "Mostrar a barra superior no cabeçalho fixo"
+            },
+            "default": true
+        }
+    ],
+    "blocks": [
+        {
+            "type": "content",
+            "name": {
+                "en": "Mega Menu",
+                "de": "Mega-Menü",
+                "es": "Mega menú",
+                "fr": "Méga menu",
+                "pt-PT": "Mega Menu"
+            },
+            "settings": [
+                {
+                    "id": "mega-menu",
+                    "type": "text",
+                    "label": {
+                        "en": "Mega menu",
+                        "de": "Mega-Menü",
+                        "es": "Mega menú",
+                        "fr": "Méga menu",
+                        "pt-PT": "Mega menu"
+                    },
+                    "info": {
+                        "en": "Enter an existing menu item to apply a mega menu dropdown. [Learn more](https://support.weareeight.com/hc/en-us/articles/360020105877-How-to-Set-Up-a-Mega-Menu)",
+                        "de": "Geben Sie einen vorhandenen Menüartikel ein, um ein Mega-Menü-Drop-down anzuwenden. [Mehr erfahren](https://support.weareeight.com/hc/en-us/articles/360020105877-How-to-Set-Up-a-Mega-Menu)",
+                        "es": "Introduzca un artículo existente en el menú para aplicar un menú desplegable gigante. [Aprenda más](https://support.weareeight.com/hc/en-us/articles/360020105877-How-to-Set-Up-a-Mega-Menu)",
+                        "fr": "Entrez un élément de menu existant pour appliquer un méga menu déroulant.[En savoir plus](https://support.weareeight.com/hc/en-us/articles/360020105877-How-to-Set-Up-a-Mega-Menu)",
+                        "pt-PT": "Insira um item de menu existente para aplicar a um mega menu pendente. [Saber mais](https://support.weareeight.com/hc/en-us/articles/360020105877-How-to-Set-Up-a-Mega-Menu)"
+                    }
+                },
+                {
+                    "type": "header",
+                    "content": {
+                        "en": "Image 1",
+                        "de": "Bild 1",
+                        "es": "Imagen 1",
+                        "fr": "Image 1",
+                        "pt-PT": "Imagem 1"
+                    }
+                },
+                {
+                    "type": "image_picker",
+                    "id": "mega_image_1",
+                    "label": {
+                        "en": "Image",
+                        "de": "Bild",
+                        "es": "Imagen",
+                        "fr": "Image",
+                        "pt-PT": "Imagem"
+                    },
+                    "info": {
+                        "en": "350 x 250px recommended",
+                        "de": "350 x 250 px empfohlen",
+                        "es": "Recomendado 350 x 250 px",
+                        "fr": "350 x 250 px recommandé",
+                        "pt-PT": "350 x 250px, recomendado"
+                    }
+                },
+                {
+                    "type": "text",
+                    "id": "mega_image_header_1",
+                    "label": {
+                        "en": "Header",
+                        "de": "Überschrift",
+                        "es": "Encabezado",
+                        "fr": "En-tête",
+                        "pt-PT": "Cabeçalho"
+                    }
+                },
+                {
+                    "type": "text",
+                    "id": "mega_image_subheader_1",
+                    "label": {
+                      "en": "Subheading",
+                      "de": "Unterüberschrift",
+                      "es": "Subencabezado",
+                      "fr": "Sous-rubrique",
+                      "pt-PT": "Subtítulo"
+                    }
+                },
+                {
+                    "type": "url",
+                    "id": "mega_image_link_1",
+                    "label": {
+                        "en": "Link",
+                        "de": "Link",
+                        "es": "Enlace",
+                        "fr": "Lien",
+                        "pt-PT": "Ligação"
+                    }
+                },
+                {
+                    "type": "header",
+                    "content": {
+                        "en": "Image 2",
+                        "de": "Bild 2",
+                        "es": "Imagen 2",
+                        "fr": "Image 2",
+                        "pt-PT": "Imagem 2"
+                    }
+                },
+                {
+                    "type": "image_picker",
+                    "id": "mega_image_2",
+                    "label": {
+                        "en": "Image",
+                        "de": "Bild",
+                        "es": "Imagen",
+                        "fr": "Image",
+                        "pt-PT": "Imagem"
+                    },
+                    "info": {
+                        "en": "350 x 250px recommended",
+                        "de": "350 x 250 px empfohlen",
+                        "es": "Recomendado 350 x 250 px",
+                        "fr": "350 x 250 px recommandé",
+                        "pt-PT": "350 x 250px, recomendado"
+                    }
+                },
+                {
+                    "type": "text",
+                    "id": "mega_image_header_2",
+                    "label": {
+                        "en": "Header",
+                        "de": "Überschrift",
+                        "es": "Encabezado",
+                        "fr": "En-tête",
+                        "pt-PT": "Cabeçalho"
+                    }
+                },
+                {
+                    "type": "text",
+                    "id": "mega_image_subheader_2",
+                    "label": {
+                        "en": "Subheader",
+                        "de": "Unterüberschrift",
+                        "es": "Subencabezado",
+                        "fr": "Sous-en-tête",
+                        "pt-PT": "Subcabeçalho"
+                    }
+                },
+                {
+                    "type": "url",
+                    "id": "mega_image_link_2",
+                    "label": {
+                        "en": "Link",
+                        "de": "Link",
+                        "es": "Enlace",
+                        "fr": "Lien",
+                        "pt-PT": "Ligação"
+                    }
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,275 @@
+{{ 'section-featured-collection.min.css' | asset_url | stylesheet_tag }}
+
+<section class="homepage-sections-wrapper">
+
+  <div class="container" data-wetheme-section-type="collection--featured-collection" data-wetheme-section-id="{{ section.id }}">
+    <div class="row">
+      <div class="page-width col-md-12">
+
+      {% if section.settings.title != blank or section.settings.subheading != blank %}
+        <div class="title-bar custom-font">
+          {% if section.settings.subheading != blank %}
+            <h3 class="type-subheading type-subheading--1 wow{% if section.settings.title != blank %} typography--padding-bottom{% endif %}">{{ section.settings.subheading | escape }}</h3>
+          {% endif %}
+          {% if section.settings.title != blank %}
+            <h2 class="wow">{{ section.settings.title | escape }}</h2>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% assign collection = collections[section.settings.collection] %}
+
+      {% case section.settings.grid %}
+        {% when 2 %}
+          {% assign grid_item_width = 'col-6 col-sm-6 col-md-6 two_columns' %}
+        {% when 3 %}
+          {% assign grid_item_width = 'col-6 col-sm-4 col-md-4 three_columns' %}
+        {% when 4 %}
+          {% assign grid_item_width = 'col-6 four_columns' %}
+        {% when 5 %}
+          {% assign grid_item_width = 'col-6 five_columns' %}
+        {% when 6 %}
+          {% assign grid_item_width = 'col-6 six_columns' %}
+      {% endcase %}
+
+      {% assign product_limit = section.settings.grid | times: section.settings.rows %}
+
+      <div class="row homepage-featured-products">
+
+        {% for product in collection.products limit: product_limit %}
+          <div class="grid__item {{ grid_item_width }} zoomIn collection-image-anim{% if section.settings.rows == 1 %} no-bottom-margin{% endif %}">
+
+          {% assign hide-add-to-cart = section.settings.hide_add_to_cart %}            
+          {%-
+            render 'product-grid--indiv-product',
+            liquidObject: product, section: section, hideBtns: hide-add-to-cart 
+          -%}
+
+          </div>
+
+        {% else %}
+
+          {% for i in (1..product_limit) %}
+            <div class="grid__item {{ grid_item_width }}">
+              <article class="indiv-product">
+                <a href="{{ product.url | within: collection }}" title="{{product.title}}">
+                  {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                  {{ 'product-' | append: current | placeholder_svg_tag: 'icon--placeholder' }}
+                </a>
+                <div class="hp-title">
+                  <a href="{{ product.url | within: collection }}">
+                    <span class="indiv-product-title-text">{{ 'general.onboarding.product_title' | t }}</span>
+                    <span class="money money-styling">
+                      {{ 1999 | money }}
+                    </span>
+                  </a>
+                </div>
+              </article>
+
+            </div>
+          {% endfor %}
+        {% endfor %}
+      </div>
+
+      {% if section.settings.show_view_all %}
+        <div class="text-center wow">
+          <a href="{{ collection.url }}" class="btn btn--view-all">
+            {{ 'collections.general.view_all' | t }}
+          </a>
+        </div>
+      {% endif %}
+    </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+    "name": {
+        "en": "Featured collection",
+        "de": "Vorgestellte Kollektion",
+        "es": "Colección destacada",
+        "fr": "Collection en vedette",
+        "pt-PT": "Coleção em destaque"
+    },
+    "class": "homepage-section--featured-products-wrapper",
+    "settings": [
+        {
+            "type": "text",
+            "id": "subheading",
+            "label": {
+              "en": "Subheading",
+              "de": "Unterüberschrift",
+              "es": "Subencabezado",
+              "fr": "Sous-rubrique",
+              "pt-PT": "Subtítulo"
+            },
+            "default": {
+                "en": "Subheading",
+                "de": "Unterüberschrift",
+                "es": "Subencabezado",
+                "fr": "Sous-rubrique",
+                "pt-PT": "Subtítulo"
+            }
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": {
+                "en": "Heading",
+                "de": "Überschrift",
+                "es": "Encabezado",
+                "fr": "Rubrique",
+                "pt-PT": "Título"
+            },
+            "default": {
+                "en": "Featured collection",
+                "de": "Vorgestellte Kollektion",
+                "es": "Colección destacada",
+                "fr": "Collection en vedette",
+                "pt-PT": "Coleção em destaque"
+            }
+        },
+        {
+            "id": "collection",
+            "type": "collection",
+            "label": {
+                "en": "Collection",
+                "de": "Kollektion",
+                "es": "Colección",
+                "fr": "Collection",
+                "pt-PT": "Coleção"
+            }
+        },
+        {
+            "type": "range",
+            "id": "grid",
+            "min": 2,
+            "max": 6,
+            "step": 1,
+            "label": {
+              "en": "Products per row",
+              "de": "Produkte pro Zeile",
+              "es": "Productos por fila",
+              "fr": "Produits par ligne",
+              "pt-PT": "Produtos por linha"
+            },
+            "default": 4
+        },
+        {
+            "type": "range",
+            "id": "rows",
+            "min": 1,
+            "max": 5,
+            "step": 1,
+            "label": {
+                "en": "Rows (desktop)",
+                "de": "Zeilen (Desktop)",
+                "es": "Filas (escritorio)",
+                "fr": "Lignes (ordinateur de bureau)",
+                "pt-PT": "Linhas (ambiente de trabalho)"
+            },
+            "default": 1
+        },
+        {
+          "type": "checkbox",
+          "id": "hide_add_to_cart",
+          "label": {
+              "en": "Hide 'Add to cart' button",
+              "de": "Hide 'Add to cart' button",
+              "es": "Hide 'Add to cart' button",
+              "fr": "Hide 'Add to cart' button",
+              "pt-PT": "Hide 'Add to cart' button"
+          },
+          "default": false,
+          "info": {
+            "en": "Recommended on password page",
+            "de": "Recommended on password page",
+            "es": "Recommended on password page",
+            "fr": "Recommended on password page",
+            "pt-PT": "Recommended on password page"
+          }
+        },
+        {
+            "type": "checkbox",
+            "id": "show_view_all",
+            "label": {
+                "en": "Show 'View all' button",
+                "de": "„Alle ansehen“-Button anzeigen",
+                "es": "Mostrar botón «Ver todos»",
+                "fr": "Afficher le bouton « Voir tout »",
+                "pt-PT": "Mostrar botão \"Ver tudo\""
+            },
+            "default": false
+        }
+    ],
+    "blocks": [
+      {
+        "type": "@app"
+      },
+      {
+          "name": "Product card vendor",
+          "type": "product-card-vendor",
+          "limit": 1,
+          "settings": [
+          ]
+      },
+      {
+          "name": "Product card title",
+          "type": "product-card-title",
+          "limit": 1,
+          "settings": [
+          ]
+      },
+      {
+          "name": "Product card price",
+          "type": "product-card-price",
+          "limit": 1,
+          "settings": [
+          ]
+      }
+    ],
+    "presets": [
+        {
+            "name": {
+                "en": "Featured collection",
+                "de": "Vorgestellte Kollektion",
+                "es": "Colección destacada",
+                "fr": "Collection en vedette",
+                "pt-PT": "Coleção em destaque"
+            },
+            "category": {
+                "en": "Collection",
+                "de": "Kollektion",
+                "es": "Colección",
+                "fr": "Collection",
+                "pt-PT": "Coleção"
+            },
+            "settings": {},
+            "blocks": [
+              {
+                "type": "product-card-vendor"
+              },
+              {
+                "type": "product-card-title"
+              },
+              {
+                "type": "product-card-price"
+              }
+            ]
+        }
+    ],
+    "templates": [
+      "404",
+      "article",
+      "blog",
+      "cart",
+      "list-collections",
+      "index",
+      "page",
+      "password",
+      "product",
+      "search"
+    ]
+}
+{% endschema %}

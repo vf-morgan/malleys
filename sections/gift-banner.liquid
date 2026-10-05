@@ -1,0 +1,66 @@
+<section class="gift__bannner ">
+    <div class="container">
+        <div class="gift__banner--cols">
+            <div class="gift__banner--leftCol">
+                <div class="gift__banner--content">
+                    <h1 class="gift__banner--heading">{{ section.settings.banner_heading }}</h1>
+                    <p>{{ section.settings.banner_short_description }}</p>
+                    {% if section.settings.bannerBtnTEXT != blank %}
+                      <a href="{{ section.settings.bannerBtnLink }}" class="gift__banner--button">{{ section.settings.bannerBtnTEXT }}</a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="gift__banner--rightCol">
+                <div class="image">
+                  {% if section.settings.giftbannerImage != blank %}
+                    <img src="{{ section.settings.giftbannerImage | img_url: 'original'  }}" loading="eager" alt="{{ section.settings.giftbannerImage.alt | escape }}">
+                  {% else %}
+                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Gift Page Banner",
+    "settings" : [
+        {
+          "type": "image_picker",
+          "id" : "giftbannerImage",
+          "label" : "Image Picker"
+        },
+        {
+          "type" : "text",
+          "id": "banner_heading",
+          "label": "Banner Heading",
+          "default": "Indulge in Pure Delight with Malley's Chocolates"
+        },
+        {
+          "type" : "richtext",
+          "id": "banner_short_description",
+          "label": "Short Description",
+          "default": "<p>Whether you're celebrating a special occasion, expressing your affection, or simply treating yourself to the finer things in life, Malley's Chocolates promises an unforgettable experience.</p>"
+        },
+        {
+          "type" : "text",
+          "id": "bannerBtnTEXT",
+          "label": "Button Label",
+          "default": "Submit the Order"
+        },
+        {
+          "type" : "url",
+          "id": "bannerBtnLink",
+          "label": "Button Link"
+        }
+    ],
+    "presets": [
+      {
+        "name" : "Gift Page Banner"
+      }
+    ]
+  }
+  
+{% endschema %}

@@ -1,0 +1,294 @@
+{% assign bordersClass = '' %}
+
+{% if settings.borders_enable == true %}
+  {% assign bordersClass = 'has-borders' %}
+{% endif %}
+
+{%- assign out_of_stock_filter = false %}
+{%- for filter in collection.filters -%}
+    {%- for value in filter.active_values -%}
+        {%- if value.label == 'Out of stock' -%}
+            {%- assign out_of_stock_filter = true %}
+        {%- endif -%}
+    {%- endfor -%}
+{%- endfor -%}
+
+{%- for filter in collection.filters -%}
+    {%- for value in filter.active_values -%}
+        {%- if value.label == 'In stock' -%}
+            {%- assign out_of_stock_filter = false %}
+        {%- endif -%}
+    {%- endfor -%}
+{%- endfor -%}
+
+<div class="{{ bordersClass }} container--collection-page">
+  <div data-section-id="{{ section.id }}" data-section-type="collection-template">
+    <div class="container">
+      <div>
+        <div class="flex-grow-1">
+            {%- assign limit =  section.settings.rows | times: section.settings.grid -%}
+
+            {% case section.settings.grid %}
+                {% when 2 %}
+                    {%- assign grid_item_width = 'col-sm-6 two_columns' -%}
+                    {%- assign grid_image_width = '600x600' -%}
+                {% when 3 %}
+                    {%- assign grid_item_width = 'col-sm-6 col-md-4 three_columns' -%}
+                    {%- assign grid_image_width = '600x600' -%}
+                {% when 4 %}
+                    {%- assign grid_item_width = 'four_columns' -%}
+                    {%- assign grid_image_width = '600x600' -%}
+            {% endcase %}
+
+            {% paginate collection.products by limit %}
+
+            <div
+                class="page-width"
+                data-collection-handle="{{ collection.handle }}"
+                data-pagination-limit="{{ limit }}"
+                data-wetheme-section-type="template--collection"
+                data-wetheme-section-id="{{ section.id }}"
+                id="CollectionProductGrid"
+                data-section-id="{{ section.id }}"
+            >
+                <div>
+                    {%- assign is_empty_collection = false -%}
+
+                    {% case section.settings.grid_mobile %}
+                        {% when "per_row_one" %}
+                            {%- assign grid_item_width_mobile = 'col-12' -%}
+                        {% when "per_row_two" %}
+                            {%- assign grid_item_width_mobile = 'col-6' -%}
+                    {% endcase %}
+
+                    <div id="AjaxinateContainer" class="mt-0 clearfix{% if settings.product-grid != 'natural' %} has-aspect-ratio{% else %} natural-images{% endif %}">                      
+                      <ol
+                            class="row product-grid mb-0"
+                            data-paginate-items="{{ paginate.items }}"
+                            data-grid-id="{{section.id}}"
+                            id="template--collection"
+                        >
+                            {% for product in collection.products %}
+                              {% unless product.handle == 'icepack' %}    
+                                {%- assign may_show_product = true %}
+                                {%- if out_of_stock_filter -%}
+                                    {%- if product.available -%}
+                                        {%- assign may_show_product = false %}
+                                      {%- endif -%}
+                                {%- endif -%}
+                                {%- if may_show_product -%}                                  
+                                    <li class="col grid__item {{ grid_item_width_mobile }} {{ grid_item_width }} indiv-product-wrapper collection-image-anim">
+                                      {%-
+                                            render 'product-grid--indiv-product',
+                                            liquidObject: product, section: section
+                                        -%}
+                                    </li>                                    
+                                {%- endif -%}                               
+                            {% else %}
+                                {% comment %}
+                                Add default products to help with onboarding for collections/all only.
+
+                                The onboarding styles and products are only loaded if the
+                                store has no products.
+                                {% endcomment %}
+                                {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0 %}
+                                    {% for i in (1..8) %}
+                                        <div class="grid__item {{ grid_item_width }} indiv-product-wrapper">
+                                            {% render 'product-grid--onboarding' %}
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    {%- assign is_empty_collection = true -%}
+                                {% endif %}
+                              {% endunless %}
+                            {% endfor %}
+                        </ol>                        
+                    </div>
+
+                    {% if is_empty_collection %}
+                        <div class="grid__item small--text-center">
+                            <p class="text-center">{{ 'collections.general.no_matches' | t }}</p>
+                        </div>
+                    {% endif %}
+
+                    {% if paginate.pages > 1 %}
+                        <div class="row justify-content-center">
+                            {% if section.settings.pagination_type == 'paged_navigation' %}
+                                {% render 'pagination', paginate: paginate  %}
+                            {% elsif section.settings.pagination_type == 'infinite_scrolling' %}
+                                <div id="AjaxinateInfiniteScrolling">
+                                    {% if paginate.next %}
+                                    <a href="{{ paginate.next.url }}">{{ 'collections.paginate.infinite_scrolling' | t }}</a>
+                                    {% endif %}
+                                </div>
+                            {% else %}
+                                <div id="AjaxinateLoadMore">
+                                    {% if paginate.next %}
+                                    <a class="btn" href="{{ paginate.next.url }}">{{ 'collections.paginate.load_more' | t }}</a>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endpaginate %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+    "name": {
+        "en": "Collection pages",
+        "de": "Kollektionsseiten",
+        "es": "Páginas de colecciones",
+        "fr": "Pages de collection",
+        "pt-PT": "Páginas de coleções"
+    },
+    "settings": [
+        {
+            "type": "range",
+            "id": "grid",
+            "min": 2,
+            "max": 4,
+            "step": 1,
+            "label": {
+	            "en": "Maximum products per row",
+                "de": "Maximale Produkte pro Zeile",
+                "es": "Máximo de productos por fila",
+                "fr": "Produits maximums par ligne",
+                "pt-PT": "Máximo de produtos por linha"
+            },
+            "default": 3
+        },
+        {
+            "type": "select",
+            "id": "grid_mobile",
+            "label": {
+	            "en": "Products per row (mobile)",
+	            "de": "Produkte pro Zeile (Mobil)",
+	            "es": "Productos por fila (Móvil)",
+	            "fr": "Produits par ligne (Téléphone mobile)",
+	            "pt-PT": "Produtos por linha (Telemóvel)"
+            },
+            "default": "per_row_two",
+            "options": [
+                {
+                    "value": "per_row_one",
+                    "label": {
+                        "en": "One per row",
+                        "de": "Eine pro Zeile",
+                        "es": "Uno por fila",
+                        "fr": "Un par rangée",
+                        "pt-PT": "Um por fila"
+                    }
+                },
+                {
+                    "value": "per_row_two",
+                    "label": {
+                        "en": "Two per row",
+                        "de": "Zwei pro Zeile",
+                        "es": "Dos por fila",
+                        "fr": "Deux par rangée",
+                        "pt-PT": "Dois por fila"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "range",
+            "id": "rows",
+            "min": 3,
+            "max": 8,
+            "step": 1,
+            "label": {
+                "en": "Rows per page",
+                "de": "Zeilen pro Seite",
+                "es": "Filas por página",
+                "fr": "Nombre de lignes par page",
+                "pt-PT": "Linhas por página"
+            },
+            "default": 6
+        },
+        {
+            "type": "header",
+            "content": {
+                "en": "Pagination"
+            }
+        },
+        {
+            "type": "select",
+            "id": "pagination_type",
+            "label": {
+                "en": "Pagination type",
+                "de": "Seitenzählungsart",
+                "es": "Tipo de paginación",
+                "fr": "Type de pagination",
+                "pt-PT": "Tipo de paginação"
+            },
+            "default": "paged_navigation",
+            "options": [
+                {
+                    "value": "paged_navigation",
+                    "label": {
+                        "en": "Paged navigation",
+                        "de": "Seitennummerierte Navigation",
+                        "es": "Navegación por páginas",
+                        "fr": "Navigation paginée",
+                        "pt-PT": "Navegação paginada"
+                    }
+                },
+                {
+                    "value": "infinite_scrolling",
+                    "label": {
+                        "en": "Infinite scrolling",
+                        "de": "Unendliches Scrolling",
+                        "es": "Desplazamiento continuo",
+                        "fr": "Défilé infini",
+                        "pt-PT": "Rolagem infinita"
+                    }
+                },
+                {
+                    "value": "load_more",
+                    "label": {
+                        "en": "Load more button",
+                        "de": "Schaltfläche 'Mehr anzeigen'",
+                        "es": "Cargar más botones",
+                        "fr": "Bouton Charger plus",
+                        "pt-PT": "Carregar mais botão"
+                    }
+                }
+            ]
+          }
+    ],
+    "blocks": [
+        {
+            "type": "@app"
+        },
+        {
+            "name": "Product card vendor",
+            "type": "product-card-vendor",
+            "limit": 1,
+            "settings": [
+            ]
+        },
+        {
+            "name": "Product card title",
+            "type": "product-card-title",
+            "limit": 1,
+            "settings": [
+            ]
+        },
+        {
+            "name": "Product card price",
+            "type": "product-card-price",
+            "limit": 1,
+            "settings": [
+            ]
+        }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,457 @@
+{{ 'section-featured-collection.min.css' | asset_url | stylesheet_tag }}
+
+<section class="homepage-sections-wrapper cgc__wrapper">
+
+  <div class="container" data-wetheme-section-type="collection--featured-collection-carousel" data-wetheme-section-id="{{ section.id }}">
+    <div class="row">
+      <div class="page-width col-md-12">
+
+      {% if section.settings.title != blank or section.settings.subheading != blank %}
+        <div class="title-bar custom-font">
+          {% if section.settings.subheading != blank %}
+            <h3 class="type-subheading type-subheading--1 wow{% if section.settings.title != blank %} typography--padding-bottom{% endif %}">{{ section.settings.subheading | escape }}</h3>
+          {% endif %}
+          {% if section.settings.title != blank %}
+            <h2 class="wow">{{ section.settings.title | escape }}</h2>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% assign collection = collections[section.settings.collection] %}
+      {% assign product_limit = section.settings.products_to_show %}
+      {% assign hide-add-to-cart = section.settings.hide_add_to_cart %}
+
+      <div class="cgc__carousel-wrap">
+        {% if section.settings.enable_arrows %}
+          <button type="button" class="cgc__arrow cgc__arrow--prev" data-cgc-prev aria-label="{{ 'general.slider.previous_slide' | t | default: 'Previous' }}">
+            <span aria-hidden="true">&#8249;</span>
+          </button>
+          <button type="button" class="cgc__arrow cgc__arrow--next" data-cgc-next aria-label="{{ 'general.slider.next_slide' | t | default: 'Next' }}">
+            <span aria-hidden="true">&#8250;</span>
+          </button>
+        {% endif %}
+
+        <div class="cgc__carousel" data-cgc-carousel style="--cgc-cols-desktop: {{ section.settings.grid }};" tabindex="0">
+          <div class="cgc__track homepage-featured-products">
+
+            {% for product in collection.products limit: product_limit %}
+              <div class="cgc__slide grid__item">
+                {%-
+                  render 'product-grid--indiv-product',
+                  liquidObject: product, section: section, hideBtns: hide-add-to-cart
+                -%}
+              </div>
+
+            {% else %}
+
+              {% for i in (1..product_limit) %}
+                <div class="cgc__slide grid__item">
+                  <article class="indiv-product">
+                    <a href="{{ product.url | within: collection }}" title="{{product.title}}">
+                      {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                      {{ 'product-' | append: current | placeholder_svg_tag: 'icon--placeholder' }}
+                    </a>
+                    <div class="hp-title">
+                      <a href="{{ product.url | within: collection }}">
+                        <span class="indiv-product-title-text">{{ 'general.onboarding.product_title' | t }}</span>
+                        <span class="money money-styling">
+                          {{ 1999 | money }}
+                        </span>
+                      </a>
+                    </div>
+                  </article>
+                </div>
+              {% endfor %}
+            {% endfor %}
+
+          </div>
+        </div>
+      </div>
+
+      {% if section.settings.show_view_all %}
+        <div class="text-center wow">
+          <a href="{{ collection.url }}" class="btn btn--view-all">
+            {{ 'collections.general.view_all' | t }}
+          </a>
+        </div>
+      {% endif %}
+    </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    function slideAmount(carousel) {
+      var slide = carousel.querySelector('.cgc__slide');
+      if (!slide) return carousel.clientWidth;
+      var style = window.getComputedStyle(carousel.querySelector('.cgc__track'));
+      var gap = parseFloat(style.columnGap || style.gap || 0);
+      return slide.getBoundingClientRect().width + gap;
+    }
+
+    function updateArrows(carousel, prevBtn, nextBtn) {
+      if (!prevBtn || !nextBtn) return;
+      var maxScroll = carousel.scrollWidth - carousel.clientWidth - 2;
+      prevBtn.disabled = carousel.scrollLeft <= 0;
+      nextBtn.disabled = carousel.scrollLeft >= maxScroll;
+    }
+
+    function initCarousel(root) {
+      if (!root || root.dataset.cgcInit) return;
+      root.dataset.cgcInit = 'true';
+
+      var carousel = root.querySelector('[data-cgc-carousel]');
+      var prevBtn = root.querySelector('[data-cgc-prev]');
+      var nextBtn = root.querySelector('[data-cgc-next]');
+      if (!carousel) return;
+
+      prevBtn && prevBtn.addEventListener('click', function () {
+        carousel.scrollBy({ left: -slideAmount(carousel), behavior: 'smooth' });
+      });
+
+      nextBtn && nextBtn.addEventListener('click', function () {
+        carousel.scrollBy({ left: slideAmount(carousel), behavior: 'smooth' });
+      });
+
+      carousel.addEventListener('scroll', function () {
+        updateArrows(carousel, prevBtn, nextBtn);
+      }, { passive: true });
+
+      window.addEventListener('resize', function () {
+        updateArrows(carousel, prevBtn, nextBtn);
+      });
+
+      updateArrows(carousel, prevBtn, nextBtn);
+
+      {% if section.settings.autoplay %}
+      var autoplayTimer = setInterval(function () {
+        var maxScroll = carousel.scrollWidth - carousel.clientWidth - 2;
+        if (carousel.scrollLeft >= maxScroll) {
+          carousel.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          carousel.scrollBy({ left: slideAmount(carousel), behavior: 'smooth' });
+        }
+      }, {{ section.settings.autoplay_speed | times: 1000 }});
+
+      carousel.addEventListener('mouseenter', function () { clearInterval(autoplayTimer); });
+      {% endif %}
+    }
+
+    function initAll() {
+      document.querySelectorAll('.cgc__wrapper').forEach(initCarousel);
+    }
+
+    document.addEventListener('DOMContentLoaded', initAll);
+    initAll();
+
+    document.addEventListener('shopify:section:load', function (event) {
+      var root = event.target.querySelector('.cgc__wrapper');
+      if (root) initCarousel(root);
+    });
+  })();
+</script>
+
+{% stylesheet %}
+  #shopify-section-{{ section.id }} .cgc__carousel-wrap {
+    position: relative;
+  }
+
+  #shopify-section-{{ section.id }} .cgc__carousel {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 0.5rem;
+  }
+
+  #shopify-section-{{ section.id }} .cgc__carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .cgc__track {
+    display: flex;
+    gap: 12px;
+  }
+
+  #shopify-section-{{ section.id }} .cgc__slide {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    width: 58.8%;
+    display: flex;
+  }
+
+  #shopify-section-{{ section.id }} .cgc__slide > * {
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .indiv-product-title-text {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  #shopify-section-{{ section.id }} .cgc__arrow {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    border: 1px solid #4E3120;
+    background: #FFFFFF;
+    color: #4E3120;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  #shopify-section-{{ section.id }} .cgc__arrow:hover {
+    background: #4E3120;
+    color: #FFFFFF;
+  }
+
+  #shopify-section-{{ section.id }} .cgc__arrow:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+
+  #shopify-section-{{ section.id }} .cgc__arrow--prev {
+    left: -0.5rem;
+  }
+
+  #shopify-section-{{ section.id }} .cgc__arrow--next {
+    right: -0.5rem;
+  }
+
+  @media screen and (min-width: 600px) {
+    #shopify-section-{{ section.id }} .cgc__track {
+      gap: 20px;
+    }
+
+    #shopify-section-{{ section.id }} .cgc__slide {
+      width: 44.4%;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    #shopify-section-{{ section.id }} .cgc__track {
+      gap: 24px;
+    }
+
+    #shopify-section-{{ section.id }} .cgc__slide {
+      width: calc((100% - (24px * (var(--cgc-cols-desktop) - 1))) / var(--cgc-cols-desktop));
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .cgc__arrow {
+      display: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+    "name": "Featured Carousel",
+    "class": "homepage-section--featured-products-wrapper",
+    "settings": [
+        {
+            "type": "text",
+            "id": "subheading",
+            "label": {
+              "en": "Subheading",
+              "de": "Unterüberschrift",
+              "es": "Subencabezado",
+              "fr": "Sous-rubrique",
+              "pt-PT": "Subtítulo"
+            },
+            "default": {
+                "en": "Subheading",
+                "de": "Unterüberschrift",
+                "es": "Subencabezado",
+                "fr": "Sous-rubrique",
+                "pt-PT": "Subtítulo"
+            }
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": {
+                "en": "Heading",
+                "de": "Überschrift",
+                "es": "Encabezado",
+                "fr": "Rubrique",
+                "pt-PT": "Título"
+            },
+            "default": {
+                "en": "Featured collection",
+                "de": "Vorgestellte Kollektion",
+                "es": "Colección destacada",
+                "fr": "Collection en vedette",
+                "pt-PT": "Coleção em destaque"
+            }
+        },
+        {
+            "id": "collection",
+            "type": "collection",
+            "label": {
+                "en": "Collection",
+                "de": "Kollektion",
+                "es": "Colección",
+                "fr": "Collection",
+                "pt-PT": "Coleção"
+            }
+        },
+        {
+            "type": "range",
+            "id": "products_to_show",
+            "min": 4,
+            "max": 24,
+            "step": 1,
+            "label": "Products to show",
+            "default": 8
+        },
+        {
+            "type": "range",
+            "id": "grid",
+            "min": 2,
+            "max": 6,
+            "step": 1,
+            "label": {
+              "en": "Products visible per row (desktop)",
+              "de": "Produkte pro Zeile (Desktop)",
+              "es": "Productos por fila (escritorio)",
+              "fr": "Produits par ligne (ordinateur de bureau)",
+              "pt-PT": "Produtos por linha (ambiente de trabalho)"
+            },
+            "default": 4
+        },
+        {
+          "type": "checkbox",
+          "id": "hide_add_to_cart",
+          "label": {
+              "en": "Hide 'Add to cart' button",
+              "de": "Hide 'Add to cart' button",
+              "es": "Hide 'Add to cart' button",
+              "fr": "Hide 'Add to cart' button",
+              "pt-PT": "Hide 'Add to cart' button"
+          },
+          "default": false,
+          "info": {
+            "en": "Recommended on password page",
+            "de": "Recommended on password page",
+            "es": "Recommended on password page",
+            "fr": "Recommended on password page",
+            "pt-PT": "Recommended on password page"
+          }
+        },
+        {
+            "type": "checkbox",
+            "id": "show_view_all",
+            "label": {
+                "en": "Show 'View all' button",
+                "de": "„Alle ansehen“-Button anzeigen",
+                "es": "Mostrar botón «Ver todos»",
+                "fr": "Afficher le bouton « Voir tout »",
+                "pt-PT": "Mostrar botão \"Ver tudo\""
+            },
+            "default": false
+        },
+        {
+            "type": "header",
+            "content": "Carousel"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_arrows",
+            "label": "Show navigation arrows",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "autoplay",
+            "label": "Auto-rotate",
+            "default": false
+        },
+        {
+            "type": "range",
+            "id": "autoplay_speed",
+            "min": 3,
+            "max": 10,
+            "step": 1,
+            "unit": "s",
+            "label": "Change slides every",
+            "default": 5
+        }
+    ],
+    "blocks": [
+      {
+        "type": "@app"
+      },
+      {
+          "name": "Product card vendor",
+          "type": "product-card-vendor",
+          "limit": 1,
+          "settings": [
+          ]
+      },
+      {
+          "name": "Product card title",
+          "type": "product-card-title",
+          "limit": 1,
+          "settings": [
+          ]
+      },
+      {
+          "name": "Product card price",
+          "type": "product-card-price",
+          "limit": 1,
+          "settings": [
+          ]
+      }
+    ],
+    "presets": [
+        {
+            "name": "Featured Carousel",
+            "category": {
+                "en": "Collection",
+                "de": "Kollektion",
+                "es": "Colección",
+                "fr": "Collection",
+                "pt-PT": "Coleção"
+            },
+            "settings": {},
+            "blocks": [
+              {
+                "type": "product-card-vendor"
+              },
+              {
+                "type": "product-card-title"
+              },
+              {
+                "type": "product-card-price"
+              }
+            ]
+        }
+    ],
+    "templates": [
+      "404",
+      "article",
+      "blog",
+      "cart",
+      "list-collections",
+      "index",
+      "page",
+      "password",
+      "product",
+      "search"
+    ]
+}
+{% endschema %}

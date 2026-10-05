@@ -1,0 +1,79 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "wrapper": "div.collection-wrapper",
+  "sections": {
+    "collection_header": {
+      "type": "template--collection-header",
+      "blocks": {
+        "collection_title": {
+          "type": "collection-title",
+          "settings": {}
+        },
+        "collection_description": {
+          "type": "collection-description",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "collection_title",
+        "collection_description"
+      ],
+      "settings": {
+        "collection_image_enable": false
+      }
+    },
+    "product_filtering": {
+      "type": "main-collection-filtering",
+      "settings": {
+        "desktop_position": "topbar",
+        "enable_filtering": true,
+        "enable_sorting": true
+      }
+    },
+    "main": {
+      "type": "template--collection",
+      "blocks": {
+        "product_title": {
+          "type": "product-card-title",
+          "settings": {}
+        },
+        "product_price": {
+          "type": "product-card-price",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "product_title",
+        "product_price"
+      ],
+      "settings": {
+        "grid": 3,
+        "grid_mobile": "per_row_two",
+        "rows": 6,
+        "pagination_type": "load_more"
+      }
+    },
+    "newsletter_newsletter_kBJaUz": {
+      "type": "newsletter--newsletter",
+      "settings": {
+        "subheading": "Stay up-to-date",
+        "title": "Join our mailing list",
+        "newsletter_description": "<p><strong>You Can Also</strong> <a href=\"/pages/text-message-signup\" title=\"Text Message Signup\"><strong>Sign Up for Tasty Text Message Alerts!</strong></a></p>"
+      }
+    }
+  },
+  "order": [
+    "collection_header",
+    "product_filtering",
+    "main",
+    "newsletter_newsletter_kBJaUz"
+  ]
+}

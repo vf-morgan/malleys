@@ -1,0 +1,621 @@
+{{ 'section-text-blocks.min.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .text-advert-section--{{ section.id }} {
+    background-color: {{ section.settings.background-color }}!important;
+    color: {{ section.settings.text-color }} !important;
+  }
+
+  .text-advert-section--{{ section.id }} a {
+    color: {{ section.settings.text-color }} !important;
+  }
+
+  .text-advert-section--{{ section.id }} svg {
+    fill: {{ section.settings.icon-color }} !important;
+  }
+
+  .text-advert-section--{{ section.id }} .swiper-pagination-bullet-dot {
+      background: {{ section.settings.text-color }};
+  }
+
+  @media screen and (min-width: 768px) {
+    .homepage-sections-wrapper .text-advert-section__item {
+      border-left: 1px solid {{ section.settings.text-color | color_modify: 'alpha', 0.2 }};
+    }
+  }
+</style>
+
+{% if section.blocks.size > 0 %}
+
+{% capture id %}data-wetheme-section-type="text--text-adverts" data-wetheme-section-id="{{ section.id }}"{% endcapture %}
+
+<div class="sections-wrapper text--text-adverts__section-wrapper homepage-sections-wrapper text-advert-section--{{ section.id }}" {{ id }}>
+
+  <div class="container text-advert__container d-none d-md-block">
+
+    <div class="row text-advert-section">
+      {% for block in section.blocks %}
+
+      <div class="text-advert-section__item wow
+
+      " {{ block.shopify_attributes }}>
+        <div class="text-advert-section__item-inner">
+
+            <div class="text-advert-section__text-wrapper">
+
+              {% if block.settings.icon != 'none' %}
+                <div class="text-advert-section__icon-wrapper text-adverts__icon-size--large">
+                    {% assign icon = block.settings.icon %}
+                    {% assign iconColor = block.settings.icon-color %}
+                    {% render 'icons', icon: icon, iconColor: iconColor %}
+                </div>
+              {% endif %}
+
+              {% if block.settings.heading != blank %}
+                <span class="type-subheading type-subheading--1 text-advert-section__header">{{ block.settings.heading | escape }}</span>
+              {% endif %}
+
+              {% if block.settings.subheading != blank %}
+                <span class="text-advert-section__sub-header h6">{{ block.settings.subheading | escape }}</span>
+              {% endif %}
+
+              {% if block.settings.link != blank %}
+                <p class="text-advert-section_link"><a href="{{ block.settings.link }}">{{ block.settings.buttonLabel | escape }}</a></p>
+              {% endif %}
+            </div>
+
+
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+
+  <div class="container d-block d-md-none">
+    <div class="row text-advert-section mobile-homepage-text-adverts swiper-container">
+      <ul class="slides swiper-wrapper">
+        {% for block in section.blocks %}
+
+          <li class="swiper-slide" {{ block.shopify_attributes }}>
+            <div class="grid__item text-advert-section__item">
+
+                <div class="text-advert-section__text-wrapper">
+
+                    {% if block.settings.icon != 'none' %}
+                    <div class="text-advert-section__icon-wrapper text-adverts__icon-size--large">
+                        {% assign icon = block.settings.icon %}
+                        {% assign iconColor = block.settings.icon-color %}
+                        {% render 'icons', icon: icon, iconColor:  %}
+                    </div>
+                {% endif %}
+
+                  {% if block.settings.heading != blank %}
+                    <span class="text-advert-section__header type-subheading type-subheading--1">{{ block.settings.heading | escape }}</span>
+                  {% endif %}
+
+                  {% if block.settings.subheading != blank %}
+                    <span class="text-advert-section__sub-header h6">{{ block.settings.subheading | escape }}</span>
+                  {% endif %}
+
+                  {% if block.settings.link != blank %}
+                    <p class="text-advert-section_link"><a href="{{ block.settings.link }}">{{ block.settings.buttonLabel | escape }}</a></p>
+                  {% endif %}
+
+                </div>
+
+            </div>
+          </li>
+
+        {% endfor %}
+      </ul>
+      {% if section.blocks.size > 1 %}
+        <div class="swiper-pagination"></div>
+      {% endif %}
+    </div>
+  </div>
+
+</div>
+
+{% endif %}
+
+{% schema %}
+{
+    "name": {
+        "en": "Text adverts with icon",
+        "de": "Textanzeigen mit Icon",
+        "es": "Anuncios de texto con icono",
+        "fr": "Annonces textuelles avec icône",
+        "pt-PT": "Anúncios de texto com ícone"
+    },
+    "class": "section--text-adverts-wrapper",
+    "max_blocks": 4,
+    "settings": [
+        {
+        "type": "color",
+        "id": "icon-color",
+        "label": {
+            "en": "Icon color",
+            "de": "Icon-Farbe",
+            "es": "Color del icono",
+            "fr": "Couleur de l'icône",
+            "pt-PT": "Cor do ícone"
+        },
+        "default": "#333333"
+        },
+        {
+        "type": "color",
+        "id": "text-color",
+        "label": {
+            "en": "Text color",
+            "de": "Textfarbe",
+            "es": "Color del texto",
+            "fr": "Couleur du texte",
+            "pt-PT": "Cor do texto"
+        },
+        "default": "#000000"
+        },
+        {
+        "type": "color",
+        "id": "background-color",
+        "label": {
+            "en": "Background color",
+            "de": "Hintergrundfarbe",
+            "es": "Color de fondo",
+            "fr": "Couleur de l'arrière plan",
+            "pt-PT": "Cor de fundo"
+        },
+        "default": "#ffffff"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "text",
+            "name": {
+                "en": "Advert",
+                "de": "Anzeige",
+                "es": "Anuncio",
+                "fr": "Annonce",
+                "pt-PT": "Anúncio"
+            },
+            "settings": [
+                {
+                    "type": "select",
+                    "id": "icon",
+                    "label": {
+                        "en": "Icon",
+                        "de": "Symbol",
+                        "es": "Icono",
+                        "fr": "Icône",
+                        "pt-PT": "Ícone"
+                    },
+                    "default": "none",
+                    "options": [
+                        {
+                            "value": "none",
+                            "label": {
+                                "en": "None",
+                                "de": "Keiner",
+                                "es": "Ninguno",
+                                "fr": "Aucun",
+                                "pt-PT": "Nenhum"
+                            }
+                        },
+                        {
+                            "value": "home-smile",
+                            "label": {
+                                "en": "Home with smile",
+                                "de": "Haus mit Lächeln",
+                                "es": "Hogar con sonrisa",
+                                "fr": "Accueil souriant",
+                                "pt-PT": "Casa com sorriso"
+                            }
+                        },
+                        {
+                            "value": "store",
+                            "label": {
+                                "en": "Store",
+                                "de": "Speichern",
+                                "es": "Tienda",
+                                "fr": "Magasin",
+                                "pt-PT": "Loja"
+                            }
+                        },
+                        {
+                            "value": "flag",
+                            "label": {
+                                "en": "Flag",
+                                "de": "Flagge",
+                                "es": "Bandera",
+                                "fr": "Drapeau",
+                                "pt-PT": "Bandeira"
+                            }
+                        },
+                        {
+                            "value": "service",
+                            "label": {
+                                "en": "Customer service",
+                                "de": "Kundendienst",
+                                "es": "Servicio al cliente",
+                                "fr": "Service clients",
+                                "pt-PT": "Serviço ao cliente"
+                            }
+                        },
+                        {
+                            "value": "chat",
+                            "label": {
+                                "en": "Chat bubble",
+                                "de": "Chat-Blase",
+                                "es": "Burbuja de chat",
+                                "fr": "Bulle de chat",
+                                "pt-PT": "Bolha de conversa"
+                            }
+                        },
+                        {
+                            "value": "chat-smile",
+                            "label": {
+                                "en": "Chat bubble with smile",
+                                "de": "Chat-Blase mit Lächeln",
+                                "es": "Burbuja de chat con sonrisa",
+                                "fr": "Bulle de chat avec sourire",
+                                "pt-PT": "Bolha de conversa com sorriso"
+                            }
+                        },
+                        {
+                            "value": "question-answer",
+                            "label": {
+                                "en": "Question and answer",
+                                "de": "Frage und Antwort",
+                                "es": "Pregunta y respuesta",
+                                "fr": "Question et réponse",
+                                "pt-PT": "Pergunta e resposta"
+                            }
+                        },
+                        {
+                            "value": "wallet",
+                            "label": {
+                                "en": "Wallet",
+                                "de": "Geldbörse",
+                                "es": "Cartera",
+                                "fr": "Portefeuille",
+                                "pt-PT": "Carteira"
+                            }
+                        },
+                        {
+                            "value": "price-tag",
+                            "label": {
+                                "en": "Price tag",
+                                "de": "Preisschild",
+                                "es": "Etiqueta de precio",
+                                "fr": "Étiquette de prix",
+                                "pt-PT": "Etiqueta de preço"
+                            }
+                        },
+                        {
+                            "value": "vip",
+                            "label": {
+                                "en": "VIP",
+                                "de": "VIP",
+                                "es": "VIP",
+                                "fr": "VIP",
+                                "pt-PT": "VIP"
+                            }
+                        },
+                        {
+                            "value": "crown",
+                            "label": {
+                                "en": "Crown",
+                                "de": "Krone",
+                                "es": "Corona",
+                                "fr": "Couronne",
+                                "pt-PT": "Coroa"
+                            }
+                        },
+                        {
+                            "value": "exchange",
+                            "label": {
+                                "en": "Exchange",
+                                "de": "Austausch",
+                                "es": "Intercambio",
+                                "fr": "Échange",
+                                "pt-PT": "Trocar"
+                            }
+                        },
+                        {
+                            "value": "gift",
+                            "label": {
+                                "en": "Gift",
+                                "de": "Geschenk",
+                                "es": "Regalo",
+                                "fr": "Cadeau",
+                                "pt-PT": "Presente"
+                            }
+                        },
+                        {
+                            "value": "24-hours",
+                            "label": {
+                                "en": "24 Hours",
+                                "de": "24 Stunden",
+                                "es": "24 horas",
+                                "fr": "24 heures",
+                                "pt-PT": "24 Horas"
+                            }
+                        },
+                        {
+                            "value": "heart",
+                            "label": {
+                                "en": "Heart",
+                                "de": "Herz",
+                                "es": "Corazón",
+                                "fr": "Cœur",
+                                "pt-PT": "Coração"
+                            }
+                        },
+                        {
+                            "value": "instagram",
+                            "label": {
+                                "en": "Instagram",
+                                "de": "Instagram",
+                                "es": "Instagram",
+                                "fr": "Instagram",
+                                "pt-PT": "Instagram"
+                            }
+                        },
+                        {
+                            "value": "facebook",
+                            "label": {
+                                "en": "Facebook",
+                                "de": "Facebook",
+                                "es": "Facebook",
+                                "fr": "Facebook",
+                                "pt-PT": "Facebook"
+                            }
+                        },
+                        {
+                            "value": "messenger",
+                            "label": {
+                                "en": "Messenger",
+                                "de": "Messenger",
+                                "es": "Messenger",
+                                "fr": "Messenger",
+                                "pt-PT": "Messenger"
+                            }
+                        },
+                        {
+                            "value": "twitter",
+                            "label": {
+                                "en": "Twitter",
+                                "de": "Twitter",
+                                "es": "Twitter",
+                                "fr": "Twitter",
+                                "pt-PT": "Twitter"
+                            }
+                        },
+                        {
+                            "value": "map-pin",
+                            "label": {
+                                "en": "Map pin",
+                                "de": "Karten-Nadel",
+                                "es": "Pin de mapa",
+                                "fr": "Épingle de carte",
+                                "pt-PT": "Alfinete no mapa"
+                            }
+                        },
+                        {
+                            "value": "car",
+                            "label": {
+                                "en": "Car",
+                                "de": "Auto",
+                                "es": "Coche",
+                                "fr": "Voiture",
+                                "pt-PT": "Automóvel"
+                            }
+                        },
+                        {
+                            "value": "takeaway",
+                            "label": {
+                                "en": "Takeaway",
+                                "de": "Imbissbude",
+                                "es": "Para llevar",
+                                "fr": "Emporter",
+                                "pt-PT": "Comida para fora"
+                            }
+                        },
+                        {
+                            "value": "restaurant",
+                            "label": {
+                                "en": "Restaurant",
+                                "de": "Restaurant",
+                                "es": "Restaurante",
+                                "fr": "Restaurant",
+                                "pt-PT": "Restaurante"
+                            }
+                        },
+                        {
+                            "value": "cup",
+                            "label": {
+                                "en": "Cup",
+                                "de": "Körbchen",
+                                "es": "Taza",
+                                "fr": "Tasse",
+                                "pt-PT": "Caneca"
+                            }
+                        },
+                        {
+                            "value": "goblet",
+                            "label": {
+                                "en": "Goblet",
+                                "de": "Kelch",
+                                "es": "Copa",
+                                "fr": "Gobelet",
+                                "pt-PT": "Cálice"
+                            }
+                        },
+                        {
+                            "value": "star",
+                            "label": {
+                                "en": "Star",
+                                "de": "Stern",
+                                "es": "Estrella",
+                                "fr": "Étoile",
+                                "pt-PT": "Estrela"
+                            }
+                        },
+                        {
+                            "value": "sun",
+                            "label": {
+                                "en": "Sun",
+                                "de": "Sonne",
+                                "es": "Sol",
+                                "fr": "Soleil",
+                                "pt-PT": "Sol"
+                            }
+                        },
+                        {
+                            "value": "moon",
+                            "label": {
+                                "en": "Moon",
+                                "de": "Mond",
+                                "es": "Luna",
+                                "fr": "Lune",
+                                "pt-PT": "Lua"
+                            }
+                        },
+                        {
+                            "value": "cake",
+                            "label": {
+                                "en": "Cake",
+                                "de": "Kuchen",
+                                "es": "Pastel",
+                                "fr": "Gâteau",
+                                "pt-PT": "Bolo"
+                            }
+                        },
+                        {
+                            "value": "handbag",
+                            "label": {
+                                "en": "Handbag",
+                                "de": "Handtasche",
+                                "es": "Bolso",
+                                "fr": "Sac à main",
+                                "pt-PT": "Mala de mão"
+                            }
+                        },
+                        {
+                            "value": "umbrella",
+                            "label": {
+                                "en": "Umbrella",
+                                "de": "Regenschirm",
+                                "es": "Paraguas",
+                                "fr": "Parapluie",
+                                "pt-PT": "Guarda-chuva"
+                            }
+                        },
+                        {
+                            "value": "recycle",
+                            "label": {
+                                "en": "Recycle",
+                                "de": "Recyceln",
+                                "es": "Reciclar",
+                                "fr": "Recycler",
+                                "pt-PT": "Reciclar"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "text",
+                    "id": "heading",
+                    "label": {
+                        "en": "Heading",
+                        "de": "Überschrift",
+                        "es": "Encabezado",
+                        "fr": "Rubrique",
+                        "pt-PT": "Título"
+                    }
+                },
+                {
+                    "type": "text",
+                    "id": "subheading",
+                    "label": {
+                        "en": "Subheading",
+                        "de": "Unterüberschrift",
+                        "es": "Subencabezado",
+                        "fr": "Sous-rubrique",
+                        "pt-PT": "Subtítulo"
+                    }
+                },
+                {
+                    "type": "text",
+                    "id": "buttonLabel",
+                    "label": {
+                        "en": "Link text",
+                        "de": "Link Text",
+                        "es": "Texto del vínculo",
+                        "fr": "Texte du lien",
+                        "pt-PT": "Ligar texto"
+                    }
+                },
+                {
+                    "type": "url",
+                    "id": "link",
+                    "label": {
+                        "en": "Link",
+                        "de": "Link",
+                        "es": "Enlace",
+                        "fr": "Lien",
+                        "pt-PT": "Ligação"
+                    }
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": {
+                "en": "Text adverts",
+                "de": "Textanzeigen",
+                "es": "Anuncios de texto",
+                "fr": "Annonces textuelles",
+                "pt-PT": "Anúncios de texto"
+            },
+            "category": {
+                "en": "Text",
+                "de": "Text",
+                "es": "Texto",
+                "fr": "Texte",
+                "pt-PT": "Texto"
+            },
+            "blocks": [
+                {
+                    "type": "text",
+                    "settings": {
+                        "icon": "truck",
+                        "heading": "Free shipping",
+                        "subheading": "Shout about your unique selling points",
+                        "link": ""
+                    }
+                },
+                {
+                    "type": "text",
+                    "settings": {
+                        "icon": "trending-up",
+                        "heading": "Hassle free returns",
+                        "subheading": "Shout about your unique selling points",
+                        "link": ""
+                    }
+                },
+                {
+                    "type": "text",
+                    "settings": {
+                        "icon": "smile",
+                        "heading": "Eco friendly packaging",
+                        "subheading": "Shout about your unique selling points",
+                        "link": ""
+                    }
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

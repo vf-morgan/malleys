@@ -1,0 +1,38 @@
+{% assign free_shipping_msg = settings.free_shipping_message %}
+{% assign free_shipping_amount_percent = settings.free_shipping_amount | times: 1 %}
+{% assign free_shipping_amount = settings.free_shipping_amount | times: 100 %}
+{% assign free_shipping_achieved = settings.free_shipping_achieved %}
+{% assign cart_total_price = cart.total_price %}
+{% assign cart_has_ice_pack = false %}
+
+{% for item in cart.items %}
+  {% if item.product.title contains "Ice Pack" %}
+    {% assign cart_has_ice_pack = item %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% if cart_has_ice_pack %}
+  {% assign cart_total_price = cart.total_price | minus: cart_has_ice_pack.final_price %}
+{% endif %}
+
+{% assign amount_difference = free_shipping_amount | minus: cart_total_price %}
+{% assign amount_difference_money = amount_difference | money %}
+{% assign bar = amount_difference | divided_by: free_shipping_amount_percent %}
+{% assign bar_percentage = 100 | minus: bar %}
+
+<div class="cart-free-shipping-encouragement">
+
+  <div class="cart-free-shipping-encouragement__text">
+    {% if cart_total_price < free_shipping_amount %}
+      <p>{{ free_shipping_msg | replace: "<price>", amount_difference_money }}</p>
+    {% else %}
+      <p>{{ free_shipping_achieved }}</p>
+    {% endif %}
+  </div>
+
+  <div class="cart-free-shipping-encouragement__bar--bg">
+    <div class="cart-free-shipping-encouragement__bar--progress" style="width: {{ bar_percentage }}%;"></div>
+  </div>
+
+</div>

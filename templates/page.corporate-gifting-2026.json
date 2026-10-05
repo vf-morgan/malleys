@@ -1,0 +1,305 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "single_banner_slider_corporate_E8PpyR": {
+      "type": "single-banner-slider-corporate",
+      "blocks": {
+        "slide_YzMEqz": {
+          "type": "slide",
+          "settings": {
+            "single__slide-image": "shopify://shop_images/Screenshot_2026-07-30_120624.png",
+            "single__slide-mobile--image": "shopify://shop_images/Screenshot_2026-07-30_120624_21edf237-36ad-4f4e-83d6-1f06d6d8df03.png",
+            "banner_image_url": "",
+            "heading": "The best corporate gifts are from Malley's Chocolates.",
+            "subheading": "",
+            "text_color": "#ffffff",
+            "button_label": "Learn More",
+            "button_link": ""
+          }
+        },
+        "slide_48RLXG": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "single__slide-image": "shopify://shop_images/solid_gray_for_testing_838e93d2-03e9-4827-939e-e864154d0239.png",
+            "single__slide-mobile--image": "shopify://shop_images/Gray_testing_1d6761bf-0e7f-442f-abe7-e84e97b321af.png",
+            "banner_image_url": "",
+            "heading": "Slide 2",
+            "subheading": "Sub Text Here",
+            "text_color": "",
+            "button_label": "Learn More",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_YzMEqz",
+        "slide_48RLXG"
+      ],
+      "custom_css": [
+        "section {margin-top: -92px !important; margin-bottom: 0 !important; padding: 0 !important;}"
+      ],
+      "name": "Corporate Banner Slider",
+      "settings": {}
+    },
+    "corporate_gifting_features_KdqtkW": {
+      "type": "corporate-gifting-features",
+      "blocks": {
+        "feature_wJ9KFd": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/inset-1b_1800x_eb5b6979-8ab9-4df1-be42-eb26874e68b3.jpg",
+            "heading": "Premium Sweets",
+            "link_label": "Learn More",
+            "link_url": ""
+          }
+        },
+        "feature_LcPWkK": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/inset-3_1800x_9aff480d-f54c-47e1-8cf0-a1c2911207e7.webp",
+            "heading": "Custom Gifts",
+            "link_label": "Shop Now",
+            "link_url": ""
+          }
+        },
+        "feature_GKQW8Q": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/MalleysCatalog_Festival_Resize_1800x_e045ed84-9a44-45d3-8dd0-8dffe1fc7143.webp",
+            "heading": "Multi-Recipient",
+            "link_label": "Gift Malley's",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "feature_wJ9KFd",
+        "feature_LcPWkK",
+        "feature_GKQW8Q"
+      ],
+      "custom_css": [
+        "section {margin-top: -130px !important; margin-bottom: 0 !important; padding: 0 !important;}"
+      ],
+      "name": "Gift Features",
+      "settings": {
+        "card_spacing": 152,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "main": {
+      "type": "template--page",
+      "disabled": true,
+      "settings": {}
+    },
+    "custom_liquid_iCYdz3": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "custom_css": [
+        "section {margin-top: -62px !important; margin-bottom: 0 !important; padding: 0 !important;}"
+      ],
+      "name": "Custom Liquid",
+      "settings": {
+        "custom_liquid": "<div style=\"text-align:center; max-width:640px; margin:0 auto; padding:3rem 1rem;\">\n  <h2 style=\"margin:0 0 1.5rem;\">Bulk Ordering Benefits & Discounts</h2>\n\n  <ul style=\"text-align:left; display:inline-block; margin:0 auto 1.75rem; padding-left:1.25rem;\">\n    <li style=\"margin-bottom:0.5rem;\">Work with our dedicated gifting concierge to maximize your budgets and find the best gift option for you.</li>\n    <li style=\"margin-bottom:0.5rem;\">Ship your gifts to multiple recipients. Just send us your list, and we can ship to each address.</li>\n    <li style=\"margin-bottom:0;\">Enjoy tiered savings with our volume discounts.</li>\n  </ul>\n\n  <p style=\"margin:1.5rem 0;\">\n    <a href=\"https://malleys.com/pages/corporate-gifting-order-form-1\" style=\"display:inline-block; background-color:var(--color-brand-pink, #F0A8C0); color:#4E3120; font-weight:700; text-transform:uppercase; text-decoration:none; padding:1rem 2rem; border-radius:999px;\">Corporate Gifting Catalog</a>\n  </p>\n\n  <p style=\"font-weight:700; margin:0 0 0.35rem;\">Contact our team to start your order.</p>\n\n  <p style=\"margin:0;\">\n    Email <a href=\"mailto:corporate@malleys.com\">corporate@Malleys.com</a> or call us at <a href=\"tel:2162268300\" style=\"color:inherit; text-decoration:none;\">216-226-8300</a>.\n  </p>\n</div>"
+      }
+    },
+    "corporate_gifting_image_rows_pcxDGW": {
+      "type": "corporate-gifting-image-rows",
+      "blocks": {
+        "row_ikQ6kY": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/MalleysCatalog_Festival_Resize_1800x_e045ed84-9a44-45d3-8dd0-8dffe1fc7143.webp",
+            "heading": "Bulk Ordering Benefits & Discounts",
+            "content": "<ul><li>Work with our dedicated gifting concierge to maximize your budgets and find the best gift option for you.</li><li>Ship your gifts to multiple recipients. Just send us your list, and we can ship to each address.</li><li>Enjoy tiered savings with our volume discounts.</li></ul>",
+            "button_label": "Corporate Gifting Catalog",
+            "button_link": "",
+            "contact_heading": "Contact our team to start your order.",
+            "email": "corporate@malleys.com‎",
+            "phone": "216-226-8300."
+          }
+        },
+        "row_JQ44WM": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/inset-3_1800x_9aff480d-f54c-47e1-8cf0-a1c2911207e7.webp",
+            "heading": "The Sweetest Corporate Gifting Solution",
+            "content": "<ul><li>Premium Treats: Malley's is known for American-made chocolates, from innovative new candies to recipes passed down for generations.</li><li>Elegant Presentation: Your gift arrives beautifully packaged by our design center, making a lasting impression.</li><li>A Gift for Any Budget: Our wide selection of decadent chocolate assortments fits any price point.</li></ul>",
+            "button_label": "",
+            "button_link": "",
+            "contact_heading": "",
+            "email": "",
+            "phone": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_ikQ6kY",
+        "row_JQ44WM"
+      ],
+      "custom_css": [
+        "section {margin-top: -92px !important; margin-bottom: 0 !important; padding: 0 !important;}"
+      ],
+      "name": "Alternating Rows",
+      "settings": {
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "collection_featured_collection_carousel_zH4FgB": {
+      "type": "collection--featured-collection-carousel",
+      "blocks": {
+        "product_card_vendor_VEzbmR": {
+          "type": "product-card-vendor",
+          "disabled": true,
+          "settings": {}
+        },
+        "product_card_title_z8XREa": {
+          "type": "product-card-title",
+          "settings": {}
+        },
+        "product_card_price_GeGGDA": {
+          "type": "product-card-price",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "product_card_vendor_VEzbmR",
+        "product_card_title_z8XREa",
+        "product_card_price_GeGGDA"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "section {margin-top: -62px !important; margin-bottom: 0 !important; padding: 0 !important;}"
+      ],
+      "name": "Featured Carousel",
+      "settings": {
+        "subheading": "",
+        "title": "Corporate Gifting Best Sellers",
+        "collection": "gifts",
+        "products_to_show": 8,
+        "grid": 4,
+        "hide_add_to_cart": false,
+        "show_view_all": false,
+        "enable_arrows": true,
+        "autoplay": false,
+        "autoplay_speed": 5
+      }
+    },
+    "collection_featured_collection_dYPQ9J": {
+      "type": "collection--featured-collection",
+      "blocks": {
+        "product_card_vendor_zxQGxU": {
+          "type": "product-card-vendor",
+          "disabled": true,
+          "settings": {}
+        },
+        "product_card_title_DgHHkc": {
+          "type": "product-card-title",
+          "settings": {}
+        },
+        "product_card_price_igkLXG": {
+          "type": "product-card-price",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "product_card_vendor_zxQGxU",
+        "product_card_title_DgHHkc",
+        "product_card_price_igkLXG"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "section {margin-top: -62px !important; margin-bottom: 0 !important; padding: 0 !important;}"
+      ],
+      "name": "Featured collection",
+      "settings": {
+        "subheading": "",
+        "title": "Corporate Gifting Best Sellers",
+        "collection": "gifts",
+        "grid": 4,
+        "rows": 1,
+        "hide_add_to_cart": false,
+        "show_view_all": false
+      }
+    },
+    "collection_collection_list_ADM3XG": {
+      "type": "collection--collection-list",
+      "blocks": {
+        "featured_collection_zKCe4G": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "corporate-gifting-made-easy-copy"
+          }
+        },
+        "featured_collection_4qHTWW": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "best-sellers"
+          }
+        },
+        "featured_collection_ripKCb": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "gifts-under-30"
+          }
+        },
+        "featured_collection_brWp4x": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "award-winning-assortments"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_zKCe4G",
+        "featured_collection_4qHTWW",
+        "featured_collection_ripKCb",
+        "featured_collection_brWp4x"
+      ],
+      "custom_css": [
+        "section {margin-top: -62px !important; margin-bottom: 0 !important; padding: 0 !important;}"
+      ],
+      "name": "Collection list",
+      "settings": {
+        "subheading": "",
+        "title": "A Gift for Every Occasion"
+      }
+    },
+    "corporate_gifting_newsletter_G8DiQg": {
+      "type": "corporate-gifting-newsletter",
+      "custom_css": [
+        "section {margin-top: -22px !important; margin-bottom: 0 !important; padding: 0 !important;}"
+      ],
+      "name": "Gift Newsletter",
+      "settings": {
+        "subheading": "",
+        "title": "Join our mailing list",
+        "newsletter_description": "<p>Stay up to date on all things Malley's!</p>",
+        "sms_text": "You Can Also",
+        "sms_link_label": "Sign Up for Tasty Text Message Alerts!",
+        "sms_link_url": ""
+      }
+    }
+  },
+  "order": [
+    "single_banner_slider_corporate_E8PpyR",
+    "corporate_gifting_features_KdqtkW",
+    "main",
+    "custom_liquid_iCYdz3",
+    "corporate_gifting_image_rows_pcxDGW",
+    "collection_featured_collection_carousel_zH4FgB",
+    "collection_featured_collection_dYPQ9J",
+    "collection_collection_list_ADM3XG",
+    "corporate_gifting_newsletter_G8DiQg"
+  ]
+}

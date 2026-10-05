@@ -1,0 +1,10 @@
+{%- if variant.unit_price_measurement -%}
+<div class="product-grid--pricing--price-per-unit">
+  (<span class="money">{{ variant.unit_price | money }}</span>
+  <span> / </span>
+  {%- if variant.unit_price_measurement.reference_value != 1 -%}
+    {{- variant.unit_price_measurement.reference_value -}}
+  {%- endif -%}
+  {{ variant.unit_price_measurement.reference_unit }})
+</div>
+{%- endif -%}

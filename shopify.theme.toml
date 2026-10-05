@@ -1,0 +1,7 @@
+[environments.dev]
+store = "malleys-chocolates-live.myshopify.com"
+theme = "158612816044"
+
+[environments.live]
+store = "malleys-chocolates-live.myshopify.com"
+theme = "150165520556"

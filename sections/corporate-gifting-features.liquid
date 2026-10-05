@@ -1,0 +1,219 @@
+<section class="cgf__wrapper section-{{ section.id }}-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="cgf__grid">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'feature' -%}
+              <a href="{{ block.settings.link_url | default: '#' }}" class="cgf__item" {{ block.shopify_attributes }}>
+                <div class="cgf__icon-tile">
+                  {%- if block.settings.icon != blank -%}
+                    {{
+                      block.settings.icon
+                      | image_url: width: 240
+                      | image_tag: loading: 'lazy', widths: '120, 180, 240', class: 'cgf__icon-image', alt: block.settings.icon.alt
+                    }}
+                  {%- else -%}
+                    <span class="cgf__icon-placeholder">ICON</span>
+                  {%- endif -%}
+                </div>
+                {%- if block.settings.heading != blank -%}
+                  <h3 class="cgf__heading custom-font">{{ block.settings.heading }}</h3>
+                {%- endif -%}
+                {%- if block.settings.link_label != blank -%}
+                  <span class="cgf__cta">{{ block.settings.link_label }} &gt;</span>
+                {%- endif -%}
+              </a>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- liquid
+  assign mobile_gap = section.settings.card_spacing | times: 0.6 | round
+  assign small_mobile_gap = section.settings.card_spacing | times: 0.45 | round
+-%}
+
+{% style %}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  #shopify-section-{{ section.id }} .cgf__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: {{ section.settings.card_spacing }}px;
+  }
+
+  #shopify-section-{{ section.id }} .cgf__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    flex: 0 1 180px;
+    gap: 0.5rem;
+  }
+
+  #shopify-section-{{ section.id }} .cgf__icon-tile {
+    width: 120px;
+    height: 120px;
+    border-radius: 18px;
+    background-color: #C4C4C4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+  }
+
+  #shopify-section-{{ section.id }} .cgf__icon-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #shopify-section-{{ section.id }} .cgf__icon-placeholder {
+    font-weight: 700;
+    color: #4E3120;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .cgf__heading {
+    margin: 0;
+    font-weight: 700;
+  }
+
+  #shopify-section-{{ section.id }} .cgf__cta {
+    font-weight: 700;
+    color: #4E3120;
+    font-size: 0.85em;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .cgf__grid {
+      gap: {{ mobile_gap }}px;
+    }
+
+    #shopify-section-{{ section.id }} .cgf__item {
+      flex: 0 1 30%;
+    }
+
+    #shopify-section-{{ section.id }} .cgf__icon-tile {
+      width: 90px;
+      height: 90px;
+      border-radius: 14px;
+    }
+
+    #shopify-section-{{ section.id }} .cgf__heading {
+      font-size: 0.9rem;
+    }
+
+    #shopify-section-{{ section.id }} .cgf__cta {
+      font-size: 0.8em;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    #shopify-section-{{ section.id }} .cgf__grid {
+      gap: {{ small_mobile_gap }}px;
+    }
+
+    #shopify-section-{{ section.id }} .cgf__item {
+      flex: 0 1 42%;
+    }
+
+    #shopify-section-{{ section.id }} .cgf__icon-tile {
+      width: 84px;
+      height: 84px;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Gift Features",
+  "tag": "section",
+  "class": "section section-corporate-gifting-features",
+  "settings": [
+    {
+      "type": "range",
+      "id": "card_spacing",
+      "min": 8,
+      "max": 260,
+      "step": 4,
+      "unit": "px",
+      "label": "Space between cards",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 32
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Premium Sweets"
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Link label",
+          "default": "Call to Action"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gift Features",
+      "blocks": [
+        { "type": "feature", "settings": { "heading": "Premium Sweets", "link_label": "Call to Action" } },
+        { "type": "feature", "settings": { "heading": "Gift Customization", "link_label": "Call to Action" } },
+        { "type": "feature", "settings": { "heading": "Multi-Recipient", "link_label": "Call to Action" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

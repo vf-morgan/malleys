@@ -1,0 +1,39 @@
+/*============================================================================
+  #Gift card
+==============================================================================*/
+
+#gift-card-outer-container {
+    background: none;
+    box-shadow: none;
+}
+
+#gift-card-header{
+    text-align: center;
+}
+
+#gift-card-header h2 {
+    float: none;
+}
+
+#apple-wallet-badge {
+    margin-bottom: 20px;
+}
+
+#QrCode img {
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.gift-card__header a {
+    display: block;
+    font-family: var(--header-font-stack);
+    font-weight: var(--header-font-weight);
+    font-style: var(--header-font-style);
+    text-transform: var(--header-font-transform);
+    letter-spacing: var(--header-letter-spacing);
+    font-size: var(--heading-font-size);
+    text-decoration: none;
+    -ms-word-break: break-all;
+    word-break: break-all;
+    color: var(--color-primary);
+}

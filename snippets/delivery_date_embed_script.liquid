@@ -1,0 +1,51 @@
+
+  {% if request.page_type == 'product' %}
+    <script id="streamthing_delivery_date_embed_script_product">
+      const productFormInput = document.querySelector('form[action="/cart/add"] input[type="submit"]');
+      const productFormButton = document.querySelector('form[action="/cart/add"] button[type="submit"]');
+      productFormInput ? productFormInput.disabled = true : null;
+      productFormButton ? productFormButton.disabled = true : null;
+    </script>
+  {% endif %}
+  {% if request.page_type == 'cart' %}
+    <script id="streamthing_delivery_date_embed_script_cart">
+      // for themes with checkout input elements
+      const checkoutInput = document.querySelectorAll('form[action="/cart"] input[name="checkout"]');
+      // for themes with checkout button elements
+      const checkoutButton = document.querySelectorAll('form[action="/cart"] button[name="checkout"]');
+      
+      // check for rogue submit buttons outside of the cart form if none found inside the cart
+      let floatingCheckoutInput = [];
+      let floatingCheckoutButton = [];
+      
+      if (!checkoutInput.length && !checkoutButton.length) {
+          floatingCheckoutInput = document.querySelectorAll('input[name="checkout"]');
+          floatingCheckoutButton = document.querySelectorAll('button[name="checkout"]');
+      }
+      
+      if (checkoutInput.length) {
+          for (let i = 0; i < checkoutInput.length; i++) {
+              checkoutInput[i].disabled = true;
+          }
+      }
+      
+      if (checkoutButton.length) {
+          for (let i = 0; i < checkoutButton.length; i++) {
+              checkoutButton[i].disabled = true;
+          }
+      }
+      
+      if (floatingCheckoutInput.length) {
+          for (let i = 0; i < floatingCheckoutInput.length; i++) {
+              floatingCheckoutInput[i].disabled = true;
+          }
+      }
+      
+      if (floatingCheckoutButton.length) {
+          for (let i = 0; i < floatingCheckoutButton.length; i++) {
+              floatingCheckoutButton[i].disabled = true;
+          }
+      }
+    </script>
+  {% endif %}  
+  

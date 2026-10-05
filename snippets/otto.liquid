@@ -1,0 +1,39 @@
+{% comment %}Values{% endcomment %}
+{% assign alt = shop.metafields.otto-components[image].value.alt %}
+{% assign link = shop.metafields.otto-components[image].value.link %}
+{% assign extension = shop.metafields.otto-components[image].value.extension %}
+{% assign header_text = shop.metafields.otto-components[image].value.header_text %}
+{% assign subheader_text = shop.metafields.otto-components[image].value.subheader_text %}
+{% assign body_text = shop.metafields.otto-components[image].value.body_text %}
+{% assign button_text = shop.metafields.otto-components[image].value.button_text %}
+
+{% comment %}Generated Values{% endcomment %}
+{% capture file_name %}otto-{{ image }}.{{ extension }}{% endcapture %}
+{% capture file_src %}{{ file_name | file_url }}{% endcapture %}
+
+{% comment %}Components{% endcomment %}
+{% if component == blank %}
+  {% if link == blank %}
+  	<img src="{{ file_src }}" alt="{{ alt }}">
+  {% else %}
+  	<a href="{{ link }}"><img src="{{ file_src }}" alt="{{ alt }}"></a>
+  {% endif %}
+{% elsif component == 'alt' %}
+  {{ alt }}
+{% elsif component == 'link' %}
+  {{ link }}
+{% elsif component == 'extension' %}
+  {{ extension }}
+{% elsif component == 'header_text' %}
+  {{ header_text }}
+{% elsif component == 'subheader_text' %}
+  {{ subheader_text }}
+{% elsif component == 'body_text' %}
+  {{ body_text }}
+{% elsif component == 'button_text' %}
+  {{ button_text }}
+{% elsif component == 'file_name' %}
+  {{ file_name }}
+{% elsif component == 'file_src' %}
+  {{ file_src }}
+{% endif %}

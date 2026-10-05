@@ -1,0 +1,22 @@
+<script type="text/javascript">
+const activationForm = document.getElementById("activationForm");
+
+activationForm.addEventListener("submit", function(evt) {
+    evt.preventDefault();
+
+     var email = $('#customer_email').val();
+    $('#activateAccountButton').addClass('btn-loading');
+    $.post('https://shopify.malleys.co119.co/api/activate-account', {email: email}, function(response){
+      
+      if ( response.success === false) {
+        $('.activationForm__message').html('<div class="error">'+response.message+'</div>');
+        $('#activateAccountButton').removeClass('btn-loading');
+      } else {
+        //location.href = response.activation_link;
+        $('.activationForm__message').html('<div class="success">'+response.message+'</div>');
+        $('#activationForm').hide();
+      }
+    }); 
+
+});
+</script>

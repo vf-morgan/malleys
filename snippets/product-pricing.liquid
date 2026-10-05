@@ -1,0 +1,28 @@
+{% assign on_sale = true %}
+{% assign sold_out = false %}
+
+<!-- Variant price -->
+<!-- DEBUG: {{ is_corporate_gift }}-->
+<li class="product-page--pricing--variant-price">
+  <span class="js" id="price-field">
+    {%  if is_corporate_gift %}
+      <span class="money">{{ current_variant.price | money }}</span>
+    {%  else %}
+      {% if current_variant.available %}
+        <span class="money">{{ current_variant.price | money }}</span>
+      {% else %}
+        {{ "products.product.sold_out" | t }}
+        {% assign on_sale = false %}
+        {% assign sold_out = true %}
+      {% endif %}
+    {%  endif %}
+  </span>
+</li>
+
+<!-- Variant 'compare at' price -->
+<li class="product-page--pricing--variant-compare-at-price">
+  <span class="compare-at-price js{% unless on_sale %} hide{% endunless %}{% if settings.show_sale_price == false %} visually--hidden{% endif %}">
+    <span class="sr-only">compare at </span>
+    <span class="money">{{ current_variant.compare_at_price | money }}</span>
+  </span>
+</li>

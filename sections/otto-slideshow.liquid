@@ -1,0 +1,498 @@
+{% comment %}
+  Otto Slideshow Section
+{% endcomment %}
+
+<div 
+class="otto-slider otto-slider--{{ section.id }}"
+data-autoplay="{{ section.settings.autoplay }}"
+data-autoplay-speed="{{ section.settings.autoplay_speed }}">
+  {% for block in section.blocks %}
+    {% capture image_name %}{{ block.settings.image_name | handle }}{% endcapture %}
+    {% capture header_text %}{% render 'otto', image: image_name, component: 'header_text' %}{% endcapture %}
+    {% capture subheader_text %}{% render 'otto', image: image_name, component: 'subheader_text' %}{% endcapture %}
+    {% capture body_text %}{% render 'otto', image: image_name, component: 'body_text' %}{% endcapture %}
+    {% capture button_text %}{% render 'otto', image: image_name, component: 'button_text' %}{% endcapture %}
+    {% capture link %}{% render 'otto', image: image_name, component: 'link' %}{% endcapture %}
+    
+  	<div class="otto-slide otto-slide--{{ block.id }}" {{ block.shopify_attributes }}>
+      {% render 'otto', image: image_name %}
+      {% if block.settings.show_content %}
+        <div class="otto-slide-content otto-slide-content-horizontal--{{ block.settings.content_horizontal_alignment }} otto-slide-content-vertical--{{ block.settings.content_vertical_alignment }}">
+          {% if header_text != blank %}
+            <p class="otto-slide-content__header">{{ header_text }}</p>
+          {% endif %}
+
+          {% if subheader_text != blank %}
+            <p class="otto-slide-content__subheader">{{ subheader_text }}</p>
+          {% endif %}
+
+          {% if body_text != blank %}
+            <p class="otto-slide-content__body">{{ body_text }}</p>
+          {% endif %}
+
+          {% if button_text != blank %}
+            <a class="otto-slide-btn" href="{{ link }}">{{ button_text }}</a>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
+
+{% schema %}
+  {
+    "name": "Otto Slideshow",
+    "settings": [
+	  {
+        "type": "header",
+        "content": "Instructions"
+      },
+      {
+        "type": "paragraph",
+        "content": "Start by going to the Otto app and creating Otto images for each of your slides. i.e Slide #1, Slide #2, etc. Once created then add each image as a block to this section using the 'Add Image' button in the previous screen. Press 'Save' in the upper right corner to see the functioning slider."
+      },
+      {
+        "type": "header",
+        "content": "Support"
+      },
+      {
+        "type": "paragraph",
+        "content": "If you need assistance with any customizations to this section please email support@ottoscheduler.com."
+      },
+	  {
+        "type": "header",
+        "content": "Settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "autoplay",
+        "label": "Autoplay",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "autoplay_speed",
+        "min": 1,
+        "max": 10,
+        "step": 1,
+        "unit": "s",
+        "label": "Autoplay Speed",
+        "default": 3
+      },
+	  {
+        "type": "header",
+        "content": "Style"
+      },
+	  {
+        "type": "range",
+        "id": "slideshow_width_desktop",
+        "min": 10,
+        "max": 100,
+        "step": 10,
+        "unit": "%",
+        "label": "Slideshow Desktop Width",
+        "default": 100
+      },
+      {
+        "type": "range",
+        "id": "slideshow_width_mobile",
+        "min": 10,
+        "max": 100,
+        "step": 10,
+        "unit": "%",
+        "label": "Slideshow Mobile Width",
+        "default": 100
+      },
+	  {
+        "type": "number",
+        "id": "slideshow_margin_top",
+        "label": "Margin Top (px)",
+        "default": 0
+      },
+      {
+        "type": "number",
+        "id": "slideshow_margin_bottom",
+        "label": "Margin Bottom (px)",
+        "default": 20
+      },
+	  {
+        "type": "header",
+        "content": "Navigation"
+      },
+	  {
+        "type": "checkbox",
+        "id": "show_arrow_nav",
+        "label": "Show Arrow Nav",
+        "default": true
+      },
+	  {
+        "type": "color",
+        "id": "arrow_navigation_color",
+        "label": "Arrow Navigation Color",
+        "default": "#000000"
+      },
+	  {
+        "type": "checkbox",
+        "id": "show_dot_nav",
+        "label": "Show Dot Nav",
+        "default": true
+      },
+	  {
+        "type": "color",
+        "id": "dot_navigation_color",
+        "label": "Dot Navigation Color",
+        "default": "#000000"
+      }
+    ],
+    "blocks" : [
+      {
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "type": "text",
+            "id": "image_name",
+            "label": "Image Name",
+			      "info": "The image name is the name provided in the Otto app. Once entered then Otto will automatically pull the scheduled image and content."
+          },
+          {
+            "type": "header",
+            "content": "Content"
+          },
+          {
+            "type": "paragraph",
+            "content": "All content is added directly in the Otto app. If a specific piece of content isn't set on a scheduled image then it won't display."
+          },
+          {
+            "type": "checkbox",
+            "id": "show_content",
+            "label": "Show Content",
+            "default": false
+          },
+          {
+            "type": "range",
+            "id": "content_width",
+            "min": 10,
+            "max": 100,
+            "step": 10,
+            "unit": "%",
+            "label": "Content Width",
+            "default": 60
+          },
+          {
+            "type": "color",
+            "id": "content_background_color",
+            "label": "Content Background Color",
+            "default": "#ffffff"
+          },
+          {
+            "type": "color",
+            "id": "content_text_color",
+            "label": "Content Text Color",
+            "default": "#000000"
+          },
+          {
+            "type": "select",
+            "id": "content_horizontal_alignment",
+            "label": "Content Horizontal Alignment",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Center"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "center"
+          },
+          {
+            "type": "select",
+            "id": "content_vertical_alignment",
+            "label": "Content Vertical Alignment",
+            "options": [
+              {
+                "value": "top",
+                "label": "Top"
+              },
+              {
+                "value": "center",
+                "label": "Center"
+              },
+              {
+                "value": "bottom",
+                "label": "Bottom"
+              }
+            ],
+            "default": "center"
+          },
+          {
+            "type": "number",
+            "id": "header_font_size",
+            "label": "Header Font Size (em)",
+            "default": 2
+          },
+          {
+            "type": "number",
+            "id": "subheader_font_size",
+            "label": "Subheader Font Size (em)",
+            "default": 1
+          },
+          {
+            "type": "number",
+            "id": "body_font_size",
+            "label": "Body Font Size (em)",
+            "default": 1
+          },
+          {
+            "type": "color",
+            "id": "button_background_color",
+            "label": "Button Background Color",
+            "default": "#000000"
+          },
+          {
+            "type": "color",
+            "id": "button_background_hover_color",
+            "label": "Button Background Hover Color",
+            "default": "#ffffff"
+          },
+          {
+            "type": "color",
+            "id": "button_text_color",
+            "label": "Button Text Color",
+            "default": "#ffffff"
+          },
+          {
+            "type": "color",
+            "id": "button_text_hover_color",
+            "label": "Button Text Hover Color",
+            "default": "#000000"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Otto Slideshow",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}
+
+<style>
+  /* General */
+  .flickity-enabled:focus {
+    outline: 0;
+    box-shadow: none;
+  }
+
+  .otto-slide {
+    position: relative;
+    width: 100%;
+  }
+
+  .otto-slide img {
+    width: 100%;
+    display: block;
+  }
+
+  .otto-slide-content {
+    padding: 30px;
+    position: absolute;
+  }
+
+  .otto-slide-content-horizontal--center {
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  .otto-slide-content-horizontal--left {
+    left: 0;
+  }
+
+  .otto-slide-content-horizontal--right {
+    right: 0;
+  }
+
+  .otto-slide-content-vertical--center {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .otto-slide-content-vertical--top {
+    top: 0;
+  }
+
+  .otto-slide-content-vertical--bottom {
+    bottom: 0;
+  }
+
+  .otto-slide-content-horizontal--center.otto-slide-content-vertical--center {
+    transform: translate(-50%, -50%); 
+  }
+
+  .otto-slide-content__header {
+    margin: 0 0 10px;
+    line-height: 1.3;
+  }
+
+  .otto-slide-content__subheader {
+    margin: 0 0 10px;
+    line-height: 1.3;
+  }
+
+  .otto-slide-content__body {
+    margin: 0 0 10px;
+    line-height: 1.3;
+  }
+
+  .otto-slide-btn {
+    padding: 10px;
+    display: inline-block;
+    transition: all .3s ease-in-out;
+    margin-top: 20px;
+    text-decoration: none;
+  }
+  
+  /* Section */
+  .otto-slider--{{ section.id }} {
+    width: {{ section.settings.slideshow_width_desktop }}%;
+    margin: {{ section.settings.slideshow_margin_top }}px auto {{ section.settings.slideshow_margin_bottom }}px; 
+    opacity: 0;
+    transition: opacity .5s ease-in;
+  }
+  
+  .otto-slider--{{ section.id }}.loaded {
+    opacity: 1;
+  }
+  
+  .otto-slider--{{ section.id }} .flickity-page-dots {
+    {% if section.settings.show_dot_nav == false %}
+    	display: none;
+    {% endif %}
+  }
+  
+  .otto-slider--{{ section.id }} .flickity-prev-next-button {
+    {% if section.settings.show_arrow_nav == false %}
+    	display: none;
+    {% endif %}
+  }
+  
+  .otto-slider--{{ section.id }} .flickity-button-icon {
+    color: {{ section.settings.arrow_navigation_color }};
+  }
+  
+  .otto-slider--{{ section.id }} .flickity-page-dots .dot {
+    background: {{ section.settings.dot_navigation_color }};
+  }
+  
+  /* Responsive */
+  @media all and (max-width: 1024px) {
+    .otto-slider--{{ section.id }} {
+      width: {{ section.settings.slideshow_width_mobile }}%;
+    }  
+  }
+  
+  /* Blocks */
+  {% for block in section.blocks %}      
+  	/* Content */
+    .otto-slide--{{ block.id }} .otto-slide-content {
+      background: {{ block.settings.content_background_color }};
+      color: {{ block.settings.content_text_color }};
+      width: {{ block.settings.content_width }}%;
+    }
+
+    .otto-slide--{{ block.id }} .otto-slide-content__header {
+      font-size: {{ block.settings.header_font_size }}em;
+    }
+
+    .otto-slide--{{ block.id }} .otto-slide-content__subheader {
+      font-size: {{ block.settings.subheader_font_size }}em;
+    }
+
+    .otto-slide--{{ block.id }} .otto-slide-content__body {
+      font-size: {{ block.settings.body_font_size }}em;
+    }
+
+    .otto-slide--{{ block.id }} .otto-slide-btn {
+      background: {{ block.settings.button_background_color }};
+      color: {{ block.settings.button_text_color }};
+    }
+
+    .otto-slide--{{ block.id }} .otto-slide-btn:hover {
+      background: {{ block.settings.button_background_hover_color }};
+      color: {{ block.settings.button_text_hover_color }};
+    }
+
+    /* Responsive */
+    @media all and (max-width: 1024px) {
+      .otto-slide--{{ block.id }} .otto-slide-content, .otto-slide--{{ block.id }} .otto-slide-content-horizontal--center {
+        position: relative;
+        transform: translate(0) !important;
+        left: 0;
+        top: 0;
+        width: 100%;
+        text-align: center;
+      }
+    }
+  {% endfor %}
+</style>
+
+<script>
+  	function flickityScriptIsLoaded() {
+      return document.querySelectorAll('[src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"]').length > 0
+    }
+  
+  	if(!flickityScriptIsLoaded()) {
+      // Flickity Script
+      const flickityScript = document.createElement('script');
+      flickityScript.setAttribute('src','https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js');
+      document.head.appendChild(flickityScript);
+
+      // Flickity Init
+      function ottoFlickityInit() {
+        var ottoFlickityElems = document.querySelectorAll('.otto-slider');
+
+        for ( var i=0, len = ottoFlickityElems.length; i < len; i++ ) {
+          var ottoFlickityElem = ottoFlickityElems[i];
+          var autoplay = (ottoFlickityElem.dataset.autoplay === 'true');
+          var autoplaySpeed = Number(ottoFlickityElem.dataset.autoplaySpeed) * 1000;
+          const flkty = new Flickity(ottoFlickityElem, {
+            wrapAround: true,
+            autoPlay: autoplay ? autoplaySpeed : false
+          });
+          // Show the slider
+          ottoFlickityElem.classList.add('loaded');
+          // Trigger a resize in case the image load delayed.
+          window.setTimeout(function() {
+            flkty.resize();
+          }, 2000);
+        }
+      }
+      
+      // Window Load (Images Are Ready)
+      window.addEventListener('load', (event) => {
+        ottoFlickityInit();
+      });
+	  
+      // Flickity Section Load
+      document.addEventListener("shopify:section:load", function(event) {
+        ottoFlickityInit();
+      });
+      
+      // Flickity Styles
+      const link = document.createElement( "link" );
+      link.href = "https://unpkg.com/flickity@2/dist/flickity.min.css";
+      link.type = "text/css";
+      link.rel = "stylesheet";
+      link.media = "screen,print";
+      document.getElementsByTagName( "head" )[0].appendChild( link );
+    }
+</script>

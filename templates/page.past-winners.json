@@ -1,0 +1,1499 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "16642972265d78f207": {
+      "type": "image--gallery",
+      "blocks": {
+        "166429722603654241-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Sept_CHOC_winner.png",
+            "link": "",
+            "title": "September 2022",
+            "description": ""
+          }
+        },
+        "288ef895-3d55-4292-95ff-7269b6f050ea": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/chocwinner.png",
+            "link": "",
+            "title": "October 2022",
+            "description": ""
+          }
+        },
+        "e0297253-a563-4ef5-8ae0-a771aca4408f": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/nov_choc.png",
+            "link": "",
+            "title": "November 2022",
+            "description": ""
+          }
+        },
+        "c9f8ba9c-e40b-43b9-bc99-c5cea19aa3db": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/decchocwinner.png",
+            "link": "",
+            "title": "December 2022",
+            "description": ""
+          }
+        },
+        "d8f6b6d6-e8ed-4a0a-89ef-9b5757ea3c0f": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/JANWINNER.png",
+            "link": "",
+            "title": "JANUARY  2023",
+            "description": ""
+          }
+        },
+        "d222cee8-b67a-48e2-8abf-dcacdc2aaa7d": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/FebCHOCwinner.png",
+            "link": "",
+            "title": "February 2023",
+            "description": ""
+          }
+        },
+        "f4fe4b21-d426-41b7-955c-67ecdc71f897": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/march_chocwinner.png",
+            "link": "",
+            "title": "MARCH 2023",
+            "description": ""
+          }
+        },
+        "978e071e-990c-43d8-b0fd-1c8a2b8387c3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/april_choc.png",
+            "link": "",
+            "title": "April 2023",
+            "description": ""
+          }
+        },
+        "06918708-24c7-4f93-8709-c2e2a1da689f": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/may2023.png",
+            "link": "",
+            "title": "May 2023",
+            "description": ""
+          }
+        },
+        "15dc13c7-a336-4b2a-8cba-a6e87fa7311c": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCJUNEWINNER.png",
+            "link": "",
+            "title": "junE 2023",
+            "description": ""
+          }
+        },
+        "86c0037a-193a-423a-bd54-4c03696f3c99": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/July_winner.jpg",
+            "link": "",
+            "title": "July 2023",
+            "description": ""
+          }
+        },
+        "ceca713f-d290-4580-88eb-f563c6b35382": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/August_CHOC_winner.jpg",
+            "link": "",
+            "title": "August 2023",
+            "description": ""
+          }
+        },
+        "f366a321-9de0-4267-853f-3706c2d53902": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/SeptCHOC.jpg",
+            "link": "",
+            "title": "September 2023",
+            "description": ""
+          }
+        },
+        "7620faaf-6d09-4410-a08a-f24ee2e18fdf": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/OctChocwinner.jpg",
+            "link": "",
+            "title": "October 2023",
+            "description": ""
+          }
+        }
+      },
+      "block_order": [
+        "166429722603654241-0",
+        "288ef895-3d55-4292-95ff-7269b6f050ea",
+        "e0297253-a563-4ef5-8ae0-a771aca4408f",
+        "c9f8ba9c-e40b-43b9-bc99-c5cea19aa3db",
+        "d8f6b6d6-e8ed-4a0a-89ef-9b5757ea3c0f",
+        "d222cee8-b67a-48e2-8abf-dcacdc2aaa7d",
+        "f4fe4b21-d426-41b7-955c-67ecdc71f897",
+        "978e071e-990c-43d8-b0fd-1c8a2b8387c3",
+        "06918708-24c7-4f93-8709-c2e2a1da689f",
+        "15dc13c7-a336-4b2a-8cba-a6e87fa7311c",
+        "86c0037a-193a-423a-bd54-4c03696f3c99",
+        "ceca713f-d290-4580-88eb-f563c6b35382",
+        "f366a321-9de0-4267-853f-3706c2d53902",
+        "7620faaf-6d09-4410-a08a-f24ee2e18fdf"
+      ],
+      "settings": {}
+    },
+    "165661858973fbd542": {
+      "type": "image--gallery",
+      "blocks": {
+        "25796697-ff94-454c-8d38-be92461cd531": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/augustwinner.png",
+            "link": "",
+            "title": "August 2022",
+            "description": ""
+          }
+        },
+        "6d4729fa-079f-4388-acd8-3067501ffaca": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/July_CHOC_winner.png",
+            "link": "",
+            "title": "July 2022",
+            "description": ""
+          }
+        },
+        "1656618588d6353e61-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/choc_junewinner.png",
+            "link": "",
+            "title": "June 2022",
+            "description": ""
+          }
+        },
+        "1656618588d6353e61-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/chocwinner_may.png",
+            "link": "",
+            "title": "May 2022",
+            "description": ""
+          }
+        },
+        "1656618588d6353e61-2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Malleys-Monthly-Winners.png",
+            "link": "",
+            "title": "April 2022",
+            "description": ""
+          }
+        },
+        "f29d7de0-52da-47d4-a4d1-eccb354d43db": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/March_Winner.png",
+            "link": "",
+            "title": "March 2022",
+            "description": ""
+          }
+        },
+        "1eeb982d-2e91-444b-b4d2-ca6fc6c52eb8": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/feb-choc-winner-email.png",
+            "link": "",
+            "title": "February 2022",
+            "description": ""
+          }
+        },
+        "88c3f46d-13b7-46a8-a70e-e5720de32835": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/January-Choc-Winner.png",
+            "link": "",
+            "title": "January 2022",
+            "description": ""
+          }
+        },
+        "312fee3b-27d6-4032-96f2-9d5759f6a806": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/December-Choc-Winner-Social-Media.png",
+            "link": "",
+            "title": "December 2021",
+            "description": ""
+          }
+        },
+        "7a9e65f7-cb53-4b92-802e-730091e86768": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/November-Choc.png",
+            "link": "",
+            "title": "November 2021",
+            "description": ""
+          }
+        },
+        "e0000ff3-7a08-40a7-9498-be5a4b17bc04": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/October-Choc-Winner.png",
+            "link": "",
+            "title": "October 2021",
+            "description": ""
+          }
+        },
+        "e2effd81-f107-4139-9409-17bf5421652a": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_Sept2021_SocMed.jpg",
+            "link": "",
+            "title": "September 2021",
+            "description": ""
+          }
+        },
+        "ec32ec99-d89d-44e6-b00c-24a233d5098b": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_August2021_SocMed.jpg",
+            "link": "",
+            "title": "August 2021",
+            "description": ""
+          }
+        },
+        "7f20e030-ac0a-48f5-b9a4-8db6c16402db": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_July2021_SocMed.jpg",
+            "link": "",
+            "title": "July 2021",
+            "description": ""
+          }
+        },
+        "9070c2c7-db35-43db-b8a4-732230135273": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_June2021_SocMed.jpg",
+            "link": "",
+            "title": "June 2021",
+            "description": ""
+          }
+        },
+        "87c73b0e-672c-4c87-824c-ff5541f2693c": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_May2021_SocMed-1.jpg",
+            "link": "",
+            "title": "May 2021",
+            "description": ""
+          }
+        },
+        "6bed1064-2bcb-4377-a53d-f98a58662574": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_April2021_SocMed.jpg",
+            "link": "",
+            "title": "April 2021",
+            "description": ""
+          }
+        },
+        "cf8105ea-b18e-4623-8a2c-750e483f249a": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_Mar2021_SocMed.jpg",
+            "link": "",
+            "title": "March 2021",
+            "description": ""
+          }
+        },
+        "1a0e42bf-14e4-4118-832d-41f87c21cb23": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_Feb2021_SocMed.jpg",
+            "link": "",
+            "title": "February 2021",
+            "description": ""
+          }
+        },
+        "13e0e156-d502-4645-8f91-41e34a1c3f0c": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_Jan2021_SocMed.jpg",
+            "link": "",
+            "title": "January 2021",
+            "description": ""
+          }
+        },
+        "72e958e8-1082-4afb-a846-8ad4139bd6db": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_Dec2020_socMed.jpg",
+            "link": "",
+            "title": "December 2020",
+            "description": ""
+          }
+        },
+        "e181f4bf-23ce-4a4f-9316-1276e1289c32": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_Nov2020-SocMed.jpg",
+            "link": "",
+            "title": "November 2020",
+            "description": ""
+          }
+        },
+        "7f9fc258-ab37-473c-b607-5dec05f9ea17": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_Oct2020_SocMed.jpg",
+            "link": "",
+            "title": "October 2020",
+            "description": ""
+          }
+        },
+        "871d7adb-f144-4567-a650-25b7c1ae9fa1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_Sept2020_socmed_472e9281-cb47-4468-8dba-b3a1f66b70d9.jpg",
+            "link": "",
+            "title": "September 2020",
+            "description": ""
+          }
+        },
+        "315f5aec-b593-4aa8-be3b-fc3f8ec2148f": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_August2020_SocMed-scaled.jpg",
+            "link": "",
+            "title": "August 2020",
+            "description": ""
+          }
+        },
+        "d94d5c1b-cf35-4d7a-8a8d-2f26d5364119": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_July2020_SocMed.jpg",
+            "link": "",
+            "title": "July 2020",
+            "description": ""
+          }
+        },
+        "1181c5c1-d624-4551-942f-451699c4dc0c": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_June2020_SocMed.jpg",
+            "link": "",
+            "title": "June 2020",
+            "description": ""
+          }
+        },
+        "3958702f-ad42-4f09-b525-f7b0ca743f4b": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_May2020_SocMed-1.jpg",
+            "link": "",
+            "title": "May 2020",
+            "description": ""
+          }
+        },
+        "1b2ae2cb-5549-473b-b74a-2008ee3424d9": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_Feb2020_SocMed.jpg",
+            "link": "",
+            "title": "February 2020",
+            "description": ""
+          }
+        },
+        "b55ad03a-87b1-44b6-ae84-e7df7055f638": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_Jan2020_SocMed.jpg",
+            "link": "",
+            "title": "January 2020",
+            "description": ""
+          }
+        },
+        "dad6831e-5bd3-4325-921e-11cd559675f2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_Dec2019_SocMed.jpg",
+            "link": "",
+            "title": "December 2019",
+            "description": ""
+          }
+        },
+        "2e4cedd7-49b2-4554-89cd-626d359d345b": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_Nov2019_SocMed.jpg",
+            "link": "",
+            "title": "November 2019",
+            "description": ""
+          }
+        },
+        "9fde2036-1c05-40e7-bb36-f91a9a509307": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_Oct2019-SocMed.jpg",
+            "link": "",
+            "title": "October 2019",
+            "description": ""
+          }
+        },
+        "8a12ef4b-d0b2-464f-8be4-601b14d7ab04": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_Sept2019_SocMed.jpg",
+            "link": "",
+            "title": "September 2019",
+            "description": ""
+          }
+        },
+        "8f57e149-c485-4870-b993-baa745745ba6": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_Aug2019-SocMed.jpg",
+            "link": "",
+            "title": "August 2019",
+            "description": ""
+          }
+        },
+        "09d8072e-0c60-402a-b81f-7a22a573a2db": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_July2019_SocMed.jpg",
+            "link": "",
+            "title": "July 2019",
+            "description": ""
+          }
+        },
+        "e110d207-70c1-4c20-b6aa-fa7e403280ce": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_June2019-SocialMedia.jpg",
+            "link": "",
+            "title": "June 2019",
+            "description": ""
+          }
+        },
+        "dad507be-55d9-4175-9aed-5d5cad3ff08a": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_SociMed_May2019.jpg",
+            "link": "",
+            "title": "May 2019",
+            "description": ""
+          }
+        },
+        "eef66dad-18cd-4c4c-961d-1a98cb650057": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_Apr2019_SocMed.jpg",
+            "link": "",
+            "title": "April 2019",
+            "description": ""
+          }
+        },
+        "5f7770aa-e847-4a5a-9da5-c7127253808b": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_Mar2019.jpg",
+            "link": "",
+            "title": "March 2019",
+            "description": ""
+          }
+        },
+        "1b620515-e724-4ac7-9fd8-f5f59915a060": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_Feb2019-SocMed.jpg",
+            "link": "",
+            "title": "February 2019",
+            "description": ""
+          }
+        },
+        "a5fb7308-4578-42ea-870b-2c882cc0e5c8": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinnter_Jan2019-SocialMedia.jpg",
+            "link": "",
+            "title": "January 2019",
+            "description": ""
+          }
+        },
+        "ebfad482-80c4-4c6c-9b51-dd01015dad1b": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/dec2018winner-1.jpg",
+            "link": "",
+            "title": "December 2018",
+            "description": ""
+          }
+        },
+        "89a555cf-6297-4891-9106-4985e5fcbb82": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/november-winner-2018.jpg",
+            "link": "",
+            "title": "November 2018",
+            "description": ""
+          }
+        },
+        "8faa895f-a508-4643-aa79-c8e9f23d778f": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_Oct2018.jpg",
+            "link": "",
+            "title": "October 2018",
+            "description": ""
+          }
+        },
+        "d34222f7-8901-4ed3-96de-ea1f7f60afed": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_Sept2018-new.jpg",
+            "link": "",
+            "title": "September 2018",
+            "description": ""
+          }
+        },
+        "01ab39b3-be40-4afc-8425-119a47c58a50": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinner_August2018.jpg",
+            "link": "",
+            "title": "August 2018",
+            "description": ""
+          }
+        },
+        "4df7716f-6ca7-4552-bae0-b7ceb20f7406": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOCWinnerFB-July2018.jpg",
+            "link": "",
+            "title": "July 2018",
+            "description": ""
+          }
+        },
+        "2c8befb7-7a6d-47fb-8733-45d3d891b4c2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Winner-June2018-1.jpg",
+            "link": "",
+            "title": "June 2018",
+            "description": ""
+          }
+        },
+        "46b42c77-60e5-4814-81a6-540d8247d700": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Winner-Mayl2018.jpg",
+            "link": "",
+            "title": "May 2018",
+            "description": ""
+          }
+        }
+      },
+      "block_order": [
+        "25796697-ff94-454c-8d38-be92461cd531",
+        "6d4729fa-079f-4388-acd8-3067501ffaca",
+        "1656618588d6353e61-0",
+        "1656618588d6353e61-1",
+        "1656618588d6353e61-2",
+        "f29d7de0-52da-47d4-a4d1-eccb354d43db",
+        "1eeb982d-2e91-444b-b4d2-ca6fc6c52eb8",
+        "88c3f46d-13b7-46a8-a70e-e5720de32835",
+        "312fee3b-27d6-4032-96f2-9d5759f6a806",
+        "7a9e65f7-cb53-4b92-802e-730091e86768",
+        "e0000ff3-7a08-40a7-9498-be5a4b17bc04",
+        "e2effd81-f107-4139-9409-17bf5421652a",
+        "ec32ec99-d89d-44e6-b00c-24a233d5098b",
+        "7f20e030-ac0a-48f5-b9a4-8db6c16402db",
+        "9070c2c7-db35-43db-b8a4-732230135273",
+        "87c73b0e-672c-4c87-824c-ff5541f2693c",
+        "6bed1064-2bcb-4377-a53d-f98a58662574",
+        "cf8105ea-b18e-4623-8a2c-750e483f249a",
+        "1a0e42bf-14e4-4118-832d-41f87c21cb23",
+        "13e0e156-d502-4645-8f91-41e34a1c3f0c",
+        "72e958e8-1082-4afb-a846-8ad4139bd6db",
+        "e181f4bf-23ce-4a4f-9316-1276e1289c32",
+        "7f9fc258-ab37-473c-b607-5dec05f9ea17",
+        "871d7adb-f144-4567-a650-25b7c1ae9fa1",
+        "315f5aec-b593-4aa8-be3b-fc3f8ec2148f",
+        "d94d5c1b-cf35-4d7a-8a8d-2f26d5364119",
+        "1181c5c1-d624-4551-942f-451699c4dc0c",
+        "3958702f-ad42-4f09-b525-f7b0ca743f4b",
+        "1b2ae2cb-5549-473b-b74a-2008ee3424d9",
+        "b55ad03a-87b1-44b6-ae84-e7df7055f638",
+        "dad6831e-5bd3-4325-921e-11cd559675f2",
+        "2e4cedd7-49b2-4554-89cd-626d359d345b",
+        "9fde2036-1c05-40e7-bb36-f91a9a509307",
+        "8a12ef4b-d0b2-464f-8be4-601b14d7ab04",
+        "8f57e149-c485-4870-b993-baa745745ba6",
+        "09d8072e-0c60-402a-b81f-7a22a573a2db",
+        "e110d207-70c1-4c20-b6aa-fa7e403280ce",
+        "dad507be-55d9-4175-9aed-5d5cad3ff08a",
+        "eef66dad-18cd-4c4c-961d-1a98cb650057",
+        "5f7770aa-e847-4a5a-9da5-c7127253808b",
+        "1b620515-e724-4ac7-9fd8-f5f59915a060",
+        "a5fb7308-4578-42ea-870b-2c882cc0e5c8",
+        "ebfad482-80c4-4c6c-9b51-dd01015dad1b",
+        "89a555cf-6297-4891-9106-4985e5fcbb82",
+        "8faa895f-a508-4643-aa79-c8e9f23d778f",
+        "d34222f7-8901-4ed3-96de-ea1f7f60afed",
+        "01ab39b3-be40-4afc-8425-119a47c58a50",
+        "4df7716f-6ca7-4552-bae0-b7ceb20f7406",
+        "2c8befb7-7a6d-47fb-8733-45d3d891b4c2",
+        "46b42c77-60e5-4814-81a6-540d8247d700"
+      ],
+      "settings": {}
+    },
+    "16576619874b26bb29": {
+      "type": "image--gallery",
+      "blocks": {
+        "cf5e6e72-4d58-4c4e-bd70-8d867690c746": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Sept_CHOC_winner.png",
+            "link": "",
+            "title": "September 2022",
+            "description": ""
+          }
+        },
+        "16576619873e2786e9-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/March-Winner.jpg",
+            "link": "",
+            "title": "March 2018",
+            "description": ""
+          }
+        },
+        "16576619873e2786e9-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/February-Winner.jpg",
+            "link": "",
+            "title": "February 2018",
+            "description": ""
+          }
+        },
+        "16576619873e2786e9-2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/February-2016.jpg",
+            "link": "",
+            "title": "February 2016",
+            "description": ""
+          }
+        },
+        "642ce3d1-a58e-4601-ad6c-6b50c43e0c92": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/January-2016.jpg",
+            "link": "",
+            "title": "January 2016",
+            "description": ""
+          }
+        },
+        "4316de7c-69d9-4069-8816-08c3d4853142": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/December-2015.jpg",
+            "link": "",
+            "title": "December 2015",
+            "description": ""
+          }
+        },
+        "71c423f8-cc15-4528-bc46-7afcd2b21080": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Nov15-4097-xl.jpg",
+            "link": "",
+            "title": "November 2015",
+            "description": ""
+          }
+        },
+        "5863bc22-602a-4f99-9c94-123b5338b7c8": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/October-2015.jpg",
+            "link": "",
+            "title": "October 2015",
+            "description": ""
+          }
+        },
+        "e28f9e82-e414-47eb-a516-de50406f98ff": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/September-2015.jpg",
+            "link": "",
+            "title": "September 2015",
+            "description": ""
+          }
+        },
+        "7b9a8d02-b4c4-4a90-bc66-f5f2af5fcace": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/August-2015.jpg",
+            "link": "",
+            "title": "August 2015",
+            "description": ""
+          }
+        },
+        "fd393e3e-e591-4fc9-9c48-c1f97a3b20ae": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/July-2015.jpg",
+            "link": "",
+            "title": "July 2015",
+            "description": ""
+          }
+        },
+        "de7a743b-533b-459f-b3de-1efd20fccf43": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/June-2015.jpg",
+            "link": "",
+            "title": "June 2015",
+            "description": ""
+          }
+        },
+        "10ad11c8-b158-462c-8efc-542573bd9e0e": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/May-2015.jpg",
+            "link": "",
+            "title": "May 2015",
+            "description": ""
+          }
+        },
+        "db592447-146b-4a1f-9d92-f20b5d105390": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/April-2015-584-xl.png",
+            "link": "",
+            "title": "April 2015",
+            "description": ""
+          }
+        },
+        "3ab03839-0d4e-4515-bdb4-6ae093e5de9a": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/March-2015.jpg",
+            "link": "",
+            "title": "March 2015",
+            "description": ""
+          }
+        },
+        "01a22883-ab08-45d4-a080-5a776124ea2c": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/February-2015.jpg",
+            "link": "",
+            "title": "February 2015",
+            "description": ""
+          }
+        },
+        "2cd1a255-3c92-4470-b47c-34547b5968cf": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/January-2015.jpg",
+            "link": "",
+            "title": "January 2015",
+            "description": ""
+          }
+        },
+        "82c34093-e814-4301-8b79-d897394cf7cd": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/December-2014.jpg",
+            "link": "",
+            "title": "December 2014",
+            "description": ""
+          }
+        },
+        "591f8c44-1cc6-4102-b1a7-4bf3d4d18d27": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/November-2014.jpg",
+            "link": "",
+            "title": "November 2014",
+            "description": ""
+          }
+        },
+        "7c7579f7-2da9-440f-bde7-a228418b26b4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/October-2014.jpg",
+            "link": "",
+            "title": "October 2014",
+            "description": ""
+          }
+        },
+        "2f0897f2-8d25-4573-9cb9-8da1a561bbf2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOC-winner-Sept14-WebSite-769-xl.jpg",
+            "link": "",
+            "title": "September 2014",
+            "description": ""
+          }
+        },
+        "0006b16b-2503-494a-9ad8-28420b17ee6e": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/August-2014-3033-xl.jpg",
+            "link": "",
+            "title": "August 2014",
+            "description": ""
+          }
+        },
+        "8c14126d-5324-42f0-9f39-bfe32f507ad9": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/July-2014-596-xl.jpg",
+            "link": "",
+            "title": "July 2014",
+            "description": ""
+          }
+        },
+        "20f0abdc-f2f4-4a14-9bf8-cb0a8f768cf8": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CHOC-winner-June14-v2-3590-xl.jpg",
+            "link": "",
+            "title": "June 2014",
+            "description": ""
+          }
+        },
+        "20745e7c-3a4a-4cdc-8193-9f101b505b81": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/May14-v2-2034-xl.jpg",
+            "link": "",
+            "title": "May 2014",
+            "description": ""
+          }
+        },
+        "31892176-e495-408f-a942-c633ca5946a5": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/April14-v2-312-xl.jpg",
+            "link": "",
+            "title": "April 2014",
+            "description": ""
+          }
+        },
+        "22dbe31d-5385-45fa-b368-c5f8fadeaa3a": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/March-14-180-xl.jpg",
+            "link": "",
+            "title": "March 2014",
+            "description": ""
+          }
+        },
+        "70b69361-001f-4411-bd6c-600fadc09565": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/February-2014-4228-xl.jpg",
+            "link": "",
+            "title": "February 2014",
+            "description": ""
+          }
+        },
+        "be176160-998e-4074-997f-8b7615e64e3f": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Jan-2014-4141-xl.jpg",
+            "link": "",
+            "title": "January 2014",
+            "description": ""
+          }
+        },
+        "b16cc356-12e4-475e-9093-44bcddb265f8": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/December-2013-2955-xl.jpg",
+            "link": "",
+            "title": "December 2013",
+            "description": ""
+          }
+        },
+        "b1243df1-a729-40a1-a9a0-8e3badd33e67": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/November-2013-3266-xl.jpg",
+            "link": "",
+            "title": "November 2013",
+            "description": ""
+          }
+        },
+        "88cd182c-32a0-4932-bc98-5f79de96af0e": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/October-2013v2-352-xl.jpg",
+            "link": "",
+            "title": "October 2013",
+            "description": ""
+          }
+        },
+        "e75aeec1-bbc2-4fef-b700-ce1e75144e77": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/September-2013-3371-xl.jpg",
+            "link": "",
+            "title": "September 2013",
+            "description": ""
+          }
+        },
+        "4c30a967-2df2-4916-b1b7-e9710754f3bf": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/August-2013-5141-xl.jpg",
+            "link": "",
+            "title": "August 2013",
+            "description": ""
+          }
+        },
+        "18404107-1e8f-482f-82ea-31f1faf3da4b": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/July-2013-1779-xl.jpg",
+            "link": "",
+            "title": "July 2013",
+            "description": ""
+          }
+        },
+        "d84537f2-2399-4d5e-8e73-b66bc61e7e25": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/June-2013-3245-xl.jpg",
+            "link": "",
+            "title": "June 2013",
+            "description": ""
+          }
+        },
+        "d57b00f6-b6e7-47fb-a9e2-a28258714d99": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/May-2013-1867-xl.jpg",
+            "link": "",
+            "title": "May 2013",
+            "description": ""
+          }
+        },
+        "55c851be-2d91-486a-9cad-688582b59813": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/April-2013-4676-xl.jpg",
+            "link": "",
+            "title": "April 2013",
+            "description": ""
+          }
+        },
+        "2754284e-8ffa-4d80-a212-4e98791bbc93": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/March-2013-3965-xl.jpg",
+            "link": "",
+            "title": "March 2013",
+            "description": ""
+          }
+        },
+        "ed16c01a-1c79-4472-b2d0-fabb92b20bbe": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Feb2013-5056-xl.jpg",
+            "link": "",
+            "title": "February 2013",
+            "description": ""
+          }
+        },
+        "3488f0da-6287-41c1-b361-a1f42ae71d94": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Jan2013-1531-xl.jpg",
+            "link": "",
+            "title": "January 2013",
+            "description": ""
+          }
+        },
+        "10f52fb4-657f-41e8-9bff-ccee3c01318b": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Dec2012-3528-xl.jpg",
+            "link": "",
+            "title": "December 2012",
+            "description": ""
+          }
+        },
+        "b0674046-ff29-4199-912f-5383c4e760d5": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Nov2012-1455-xl.jpg",
+            "link": "",
+            "title": "November 2012",
+            "description": ""
+          }
+        },
+        "6c2e8356-cd78-4b69-a577-24973dc37e59": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/October-2012-3222-xl.jpg",
+            "link": "",
+            "title": "October 2012",
+            "description": ""
+          }
+        },
+        "d9c669e6-cff8-4f4d-91c2-26c55ab937ef": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Sep2012-3164-xl.jpg",
+            "link": "",
+            "title": "September 2012",
+            "description": ""
+          }
+        },
+        "15c66ba6-660b-4f05-a8f8-a0768883b9e6": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/July2012-221-xl.jpg",
+            "link": "",
+            "title": "July 2012",
+            "description": ""
+          }
+        },
+        "07d73716-6325-4c34-8b7e-bb3e844924d0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/June2012-3509-xl.jpg",
+            "link": "",
+            "title": "June 2012",
+            "description": ""
+          }
+        },
+        "9c1fad7f-1430-46c9-85e8-96c41b3b49d1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/March-2012.jpg",
+            "link": "",
+            "title": "March 2012",
+            "description": ""
+          }
+        },
+        "ee33f68b-febd-4cdd-9aaa-2c8b6285f02a": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/February-2012.jpg",
+            "link": "",
+            "title": "February 2012",
+            "description": ""
+          }
+        },
+        "f028e098-1787-466f-87ca-ed2a811295bd": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "link": "",
+            "title": "",
+            "description": ""
+          }
+        }
+      },
+      "block_order": [
+        "cf5e6e72-4d58-4c4e-bd70-8d867690c746",
+        "16576619873e2786e9-0",
+        "16576619873e2786e9-1",
+        "16576619873e2786e9-2",
+        "642ce3d1-a58e-4601-ad6c-6b50c43e0c92",
+        "4316de7c-69d9-4069-8816-08c3d4853142",
+        "71c423f8-cc15-4528-bc46-7afcd2b21080",
+        "5863bc22-602a-4f99-9c94-123b5338b7c8",
+        "e28f9e82-e414-47eb-a516-de50406f98ff",
+        "7b9a8d02-b4c4-4a90-bc66-f5f2af5fcace",
+        "fd393e3e-e591-4fc9-9c48-c1f97a3b20ae",
+        "de7a743b-533b-459f-b3de-1efd20fccf43",
+        "10ad11c8-b158-462c-8efc-542573bd9e0e",
+        "db592447-146b-4a1f-9d92-f20b5d105390",
+        "3ab03839-0d4e-4515-bdb4-6ae093e5de9a",
+        "01a22883-ab08-45d4-a080-5a776124ea2c",
+        "2cd1a255-3c92-4470-b47c-34547b5968cf",
+        "82c34093-e814-4301-8b79-d897394cf7cd",
+        "591f8c44-1cc6-4102-b1a7-4bf3d4d18d27",
+        "7c7579f7-2da9-440f-bde7-a228418b26b4",
+        "2f0897f2-8d25-4573-9cb9-8da1a561bbf2",
+        "0006b16b-2503-494a-9ad8-28420b17ee6e",
+        "8c14126d-5324-42f0-9f39-bfe32f507ad9",
+        "20f0abdc-f2f4-4a14-9bf8-cb0a8f768cf8",
+        "20745e7c-3a4a-4cdc-8193-9f101b505b81",
+        "31892176-e495-408f-a942-c633ca5946a5",
+        "22dbe31d-5385-45fa-b368-c5f8fadeaa3a",
+        "70b69361-001f-4411-bd6c-600fadc09565",
+        "be176160-998e-4074-997f-8b7615e64e3f",
+        "b16cc356-12e4-475e-9093-44bcddb265f8",
+        "b1243df1-a729-40a1-a9a0-8e3badd33e67",
+        "88cd182c-32a0-4932-bc98-5f79de96af0e",
+        "e75aeec1-bbc2-4fef-b700-ce1e75144e77",
+        "4c30a967-2df2-4916-b1b7-e9710754f3bf",
+        "18404107-1e8f-482f-82ea-31f1faf3da4b",
+        "d84537f2-2399-4d5e-8e73-b66bc61e7e25",
+        "d57b00f6-b6e7-47fb-a9e2-a28258714d99",
+        "55c851be-2d91-486a-9cad-688582b59813",
+        "2754284e-8ffa-4d80-a212-4e98791bbc93",
+        "ed16c01a-1c79-4472-b2d0-fabb92b20bbe",
+        "3488f0da-6287-41c1-b361-a1f42ae71d94",
+        "10f52fb4-657f-41e8-9bff-ccee3c01318b",
+        "b0674046-ff29-4199-912f-5383c4e760d5",
+        "6c2e8356-cd78-4b69-a577-24973dc37e59",
+        "d9c669e6-cff8-4f4d-91c2-26c55ab937ef",
+        "15c66ba6-660b-4f05-a8f8-a0768883b9e6",
+        "07d73716-6325-4c34-8b7e-bb3e844924d0",
+        "9c1fad7f-1430-46c9-85e8-96c41b3b49d1",
+        "ee33f68b-febd-4cdd-9aaa-2c8b6285f02a",
+        "f028e098-1787-466f-87ca-ed2a811295bd"
+      ],
+      "settings": {}
+    },
+    "16576631536fd15a7b": {
+      "type": "image--gallery",
+      "blocks": {
+        "6166d17a-a8ad-438c-9af6-be5d9a664987": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/July_CHOC_winner.png",
+            "link": "",
+            "title": "July 2022",
+            "description": ""
+          }
+        },
+        "1657663153da6d7e12-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Oct-2011.jpg",
+            "link": "",
+            "title": "October 2011",
+            "description": ""
+          }
+        },
+        "1657663153da6d7e12-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Sept-11-xl.jpg",
+            "link": "",
+            "title": "September 2011",
+            "description": ""
+          }
+        },
+        "1657663153da6d7e12-2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Aug-11-xl.jpg",
+            "link": "",
+            "title": "August 2011",
+            "description": ""
+          }
+        },
+        "67185365-1088-4080-8e3d-cccaeba8afad": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Sept-2011-4803-xl.jpg",
+            "link": "",
+            "title": "July 2011",
+            "description": ""
+          }
+        },
+        "5ddbf157-41ef-4fe5-9f7e-35f69bc62c37": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Aug-2011-1402-xl_de3c160b-49e1-4805-877a-abc96b5bbd01.jpg",
+            "link": "",
+            "title": "June 2011",
+            "description": ""
+          }
+        },
+        "1343842d-949e-49e8-a231-b1162a47385b": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/July-2011-49-xl.jpg",
+            "link": "",
+            "title": "May 2011",
+            "description": ""
+          }
+        },
+        "988f0a8b-ce38-47ee-8a8a-0827811592fc": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/June-2010-3558-xl.jpg",
+            "link": "",
+            "title": "January 2011",
+            "description": ""
+          }
+        },
+        "378e0380-62ba-4ace-a2fc-7ada1e2470a5": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/December2010-th-1199-xl_64688dd4-cc5c-4f6c-b865-8d9895751ca2.jpg",
+            "link": "",
+            "title": "December 2010",
+            "description": ""
+          }
+        },
+        "05936b71-6829-4bbb-a2f2-8bfac6cea375": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/November2010-th-3703-xl.jpg",
+            "link": "",
+            "title": "November 2010",
+            "description": ""
+          }
+        },
+        "86d8e8be-f22b-4fff-aafe-79e81327c601": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Aug-2010-3840-xl_9ecee11c-5b91-4356-9ce5-c201c9d262af.jpg",
+            "link": "",
+            "title": "August 2010",
+            "description": ""
+          }
+        },
+        "bb971404-8925-4bdc-bb88-150a71f259b2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/july-2010-xl.jpg",
+            "link": "",
+            "title": "July 2010",
+            "description": ""
+          }
+        },
+        "1104353e-dea0-4087-a770-ac877f3cbd5a": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/june-2010-xl.jpg",
+            "link": "",
+            "title": "June 2010",
+            "description": ""
+          }
+        },
+        "e732d948-2527-46ca-b615-3add1c1ed9dc": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/May2010-th-3604-xl.jpg",
+            "link": "",
+            "title": "May 2010",
+            "description": ""
+          }
+        },
+        "ca901e96-d347-45b0-9b38-3ae1835b0ac9": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/March2010-th-3932-xl.jpg",
+            "link": "",
+            "title": "March 2010",
+            "description": ""
+          }
+        },
+        "33ea26a7-8f08-4cd3-a081-1415e165af95": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/April2010-th-492-xl_24e2bcfa-fcc5-476b-b6c7-7fb9720cc649.jpg",
+            "link": "",
+            "title": "April 2010",
+            "description": ""
+          }
+        },
+        "2ab9c666-4b23-4275-af40-5045f9d85e31": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/February2010-th-3843-xl_d58f095d-e735-43df-97f2-ed4a1c91e93b.jpg",
+            "link": "",
+            "title": "February 2010",
+            "description": ""
+          }
+        },
+        "ff64fe76-3ee1-4ba5-8713-0f9e1664c892": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/November2009-th-2505-xl.jpg",
+            "link": "",
+            "title": "November 2009",
+            "description": ""
+          }
+        },
+        "fa364c3e-61f4-481c-98a3-78a1ca7657bf": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/October2009-th-381-xl.jpg",
+            "link": "",
+            "title": "October 2009",
+            "description": ""
+          }
+        },
+        "d520e2b8-ec5c-469b-b744-a9b965c7f086": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/September2009-th-4014-xl.jpg",
+            "link": "",
+            "title": "September 2009",
+            "description": ""
+          }
+        },
+        "4fb09e2a-8dc5-42ac-82ee-6d5625e29db6": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/August2009-th-4407-xl_fb3a64e9-3489-4ee9-90a1-aff2f4038871.jpg",
+            "link": "",
+            "title": "August 2009",
+            "description": ""
+          }
+        },
+        "d0b6e364-654a-4361-9453-37df8cb6f09f": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/July2009-th-2586-xl_4deaf93e-80f2-415b-bd74-dcf11793ec14.jpg",
+            "link": "",
+            "title": "July 2009",
+            "description": ""
+          }
+        },
+        "b41088c1-c602-446f-9ed8-f38b333dfeb4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/June2009-th-4956-xl_15d14626-8459-40b9-9501-90b0e451285e.jpg",
+            "link": "",
+            "title": "June 2009",
+            "description": ""
+          }
+        },
+        "7efeff8f-7b5b-4ef4-8a4a-dfadc6a3b974": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/May-2009-3188-xl_4d36546a-7082-4572-9f2c-104e9ff9c917.jpg",
+            "link": "",
+            "title": "May 2009",
+            "description": ""
+          }
+        },
+        "588f19e1-8a46-423b-977d-78c4a6b77c0f": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/April2009-th-4603-xl_4bc5d322-0a6f-4ddf-9805-8b931373fc01.jpg",
+            "link": "",
+            "title": "April 2009",
+            "description": ""
+          }
+        },
+        "e71e7a8e-1f36-4008-8ce5-e3fb3e11b844": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/March-2009_703d858f-ce6f-4767-b54e-773fbe9d58d9.jpg",
+            "link": "",
+            "title": "March 2009",
+            "description": ""
+          }
+        },
+        "d47ad444-8757-4600-8bd4-4c8d0f92a7db": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/February-2009_947c5bc1-3944-42db-bb28-793caba1120e.jpg",
+            "link": "",
+            "title": "February 2009",
+            "description": ""
+          }
+        },
+        "51904d32-df82-48f2-8d67-6becceb6c40b": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/January-2009_2e843573-f6b1-4224-9315-8c63f494dbf4.jpg",
+            "link": "",
+            "title": "January 2009",
+            "description": ""
+          }
+        },
+        "51d28d65-24c9-469a-8c13-afcd0e3a852e": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Dec2008-th-3264-xl_93f5f458-9115-44da-a9c7-a31f9556d1cf.jpg",
+            "link": "",
+            "title": "December 2008",
+            "description": ""
+          }
+        },
+        "0c1c46fd-40e9-4ea1-8ce4-0b2f867a2b1c": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Nov2008-th-2652-xl_ad571493-76e8-47e8-ae29-05349f0cce1a.jpg",
+            "link": "",
+            "title": "November 2008",
+            "description": ""
+          }
+        }
+      },
+      "block_order": [
+        "6166d17a-a8ad-438c-9af6-be5d9a664987",
+        "1657663153da6d7e12-0",
+        "1657663153da6d7e12-1",
+        "1657663153da6d7e12-2",
+        "67185365-1088-4080-8e3d-cccaeba8afad",
+        "5ddbf157-41ef-4fe5-9f7e-35f69bc62c37",
+        "1343842d-949e-49e8-a231-b1162a47385b",
+        "988f0a8b-ce38-47ee-8a8a-0827811592fc",
+        "378e0380-62ba-4ace-a2fc-7ada1e2470a5",
+        "05936b71-6829-4bbb-a2f2-8bfac6cea375",
+        "86d8e8be-f22b-4fff-aafe-79e81327c601",
+        "bb971404-8925-4bdc-bb88-150a71f259b2",
+        "1104353e-dea0-4087-a770-ac877f3cbd5a",
+        "e732d948-2527-46ca-b615-3add1c1ed9dc",
+        "ca901e96-d347-45b0-9b38-3ae1835b0ac9",
+        "33ea26a7-8f08-4cd3-a081-1415e165af95",
+        "2ab9c666-4b23-4275-af40-5045f9d85e31",
+        "ff64fe76-3ee1-4ba5-8713-0f9e1664c892",
+        "fa364c3e-61f4-481c-98a3-78a1ca7657bf",
+        "d520e2b8-ec5c-469b-b744-a9b965c7f086",
+        "4fb09e2a-8dc5-42ac-82ee-6d5625e29db6",
+        "d0b6e364-654a-4361-9453-37df8cb6f09f",
+        "b41088c1-c602-446f-9ed8-f38b333dfeb4",
+        "7efeff8f-7b5b-4ef4-8a4a-dfadc6a3b974",
+        "588f19e1-8a46-423b-977d-78c4a6b77c0f",
+        "e71e7a8e-1f36-4008-8ce5-e3fb3e11b844",
+        "d47ad444-8757-4600-8bd4-4c8d0f92a7db",
+        "51904d32-df82-48f2-8d67-6becceb6c40b",
+        "51d28d65-24c9-469a-8c13-afcd0e3a852e",
+        "0c1c46fd-40e9-4ea1-8ce4-0b2f867a2b1c"
+      ],
+      "settings": {}
+    },
+    "main": {
+      "type": "template--page",
+      "disabled": true,
+      "settings": {}
+    }
+  },
+  "order": [
+    "16642972265d78f207",
+    "165661858973fbd542",
+    "16576619874b26bb29",
+    "16576631536fd15a7b",
+    "main"
+  ]
+}

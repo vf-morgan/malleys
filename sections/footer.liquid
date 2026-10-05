@@ -1,0 +1,574 @@
+{% assign show_social_block = false %}
+{% if
+	settings.sm_facebook_link != blank or
+	settings.sm_twitter_link != blank or
+	settings.sm_instagram_link != blank or
+	settings.sm_youtube_link != blank or
+	settings.sm_vimeo_link != blank or
+	settings.sm_tiktok_link != blank or
+	settings.sm_pinterest_link != blank or
+	settings.sm_snapchat_link != blank or
+	settings.sm_houzz_link != blank or
+	settings.sm_tumblr_link != blank or
+	settings.sm_linkedin_link != blank
+%}
+    {% assign show_social_block = true %}
+{% endif %}
+
+
+{% capture footer_col_style %}col-sm-12 col-md-6 col-lg{% if section.settings.show_borders %} footer__cols-borders{% endif%}{% endcapture %}
+
+<footer class="footer" data-wetheme-section-type="footer" data-wetheme-section-id="{{ section.id }}">
+
+    {% if section.settings.show_back_to_top %}
+        <div class="container-xl">
+            <div class="row justify-content-center{% if section.settings.show_borders %} footer__back-to-top-border{% endif%}">
+                <a href="#shopify-section-header" class="footer__back-to-top{% if section.settings.back_to_top_text == blank %} footer__back-to-top--chevron-only{% endif %}">
+                    <div class="footer__back-to-top-chevron--wrapper">
+                        <div class="footer__back-to-top-chevron">{% if section.settings.back_to_top_text == blank %}<span class="sr-only">Back to top</span>{% endif %}</div>                        
+                    </div>
+                    {% if section.settings.back_to_top_text != blank %}
+                        {{ section.settings.back_to_top_text }}
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+    {% endif %}
+
+
+	<div class="container-xl">
+		<div class="row">
+
+			{% for block in section.blocks %}
+
+				{% case block.type %}
+
+					{% when 'menu' %}
+    
+                        <div class="{{ footer_col_style }} footer__block-wrapper footer__block-type--menu" {{ block.shopify_attributes }}>
+                            {%- assign footer_linklist = block.settings.footer_linklist -%}
+                            <div class="{% if block.settings.menu_title != blank %} d-none d-md-block{% endif %}">
+                                {% unless block.settings.menu_title == blank %}
+                                    <h3 class="type-subheading type-subheading--1">{{ block.settings.menu_title | escape }}</h3>
+                                {% endunless %}
+
+                                {% if linklists[footer_linklist].links.size > 0 %}
+                                <nav>
+                                    <ul class="{% if block.settings.menu_title == blank %}footer__block-heading-blank{% endif %}">
+                                        {% for link in linklists[footer_linklist].links %}
+                                            <li {% if link.object.tags and link.object.tags.size > 0 %} class="children"{% endif %}>
+                                                <a href="{{link.url}}">{{link.title}}</a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </nav>
+                                {% endif %}
+                            </div>
+
+                            {%- comment -%} MENU ITEMS EXPANDABLE ON MOBILE {%- endcomment -%}
+                            {% unless block.settings.menu_title == blank or linklists[footer_linklist].links.size == 0 %}
+                                <div class="footer__mobile-menu-expandable">
+
+                                    <h3 class="type-subheading type-subheading--1">
+                                        <button type="button" aria-expanded="false" class="footer__mobile-menu-toggle alt-focus">
+                                            {{ block.settings.menu_title | escape }}
+                                        </button>
+                                    </h3>
+
+                                    {% if linklists[footer_linklist].links.size > 0 %}
+                                    <nav>
+                                        <ul>
+                                            {% for link in linklists[footer_linklist].links %}
+                                                <li {% if link.object.tags and link.object.tags.size > 0 %} class="children"{% endif %}>
+                                                    <a href="{{link.url}}">{{link.title}}</a>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </nav>
+                                    {% endif %}
+                                </div>
+                            {% endunless %}
+                        </div>
+
+					{% when 'text' %}
+
+						<div class="{{ footer_col_style }} footer__block-type--text footer__block-wrapper" {{ block.shopify_attributes }}>
+                            {% unless block.settings.title == blank %}
+                                <h3 class="type-subheading type-subheading--1">{{ block.settings.title | escape }}</h3>
+                            {% endunless %}
+							<div class="rte footer__block-text{% if block.settings.title == blank %} footer__block-heading-blank{% endif %}">{{ block.settings.richtext }}</div>
+						</div>
+
+					{% when 'newsletter' %}
+
+						<div class="{{ footer_col_style }} footer__block-type--newsletter footer__block-wrapper" {{ block.shopify_attributes }}>
+                            {% unless block.settings.menu_title == blank %}
+                                <h3 class="type-subheading type-subheading--1">{{ block.settings.menu_title | escape }}</h3>
+                            {% endunless %}
+							{% if block.settings.footer_newsletter_description != empty %}
+								<div class="rte footer__block-text{% if block.settings.menu_title == blank %} footer__block-heading-blank{% endif %}">{{ block.settings.footer_newsletter_description }}</div>
+							{% endif %}
+
+							{% render 'newsletter-form', form_id: 'newsletter_footer_form' %}
+
+						</div>
+
+					{% when 'social' %}
+
+                        {% if show_social_block %}
+                            <div class="{{ footer_col_style }} footer__block-wrapper footer__block-type--social-media" {{ block.shopify_attributes }}>
+                                {% unless block.settings.menu_title == blank %}
+                                    <h3 class="type-subheading type-subheading--1">{{ block.settings.menu_title | escape }}</h3>
+                                {% endunless %}
+                                <div class="footer__social-icons {%if block.settings.menu_title == blank %} footer__block-heading-blank{% endif %}">
+                                    {% render 'social-links' %}
+                                </div>
+                            </div>
+                        {% endif %}
+
+                    {% when 'image' %}
+
+                        <div class="{{ footer_col_style }} footer__image-id--{{ block.id }} footer__block-type--logo footer__block-wrapper" {{ block.shopify_attributes }}>
+
+                            {%- assign img_url = block.settings.image -%}
+
+                            {% if img_url != blank %}
+                                <div class="image-bar__item">
+                            {% endif %}
+
+                            {% capture image_width %}{{ block.settings.image_max_width }}{% endcapture %}
+                            {% capture image_opacity %}{{ block.settings.image_opacity }}{% endcapture %}
+                            <div class="image-bar__content" style="width: {{ image_width }}%; opacity: {{ image_opacity }}%;">
+                                {% if img_url == blank %}
+                                    {{ 'image' | placeholder_svg_tag: 'icon--placeholder' }}
+                                {% else %}
+                                    {% capture image_props %}style="max-width: {{ block.settings.image.width }}px"{% endcapture %}
+                                    {% capture alt %}{{ block.settings.image.alt }}{% endcapture %}
+                                    {% render 'responsive-image' with block.settings.image, blur: 'center', props: image_props, alt: alt %}
+                                {% endif %}
+                            </div>
+
+                            {% if img_url != blank %}
+                                </div>
+                            {% endif %}
+
+                        </div>
+                {% endcase %}
+			{% endfor %}
+		</div>
+	</div>
+
+	<div class="footer-bottom">
+		<div class="container">
+			<div class="footer-bottom__row">
+                <div>
+                    <div class="footer-bottom__localization-forms {% unless section.settings.show_methods_of_payment %} payment-methods-disabled{% endunless %}">
+                        {% render 'localization-form' with show_currency_selector: section.settings.show_currency_selector, show_locale_selector: section.settings.show_locale_selector %}
+                    </div>
+
+                    {% if section.settings.show_methods_of_payment %}
+                        {% unless shop.enabled_payment_types == empty %}
+                            <ul id="footer-payment-methods" class="inline-list footer-bottom__payment-icons">
+                                {% for type in shop.enabled_payment_types %}
+                                    <li>{{ type | payment_type_svg_tag: class:'payment-icon' }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endunless %}
+                    {% endif %}
+                </div>
+
+                <div class="footer-bottom__copyright">
+                    <p>
+                        <a href="{{ routes.root_url }}">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</a> | {{ powered_by_link }} | <a href="https://www.company119.com" target="_blank">Website Development by Company 119</a>
+                    </p>
+               </div>
+			</div>
+		</div>
+	</div>
+
+</footer>
+
+{% schema %}
+{
+    "name": {
+        "en": "Footer",
+        "de": "Fußzeile",
+        "es": "Pie de página",
+        "fr": "Pied de page",
+        "pt-PT": "Rodapé"
+    },
+    "max_blocks": 5,
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "show_back_to_top",
+            "label": {
+                "en": "Enable “back to top”",
+                "de": "Zurück zum Anfang“ aktivieren",
+                "es": "Activar 'volver al inicio'",
+                "fr": "Activer le « Retour en haut de page »",
+                "pt-PT": "Ativar “voltar ao início”"
+            },
+            "default": true
+        },
+        {
+            "type": "text",
+            "id": "back_to_top_text",
+            "label": {
+                "en": "“Back to top” message",
+                "de": "Hinweis „Zurück zum Anfang“",
+                "es": "Mensaje 'volver al inicio'",
+                "fr": "Message de « Retour en haut de page »",
+                "pt-PT": "Mensagem para “Voltar ao início”"
+            },
+            "default": {
+                "en": "Back to top",
+                "de": "Zurück zum Anfang",
+                "es": "Volver al inicio",
+                "fr": "Retour en haut de page",
+                "pt-PT": "Voltar ao início"
+            }
+        },
+        {
+            "type": "checkbox",
+            "id": "show_borders",
+            "label": {
+                "en": "Show borders",
+                "de": "Grenzen anzeigen",
+                "es": "Mostrar bordes",
+                "fr": "Afficher les bordures",
+                "pt-PT": "Mostrar margens"
+            },
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "show_methods_of_payment",
+            "label": {
+                "en": "Show payment icons",
+                "de": "Zahlungssymbole anzeigen",
+                "es": "Mostrar los íconos de pago",
+                "fr": "Afficher les icônes de paiement",
+                "pt-PT": "Mostrar os ícones de pagamento"
+            },
+            "default": true
+        },
+        {
+            "type": "header",
+            "content": {
+                "en": "Country\/region selector",
+                "de": "Auswahl für Land\/Region",
+                "es": "Selector de país\/región",
+                "fr": "Sélecteur de pays\/région",
+                "pt-PT": "Seletor de país\/região"
+            },
+            "info": {
+                "en": "To add a country\/region, go to your [market settings.](\/admin\/settings\/markets)",
+                "de": "Gehe zu den [Markteinstellungen](\/admin\/settings\/markets), um ein Land \/ eine Region hinzuzufügen.",
+                "es": "Para agregar un país\/región, ve a tu [configuración de mercado.](\/admin\/settings\/markets)",
+                "fr": "Pour ajouter un pays\/une région, allez à vos [paramètres du marché.](\/admin\/settings\/markets)",
+                "pt-PT": "Para adicionar um país\/região, vá a [configurações de mercado.](\/admin\/settings\/markets)"
+            }
+        },
+        {
+            "type": "checkbox",
+            "id": "show_currency_selector",
+            "label": {
+                "en": "Enable country\/region selector",
+                "de": "Auswahl für Land\/Region aktivieren",
+                "es": "Activar selector de país\/región",
+                "fr": "Activer le sélecteur de pays\/région",
+                "pt-PT": "Ativar seletor de país\/região"
+            },
+            "default": true
+        },
+        {
+            "type": "header",
+            "content": {
+              "en": "Language selector",
+              "de": "Sprachauswahl",
+              "es": "Selector de idioma",
+              "fr": "Sélecteur de langue",
+              "pt-PT": "Seletor de idioma"
+            },
+            "info": {
+              "en": "To add a language, go to your [language settings.](\/admin\/settings\/languages)",
+              "de": "Gehe zu den [Spracheinstellungen](\/admin\/settings\/languages), um eine Sprache hinzuzufügen.",
+              "es": "Para agregar un idioma, ve a tu [configuración de idiomas.](\/admin\/settings\/languages)",
+              "fr": "Pour ajouter une langue, allez à vos [paramètres de langue.](\/admin\/settings\/languages)",
+              "pt-PT": "Para adicionar um idioma, vá a [definições de idioma.](\/admin\/settings\/languages)"
+            }
+        },
+        {
+            "type": "checkbox",
+            "id": "show_locale_selector",
+            "label": {
+              "en": "Enable language selector",
+              "de": "Sprachauswahl aktivieren",
+              "es": "Activar selector de idioma",
+              "fr": "Activer le sélecteur de langue",
+              "pt-PT": "Ativar seletor de idioma"
+            },
+            "default": true
+        }
+    ],
+    "blocks": [
+        {
+            "type": "text",
+            "name": {
+                "en": "Text",
+                "de": "Text",
+                "es": "Texto",
+                "fr": "Texte",
+                "pt-PT": "Texto"
+            },
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": {
+                        "en": "Heading",
+                        "de": "Überschrift",
+                        "es": "Encabezado",
+                        "fr": "Rubrique",
+                        "pt-PT": "Título"
+                    },
+                    "default": {
+                        "en": "Contact us",
+                        "de": "Kontaktieren Sie uns",
+                        "es": "Contacto",
+                        "fr": "Contactez-nous",
+                        "pt-PT": "Contacte-nos"
+                    }
+                },
+                {
+                    "type": "richtext",
+                    "id": "richtext",
+                    "label": {
+                        "en": "Text",
+                        "de": "Text",
+                        "es": "Texto",
+                        "fr": "Texte",
+                        "pt-PT": "Texto"
+                    },
+                    "default": {
+                        "en": "<p>Share store details, promotions, or brand content with your customers.</p>",
+                        "de": "<p>Teilen Sie Einzelheiten zum Store, Werbeaktionen oder Markeninhalte mit Ihren Kunden.</p>",
+                        "es": "<p>Comparta detalles de la tienda, promociones o contenido de la marca con sus clientes.</p>",
+                        "fr": "<p>Partagez les détails du magasin, les promotions ou le contenu de la marque avec vos clients. </p>",
+                        "pt-PT": "<p>Partilhe detalhes, promoções ou conteúdo da marca da loja com os seus clientes.</p>"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "menu",
+            "name": {
+                "en": "Menu",
+                "de": "Menü",
+                "es": "Menú",
+                "fr": "Menu",
+                "pt-PT": "Menu"
+            },
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "menu_title",
+                    "label": {
+                        "en": "Heading",
+                        "de": "Überschrift",
+                        "es": "Encabezado",
+                        "fr": "Rubrique",
+                        "pt-PT": "Título"
+                    },
+                    "default": {
+                        "en": "Links",
+                        "de": "Links",
+                        "es": "Enlaces",
+                        "fr": "Liens",
+                        "pt-PT": "Ligações"
+                    }
+                },
+                {
+                    "type": "link_list",
+                    "id": "footer_linklist",
+                    "label": {
+                        "en": "Menu",
+                        "de": "Menü",
+                        "es": "Menú",
+                        "fr": "Menu",
+                        "pt-PT": "Menu"
+                    },
+                    "default": "footer"
+                }
+            ]
+        },
+        {
+            "type": "newsletter",
+            "name": {
+                "en": "Newsletter",
+                "de": "Newsletter",
+                "es": "Boletín de noticias",
+                "fr": "Bulletin d'information",
+                "pt-PT": "Newsletter"
+            },
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "menu_title",
+                    "label": {
+                        "en": "Heading",
+                        "de": "Überschrift",
+                        "es": "Encabezado",
+                        "fr": "Rubrique",
+                        "pt-PT": "Título"
+                    },
+                    "default": {
+                        "en": "Join our mailing list",
+                        "de": "Melden Sie sich bei unserer Mailingliste an",
+                        "es": "Únase a nuestra lista de correo electrónico",
+                        "fr": "Inscrivez-vous à notre liste d'envoi",
+                        "pt-PT": "Aderir à nossa Lista de E-mails"
+                    }
+                },
+                {
+                    "type": "richtext",
+                    "id": "footer_newsletter_description",
+                    "label": {
+                        "en": "Newsletter description",
+                        "de": "Newsletter-Beschreibung",
+                        "es": "Descripción del boletín de noticias",
+                        "fr": "Description du bulletin d'information",
+                        "pt-PT": "Descrição da newsletter"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "social",
+            "name": {
+                "en": "Social icons",
+                "de": "Soziale Symbole",
+                "es": "Iconos de redes sociales",
+                "fr": "Icônes sociales",
+                "pt-PT": "Ícones sociais"
+            },
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "menu_title",
+                    "label": {
+                        "en": "Heading",
+                        "de": "Überschrift",
+                        "es": "Encabezado",
+                        "fr": "Rubrique",
+                        "pt-PT": "Título"
+                    },
+                    "default": {
+                        "de": "Bleiben Sie auf dem Laufenden",
+                        "en": "Get connected",
+                        "es": "Conectarse",
+                        "fr": "Restez en contact",
+                        "pt-PT": "Fique Ligado"
+                    }
+                },
+                {
+                    "type": "paragraph",
+                    "content": {
+                        "en": "Edit your social settings and accounts in Theme settings",
+                        "de": "Bearbeiten Sie Ihre sozialen Einstellungen und Konten in den Theme-Einstellungen.",
+                        "es": "Edite sus ajustes de redes sociales y cuentas en la configuración del tema",
+                        "fr": "Modifiez les paramètres de vos médias sociaux et de vos comptes dans les paramètres du Thème",
+                        "pt-PT": "Edite as suas configurações e contas sociais nas configurações do Tema"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "image",
+            "name": {
+                "en": "Logo",
+                "de": "Logo",
+                "es": "Logotipo",
+                "fr": "Logo",
+                "pt-PT": "Logótipo"
+            },
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": {
+                        "en": "Logo",
+                        "de": "Logo",
+                        "es": "Logotipo",
+                        "fr": "Logo",
+                        "pt-PT": "Logótipo"
+                    }
+                },
+                {
+                    "type": "range",
+                    "id": "image_max_width",
+                    "min": 20,
+                    "max": 100,
+                    "step": 5,
+                    "unit": {
+                        "en": "%",
+                        "de": "%",
+                        "es": "%",
+                        "fr": "%",
+                        "pt-PT": "%"
+                    },
+                    "label": {
+                    "en": "Preferred width",
+                    "de": "Bevorzugte Breite",
+                    "es": "Ancho preferido",
+                    "fr": "Largeur préférée",
+                    "pt-PT": "Largura preferida"
+                    },
+                    "default": 80
+                },
+                {
+                    "type": "range",
+                    "id": "image_opacity",
+                    "min": 0,
+                    "max": 100,
+                    "step": 5,
+                    "unit": {
+                        "en": "%",
+                        "de": "%",
+                        "es": "%",
+                        "fr": "%",
+                        "pt-PT": "%"
+                    },
+                    "label": {
+                        "en": "Opacity",
+                        "de": "Deckkraft",
+                        "es": "Opacidad",
+                        "fr": "Opacité",
+                        "pt-PT": "Opacidade"
+                    },
+                    "default": 100
+                }
+            ]
+        }
+    ],
+    "default": {
+        "blocks": [
+            {
+                "type": "text"
+            },
+            {
+                "type": "menu"
+            },
+            {
+                "type": "newsletter"
+            },
+            {
+                "type": "social"
+            }
+        ]
+      }
+}
+{% endschema %}

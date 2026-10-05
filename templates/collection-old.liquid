@@ -1,0 +1,43 @@
+<!-- /templates/collection.liquid -->
+{% comment %}
+  The contents of the collection.liquid template can be found in /sections/template--collection.liquid
+{% endcomment %}
+{% assign bordersClass = '' %}
+
+{% if settings.borders_enable == true %}
+  {% assign bordersClass = 'has-borders' %}
+{% endif %}
+
+{% section 'template--collection-header' %}
+
+<div class="{{ bordersClass }}">
+    <div data-section-id="{{ section.id }}" data-section-type="collection-template">
+      <div class="container">
+        <div class="collection-wrapper">
+          <div class="flex-grow-1">
+              {% assign has_active_tags = false %}
+              {% assign has_active_tags_class = '' %}
+
+              {% if current_tags %}
+                  {% assign has_active_tags_class = 'has-active-tags' %}
+                  {% assign has_active_tags = true %}
+              {% endif %}
+
+              <ul class="active-tags mb-0 list-unstyled {{ has_active_tags_class }}">
+                  {% if has_active_tags %}
+                      {% for tag in current_tags %}
+                          <li class="filter-badge">
+                              {% if current_tags contains tag %}
+                                  {{ tag | link_to_remove_tag:tag }}
+                              {% endif %}
+                          </li>
+                      {% endfor %}
+                  {% endif %}
+              </ul>
+
+            {% section 'template--collection' %}
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

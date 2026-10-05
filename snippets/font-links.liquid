@@ -1,0 +1,12 @@
+{% if settings.type_base_font contains 'Google' %}
+  {%- assign type_body_parts = settings.type_base_font | split: '_' -%}
+  {% capture bodyGoogleUrl %}{{ type_body_parts[1] }}:400,700&display=swap{% endcapture %}
+  {{ '//fonts.googleapis.com/css?family=' | append: bodyGoogleUrl | stylesheet_tag }}
+{% endif %}
+{% if settings.type_header_font contains 'Google' %}
+  {% unless settings.type_header_font contains type_body_parts[1] and settings.type_header_font contains '700' %}
+    {%- assign type_heading_parts = settings.type_header_font | split: '_' -%}
+    {% capture headingGoogleUrl %}{{ type_heading_parts[1] }}:{{ type_heading_parts[2] }}&display=swap{% endcapture %}
+    {{ '//fonts.googleapis.com/css?family=' | append: headingGoogleUrl | stylesheet_tag }}
+  {% endunless %}
+{% endif %}

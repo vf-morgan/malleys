@@ -1,0 +1,248 @@
+{{ 'section-image-with-text-block.min.css' | asset_url | stylesheet_tag }}
+
+<style>
+
+{% assign section-id = '.image-with-text-block--' | append: section.id %}
+{% assign selector = ' .image-text-block--wrapper .img' | prepend: section-id %}
+{% render 'responsive-background-image' with section.settings.background_image, selector: selector %}
+
+.image-with-text-block--{{ section.id }} .image-text-block-row__text-container{
+  background: {{ section.settings.background-color }};
+  color: {{ section.settings.text-color }};
+}
+
+</style>
+
+<section class="homepage-image-text-block--content image-with-text-block--{{ section.id }}" data-wetheme-section-type="image--image-with-text-block">
+  <div class="homepage-image-text-block--text-wrapper homepage-image-text-block--{{ section.settings.horizontal-alignment }}">
+    <div class="image-text-block-row__text-container wow">
+      {% if section.settings.title != blank or section.settings.subheading != blank %}
+        <div class="title-bar custom-font">
+          {% if section.settings.subheading != blank %}
+            <h3 class="type-subheading type-subheading--1 {% if section.settings.title != blank %} typography--padding-bottom{% endif %}">{{ section.settings.subheading | escape }}</h3>
+          {% endif %}
+          {% if section.settings.title != blank %}
+            <h2>{{ section.settings.title | escape }}</h2>
+          {% endif %}
+        </div>
+      {% endif %}
+      {% if section.settings.text != blank %}
+        <div class="hero__text textarea rte">{{ section.settings.text }}</div>
+      {% endif %}
+      {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+        <div>
+          <a href="{{ section.settings.button_link }}" class="btn">
+            {{ section.settings.button_label }}
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="image-text-block--wrapper">
+    {% if section.settings.background_image != blank %}
+      <div class="image-text-block-row---mobile--image visible-xs">
+        {% render 'responsive-image' with section.settings.background_image, alt: section.settings.background_image.alt, class: 'feature-row__image' %}
+      </div>
+    {% else %}
+      <div class="homepage-image--text-block--placeholder">
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'icon--placeholder' }}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+    "name": {
+      "en": "Image with text block",
+      "de": "Bild mit Textblock",
+      "es": "Imagen con bloque de texto",
+      "fr": "Image avec bloc de texte",
+      "pt-PT": "Imagem com bloco de texto"
+    },
+    "class": "homepage-section-image-with-text-block--wrapper",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "background_image",
+            "label": {
+                "en": "Image",
+                "de": "Bild",
+                "es": "Imagen",
+                "fr": "Image",
+                "pt-PT": "Imagem"
+            },
+            "info": {
+                "en": "2000 x 500px recommended",
+                "de": "2000 x 500 px empfohlen",
+                "es": "Recomendado 2000 x 500 px",
+                "fr": "2000 x 500 px recommandé",
+                "pt-PT": "2000 x 500px, recomendado"
+            }
+        },
+        {
+            "type": "color",
+            "id": "text-color",
+            "label": {
+                "en": "Text",
+                "de": "Text",
+                "es": "Texto",
+                "fr": "Texte",
+                "pt-PT": "Texto"
+            },
+            "default": "#000000"
+        },
+        {
+            "type": "color",
+            "id": "background-color",
+            "label": {
+                "en": "Background",
+                "de": "Hintergrund",
+                "es": "Fondo",
+                "fr": "Contexte général",
+                "pt-PT": "Fundo"
+            },
+            "default": "#ffffff"
+        },
+        {
+            "type": "select",
+            "id": "horizontal-alignment",
+            "label": {
+              "en": "Content position",
+              "de": "Inhaltsposition",
+              "es": "Posición de contenido",
+              "fr": "Position du contenu",
+              "pt-PT": "Posição do conteúdo"
+            },
+            "options": [
+                {
+                    "value": "left",
+                    "label": {
+                        "en": "Left",
+                        "de": "Links",
+                        "es": "Izquierda",
+                        "fr": "Gauche",
+                        "pt-PT": "Esquerda"
+                    }
+                },
+                {
+                    "value": "center",
+                    "label": {
+                        "en": "Center",
+                        "de": "Mitte",
+                        "es": "Centro",
+                        "fr": "Centre",
+                        "pt-PT": "Centro"
+                    }
+                },
+                {
+                    "value": "right",
+                    "label": {
+                        "en": "Right",
+                        "de": "Rechts",
+                        "es": "Derecha",
+                        "fr": "Droite",
+                        "pt-PT": "Direita"
+                    }
+                }
+            ],
+            "default": "center"
+        },
+        {
+            "type": "text",
+            "id": "subheading",
+            "label": {
+              "en": "Subheading",
+              "de": "Unterüberschrift",
+              "es": "Subencabezado",
+              "fr": "Sous-rubrique",
+              "pt-PT": "Subtítulo"
+            }
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": {
+                "en": "Heading",
+                "de": "Überschrift",
+                "es": "Encabezado",
+                "fr": "Rubrique",
+                "pt-PT": "Título"
+            },
+            "default": {
+                "en": "Share your story",
+                "de": "Teilen Sie Ihre Geschichte",
+                "es": "Comparte tu historia",
+                "fr": "Partagez votre histoire",
+                "pt-PT": "Partilhe a sua história"
+            }
+        },
+        {
+            "type": "richtext",
+            "id": "text",
+            "label": {
+                "en": "Text",
+                "de": "Text",
+                "es": "Texto",
+                "fr": "Texte",
+                "pt-PT": "Texto"
+            },
+            "default": {
+                "en": "<p>Here's your chance to make a great first impression</p>",
+                "de": "<p>Hier ist Ihre Chance, einen großartigen ersten Eindruck zu hinterlassen.</p>",
+                "es": "<p>Esta es tu oportunidad de causar una buena primera impresión</p>",
+                "fr": "<p>C'est le moment ou jamais de faire une excellente première impression</p>",
+                "pt-PT": "<p>Aqui está a sua oportunidade de causar uma excelente primeira impressão</p>"
+            }
+        },
+        {
+            "type": "url",
+            "id": "button_link",
+            "label": {
+                "en": "Button link",
+                "de": "Buttonlink",
+                "es": "Enlace del botón",
+                "fr": "Lien du bouton",
+                "pt-PT": "Ligação do botão"
+            },
+            "info": {
+                "en": "Required to show the button",
+                "de": "Notwendig, den Button zu zeigen",
+                "es": "Es necesario mostrar el botón",
+                "fr": "Requis pour afficher le bouton",
+                "pt-PT": "Necessário para exibir o botão"
+            }
+        },
+        {
+            "type": "text",
+            "id": "button_label",
+            "label": {
+                "en": "Button label",
+                "de": "Button-Bezeichnung",
+                "es": "Etiqueta del botón",
+                "fr": "Étiquette du bouton",
+                "pt-PT": "Etiqueta do botão"
+            }
+        }
+    ],
+    "presets": [
+        {
+            "name": {
+                "en": "Image with text block",
+                "de": "Bild mit Textblock",
+                "es": "Imagen con bloque de texto",
+                "fr": "Image avec bloc de texte",
+                "pt-PT": "Imagem com bloco de texto"
+            },
+            "category": {
+                "en": "Image",
+                "de": "Bild",
+                "es": "Imagen",
+                "fr": "Image",
+                "pt-PT": "Imagem"
+            }
+        }
+    ]
+}
+{% endschema %}

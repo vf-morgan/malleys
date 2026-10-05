@@ -1,0 +1,370 @@
+{{ 'section-delivery-partners.min.css' | asset_url | stylesheet_tag }}
+
+<style>
+
+    {% assign section-id = '.delivery-partners--' | append: section.id %}
+    {% assign selector = ' .delivery-partners--wrapper .img' | prepend: section-id %}
+    {% render 'responsive-background-image' with section.settings.background_image, selector: selector %}
+    
+    .delivery-partners--{{ section.id }} .color-inherit .logo-background {
+      fill: {{ section.settings.background-color }} !important;
+    }
+
+    .delivery-partners--{{ section.id }} .delivery-partners-row__text-container{
+      background: {{ section.settings.background-color }};
+      color: {{ section.settings.text-color }};
+    }
+
+</style>
+    
+    <section
+      class="homepage-delivery-partners--content delivery-partners--{{ section.id }}"
+      data-wetheme-section-type="store-information--delivery-partners"
+      data-wetheme-section-id="{{ section.id }}"
+    >
+      <div class="homepage-delivery-partners--text-wrapper homepage-delivery-partners--{{ section.settings.horizontal-alignment }}">
+        <div class="delivery-partners-row__text-container">
+
+          {% if section.settings.title != blank %}
+            <div class="title-bar custom-font">
+              {% if section.settings.title != blank %}
+                <h2>{{ section.settings.title | escape }}</h2>
+              {% endif %}
+            </div>
+          {% endif %}
+
+          {% if section.settings.text != blank %}
+            <div class="hero__text textarea rte">{{ section.settings.text }}</div>
+          {% endif %}
+
+          {% if section.blocks.size > 0 %}
+            <div class="delivery-partners-logo-bar{% if section.settings.partner-text-color %} color-inherit{% endif %}">
+              {% for block in section.blocks %}
+                <div class="delivery-partners-logo-bar__item" {{ block.shopify_attributes }}>
+                  {% if block.settings.link != blank %}
+                    <a href="{{ block.settings.link }}" class="delivery-partners-logo-bar__link" aria-label="{% if block.type == 'partner_logo'%}{{ block.settings.delivery_partner }}{% else %}{{ block.settings.image.alt }}{% endif %}">
+                  {% endif %}
+
+                  {% case block.type %}
+
+                    {% when 'partner_logo' %}
+                      {% render 'delivery-partners' with block.settings.delivery_partner, logo_background: "logo-background" %}
+                    
+                      {% when 'custom_logo' %}  
+                      {% if block.settings.image != blank %}
+                        {% capture props %}
+                            style="max-width:200px"
+                        {% endcapture %}
+                        {% render 'responsive-image' with block.settings.image, alt: block.settings.image.alt, props: props, default_size: '240x' %}
+                      {% else %}
+                        {{ 'logo' | placeholder_svg_tag: 'icon--placeholder' }}
+                      {% endif %}
+
+                  {% endcase %}
+
+                  {% if block.settings.link != blank %}
+                    </a>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+
+        </div>
+      </div>
+    
+      <div class="delivery-partners--wrapper">
+        {% if section.settings.background_image != blank %}
+          <div class="delivery-partners-row---mobile--image visible-xs">
+            {% render 'responsive-image' with section.settings.background_image, alt: section.settings.background_image.alt, class: 'feature-row__image' %}
+          </div>
+        {% else %}
+          <div class="homepage-delivery-partners--placeholder">
+              {{ 'lifestyle-1' | placeholder_svg_tag: 'icon--placeholder' }}
+          </div>
+        {% endif %}
+      </div>
+    </section>
+    
+    {% schema %}
+    {
+        "name": {
+            "en": "Home delivery partners",
+            "de": "Lieferpartner",
+            "es": "Socios de entrega",
+            "fr": "Partenaires de livraison",
+            "pt-PT": "Parceiros de entregas"
+        },
+        "class": "homepage-section-delivery-partners--wrapper",
+        "max_blocks": 9,
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "background_image",
+                "label": {
+                    "en": "Background image",
+                    "de": "Hintergrundbild",
+                    "es": "Imagen de fondo",
+                    "fr": "Image d'arrière-plan",
+                    "pt-PT": "Imagem de fundo"
+                },
+                "info": {
+                    "en": "2000 x 500px recommended",
+                    "de": "2000 x 500 px empfohlen",
+                    "es": "Recomendado 2000 x 500 px",
+                    "fr": "2000 x 500 px recommandé",
+                    "pt-PT": "2000 x 500px, recomendado"
+                }
+            },
+            {
+              "type": "color",
+              "id": "background-color",
+              "label": {
+                  "en": "Background",
+                  "de": "Hintergrund",
+                  "es": "Fondo",
+                  "fr": "Contexte général",
+                  "pt-PT": "Fundo"
+              },
+              "default": "#ffffff"
+            },
+            {
+                "type": "color",
+                "id": "text-color",
+                "label": {
+                    "en": "Text",
+                    "de": "Text",
+                    "es": "Texto",
+                    "fr": "Texte",
+                    "pt-PT": "Texto"
+                },
+                "default": "#000000"
+            },
+            {
+              "type": "checkbox",
+              "id": "partner-text-color",
+              "label": {
+                  "en": "Apply text color to partner logos",
+                  "de": "Wenden Sie Textfarben auf Partnerlogos an",
+                  "es": "Aplicar color de texto a los logotipos de los socios",
+                  "fr": "Appliquer la couleur du texte aux logos des partenaires",
+                  "pt-PT": "Aplique a cor do texto aos logótipos dos parceiros"
+              },
+              "default": false
+            },
+            {
+                "type": "select",
+                "id": "horizontal-alignment",
+                "label": {
+                  "en": "Content position",
+                  "de": "Inhaltsposition",
+                  "es": "Posición de contenido",
+                  "fr": "Position du contenu",
+                  "pt-PT": "Posição do conteúdo"
+                },
+                "options": [
+                    {
+                        "value": "left",
+                        "label": {
+                            "en": "Left",
+                            "de": "Links",
+                            "es": "Izquierda",
+                            "fr": "Gauche",
+                            "pt-PT": "Esquerda"
+                        }
+                    },
+                    {
+                        "value": "center",
+                        "label": {
+                            "en": "Center",
+                            "de": "Mitte",
+                            "es": "Centro",
+                            "fr": "Centre",
+                            "pt-PT": "Centro"
+                        }
+                    },
+                    {
+                        "value": "right",
+                        "label": {
+                            "en": "Right",
+                            "de": "Rechts",
+                            "es": "Derecha",
+                            "fr": "Droite",
+                            "pt-PT": "Direita"
+                        }
+                    }
+                ],
+                "default": "center"
+            },
+            {
+                "type": "text",
+                "id": "title",
+                "label": {
+                    "en": "Heading",
+                    "de": "Überschrift",
+                    "es": "Encabezado",
+                    "fr": "Rubrique",
+                    "pt-PT": "Título"
+                },
+                "default": {
+                    "en": "Delivery partners",
+                    "de": "Lieferpartner",
+                    "es": "Socios de entrega",
+                    "fr": "Partenaires de livraison",
+                    "pt-PT": "Parceiros de entregas"
+                }
+            },
+            {
+                "type": "richtext",
+                "id": "text",
+                "label": {
+                    "en": "Text",
+                    "de": "Text",
+                    "es": "Texto",
+                    "fr": "Texte",
+                    "pt-PT": "Texto"
+                },
+                "default": {
+                    "en": "<p>Add the logos of your delivery partners with optional links</p>",
+                    "de": "<p>Fügen Sie die Logos Ihrer Lieferpartner mit optionalen Links hinzu</p>",
+                    "es": "<p>Agregue los logotipos de sus socios de entrega con enlaces opcionales</p>",
+                    "fr": "<p>Ajoutez les logos de vos partenaires de livraison avec des liens optionnels</p>",
+                    "pt-PT": "<p>Adicione os logótipos dos seus parceiros de entregas com hiperligações opcionais</p>"
+                }
+            }
+        ],
+        "blocks": [
+            {
+                "type": "partner_logo",
+                "name": {
+                    "en": "Partner logo",
+                    "de": "Partnerlogo",
+                    "es": "Logotipo de socio",
+                    "fr": "Logo du partenaire",
+                    "pt-PT": "Logótipo de parceiro"
+                },
+                "settings": [
+                    {
+                        "type": "select",
+                        "id": "delivery_partner",
+                        "label": {
+                            "en": "Delivery partner",
+                            "de": "Lieferpartner",
+                            "es": "Socio de entrega",
+                            "fr": "Partenaire de livraison",
+                            "pt-PT": "Parceiro de entregas"
+                        },
+                        "options": [
+                            {
+                                "value": "ubereats",
+                                "label": "Uber Eats"
+                            },
+                            {
+                                "value": "grubhub",
+                                "label": "GrubHub"
+                            },
+                            {
+                              "value": "justeat",
+                              "label": "JustEat"
+                            },
+                            {
+                              "value": "deliveroo",
+                              "label": "Deliveroo"
+                            },
+                            {
+                              "value": "deliverycom",
+                              "label": "Delivery.com"
+                            },
+                            {
+                              "value": "doordash",
+                              "label": "Doordash"
+                            },
+                            {
+                              "value": "postmates",
+                              "label": "Postmates"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "url",
+                        "id": "link",
+                        "label": {
+                            "en": "Link",
+                            "de": "Link",
+                            "es": "Enlace",
+                            "fr": "Lien",
+                            "pt-PT": "Ligação"
+                        },
+                        "info": {
+                            "en": "Optional",
+                            "de": "Optional",
+                            "es": "Opcional",
+                            "fr": "Facultatif",
+                            "pt-PT": "Opcional"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "custom_logo",
+                "name": {
+                    "en": "Custom logo",
+                    "de": "Benutzerdefiniertes Logo",
+                    "es": "Logotipo personalizado",
+                    "fr": "Logo personnalisé",
+                    "pt-PT": "Logótipo personalizado"
+                },
+                "settings": [
+                    {
+                        "type": "image_picker",
+                        "id": "image",
+                        "label": {
+                            "en": "Image",
+                            "de": "Bild",
+                            "es": "Imagen",
+                            "fr": "Image",
+                            "pt-PT": "Imagem"
+                        }
+                    },
+                    {
+                        "type": "url",
+                        "id": "link",
+                        "label": {
+                            "en": "Link",
+                            "de": "Link",
+                            "es": "Enlace",
+                            "fr": "Lien",
+                            "pt-PT": "Ligação"
+                        },
+                        "info": {
+                          "en": "Optional",
+                          "de": "Optional",
+                          "es": "Opcional",
+                          "fr": "Facultatif",
+                          "pt-PT": "Opcional"
+                        }
+                    }
+                ]
+            }
+        ],
+        "presets": [
+            {
+                "name": {
+                    "en": "Delivery partners",
+                    "de": "Lieferpartner",
+                    "es": "Socios de entrega",
+                    "fr": "Partenaires de livraison",
+                    "pt-PT": "Parceiros de entregas"
+                },
+                "category": {
+                    "en": "Store information",
+                    "de": "Store-Informationen",
+                    "es": "Información de la tienda",
+                    "fr": "Informations sur le magasin",
+                    "pt-PT": "Informação sobre a loja"
+                }
+            }
+        ]
+    }
+    {% endschema %}
+    

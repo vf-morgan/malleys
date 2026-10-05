@@ -1,0 +1,441 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "wrapper": "div",
+  "sections": {
+    "single_banner_slider_corporate_eVi4UV": {
+      "type": "single-banner-slider-corporate",
+      "blocks": {
+        "slide_jjVWHw": {
+          "type": "slide",
+          "settings": {
+            "single__slide-image": "shopify://shop_images/solid_gray_for_testing_838e93d2-03e9-4827-939e-e864154d0239.png",
+            "banner_image_url": "",
+            "heading": "Custom Corporate Gifts",
+            "subheading": "",
+            "text_color": "",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_jjVWHw"
+      ],
+      "custom_css": [
+        "p {margin-top: 22px;}"
+      ],
+      "name": "Corporate Banner Slider",
+      "settings": {}
+    },
+    "custom_liquid_nyHGTb": {
+      "type": "custom-liquid",
+      "custom_css": [
+        "section {margin-top: -72px;}"
+      ],
+      "name": "Custom Liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"cgfaq-wrapper\" style=\"max-width:800px; margin:0 auto; padding:3rem 1rem;\">\n  <h2 style=\"text-align:center; margin:0 0 2rem;\">Your Logo. Malley's Chocolates.</h2>\n<p style=\"text-align:center; margin:0 0 2rem; margin-top: -24px; margin-bottom:52px;\">Malley’s Assorted Chocolate with Custom Sleeves.</p>\n  <style>\n    .cgfaq-list {\n      border-top: 1px solid #8a7a6a;\n    }\n    .cgfaq-item {\n      border-bottom: 1px solid #8a7a6a;\n    }\n    .cgfaq-toggle {\n      display: flex;\n      align-items: center;\n      justify-content: space-between;\n      width: 100%;\n      background: none;\n      border: none;\n      cursor: pointer;\n      padding: 1rem 0.5rem;\n      font: inherit;\n      text-align: left;\n    }\n    .cgfaq-question {\n      font-weight: 700;\n      text-transform: uppercase;\n      font-family: var(--font-heading-family, inherit);\n      color: #4E3120;\n      font-size: 1rem;\n      flex: 1;\n      text-align: center;\n    }\n    .cgfaq-toggle:focus .cgfaq-question,\n    .cgfaq-toggle:active .cgfaq-question {\n      color: #FFFFFF;\n    }\n    .cgfaq-arrow {\n      flex: 0 0 auto;\n      width: 0;\n      height: 0;\n      margin-left: 1rem;\n      border-top: 8px solid transparent;\n      border-bottom: 8px solid transparent;\n      border-left: 12px solid var(--color-brand-pink, #F0A8C0);\n      transition: transform 0.25s ease;\n    }\n    .cgfaq-toggle[aria-expanded=\"true\"] .cgfaq-arrow {\n      transform: rotate(90deg);\n    }\n    .cgfaq-panel {\n      display: grid;\n      grid-template-rows: 0fr;\n      transition: grid-template-rows 0.25s ease;\n    }\n    .cgfaq-panel[aria-hidden=\"false\"] {\n      grid-template-rows: 1fr;\n    }\n    .cgfaq-panel-inner {\n      overflow: hidden;\n    }\n    .cgfaq-panel-inner p {\n      margin: 10px 0.5rem 1rem;\n      font-size: 0.95rem;\n      color: #4E3120;\n    }\n  </style>\n\n  <div class=\"cgfaq-list\">\n    <div class=\"cgfaq-item\">\n      <button type=\"button\" class=\"cgfaq-toggle\" aria-expanded=\"false\">\n        <span class=\"cgfaq-question\">HOW IT WORKS</span>\n        <span class=\"cgfaq-arrow\" aria-hidden=\"true\"></span>\n      </button>\n      <div class=\"cgfaq-panel\" aria-hidden=\"true\">\n        <div class=\"cgfaq-panel-inner\">\n          <p>We receive a high volume of donation requests from many deserving organizations. Rather than handling one-off donations, we’ve moved to a more structured fundraising model that allows us to support more groups in a consistent and meaningful way. While we will do our best to support long-standing partners, we’re unable to respond individually to all donation inquiries. We would love to support your organization through our fundraising programs, which often generate more impact than a single donation.</p>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"cgfaq-item\">\n      <button type=\"button\" class=\"cgfaq-toggle\" aria-expanded=\"false\">\n        <span class=\"cgfaq-question\">LOGO & ARTWORK SPECS</span>\n        <span class=\"cgfaq-arrow\" aria-hidden=\"true\"></span>\n      </button>\n      <div class=\"cgfaq-panel\" aria-hidden=\"true\">\n        <div class=\"cgfaq-panel-inner\">\n          <p><strong>Year-Round FR Program</strong><br>\nOrdering eight or less boxes for your fundraiser? Visit any Malley's location during store hours for convenient pick up and payment.  \n\nFor orders larger than eight boxes, orders are placed through our Fundraising team using our fundraising form. Pick-up is coordinated weekly at any of our 18 store locations and store locations receive delivery once per week, so order placement deadlines are based on the store's delivery day.  \n\nOrders of 100 boxes or more are eligible for free local delivery. <br> <br>\n\n<strong>Seasonal FR Programs</strong> <br>\nAll delivery dates are first come, first serve depending on timing of the program. Free local delivery is available for orders over $1,000 and orders under $1,000 are able to be picked up at a local Malley's store. </p>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"cgfaq-item\">\n      <button type=\"button\" class=\"cgfaq-toggle\" aria-expanded=\"false\">\n        <span class=\"cgfaq-question\">SHIPPING & DELIVERY</span>\n        <span class=\"cgfaq-arrow\" aria-hidden=\"true\"></span>\n      </button>\n      <div class=\"cgfaq-panel\" aria-hidden=\"true\">\n        <div class=\"cgfaq-panel-inner\">\n          <p><strong>Year-Round FR Program</strong><br>\nPayment for the bars is required at time of pick up from one of our stores.  <br>\n\nFor schools that require a purchase order, we extend Net 30 credit terms and ask for a PO number at time of order and prior to pick up. An invoice will be sent after the pickup is made and payment is due 30 days from the invoice date. <br> <br>\n \n<strong>Seasonal FR Programs</strong> <br>\nGroups will collect money with orders that are conducted through utilizing paper forms while sales conducted online through the group website portals will be collected for the group. Payment of fundraising revenue will be distributed to groups by checks once the fundraising orders have been distributed and with difference of any owed money from paper form transactions.  </p>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"cgfaq-item\">\n      <button type=\"button\" class=\"cgfaq-toggle\" aria-expanded=\"false\">\n        <span class=\"cgfaq-question\">About our selections</span>\n        <span class=\"cgfaq-arrow\" aria-hidden=\"true\"></span>\n      </button>\n      <div class=\"cgfaq-panel\" aria-hidden=\"true\">\n        <div class=\"cgfaq-panel-inner\">\n          <p>Schools, sports teams and athletic departments, band and orchestra, churches, dance groups, 4H groups, animal welfare, non-profits, and personal fundraising activities. Groups raise funds for many reasons including general funds, playground equipment, athletic equipment, travel costs, fees, endowments, and more.</p>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <script>\n    (function () {\n      function initFaq(wrapper) {\n        if (!wrapper || wrapper.dataset.cgfaqInit) return;\n        wrapper.dataset.cgfaqInit = 'true';\n\n        var uid = 'cgfaq-' + Math.random().toString(36).slice(2, 9);\n        var toggles = wrapper.querySelectorAll('.cgfaq-toggle');\n\n        toggles.forEach(function (toggle, index) {\n          var panel = toggle.parentElement.querySelector('.cgfaq-panel');\n          if (!panel) return;\n\n          var toggleId = uid + '-toggle-' + index;\n          var panelId = uid + '-panel-' + index;\n          toggle.id = toggleId;\n          panel.id = panelId;\n          toggle.setAttribute('aria-controls', panelId);\n          panel.setAttribute('aria-labelledby', toggleId);\n          panel.setAttribute('role', 'region');\n\n          toggle.addEventListener('click', function () {\n            var isOpen = toggle.getAttribute('aria-expanded') === 'true';\n            toggle.setAttribute('aria-expanded', String(!isOpen));\n            panel.setAttribute('aria-hidden', String(isOpen));\n          });\n        });\n      }\n\n      function initAll() {\n        document.querySelectorAll('.cgfaq-wrapper').forEach(initFaq);\n      }\n\n      if (document.readyState === 'loading') {\n        document.addEventListener('DOMContentLoaded', initAll);\n      } else {\n        initAll();\n      }\n    })();\n  </script>\n</div>"
+      }
+    },
+    "image_gallery_iPg6mx": {
+      "type": "image--gallery",
+      "blocks": {
+        "image_8Lgye7": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Malleys_composite_14.png",
+            "link": "",
+            "title": "",
+            "description": ""
+          }
+        },
+        "image_HywUqr": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Goldcup1.jpg",
+            "link": "",
+            "title": "",
+            "description": ""
+          }
+        },
+        "image_8ATUPU": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Classic1.jpg",
+            "link": "",
+            "title": "",
+            "description": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_8Lgye7",
+        "image_HywUqr",
+        "image_8ATUPU"
+      ],
+      "custom_css": [
+        "section {margin-top: -132px;}"
+      ],
+      "name": "Gallery",
+      "settings": {}
+    },
+    "main": {
+      "type": "template--product",
+      "blocks": {
+        "f2ab13cb-5257-499c-a840-64222670b5a3": {
+          "type": "custom-liquid",
+          "settings": {
+            "custom-liquid": "<div style=\"margin: 1rem 0;\"></div>"
+          }
+        },
+        "product-title": {
+          "type": "product-title",
+          "settings": {}
+        },
+        "judge_me_reviews_preview_badge_nWXLR4": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {}
+        },
+        "product-price": {
+          "type": "product-price",
+          "settings": {
+            "show_discount": "value",
+            "tax_included": false,
+            "shipping_policy": false
+          }
+        },
+        "f9ca822f-ac5e-44d2-bc51-c1af9112d01b": {
+          "type": "vendor-sku",
+          "disabled": true,
+          "settings": {
+            "show_vendor": false,
+            "show_sku": true
+          }
+        },
+        "product-options": {
+          "type": "product-options",
+          "settings": {}
+        },
+        "easify_options_easify_product_options_Eyix4D": {
+          "type": "shopify://apps/easify-options/blocks/easify-product-options/d2288b18-c1ba-42f5-b3b3-26c75c8820bf",
+          "settings": {}
+        },
+        "quantity-selector": {
+          "type": "quantity-selector",
+          "settings": {}
+        },
+        "custom_liquid_UPPWpH": {
+          "type": "custom-liquid",
+          "settings": {
+            "custom-liquid": "<script>\n(function () {\n  var MIN_QTY = 200;\n\n  function initQuantityMinimum() {\n    var form = document.querySelector('form[action^=\"/cart/add\"]');\n    var qtyInput = document.querySelector('input[name=\"quantity\"], .quantity__input, [data-quantity-input]');\n    if (!qtyInput || qtyInput.dataset.minQtyInit) return;\n    qtyInput.dataset.minQtyInit = 'true';\n\n    qtyInput.setAttribute('min', MIN_QTY);\n    qtyInput.setAttribute('required', 'required');\n    qtyInput.value = MIN_QTY;\n    qtyInput.dispatchEvent(new Event('change', { bubbles: true }));\n\n    var wrapper = qtyInput.closest('.quantity, quantity-input') || qtyInput.parentElement;\n\n    // Red required asterisk next to the quantity label\n    var label = (qtyInput.id && document.querySelector('label[for=\"' + qtyInput.id + '\"]'))\n      || wrapper.parentElement.querySelector('label');\n    if (label && !label.querySelector('.qty-required-asterisk')) {\n      var asterisk = document.createElement('span');\n      asterisk.className = 'qty-required-asterisk';\n      asterisk.textContent = ' *';\n      asterisk.style.color = 'red';\n      label.appendChild(asterisk);\n    }\n\n    var errorMsg = document.createElement('div');\n    errorMsg.textContent = 'Please enter a minimum value of 200';\n    errorMsg.style.color = 'red';\n    errorMsg.style.fontSize = '14px';\n    errorMsg.style.marginTop = '6px';\n    errorMsg.style.display = 'none';\n    wrapper.insertAdjacentElement('afterend', errorMsg);\n\n    function isValid() {\n      var value = parseInt(qtyInput.value, 10);\n      return !isNaN(value) && value >= MIN_QTY;\n    }\n\n    function showError() {\n      errorMsg.style.display = 'block';\n      errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });\n    }\n\n    function validate() {\n      if (!isValid()) {\n        showError();\n        return false;\n      }\n      errorMsg.style.display = 'none';\n      return true;\n    }\n\n    qtyInput.addEventListener('input', validate);\n    qtyInput.addEventListener('change', validate);\n    qtyInput.addEventListener('blur', validate);\n\n    if (form) {\n      // Fallback: block native form submit\n      form.addEventListener('submit', function (e) {\n        if (!validate()) {\n          e.preventDefault();\n          e.stopImmediatePropagation();\n        }\n      }, true);\n\n      // Block AJAX add-to-cart button clicks before the theme's own handler runs\n      form.querySelectorAll('[name=\"add\"], button[type=\"submit\"], input[type=\"submit\"]').forEach(function (btn) {\n        btn.addEventListener('click', function (e) {\n          if (!validate()) {\n            e.preventDefault();\n            e.stopImmediatePropagation();\n            e.stopPropagation();\n          }\n        }, true);\n      });\n    }\n  }\n\n  document.addEventListener('DOMContentLoaded', initQuantityMinimum);\n  document.addEventListener('shopify:section:load', initQuantityMinimum);\n})();\n</script>"
+          }
+        },
+        "401f58d7-789f-4f79-a5f5-916156f1547a": {
+          "type": "location",
+          "disabled": true,
+          "settings": {
+            "title": "Please choose location"
+          }
+        },
+        "payment-buttons": {
+          "type": "payment-buttons",
+          "settings": {
+            "show_smart_checkout": false
+          }
+        },
+        "text_with_icon_Bzmkbb": {
+          "type": "text-with-icon",
+          "disabled": true,
+          "settings": {
+            "icon": "none",
+            "text": "🚚 May arrive after Easter",
+            "link": ""
+          }
+        },
+        "shop-pay": {
+          "type": "shop-pay",
+          "disabled": true,
+          "settings": {}
+        },
+        "3f39d937-ca61-4d37-a604-bd0bb5512ed8": {
+          "type": "product-description",
+          "settings": {}
+        },
+        "custom_liquid_BHj9zp": {
+          "type": "custom-liquid",
+          "disabled": true,
+          "settings": {
+            "custom-liquid": "<style>\n  .shipping-note {\n    font-size: 15px;\n    line-height: 1.6;\n    color: #5f514b;\n    margin-top: 20px;\n    padding: 15px 18px;\n    border: 1px solid #eadfd9;\n    border-radius: 8px;\n    background-color: #fdfaf8;\n  }\n\n  .buckeye-trust-badges {\n    display: flex;\n    justify-content: space-between;\n    flex-wrap: wrap;\n    gap: 18px;\n    margin: 36px 0 30px;\n    padding: 28px 22px;\n    border-radius: 14px;\n    background-color: var(--malleys-light-pink, #fde8ef);\n  }\n\n  .buckeye-trust-badge {\n    flex: 1;\n    min-width: 180px;\n    text-align: center;\n  }\n\n  .buckeye-trust-badge img {\n    width: 52px;\n    height: 52px;\n    margin-bottom: 12px;\n    object-fit: contain;\n  }\n\n  .buckeye-trust-badge h3 {\n    font-family: var(--font-heading, inherit);\n    font-size: 17px;\n    line-height: 1.3;\n    margin: 0 0 8px;\n    color: var(--malleys-brown, #4d301f);\n  }\n\n  .buckeye-trust-badge p {\n    font-size: 14px;\n    line-height: 1.5;\n    color: #66564f;\n    margin: 0;\n  }\n\n  @media screen and (max-width: 749px) {\n    .buckeye-trust-badges {\n      padding: 24px 18px;\n    }\n\n    .buckeye-trust-badge {\n      min-width: 100%;\n    }\n  }\n</style>\n\n\n\n<section class=\"buckeye-trust-badges\">\n  <div class=\"buckeye-trust-badge\">\n    <img src=\"https://img.icons8.com/ios-filled/100/4d301f/gift.png\" alt=\"Gift box icon\">\n    <h3>Great for Gifting</h3>\n    <p>A thoughtful treat to gift, share, or enjoy for any occasion.</p>\n  </div>\n\n  <div class=\"buckeye-trust-badge\">\n    <img src=\"https://img.icons8.com/ios-filled/100/4d301f/city-buildings.png\" alt=\"Cleveland icon\">\n    <h3>Cleveland Tradition</h3>\n    <p>Made by Malley’s, a family-owned Cleveland chocolate tradition since 1935.</p>\n  </div>\n</section>"
+          }
+        },
+        "social-sharing": {
+          "type": "social-sharing",
+          "disabled": true,
+          "settings": {
+            "social_align": "left",
+            "social_sharing_facebook": true,
+            "social_sharing_twitter": true,
+            "social_sharing_pinterest": false
+          }
+        }
+      },
+      "block_order": [
+        "f2ab13cb-5257-499c-a840-64222670b5a3",
+        "product-title",
+        "judge_me_reviews_preview_badge_nWXLR4",
+        "product-price",
+        "f9ca822f-ac5e-44d2-bc51-c1af9112d01b",
+        "product-options",
+        "easify_options_easify_product_options_Eyix4D",
+        "quantity-selector",
+        "custom_liquid_UPPWpH",
+        "401f58d7-789f-4f79-a5f5-916156f1547a",
+        "payment-buttons",
+        "text_with_icon_Bzmkbb",
+        "shop-pay",
+        "3f39d937-ca61-4d37-a604-bd0bb5512ed8",
+        "custom_liquid_BHj9zp",
+        "social-sharing"
+      ],
+      "custom_css": [
+        ".text-with-icon {color: red; font-size: 14px; border-top: none !important; margin-top: -8px; margin-bottom: -6px;}",
+        "label {font-family: \"omnes-variable\", sans-serif; font-weight: 200; color: #4d301f;}"
+      ],
+      "settings": {
+        "show_out_of_stock_email": false,
+        "out_of_stock_email_position": "above-details",
+        "hide_out_of_stock": false,
+        "thumbnail_changes_variant": true,
+        "image_display": "thumbnails",
+        "enable_zoom": true,
+        "enable_video_loop": true
+      }
+    },
+    "product-recommendations": {
+      "type": "template--product--recommendations",
+      "disabled": true,
+      "custom_css": [
+        "h2 {margin-top: 48px;}"
+      ],
+      "settings": {
+        "show_product_recommendations": true,
+        "product_recommendations_heading": "You may also like"
+      }
+    },
+    "1656622972007e5cb6": {
+      "type": "apps",
+      "blocks": {
+        "assortion_recommendation_9HKr3N": {
+          "type": "shopify://apps/assortion/blocks/recommendation/5588d7f9-a5bc-4f4a-9c54-39b7e081dd23",
+          "settings": {
+            "type": "recommendation",
+            "id": ""
+          }
+        }
+      },
+      "block_order": [
+        "assortion_recommendation_9HKr3N"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "featured-collection": {
+      "type": "collection--featured-collection",
+      "blocks": {
+        "featured-collection-1": {
+          "type": "product-card-title",
+          "settings": {}
+        },
+        "featured-collection-2": {
+          "type": "product-card-price",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "featured-collection-1",
+        "featured-collection-2"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".homepage-sections-wrapper {margin-top: -42px;}"
+      ],
+      "settings": {
+        "subheading": "Popular With Other Customers",
+        "title": "Flavorful Fan Favorites",
+        "collection": "customer-favorites",
+        "grid": 4,
+        "rows": 1,
+        "hide_add_to_cart": false,
+        "show_view_all": true
+      }
+    },
+    "17562297010d1c3fd3": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_MmBFBt": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_MmBFBt"
+      ],
+      "disabled": true,
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "text_testimonials_dWLiEi": {
+      "type": "text--testimonials",
+      "blocks": {
+        "textarea_zPrr3G": {
+          "type": "textarea",
+          "settings": {
+            "stars": "5",
+            "testimonial": "<p>Show off incredible feedback from your customers</p>",
+            "author": "John Doe",
+            "link": ""
+          }
+        },
+        "textarea_Xbip6U": {
+          "type": "textarea",
+          "settings": {
+            "stars": "5",
+            "testimonial": "<p>Show off incredible feedback from your customers</p>",
+            "author": "John Doe",
+            "link": ""
+          }
+        },
+        "textarea_bBNeyV": {
+          "type": "textarea",
+          "settings": {
+            "stars": "5",
+            "testimonial": "<p>Show off incredible feedback from your customers</p>",
+            "author": "John Doe",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "textarea_zPrr3G",
+        "textarea_Xbip6U",
+        "textarea_bBNeyV"
+      ],
+      "custom_css": [
+        "section {margin-top: -22px;}"
+      ],
+      "name": "Testimonials",
+      "settings": {
+        "subheading": "",
+        "title": "Testimonials",
+        "stars-color": "#ff9529"
+      }
+    },
+    "image_image_with_text_block_cgXUKa": {
+      "type": "image--image-with-text-block",
+      "custom_css": [
+        "section {margin-top: -72px;}"
+      ],
+      "name": "Image with text block",
+      "settings": {
+        "text-color": "#000000",
+        "background-color": "#ffffff",
+        "horizontal-alignment": "center",
+        "subheading": "",
+        "title": "Have Questions?",
+        "text": "<p>For more information, please email corporate@malleys.com</p>",
+        "button_link": "",
+        "button_label": ""
+      }
+    },
+    "text_text_adverts_wBGDwX": {
+      "type": "text--text-adverts",
+      "blocks": {
+        "text_9N7RTh": {
+          "type": "text",
+          "settings": {
+            "icon": "map-pin",
+            "heading": "Free Shipping",
+            "subheading": "Shout about your unique selling points",
+            "buttonLabel": "",
+            "link": ""
+          }
+        },
+        "text_yR86CB": {
+          "type": "text",
+          "settings": {
+            "icon": "star",
+            "heading": "Premium Chocolates",
+            "subheading": "Shout about your unique selling points",
+            "buttonLabel": "",
+            "link": ""
+          }
+        },
+        "text_Ryzyjw": {
+          "type": "text",
+          "settings": {
+            "icon": "service",
+            "heading": "Dedicated Support",
+            "subheading": "Shout about your unique selling points",
+            "buttonLabel": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_9N7RTh",
+        "text_yR86CB",
+        "text_Ryzyjw"
+      ],
+      "custom_css": [
+        ".container {margin-top: -52px;}"
+      ],
+      "name": "Text adverts",
+      "settings": {
+        "icon-color": "#333333",
+        "text-color": "#000000",
+        "background-color": "#ffffff"
+      }
+    },
+    "newsletter_newsletter_WteCNE": {
+      "type": "newsletter--newsletter",
+      "custom_css": [
+        "section {margin-top: -72px;}"
+      ],
+      "settings": {
+        "subheading": "Stay up-to-date",
+        "title": "Join our mailing list",
+        "newsletter_description": "<p><strong>You Can Also</strong> <a href=\"/pages/text-message-signup\" title=\"Text Message Signup\"><strong>Sign Up for Tasty Text Message Alerts!</strong></a></p>"
+      }
+    }
+  },
+  "order": [
+    "single_banner_slider_corporate_eVi4UV",
+    "custom_liquid_nyHGTb",
+    "image_gallery_iPg6mx",
+    "main",
+    "product-recommendations",
+    "1656622972007e5cb6",
+    "featured-collection",
+    "17562297010d1c3fd3",
+    "text_testimonials_dWLiEi",
+    "image_image_with_text_block_cgXUKa",
+    "text_text_adverts_wBGDwX",
+    "newsletter_newsletter_WteCNE"
+  ]
+}

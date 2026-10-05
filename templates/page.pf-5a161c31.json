@@ -1,0 +1,62 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "text_rich_text_6h6GTy": {
+      "type": "text--rich-text",
+      "disabled": true,
+      "custom_css": [
+        "h2 {margin-bottom: -92px;}"
+      ],
+      "name": "Rich text",
+      "settings": {
+        "width": "medium",
+        "subheading": "",
+        "title": "Malley's Loyalty Program",
+        "text": "",
+        "button_link": "",
+        "button_label": ""
+      }
+    },
+    "pf-5a161c31": {
+      "type": "pf-5a161c31",
+      "custom_css": [
+        ".pageflysec {margin-top: -90px;}",
+        ".img3 {margin-bottom: -10px; margin-top: 10px;}"
+      ],
+      "settings": {}
+    },
+    "176305380534e70282": {
+      "type": "apps",
+      "blocks": {
+        "powerful_form_builder_app_block_bWdrLz": {
+          "type": "shopify://apps/powerful-form-builder/blocks/app-block/e4bcb1eb-35b2-42e6-bc37-bfe0e1542c9d",
+          "settings": {
+            "shortcode": "<div class=\"globo-formbuilder\" data-id=\"MTE4OTkw\"></div>"
+          }
+        }
+      },
+      "block_order": [
+        "powerful_form_builder_app_block_bWdrLz"
+      ],
+      "custom_css": [
+        "h3 {margin-top: -62px;}"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "text_rich_text_6h6GTy",
+    "pf-5a161c31",
+    "176305380534e70282"
+  ]
+}

@@ -1,0 +1,85 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "pf-1bc2d969": {
+      "type": "pf-1bc2d969",
+      "settings": {
+        "pf_02f404f9_code": "<h2 class=\"loyaltyheader\"> Welcome to the CHOC Club</h2>\r\n\r\n<h3 class=\"loyaltyh3\"> Join our new in-store loyalty program today!</h3>\r\n\r\n<p><strong>What is CHOC?</strong> The easy answer: If you know you know.</p>\r\n\r\n<p><em>(In case you don’t know, we’ll let you in on the secret!)</em></p>\r\n\r\n<p>CHOC is short for chocolate. More specifically, Malley’s Chocolate—Northeast Ohio’s favorite chocolate.</p>\r\n\r\n<p>After years of distributing CHOC bumper stickers, we wanted to take our CHOC Club to the next level. That’s why we’ve\r\n  decided to use the name for our new loyalty program. Don’t worry, our bumper stickers aren’t going anywhere.</p>\r\n\r\n<p>Now you can join our CHOC Club in-store loyalty program. Every purchase gets you closer to a discount on your\r\n  favorite Malley’s confections.</p>",
+        "pf_d3e8c115_value": "How it Works",
+        "pf_565d511a_alt": "loyalty program steps",
+        "pf_7a272adc_value": "The Chocolatiers",
+        "pf_3693d1d0_alt": "loyalty program perks",
+        "pf_cb448e66_code": "<h4 style=\"text-align: center;\">Join the CHOC Club or Check Your Account Status</h4>\r\n<p style=\"text-align: center;\">\r\n  Start earning points, track your purchases and more.\r\n</p>\r\n<p style=\"text-align: center;\"><a href='https://app.squareup.com/loyalty/MLMCWVQ3TYRRR\"' class=\"btn\" target=\"_blank\">Create or Access Your\r\n    CHOC Club Account</a></p>",
+        "pf_83b42592_code": "<h3 style=\"text-align: center;\">Loyalty Program FAQs</h3>",
+        "pf_28d7afa9_label": "How do I make sure that I got my loyalty points?",
+        "pf_b15e4cc5_expandText": "View more",
+        "pf_b15e4cc5_collapseText": "View less",
+        "pf_7cc1d132_value": "You can check your <a href=\"https://profile.squareup.com/signin?variant=LOYALTY\" target=\"_self\">account activity and point status</a> at any time online.",
+        "pf_b8056087_label": "Can I use my loyalty rewards on an online purchase?",
+        "pf_27b5c3f4_expandText": "View more",
+        "pf_27b5c3f4_collapseText": "View less",
+        "pf_c1a8fcf6_value": "No, currently earning CHOC Club loyalty points and redeeming CHOC Club loyalty rewards is only available in Malley’s retail stores. You <strong>cannot</strong> earn or redeem points online at <a href=\"https://www.malleys.com\" target=\"_self\">www.malleys.com</a>, on fundraising purchases, in conjunction with bulk discounts, or while shopping with wholesale partners.",
+        "pf_21d7b4d9_label": "Can I use my loyalty rewards with other promotions?",
+        "pf_acb31123_expandText": "View more",
+        "pf_acb31123_collapseText": "View less",
+        "pf_e7a9fce8_value": "Yes! You can redeem a CHOC Club reward in conjunction with other promotions, unless otherwise stated in the fine print of the promotion.",
+        "pf_6cfce636_label": "Can I transfer my loyalty points to someone else?",
+        "pf_8301802f_expandText": "View more",
+        "pf_8301802f_collapseText": "View less",
+        "pf_ba5bd9e0_value": "No, CHOC Club points or rewards cannot be transferred.",
+        "pf_76b833d9_label": "How long before my loyalty points expire?",
+        "pf_16c86139_expandText": "View more",
+        "pf_16c86139_collapseText": "View less",
+        "pf_0dd5edaa_value": "Unused points expire 12 months after being credited to a member’s account.",
+        "pf_9c13f8ea_label": "How old do I have to be to participate in the loyalty program?",
+        "pf_551cb61d_expandText": "View more",
+        "pf_551cb61d_collapseText": "View less",
+        "pf_2d70ba04_value": "Participants must be at least 18 years of age to participate in the CHOC Club Loyalty Program.",
+        "pf_a8095154_label": "Can I opt out of text messages?",
+        "pf_8c3568e2_expandText": "View more",
+        "pf_8c3568e2_collapseText": "View less",
+        "pf_c21c6ec4_value": "Yes, a loyalty member can opt out of text messages by texting “STOP” at any time. The loyalty member will not receive rewards via text, but the rewards will be available to a\n\nmember when a member shops. In addition, any communication that may be delivered via text will not be sent to a member who has opted out.",
+        "pf_75d3af1f_label": "How do I know whether I have a reward waiting?&nbsp; How do I check my point status?",
+        "pf_8514d493_expandText": "View more",
+        "pf_8514d493_collapseText": "View less",
+        "pf_08093107_value": "You can check your <a href=\"https://profile.squareup.com/signin?variant=LOYALTY\" target=\"_self\">reward and point status</a> at any time online.",
+        "pf_e98aed75_label": "Will I get a physical reward certificate after getting 200 points?",
+        "pf_0df6932f_expandText": "View more",
+        "pf_0df6932f_collapseText": "View less",
+        "pf_60e89260_value": "No, rewards will be delivered by SMS message and can be accessed along with a member’s <a href=\"https://profile.squareup.com/signin?variant=LOYALTY\" target=\"_self\">account activity and point status</a> at any time online. There are two exceptions to this:<br>\n<br>(1) if an associate manually enters missed points. The points/reward will appear as earned in the member’s profile, but the automated text will not come.<br><br>(2) if the loyalty member has opted out of receiving text messages.<br><br>In either of these cases, the rewards will still be available the next time the loyalty member goes to make a purchase."
+      }
+    },
+    "177989204206146018": {
+      "type": "apps",
+      "blocks": {
+        "powerful_form_builder_app_block_KDj9gh": {
+          "type": "shopify://apps/powerful-form-builder/blocks/app-block/e4bcb1eb-35b2-42e6-bc37-bfe0e1542c9d",
+          "settings": {
+            "shortcode": "<div class=\"globo-formbuilder\" data-id=\"MTE4OTkw\"></div>"
+          }
+        }
+      },
+      "block_order": [
+        "powerful_form_builder_app_block_KDj9gh"
+      ],
+      "custom_css": [
+        "h3 {margin-top: -62px;}"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "pf-1bc2d969",
+    "177989204206146018"
+  ]
+}

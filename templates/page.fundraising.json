@@ -1,0 +1,48 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "template--page-fundraising",
+      "settings": {
+        "show_contact_form": false
+      }
+    },
+    "1694760649670a134e": {
+      "type": "apps",
+      "blocks": {
+        "680fc324-58a8-4a55-a6cd-fe4db5bc5a33": {
+          "type": "shopify://apps/powerful-form-builder/blocks/app-block/e4bcb1eb-35b2-42e6-bc37-bfe0e1542c9d",
+          "settings": {
+            "shortcode": "<div class=\"globo-formbuilder\" data-id=\"MTQ2NzA\"></div>"
+          }
+        }
+      },
+      "block_order": [
+        "680fc324-58a8-4a55-a6cd-fe4db5bc5a33"
+      ],
+      "custom_css": [
+        "button {font-weight: 900; text-transform: uppercase; line-height: 1.5; font-size: 16px; letter-spacing: 2px; font-family: \"omnes-variable\", sans-serif; padding: 12px 30px;}",
+        "h3 {font-family: \"corsario-variable\", sans-serif; color: #4d301f;}",
+        ".globo-description {color: #4d301f; font-family: \"omnes-variable\", sans-serif; font-size: 18px;}",
+        ".globo-form-control {--gfb-color-textColor: #4d301f;}",
+        ".material_filled-input {margin-top: 12px;}",
+        "*:focus-visible {outline: 0px !important;}"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1694760649670a134e"
+  ]
+}

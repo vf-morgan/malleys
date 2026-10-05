@@ -1,0 +1,213 @@
+{{ 'section-menu-list.min.css' | asset_url | stylesheet_tag }}
+
+{% assign menu_list_item_width = "" %}
+
+{% case section.blocks.size %}
+{% when 1 %}
+	{% assign menu_list_item_width = "col-lg-4 col-sm-12" %}
+{% when 2 %}
+	{% assign menu_list_item_width = "col-lg-6 col-sm-12" %}
+{% when 3 %}
+	{% assign menu_list_item_width = "col-lg-4 col-sm-12" %}
+{% when 4 %}
+  {% assign menu_list_item_width = "col-lg-6 col-sm-12" %}
+{% when 5 %}
+  {% assign menu_list_item_width = "col-lg-4 col-sm-12" %}
+{% when 6 %}
+  {% assign menu_list_item_width = "col-lg-4 col-sm-12" %}
+{% endcase %}
+
+<section class="homepage-sections-wrapper">
+  <div class="container">
+    {% if section.settings.subheading != blank or section.settings.title != blank %}
+      <div class="row">
+        <div class="col-md-12">
+          <div class="title-bar custom-font">
+            {% if section.settings.subheading != blank %}
+              <h3 class="type-subheading type-subheading--1 wow typography--padding-bottom">{{ section.settings.subheading | escape }}</h3>
+            {% endif %}
+            {% if section.settings.title != blank %}
+              <h2 class="wow">{{ section.settings.title | escape }}</h2>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="row menu-list__container{% case section.blocks.size %}{% when 1 %} menu-list-item--centered{% endcase %}">
+      
+    {% for block in section.blocks %}
+      <div class="menu-list__content
+      {% if section.blocks.size > 3 %}{% cycle '','','', ' remove-border--top add-border--left', ' remove-border--top', ' remove-border--top' %}{% endif %}
+      {% if section.blocks.size == 4 %}{% cycle '','',' remove-border--top add-border--left', ' remove-border--top remove-border--left' %}{% endif %}
+      {% if section.blocks.size == 5 %}{% cycle 'col-lg-4 col-sm-12', 'col-lg-4 col-sm-12', 'col-lg-4 col-sm-12', 'col-lg-6 col-sm-12', 'col-lg-6 col-sm-12' %}{% else %}{{ menu_list_item_width }}{% endif %}" {{ block.shopify_attributes }}>
+
+        <div class="menu-list__item">
+          {% if block.settings.image != blank and section.settings.enable_image %}
+            {% render 'responsive-image' with block.settings.image, alt: block.settings.image.alt, class: 'menu-list__image', default_size: '240x' %}
+          {% elsif block.settings.image == blank and section.settings.enable_image %}
+            {{ 'image' | placeholder_svg_tag: 'icon--placeholder' }}
+          {% endif %}
+
+          {%- assign menu_list_linklist = block.settings.menu_list_linklist -%}
+
+          {% if linklists[menu_list_linklist].links.size > 0 %}
+            <nav {% unless section.settings.enable_image %}class="no--image"{% endunless %}>
+              <h3 class="type-subheading--1 menu-list--subheading">{{ linklists[menu_list_linklist].title }}</h3>
+              <ul>
+                {% for link in linklists[menu_list_linklist].links %}
+                  <li {% if link.object.tags and link.object.tags.size > 0 %} class="children"{% endif %}>
+                    <a href="{{link.url}}">{{link.title}}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </nav>
+          {% else %}
+          <!-- Show a dummy navigation until the merchant chooses a nav to show -->
+            <nav {% unless section.settings.enable_image %}class="no--image"{% endunless %}>
+              <h3 class="type-subheading--1 menu-list--subheading">Menu List</h3>
+              <ul>
+                {% for i in (1..5) %}
+                <li>
+                  <a href="#">Link</a>
+                </li>
+                {% endfor %}
+              </ul>
+            </nav>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+     
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+    "name": {
+        "en": "Menu List",
+        "de": "Menüliste",
+        "es": "Lista de Menú",
+        "fr": "Liste des menus",
+        "pt-PT": "Lista de menu"
+    },
+    "class": "homepage-section--menu-list",
+    "max_blocks": 6,
+    "settings": [
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": {
+            "en": "Subheading",
+            "de": "Unterüberschrift",
+            "es": "Subencabezado",
+            "fr": "Sous-rubrique",
+            "pt-PT": "Subtítulo"
+          }
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": {
+              "en": "Heading",
+              "de": "Überschrift",
+              "es": "Encabezado",
+              "fr": "Rubrique",
+              "pt-PT": "Título"
+          },
+          "default": {
+            "en": "Menu list",
+            "de": "Menüliste",
+            "es": "Lista de Menú",
+            "fr": "Liste des menus",
+            "pt-PT": "Lista de menu"
+          }
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_image",
+          "label": {
+            "en": "Show images",
+            "de": "Bilder anzeigen",
+            "es": "Mostrar imágenes",
+            "fr": "Afficher les images",
+            "pt-PT": "Mostrar imagens"
+          },
+          "default": true
+        }
+    ],
+    "blocks": [
+      {
+        "type": "menu",
+        "name": {
+            "en": "Menu",
+            "de": "Menü",
+            "es": "Menú",
+            "fr": "Menu",
+            "pt-PT": "Menu"
+        },
+        "settings": [
+          {
+            "type": "link_list",
+            "id": "menu_list_linklist",
+            "label": {
+                "en": "Menu",
+                "de": "Menü",
+                "es": "Menú",
+                "fr": "Menu",
+                "pt-PT": "Menu"
+            }
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": {
+              "en": "Image",
+              "de": "Bild",
+              "es": "Imagen",
+              "fr": "Image",
+              "pt-PT": "Imagem"
+            },
+            "info": {
+              "en": "300 x 300px recommended",
+              "de": "300 x 300px empfohlen",
+              "es": "Recomendado 300 x 300px",
+              "fr": "300 x 300px recommandé",
+              "pt-PT": "300 x 300px, recomendado"
+            }
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": {
+            "en": "Menu list",
+            "de": "Menüliste",
+            "es": "Lista de Menú",
+            "fr": "Liste des menus",
+            "pt-PT": "Lista de menu"
+        },
+        "category": {
+          "en": "Text",
+          "de": "Text",
+          "es": "Texto",
+          "fr": "Texte",
+          "pt-PT": "Texto"
+        },
+        "blocks": [
+          {
+            "type": "menu"
+          },
+          {
+            "type": "menu"
+          },
+          {
+            "type": "menu"
+          }
+        ]
+      }
+    ]
+}
+{% endschema %}

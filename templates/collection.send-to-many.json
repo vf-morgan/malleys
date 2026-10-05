@@ -1,0 +1,184 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "wrapper": "div.collection-wrapper",
+  "sections": {
+    "collection_header": {
+      "type": "template--collection-header",
+      "blocks": {
+        "collection_title": {
+          "type": "collection-title",
+          "settings": {}
+        },
+        "collection_description": {
+          "type": "collection-description",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "collection_title",
+        "collection_description"
+      ],
+      "disabled": true,
+      "settings": {
+        "collection_image_enable": false
+      }
+    },
+    "product_filtering": {
+      "type": "main-collection-filtering",
+      "disabled": true,
+      "settings": {
+        "desktop_position": "topbar",
+        "enable_filtering": true,
+        "enable_sorting": true
+      }
+    },
+    "main": {
+      "type": "template--collection",
+      "blocks": {
+        "product_title": {
+          "type": "product-card-title",
+          "settings": {}
+        },
+        "product_price": {
+          "type": "product-card-price",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "product_title",
+        "product_price"
+      ],
+      "disabled": true,
+      "settings": {
+        "grid": 3,
+        "grid_mobile": "per_row_two",
+        "rows": 6,
+        "pagination_type": "load_more"
+      }
+    },
+    "newsletter_newsletter_kBJaUz": {
+      "type": "newsletter--newsletter",
+      "disabled": true,
+      "settings": {
+        "subheading": "Stay up-to-date",
+        "title": "Join our mailing list",
+        "newsletter_description": "<p><strong>You Can Also</strong> <a href=\"/pages/text-message-signup\" title=\"Text Message Signup\"><strong>Sign Up for Tasty Text Message Alerts!</strong></a></p>"
+      }
+    },
+    "custom_liquid_4bA6cB": {
+      "type": "custom-liquid",
+      "custom_css": [
+        ".mr-checkout-image-row img {width: 100%; height: 190px; object-fit: cover;}"
+      ],
+      "name": "Custom Liquid",
+      "settings": {
+        "custom_liquid": "<style>\n  .mr-checkout-section {\n    width: 100%;\n    background: #ffffff;\n    color: var(--malleys-brown, #4d301f);\n  }\n\n  .mr-checkout-inner {\n    max-width: 1100px;\n    margin: 0 auto;\n    padding: 12px 24px 0px;\n  }\n\n  .mr-checkout-header {\n    text-align: center;\n    max-width: 680px;\n    margin: 0 auto 18px;\n  }\n\n  .mr-checkout-header h2 {\n    margin: 0 0 8px;\n    font-size: 40px;\n    line-height: 1.08;\n    font-weight: 900;\n    color: var(--malleys-brown, #4d301f);\n  }\n\n  .mr-checkout-header p {\n    margin: 0;\n    font-size: 16px;\n    line-height: 1.55;\n    color: #5f514b;\n  }\n\n  .mr-checkout-content {\n    display: grid;\n    grid-template-columns: 0.9fr 1.1fr;\n    gap: 36px;\n    align-items: center;\n  }\n\n  .mr-checkout-copy {\n    color: var(--malleys-brown, #4d301f);\n  }\n\n  .mr-checkout-copy h3 {\n    margin: 0 0 12px;\n    font-size: 26px;\n    line-height: 1.2;\n    font-weight: 900;\n    color: var(--malleys-brown, #4d301f);\n  }\n\n  .mr-checkout-copy ol {\n    margin: 0 0 18px;\n    padding-left: 20px;\n  }\n\n  .mr-checkout-copy li {\n    margin-bottom: 8px;\n    font-size: 15px;\n    line-height: 1.55;\n    color: #4d301f;\n  }\n\n  .mr-checkout-button {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    background: var(--malleys-pink, #f7a5c3);\n    color: var(--malleys-brown, #4d301f);\n    text-decoration: none;\n    border-radius: 8px;\n    padding: 14px 28px;\n    font-size: 13px;\n    font-weight: 900;\n    line-height: 1;\n    letter-spacing: 1.2px;\n    text-transform: uppercase;\n    box-shadow: 0 8px 18px rgba(77, 48, 31, 0.08);\n    transition: opacity 0.2s ease, transform 0.2s ease;\n  }\n\n  .mr-checkout-button:hover {\n    opacity: 0.92;\n    transform: translateY(-1px);\n  }\n\n  .mr-checkout-feature-image img {\n    width: 100%;\n    height: 360px;\n    object-fit: cover;\n    display: block;\n    border-radius: 10px;\n  }\n\n  @media screen and (max-width: 749px) {\n    .mr-checkout-inner {\n      padding: 14px 18px 0px;\n    }\n\n    .mr-checkout-header {\n      margin-bottom: 18px;\n    }\n\n    .mr-checkout-header h2 {\n      font-size: 38px;\n      line-height: 1.05;\n    }\n\n    .mr-checkout-header p {\n      font-size: 16px;\n      max-width: 340px;\n      margin: 0 auto;\n    }\n\n    .mr-checkout-content {\n      grid-template-columns: 1fr;\n      gap: 24px;\n    }\n\n    .mr-checkout-feature-image {\n      order: -1;\n    }\n\n    .mr-checkout-feature-image img {\n      height: 280px;\n      border-radius: 8px;\n    }\n\n    .mr-checkout-copy h3 {\n      font-size: 24px;\n    }\n\n    .mr-checkout-copy li {\n      font-size: 14px;\n    }\n\n    .mr-checkout-button {\n      width: 100%;\n      padding: 15px 20px;\n    }\n  }\n</style>\n\n<section class=\"mr-checkout-section\">\n  <div class=\"mr-checkout-inner\">\n    <div class=\"mr-checkout-header\">\n      <h2>Multi-Recipient Checkout</h2>\n      <p>Need to ship to multiple people? Add their details below and we’ll take care of it.</p>\n    </div>\n\n    <div class=\"mr-checkout-content\">\n      <div class=\"mr-checkout-copy\">\n        <h3>How It Works</h3>\n\n        <ol>\n          <li>Browse the featured gifts for popular options.</li>\n          <li>Add each recipient and select their gift from the available products.</li>\n          <li>Enter shipping details, gift message, and any special instructions.</li>\n          <li>Continue to checkout. We’ll split the order and ship each gift to the right person.</li>\n        </ol>\n\n        <a class=\"mr-checkout-button\" href=\"https://malleys.com/apps/send-to-many/proxy/checkout-upload-template\" download>\n          Download CSV Template\n        </a>\n      </div>\n\n      <div class=\"mr-checkout-feature-image\">\n        <img src=\"https://cdn.shopify.com/s/files/1/0627/8476/6124/files/MalleysCatalog_FestivalResize.jpg?v=1731445794\" alt=\"Gift box being held\">\n      </div>\n    </div>\n  </div>\n</section>"
+      }
+    },
+    "1777997550d255a1f6": {
+      "type": "apps",
+      "blocks": {
+        "send_to_many_multi_recipient_cart_rmAEU9": {
+          "type": "shopify://apps/send-to-many/blocks/multi_recipient_cart/d5a35104-aaae-4335-95ac-fd3de2e3ca03",
+          "settings": {
+            "metaobject_settings": "",
+            "recommended_products_collection": "",
+            "show_product_description": false,
+            "page_width": "100%",
+            "layout_sidebar_width": 32,
+            "layout_column_gap": 24,
+            "sticky_sidebar_top": 24,
+            "block_padding": 20,
+            "bg_color": "#ffffff",
+            "header_text_color": "#363636",
+            "text_color": "#727272",
+            "accent_color": "#724dff",
+            "error_color": "#c10007",
+            "card_border_color": "#e5e7eb",
+            "heading_font_size": 22,
+            "input_font_size": 14,
+            "card_border_radius": 20,
+            "card_padding": 20,
+            "card_product_image_height": 120,
+            "input_border_radius": 5,
+            "button_border_radius": 5,
+            "button_secondary_bg_color": "#1e1e1e",
+            "button_secondary_text_color": "#ffffff",
+            "custom_liquid": ""
+          }
+        },
+        "send_to_many_multi_recipient_checkout_PA9t8k": {
+          "type": "shopify://apps/send-to-many/blocks/multi_recipient_checkout/d5a35104-aaae-4335-95ac-fd3de2e3ca03",
+          "disabled": true,
+          "settings": {
+            "page_width": "100%",
+            "bg_color": "#ffffff",
+            "text_color": "#363636",
+            "error_text_color": "#c10007",
+            "block_padding": 20,
+            "show_product_description": true,
+            "card_border_radius": 20,
+            "card_padding": 20,
+            "card_selected_outline_color": "#2b7fff",
+            "card_border_color": "#e5e7eb",
+            "heading_font_size": 18,
+            "card_product_image_height": 120,
+            "card_product_title_font_size": 14,
+            "card_product_description_font_size": 12,
+            "label_font_size": 12,
+            "input_font_size": 14,
+            "input_border_color": "#e5e7eb",
+            "input_border_radius": 5,
+            "input_focus_border_color": "#007acc",
+            "button_font_size": 14,
+            "button_border_radius": 5,
+            "button_primary_bg_color": "#1e1e1e",
+            "button_primary_text_color": "#ffffff",
+            "button_secondary_bg_color": "#ffffff",
+            "button_secondary_text_color": "#1e1e1e"
+          }
+        }
+      },
+      "block_order": [
+        "send_to_many_multi_recipient_cart_rmAEU9",
+        "send_to_many_multi_recipient_checkout_PA9t8k"
+      ],
+      "custom_css": [
+        ".s2m-mc-layout {display: grid !important; grid-template: 1fr/1fr !important;}",
+        ".s2m-mc-layout__aside {grid-column: 1/-1 !important;}",
+        ".s2m-mc-card,.s2m-mc-layout__aside {width: 100% !important; max-width: none !important;}",
+        ".s2m-mc-product-grid {--c: 2; display: grid !important; grid-template-columns: repeat(var(--c), 1fr) !important;}",
+        ".s2m-mc-product-card:nth-child(n + 5) {display: none !important;}",
+        ".s2m-mc-product-card a {pointer-events: none !important;}",
+        "@media (min-width: 990px) {.s2m-mc-product-grid {--c: 4; }}"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "custom_liquid_Xm9Vfk": {
+      "type": "custom-liquid",
+      "name": "Custom Liquid",
+      "settings": {
+        "custom_liquid": "<style>\n  .shopify-section:has(.mr-concierge-section),\n  .mr-concierge-section {\n    grid-column: 1 / -1 !important;\n    flex: 0 0 100% !important;\n    width: 100% !important;\n    max-width: 100% !important;\n    clear: both !important;\n    display: block !important;\n  }\n\n  .mr-concierge-section {\n    background: #ffffff;\n    color: var(--malleys-brown, #4d301f);\n  }\n\n  .mr-concierge-inner {\n    max-width: 900px;\n    margin: 0 auto;\n    padding: 18px 24px 34px;\n    text-align: center;\n  }\n\n  .mr-concierge-inner h2 {\n    margin: 0 0 10px;\n    font-size: 34px;\n    line-height: 1.1;\n    font-weight: 900;\n    color: var(--malleys-brown, #4d301f);\n  }\n\n  .mr-concierge-inner p {\n    max-width: 640px;\n    margin: 0 auto 20px;\n    font-size: 16px;\n    line-height: 1.55;\n    color: #5f514b;\n  }\n\n  @media screen and (max-width: 749px) {\n    .mr-concierge-inner {\n      padding: 14px 18px 28px;\n    }\n\n    .mr-concierge-inner h2 {\n      font-size: 30px;\n    }\n  }\n</style>\n\n<section class=\"mr-concierge-section\">\n  <div class=\"mr-concierge-inner\">\n    <h2>Have More Than 50 Recipients?</h2>\n    <p>Head over to our concierge form and we’ll create the order for you.</p>\n\n    <a class=\"btn\" href=\"https://malleys.com/pages/corporate-gifting-order-form-1\">\n      Start Concierge Order\n    </a>\n  </div>\n</section>"
+      }
+    }
+  },
+  "order": [
+    "collection_header",
+    "product_filtering",
+    "main",
+    "newsletter_newsletter_kBJaUz",
+    "custom_liquid_4bA6cB",
+    "1777997550d255a1f6",
+    "custom_liquid_Xm9Vfk"
+  ]
+}

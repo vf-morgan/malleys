@@ -1,0 +1,183 @@
+<div class="container--product-page">
+  <div class="col-md-12" data-details-col>
+    <details class="product-description-wrapper mt-3" {% if section.settings.content_display != "collapse_all" %} open{% endif %}>
+      <summary class="description-block__header accordion__header" role="button" aria-expanded="{% if section.settings.content_display != "collapse_all" %}true{% else %}false{% endif %}" tabindex="0">
+        <h2>{{ 'products.product.description_title' | t }}</h2>
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </summary>
+
+      <div class="description-block__content">
+        {% if section.settings.show_tags and product.tags != blank %}
+          <div class="product__tags">
+            <span class="description--title">{{ 'blogs.article.tags' | t }}:</span>
+            {% for tag in product.tags %}
+            <span>{{ tag }}</span>{% unless forloop.last %}, {% endunless %}
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        {% if section.settings.show_collections and product.collections != blank %}
+          <div class="product__collections">
+            <span class="description--title">{{ 'general.search.collections' | t }}:</span>
+            {% for collection in product.collections %}
+              {{ collection.title }}{% unless forloop.last %}, {% endunless %}
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        {% if section.settings.show_type and product.type != blank %}
+          <div class="product__type">
+            <span class="description--title">{{ 'products.product.product_type_title' | t }}:</span>
+            <span>{{ product.type }}</span>
+          </div>
+        {% endif %}
+
+        {{ product.description }}
+      </div>
+    </details>
+
+    {% for block in section.blocks %}
+      {%- assign current_page = pages[block.settings.pages] -%}
+
+      {% if block.settings.pages != blank %}
+        <details class="product-description-wrapper" data-block-id="{{ block.id }}" {% if section.settings.content_display == "expand_all" %} open{% endif %} {{ block.shopify_attributes }}>
+          <summary class="description-block__header accordion__header" role="button" aria-expanded="{% if section.settings.content_display == "expand_all" %}true{% else %}false{% endif %}" tabindex="0">
+            <h2>{{ current_page.title }}</h2>
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+
+          <div class="description-block__content">
+            {{ current_page.content }}
+          </div>
+        </details>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": {
+      "en": "Product description"
+    },
+    "settings": [
+      {
+        "type": "select",
+        "id": "content_display",
+        "label": {
+          "en": "Display",
+          "de": "Anzeige",
+          "es": "Mostrar",
+          "fr": "Affichage",
+          "pt-PT": "Mostrar"
+        },
+        "options": [
+            {
+              "value": "expand_all",
+              "label": {
+                "en": "Expand all",
+                "de": "Erweitern Sie alle",
+                "es": "Expandir todo",
+                "fr": "Développer tout",
+                "pt-PT": "Expandir tudo"
+              }
+            },
+            {
+              "value": "collapse_except_description",
+              "label": {
+                "en": "Collapse all except description",
+                "de": "Zusammenbruch aller außer Beschreibung",
+                "es": "Contraer todo excepto la descripción",
+                "fr": "Tout réduire sauf la description",
+                "pt-PT": "Recolher tudo exceto a descrição"
+              }
+            },
+            {
+              "value": "collapse_all",
+              "label": {
+                "en": "Collapse all",
+                "de": "Zusammenbruch aller",
+                "es": "Contraer todo",
+                "fr": "Tout réduire",
+                "pt-PT": "Recolher tudo"
+              }
+            }
+        ],
+        "default": "collapse_except_description"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_tags",
+        "label": {
+          "en": "Show tags",
+          "de": "Tags anzeigen",
+          "es": "Mostrar etiquetas",
+          "fr": "Afficher les étiquettes",
+          "pt-PT": "Mostrar etiquetas"
+        },
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_collections",
+        "label": {
+          "en": "Show collections",
+          "de": "Kollektionen anzeigen",
+          "es": "Mostrar colecciones",
+          "fr": "Afficher les collections",
+          "pt-PT": "Mostrar coleções"
+        },
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_type",
+        "label": {
+          "en": "Show type",
+          "de": "Typ anzeigen",
+          "es": "Mostrar tipo",
+          "fr": "Type d'affichage",
+          "pt-PT": "Mostrar tipo"
+        },
+        "default": true
+      }
+    ],
+    "blocks": [
+      {
+        "type": "custom_pages",
+        "name": {
+          "en": "Page",
+          "de": "Seite",
+          "es": "Página",
+          "fr": "Page",
+          "pt-PT": "Página"
+        },
+        "limit": 3,
+        "settings": [
+          {
+            "type": "page",
+            "id": "pages",
+            "label": {
+              "en": "Choose a page to add below the product description",
+              "de": "Wählen Sie eine Seite, die Sie unterhalb der Produktbeschreibung hinzufügen",
+              "es": "Escoge una página para añadir debajo de la descripción del producto",
+              "fr": "Choisissez une page à ajouter sous la description du produit",
+              "pt-PT": "Escolher uma página para adicionar abaixo da descrição do produto"
+            }
+          }
+        ]
+      }
+    ],
+    "templates": ["product"],
+    "presets": [
+      {
+        "name": {
+            "en": "Product description"
+        },
+        "category": {
+            "en": "Product"
+        }
+      }
+    ]
+  }
+{% endschema %}

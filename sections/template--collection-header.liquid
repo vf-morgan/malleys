@@ -1,0 +1,115 @@
+{% if section.settings.collection_image_enable and collection.image %}
+	<style>
+        {% capture selector %}.collection-image-wrapper.img{% endcapture %}
+        {% render 'responsive-background-image--no-formatting' with collection.image, selector: selector %}
+
+        #main-navigation-wrapper {
+            margin-bottom: 0px;
+        }
+
+        .collection-image-wrapper {
+            color: {{ settings.color_image_overlay_text }};
+        }
+	</style>
+
+    <div class="collection-image-wrapper img">
+        {% if section.blocks.size > 0 %}
+            <div class="collection-image__overlay"></div>
+            <div id="collections-main" class="{{ collection.handle }} collection-header">
+                {% for block in section.blocks %}
+                    {% case block.type %}
+                        {% when 'collection-title' %}
+                            <div class="collection-header__inner" {{ block.shopify_attributes }}>
+                                {% if collection.handle == 'all' %}
+                                    <h2 class="collection-header__title">{{ 'products.general.products_title' | t }}</h2>
+                                {% else %}
+                                    <h2 class="collection-header__title">{{ collection.title }}</h2>
+                                {% endif %}
+                            </div>
+
+                        {% when 'collection-description' %}
+            
+                            {% if collection.description != empty %}
+                                <div class="collection-header__description" {{ block.shopify_attributes }}>{{ collection.description }}</div>
+                            {% endif %}
+                    {% endcase %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% else %}
+
+    <div id="collections-main" class="{{ collection.handle }} collection-header">
+        {% for block in section.blocks %}
+            {% case block.type %}
+                {% when 'collection-title' %}
+
+                    <div class="collection-header__inner" {{ block.shopify_attributes }}>
+                        {% if collection.handle == 'all' %}
+                            <h2 class="collection-header__title">{{ 'products.general.products_title' | t }}</h2>
+                        {% else %}
+                            <h2 class="collection-header__title">{{ collection.title }}</h2>
+                        {% endif %}
+                    </div>
+
+                {% when 'collection-description' %}
+
+                    {% if collection.description != empty %}
+                        <div class="collection-header__description" {{ block.shopify_attributes }}>{{ collection.description }}</div>
+                    {% endif %}
+            {% endcase %}
+        {% endfor %}
+    </div>
+
+{% endif %}
+
+{% schema %}
+{
+    "name": {
+        "en": "Collection header",
+        "de": "Kollektionskopfzeile",
+        "es": "Encabezado de colección",
+        "fr": "En-tête de collection",
+        "pt-PT": "Cabeçalho da coleção"
+    },
+    "class": "template--collection_header",
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "collection_image_enable",
+            "label": {
+                "en": "Show collection image",
+                "de": "Kollektionsbild anzeigen",
+                "es": "Mostar la imagen de la colección",
+                "fr": "Afficher l'image de la collection",
+                "pt-PT": "Mostrar imagem da coleção"
+            },
+            "default": true
+        }
+    ],
+    "blocks": [
+        {
+            "name": "Collection title",
+            "type": "collection-title",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "paragraph",
+                    "content": "This block controls the position of the collection title."
+                }
+            ]
+        },
+        {
+            "name": "Collection description",
+            "type": "collection-description",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "paragraph",
+                    "content": "This block controls the position of the collection description."
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

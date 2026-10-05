@@ -1,0 +1,90 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "template--page",
+      "disabled": true,
+      "settings": {}
+    },
+    "1770306830879ad4fa": {
+      "type": "apps",
+      "blocks": {
+        "send_to_many_import_form_CpXVV4": {
+          "type": "shopify://apps/send-to-many/blocks/import_form/d5a35104-aaae-4335-95ac-fd3de2e3ca03",
+          "settings": {
+            "form_width": 800,
+            "bg_color": "#ffffff",
+            "text_color": "#4d301f",
+            "error_text_color": "#ff0000",
+            "title_text_alignment": "left",
+            "form_block_padding": 20,
+            "form_inline_padding": 20,
+            "label_font_size": 14,
+            "input_font_size": 14,
+            "input_border_color": "#000000",
+            "input_border_width": 1,
+            "input_border_radius": 5,
+            "input_bg_color": "#ffffff",
+            "input_text_color": "#000000",
+            "input_focus_border_color": "#000000",
+            "input_focus_bg_color": "#ffffff",
+            "submit_button_font_size": 16,
+            "submit_button_border_radius": 25,
+            "submit_button_inline_padding": 30,
+            "submit_button_block_padding": 15,
+            "submit_button_layout": "flex-end",
+            "submit_button_bg_color": "#ffadc7",
+            "submit_button_text_color": "#4d301f",
+            "submit_button_hover_bg_color": "#ffd5e2",
+            "submit_button_hover_text_color": "#4d301f"
+          }
+        }
+      },
+      "block_order": [
+        "send_to_many_import_form_CpXVV4"
+      ],
+      "custom_css": [
+        "a {color: #e34a8a; font-size: 16px;}",
+        "button {font-weight: bold;}",
+        "p {font-family: var(--body-font-stack); font-variation-settings: \"wght\" 500, \"wdth\" 53;}",
+        "h2 {display: block; font-family: var(--header-font-stack); font-weight: var(--header-font-weight); font-style: var(--header-font-style); text-transform: var(--header-font-transform); letter-spacing: var(--header-letter-spacing);}"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "newsletter_newsletter_iVWeCR": {
+      "type": "newsletter--newsletter",
+      "disabled": true,
+      "settings": {
+        "subheading": "Stay up-to-date",
+        "title": "Join our mailing list",
+        "newsletter_description": "<p><strong>You Can Also</strong> <a href=\"/pages/text-message-signup\" title=\"Text Message Signup\"><strong>Sign Up for Tasty Text Message Alerts!</strong></a></p>"
+      }
+    },
+    "custom_liquid_6dBddm": {
+      "type": "custom-liquid",
+      "custom_css": [
+        "div {margin-top: -46px; margin-bottom: -32px;}"
+      ],
+      "name": "Custom Liquid",
+      "settings": {
+        "custom_liquid": "<div id=\"shopify-section-template--17316741939372__advanced_layout_custom_html_aXeVM6\" class=\"shopify-section homepage-section--html-wrapper wow animated\" style=\"visibility: visible;\"><div class=\"container-fluid\">\n\t<div class=\"row justify-content-center\">\n    \n\n      \n\n      <div class=\"col-md-12\">\n          <div class=\"rte\">\n            <div class=\"container text-left py-5\">\n\t<div class=\"row g-4 py-4\">\n\t\t<div class=\"col-12 col-md-6 p-4\">\n\t\t\t<h3 class=\"mb-3\">Check out our gifting catalog.</h3>\n\t\t\t<p><a href=\"https://cdn.shopify.com/s/files/1/0627/8476/6124/files/MALLEYS_Corporate_Gifting_Catalog_2025.pdf?v=1753290847\" class=\"btn\" target=\"_blank\">Corporate gifting catalog</a></p>\n\t\t\t<h5>Contact our team with any questions.</h5>\n\t\t\t<p>Email <a href=\"mailto:Contact@Malleys.com\">Contact@Malleys.com</a> or call us at 216-226-8300.</p>\n\t\t</div>\n\t\t\n\t</div>\n</div>\n          </div>\n      </div>\n\n    \n  </div>\n</div>\n\n\n</div>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1770306830879ad4fa",
+    "newsletter_newsletter_iVWeCR",
+    "custom_liquid_6dBddm"
+  ]
+}

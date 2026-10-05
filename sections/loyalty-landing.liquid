@@ -1,0 +1,158 @@
+{% comment %}
+  Loyalty Landing – Flyer Poster Version
+  - Keeps global header/announcement
+  - Removes the extra top white gap on this page only
+  - Flyer image opens full-screen (pure CSS :target modal)
+{% endcomment %}
+
+<section class="loyalty-landing"
+  style="--c-brown:#3a240f; --c-cream:#f6e9da; --c-mint:#8fd8c6; --c-pink:#f7a6b8; --c-shadow:#241407;">
+
+  <!-- Top candy stripe -->
+  <div class="ll-stripe ll-stripe--top" aria-hidden="true"></div>
+
+  <div class="ll-container">
+
+    <!-- Poster -->
+    <figure class="ll-poster">
+      <a class="ll-zoom" href="#ll-modal" aria-label="Open flyer full screen">
+        {% if section.settings.flyer_image != blank %}
+          <img
+            src="{{ section.settings.flyer_image | image_url: width: 1200 }}"
+            srcset="{{ section.settings.flyer_image | image_url: width: 800 }} 800w,
+                    {{ section.settings.flyer_image | image_url: width: 1200 }} 1200w,
+                    {{ section.settings.flyer_image | image_url: width: 1600 }} 1600w"
+            sizes="(max-width: 768px) 92vw, 900px"
+            alt="{{ section.settings.flyer_alt | default: 'Malley’s CHOC Club Flyer' }}"
+            loading="lazy">
+        {% else %}
+          <img
+            src="https://cdn.shopify.com/s/files/1/0627/8476/6124/files/Loyalty-flyer.png?v=1762542011"
+            alt="Malley’s CHOC Club Flyer"
+            loading="lazy">
+        {% endif %}
+      </a>
+    </figure>
+
+    {% if section.settings.show_cta %}
+      <p class="ll-cta">
+        <a class="ll-btn" href="{{ section.settings.cta_url }}">{{ section.settings.cta_label }}</a>
+      </p>
+    {% endif %}
+
+    {% if section.settings.note_text != blank %}
+      <p class="ll-note">{{ section.settings.note_text }}</p>
+    {% endif %}
+  </div>
+
+  <!-- Bottom candy stripe -->
+  <div class="ll-stripe ll-stripe--bottom" aria-hidden="true"></div>
+
+  <!-- Full-screen modal (hash-based, no JS) -->
+  <div id="ll-modal" class="ll-modal" role="dialog" aria-modal="true" aria-labelledby="ll-modal-title">
+    <div class="ll-modal__dialog">
+      <a href="#" class="ll-modal__close" aria-label="Close">×</a>
+      <h3 id="ll-modal-title" class="sr-only">Flyer – Full Screen</h3>
+      {% if section.settings.flyer_image != blank %}
+        <img
+          src="{{ section.settings.flyer_image | image_url: width: 2000 }}"
+          alt="{{ section.settings.flyer_alt | default: 'Malley’s CHOC Club Flyer' }}"
+          loading="lazy">
+      {% else %}
+        <img
+          src="https://cdn.shopify.com/s/files/1/0627/8476/6124/files/Loyalty-flyer.png?v=1762542011"
+          alt="Malley’s CHOC Club Flyer"
+          loading="lazy">
+      {% endif %}
+    </div>
+  </div>
+
+  <style>
+    .loyalty-landing * { box-sizing: border-box; }
+    .loyalty-landing {
+      background: var(--c-cream);
+      color: var(--c-brown);
+      padding-bottom: 2rem;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    /* Remove ONLY the extra top white space for this page
+       Keep header & announcement bar visible */
+    #MainContent .shopify-section:has(.loyalty-landing) { padding-top: 0 !important; margin-top: 0 !important; }
+    /* Fallback for browsers without :has — only if this is the first section */
+    #MainContent .shopify-section:first-child { padding-top: 0; }
+
+    .ll-stripe {
+      height: 56px;
+      background: repeating-linear-gradient(90deg, var(--c-mint) 0 56px, var(--c-pink) 56px 112px);
+      border-top: 8px solid var(--c-brown);
+      border-bottom: 8px solid var(--c-brown);
+    }
+    .ll-stripe--top { border-top-width: 0; margin-bottom: 1.25rem; }
+    .ll-stripe--bottom { border-bottom-width: 0; margin-top: 1.25rem; }
+
+    .ll-container { width: min(1000px, 92vw); margin: 0 auto; }
+    .ll-poster {
+      width: min(900px, 92vw);
+      margin: 0 auto;
+      border-radius: 14px;
+      overflow: hidden;
+      background:#fff;
+      box-shadow: 0 12px 26px rgba(0,0,0,.12);
+    }
+    .ll-poster img { width: 100%; height: auto; display:block; }
+    .ll-zoom { display:block; }
+
+    .ll-btn {
+      display:inline-block; background: var(--c-brown); color:#fff; text-decoration:none;
+      padding:.8rem 1.4rem; border-radius:999px; font-weight:800;
+      margin-top:1rem; box-shadow:0 6px 0 var(--c-shadow); transition:.1s;
+    }
+    .ll-btn:hover { transform: translateY(-2px); box-shadow:0 8px 0 var(--c-shadow); }
+
+    .ll-note { margin-top:.8rem; font-size:.95rem; opacity:.85; }
+
+    /* Full-screen modal */
+    .ll-modal { position: fixed; inset: 0; background: rgba(0,0,0,.65); display: none; z-index: 9999; }
+    .ll-modal:target { display: block; }
+    .ll-modal__dialog {
+      box-sizing: border-box;
+      width: min(96vw, 1600px);
+      max-height: 94vh;
+      margin: 3vh auto 0;
+      background:#0000;
+      padding: 0;
+      border-radius: 12px;
+      overflow: auto;
+    }
+    .ll-modal__dialog img { display:block; width:100%; height:auto; }
+    .ll-modal__close {
+      position: absolute; top: 10px; right: 16px;
+      font-size: 2rem; text-decoration: none; color: #fff;
+      line-height: 1; padding: .25rem .5rem;
+    }
+
+    /* Accessibility helpers */
+    .sr-only { position:absolute!important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
+  </style>
+
+  {% schema %}
+  {
+    "name": "Loyalty Landing",
+    "settings": [
+      { "type": "image_picker", "id": "flyer_image", "label": "Flyer PNG" },
+      { "type": "text", "id": "flyer_alt", "label": "Flyer alt text" },
+
+      { "type": "checkbox", "id": "show_cta", "label": "Show CTA button", "default": true },
+      { "type": "text", "id": "cta_label", "label": "CTA label", "default": "Join CHOC Club" },
+      { "type": "url", "id": "cta_url", "label": "CTA link" },
+
+      { "type": "text", "id": "note_text", "label": "Note text (optional)" }
+    ],
+    "presets": [
+      { "name": "Loyalty Landing" }
+    ]
+  }
+  {% endschema %}
+</section>

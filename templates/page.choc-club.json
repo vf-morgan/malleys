@@ -1,0 +1,48 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "template--page",
+      "settings": {}
+    },
+    "1657653438c8040598": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div style='text-align: center; margin-bottom: 2rem;'><h2>Sign-up for CHOC Club</h2></div>\n\n{% form 'contact', id: 'ChocClub' %}\n  {{ form.errors | default_errors }}\n\n   <div class=\"form-row g-3\">\n      <div class=\"form-group col-6\">\n         <div class=\"first-name\">\n            <label for=\"first-name\">First Name</label>\n            <input type=\"text\" name=\"contact[first_name]\" id=\"first-name\" class=\"form-control\" placeholder=\"John\" />\n         </div>\n      </div>\n\n      <div class=\"form-group col-6\">\n         <div class=\"first-name\">\n            <label for=\"last-name\">Last Name</label>\n            <input type=\"text\" name=\"contact[last_name]\" id=\"last-name\" class=\"form-control\" placeholder=\"Doe\" />\n         </div>\n      </div>\n\n      <div class=\"form-group col-12\">\n         <div class=\"street-address\">\n            <label for=\"street-address\">Street Address</label>\n            <input type=\"text\" name=\"contact[street-address]\" id=\"street-address\" class=\"form-control\" placeholder=\"123 Main St.\" />\n         </div>\n      </div>\n\n      <div class=\"form-group col-4\">\n         <div class=\"city\">\n            <label for=\"city\">City</label>\n            <input type=\"text\" name=\"contact[city]\" id=\"city\" class=\"form-control\" placeholder=\"New York\" />\n         </div>\n      </div>\n\n      <div class=\"form-group col-4\">\n         <div class=\"state\">\n            <label for=\"state\">State</label>\n            <input type=\"text\" name=\"contact[state]\" id=\"state\" class=\"form-control\" placeholder=\"NY\" />\n         </div>\n      </div>\n\n      <div class=\"form-group col-4\">\n         <div class=\"zip-code\">\n            <label for=\"zip-code\">Zip Code</label>\n            <input type=\"text\" name=\"contact[zip-code]\" id=\"zip-code\" class=\"form-control\" placeholder=\"12345\" />\n         </div>\n      </div>\n\n      <div class=\"form-group col-6\">\n         <div class=\"license-plate\">\n            <label for=\"license-plate\">License Plate No.</label>\n            <input type=\"text\" name=\"contact[license-plate]\" id=\"license-plate\" class=\"form-control\" placeholder=\"SK123456\" />\n         </div>\n      </div>\n\n      <div class=\"form-group col-6\">\n         <div class=\"email\">\n            <label for=\"email\">Email Address</label>\n            <input type=\"email\" name=\"contact[email]\" id=\"email\" class=\"form-control\" placeholder=\"jdoe@email.com\" />\n         </div>\n      </div>\n   </div>\n\n   <div class=\"row\">\n      <div class=\"col-auto mx-auto\">\n         <div class=\"submit\">\n            <input type=\"text\" name=\"contact[body]\" id=\"body\" value=\"New CHOC Club signup!\" style=\"display: none;\" />\n            <button class=\"btn\" type=\"submit\">Sign-Up</button>\n         </div>\n      </div>\n   </div>\n\n{% endform %}"
+      }
+    },
+    "advanced_layout_custom_html_g6HeY4": {
+      "type": "advanced-layout--custom-html",
+      "blocks": {
+        "html_3MAGmj": {
+          "type": "html",
+          "settings": {
+            "code": "<p style=\"text-align: center;\">\n  <a href='https://cdn.shopify.com/s/files/1/0627/8476/6124/files/CHOC_Club_Bumper_Sticker_Terms_and_Conditions_4928-1394-1097.pdf?v=1764791276\"' target=\"_blank\" rel=\"noopener noreferrer\">\n    Full Program Terms and Conditions\n  </a></p>",
+            "width": "100%"
+          }
+        }
+      },
+      "block_order": [
+        "html_3MAGmj"
+      ],
+      "custom_css": [
+        "p {margin-top: -92px; font-size: 16px;}"
+      ],
+      "name": "Custom HTML",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "1657653438c8040598",
+    "advanced_layout_custom_html_g6HeY4"
+  ]
+}

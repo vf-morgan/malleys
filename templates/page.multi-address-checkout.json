@@ -1,0 +1,76 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "template--page",
+      "custom_css": [
+        "h1 {margin-bottom: -124px;}"
+      ],
+      "settings": {}
+    },
+    "177030068334eb1a16": {
+      "type": "apps",
+      "blocks": {
+        "send_to_many_multi_recipient_checkout_rxGcMD": {
+          "type": "shopify://apps/send-to-many/blocks/multi_recipient_checkout/d5a35104-aaae-4335-95ac-fd3de2e3ca03",
+          "settings": {
+            "page_width": "100%",
+            "bg_color": "#ffffff",
+            "text_color": "#363636",
+            "error_text_color": "#c10007",
+            "block_padding": 20,
+            "show_product_description": true,
+            "card_border_radius": 20,
+            "card_padding": 20,
+            "card_selected_outline_color": "#2b7fff",
+            "card_border_color": "#e5e7eb",
+            "heading_font_size": 18,
+            "card_product_image_height": 250,
+            "card_product_title_font_size": 14,
+            "card_product_description_font_size": 12,
+            "label_font_size": 12,
+            "input_font_size": 14,
+            "input_border_color": "#e5e7eb",
+            "input_border_radius": 5,
+            "input_focus_border_color": "#007acc",
+            "button_font_size": 14,
+            "button_border_radius": 5,
+            "button_primary_bg_color": "#1e1e1e",
+            "button_primary_text_color": "#ffffff",
+            "button_secondary_bg_color": "#ffffff",
+            "button_secondary_text_color": "#1e1e1e"
+          }
+        }
+      },
+      "block_order": [
+        "send_to_many_multi_recipient_checkout_rxGcMD"
+      ],
+      "custom_css": [],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "newsletter_newsletter_iVWeCR": {
+      "type": "newsletter--newsletter",
+      "disabled": true,
+      "settings": {
+        "subheading": "Stay up-to-date",
+        "title": "Join our mailing list",
+        "newsletter_description": "<p><strong>You Can Also</strong> <a href=\"/pages/text-message-signup\" title=\"Text Message Signup\"><strong>Sign Up for Tasty Text Message Alerts!</strong></a></p>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "177030068334eb1a16",
+    "newsletter_newsletter_iVWeCR"
+  ]
+}

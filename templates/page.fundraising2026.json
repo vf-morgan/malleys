@@ -1,0 +1,196 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "template--page",
+      "disabled": true,
+      "settings": {}
+    },
+    "single_banner_slider_corporate_z83adt": {
+      "type": "single-banner-slider-corporate",
+      "blocks": {
+        "slide_ebmpx8": {
+          "type": "slide",
+          "settings": {
+            "single__slide-image": "shopify://shop_images/solid_gray_for_testing_838e93d2-03e9-4827-939e-e864154d0239.png",
+            "single__slide-mobile--image": "shopify://shop_images/Gray_testing_1d6761bf-0e7f-442f-abe7-e84e97b321af.png",
+            "banner_image_url": "",
+            "heading": "Fundraising",
+            "subheading": "Sub Text Here",
+            "text_color": "",
+            "button_label": "Learn More",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_ebmpx8"
+      ],
+      "custom_css": [
+        "section {margin-top: -92px !important; margin-bottom: 0 !important; padding: 0 !important;}"
+      ],
+      "name": "Corporate Banner Slider",
+      "settings": {}
+    },
+    "custom_liquid_GbRbDp": {
+      "type": "custom-liquid",
+      "custom_css": [
+        "section {margin-top: -180px; margin-bottom: -250px;}"
+      ],
+      "name": "Custom Liquid",
+      "settings": {
+        "custom_liquid": "<div style='text-align:center;'><h2>Community is at the heart of our story</h2><p>Raise more with a trusted Northeast Ohio tradition. Malley’s Chocolate Bar Fundraisers make it easy for local organizations to reach their goals.</p></div>"
+      }
+    },
+    "corporate_gifting_image_rows_iJQ7iB": {
+      "type": "corporate-gifting-image-rows",
+      "blocks": {
+        "row_HqijLL": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/FR-Bars.png",
+            "heading": "Year Round: ",
+            "content": "<ul><li>Turn-key Malley’s chocolate bar fundraising program </li><li>Choose your selling price </li><li>Malley’s longest running fundraising program </li><li>Variety of chocolate bars available </li><li>Low minimum order </li></ul>",
+            "button_label": "learn more",
+            "button_link": "",
+            "contact_heading": "",
+            "email": "",
+            "phone": ""
+          }
+        },
+        "row_PU6Wxb": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/inset-1b_1800x_eb5b6979-8ab9-4df1-be42-eb26874e68b3.jpg",
+            "heading": "Seasonal: ",
+            "content": "<ul><li>25% - 35% revenue share </li><li>Online ordering for your buyers  </li><li>Marketing materials </li><li>Dashboard to monitor your sales </li><li>Delivery for orders over $1,000 </li></ul>",
+            "button_label": "",
+            "button_link": "",
+            "contact_heading": "",
+            "email": "",
+            "phone": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_HqijLL",
+        "row_PU6Wxb"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "section {margin-top: -120px; margin-bottom: -250px;}"
+      ],
+      "name": "Alternating Rows",
+      "settings": {
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "custom_liquid_4TEXEU": {
+      "type": "custom-liquid",
+      "custom_css": [
+        "section {margin-top: -182px !important; margin-bottom: 0 !important; padding: 0 !important;}"
+      ],
+      "name": "Custom Liquid",
+      "settings": {
+        "custom_liquid": "<div style=\"text-align:center; max-width:1280px; margin:0 auto; padding:3rem 1rem;\">\n\n  <style>\n    .cgfr-grid {\n      display: grid;\n      grid-template-columns: repeat(3, 1fr);\n      gap: 3rem;\n      text-align: left;\n    }\n    .cgfr-bar {\n      background-color: var(--color-brand-pink, #F0A8C0);\n      color: #4E3120;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      min-height: 70px;\n      text-align: center;\n      font-size: 1.35rem;\n      padding: 0.5rem 1rem;\n      margin: 0 0 1.25rem;\n      box-sizing: border-box;\n    }\n    .cgfr-col ul {\n      margin: 0;\n      padding-left: 1.5rem;\n    }\n    .cgfr-col li {\n      line-height: 1.6;\n      margin-bottom: 0.75rem;\n    }\n    .cgfr-col li:last-child {\n      margin-bottom: 0;\n    }\n    @media screen and (max-width: 750px) {\n      .cgfr-grid {\n        grid-template-columns: 1fr;\n      }\n    }\n  </style>\n\n  <div class=\"cgfr-grid\">\n    <div class=\"cgfr-col\">\n      <h3 class=\"cgfr-bar\">Year Round</h3>\n      <ul>\n        <li>Turn-key fundraising program</li><li>Choose your selling price</li><li>5 varieties of chocolate bars available</li><li>Low minimum order</li>\n<p><a href=\"https://malleys.com/pages/fundraising-with-chocolate-bars\">Learn more</a></p>\n      </ul>\n    </div>\n    <div class=\"cgfr-col\">\n      <h3 class=\"cgfr-bar\">Seasonal</h3>\n      <ul>\n<li>Seasonal and everyday products</li>\n        <li>25% - 35% revenue share</li><li>Online ordering for your buyers </li><li>Marketing materials</li><li>Dashboard to monitor your sales</li>\n      </ul>\n    </div>\n    <div class=\"cgfr-col\">\n      <h3 class=\"cgfr-bar\">Dedicated Support</h3>\n      <ul>\n        <li>Fundraising team to support your success</li>\n        <li>18 Malley’s stores for convenient pick up</li>\n        <li>Order and logistics management</li>\n        <li>Ongoing program enhancements based on feedback</li>\n      </ul>\n    </div>\n  </div>\n</div>"
+      }
+    },
+    "corporate_gifting_features_xHx68D": {
+      "type": "corporate-gifting-features",
+      "blocks": {
+        "feature_dntNmN": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/MalleysCatalog_Festival_Resize_1800x_e045ed84-9a44-45d3-8dd0-8dffe1fc7143.webp",
+            "heading": "Dedicated Support",
+            "link_label": "Call to Action",
+            "link_url": ""
+          }
+        },
+        "feature_VktXMD": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/inset-1b_1800x_eb5b6979-8ab9-4df1-be42-eb26874e68b3.jpg",
+            "heading": "Placeholder Title",
+            "link_label": "Call to Action",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "feature_dntNmN",
+        "feature_VktXMD"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "section {margin-top: 140px !important; margin-bottom: 0 !important; padding: 0 !important;}"
+      ],
+      "name": "Gift Features",
+      "settings": {
+        "card_spacing": 260,
+        "padding_top": 48,
+        "padding_bottom": 32
+      }
+    },
+    "custom_liquid_KCRTTt": {
+      "type": "custom-liquid",
+      "custom_css": [
+        "section {margin-top: -146px !important; margin-bottom: 0 !important; padding: 0 !important;}"
+      ],
+      "name": "Custom Liquid",
+      "settings": {
+        "custom_liquid": "<link href=\"https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,700&display=swap\" rel=\"stylesheet\">\n\n<style>\n  .cgft-section {\n    width: 100%;\n    max-width: none;\n    margin: 0;\n    padding: 3rem 1.5rem;\n    box-sizing: border-box;\n    text-align: center;\n    overflow: hidden;\n  }\n\n  .cgft-section h2 {\n    margin: 0 0 2rem;\n  }\n\n  .cgft-grid {\n    display: grid;\n    grid-template-columns: repeat(4, minmax(0, 1fr));\n    gap: 1.5rem;\n    width: 100%;\n    box-sizing: border-box;\n  }\n\n  .cgft-tile {\n    background-color: #F6A9C2;\n    padding: 1.5rem;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: flex-start;\n    text-align: left;\n    aspect-ratio: 1 / 1;\n    min-width: 0;\n    box-sizing: border-box;\n  }\n\n  .cgft-quote,\n  .cgft-stat {\n    font-family: 'omnes-cond', var(--font-heading-family, sans-serif);\n    font-weight: 600;\n    font-style: italic;\n    font-size: clamp(1rem, 1.35vw, 1.5rem);\n    line-height: 1.2;\n    color: #4E3120;\n    margin: 0;\n  }\n\n  .cgft-attribution {\n    font-family: 'omnes-cond', var(--font-heading-family, sans-serif);\n    font-weight: 600;\n    font-style: italic;\n    font-size: 1rem;\n    color: #4E3120;\n    margin: 0;\n  }\n\n  /* TABLET / SMALL LAPTOP: 2x2 grid */\n  @media screen and (min-width: 750px) and (max-width: 989px) {\n    .cgft-grid {\n      grid-template-columns: repeat(2, minmax(0, 1fr));\n    }\n    .cgft-quote,\n    .cgft-stat {\n      font-size: clamp(1.1rem, 2.2vw, 1.5rem);\n    }\n  }\n\n  /* MOBILE: swipeable row */\n  @media screen and (max-width: 749px) {\n    .cgft-section {\n      padding: 3rem 1rem;\n    }\n\n    .cgft-grid {\n      display: flex;\n      width: 100%;\n      overflow-x: auto;\n      scroll-snap-type: x mandatory;\n      -webkit-overflow-scrolling: touch;\n      gap: 1rem;\n      padding-bottom: 0.5rem;\n    }\n\n    .cgft-tile {\n      flex: 0 0 85%;\n      scroll-snap-align: center;\n    }\n\n    .cgft-quote,\n    .cgft-stat {\n      font-size: 1.25rem;\n    }\n  }\n</style>\n\n<div class=\"cgft-section\">\n\n  <h2>Fundraising Testimonials</h2>\n\n  <div class=\"cgft-grid\">\n\n    <div class=\"cgft-tile\">\n      <p class=\"cgft-quote\">\n        &ldquo;The percentage our group got back was great, and the online platform is user friendly.&rdquo;\n      </p>\n    </div>\n\n    <div class=\"cgft-tile\">\n      <p class=\"cgft-quote\">\n        &ldquo;It was super easy! As the organizer at my school, I did not have to do much to get the chocolates to sell!&rdquo;\n      </p>\n    </div>\n\n    <div class=\"cgft-tile\">\n      <p class=\"cgft-quote\">\n        &ldquo;Having individual student links was awesome! And I loved that I could check our progress!&rdquo;\n      </p>\n    </div>\n\n    <div class=\"cgft-tile\">\n      <p class=\"cgft-quote\">\n        &ldquo;Everything was easy to manage and communication was great!&rdquo;\n      </p>\n    </div>\n\n  </div>\n\n</div>"
+      }
+    },
+    "custom_liquid_rHMDEX": {
+      "type": "custom-liquid",
+      "custom_css": [
+        "section {margin-top: -120px !important; margin-bottom: 0 !important; padding: 0 !important;}"
+      ],
+      "name": "Custom Liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"cgfaq-wrapper\" style=\"max-width:800px; margin:0 auto; padding:3rem 1rem;\">\n  <h2 style=\"text-align:center; margin:0 0 2rem;\">FAQ</h2>\n\n  <style>\n    .cgfaq-list {\n      border-top: 1px solid #8a7a6a;\n    }\n    .cgfaq-item {\n      border-bottom: 1px solid #8a7a6a;\n    }\n    .cgfaq-toggle {\n      display: flex;\n      align-items: center;\n      justify-content: space-between;\n      width: 100%;\n      background: none;\n      border: none;\n      cursor: pointer;\n      padding: 1rem 0.5rem;\n      font: inherit;\n      text-align: left;\n    }\n    .cgfaq-question {\n      font-weight: 700;\n      text-transform: uppercase;\n      font-family: var(--font-heading-family, inherit);\n      color: #4E3120;\n      font-size: 1rem;\n      flex: 1;\n      text-align: center;\n    }\n    .cgfaq-toggle:focus .cgfaq-question,\n    .cgfaq-toggle:active .cgfaq-question {\n      color: #FFFFFF;\n    }\n    .cgfaq-arrow {\n      flex: 0 0 auto;\n      width: 0;\n      height: 0;\n      margin-left: 1rem;\n      border-top: 8px solid transparent;\n      border-bottom: 8px solid transparent;\n      border-left: 12px solid var(--color-brand-pink, #F0A8C0);\n      transition: transform 0.25s ease;\n    }\n    .cgfaq-toggle[aria-expanded=\"true\"] .cgfaq-arrow {\n      transform: rotate(90deg);\n    }\n    .cgfaq-panel {\n      display: grid;\n      grid-template-rows: 0fr;\n      transition: grid-template-rows 0.25s ease;\n    }\n    .cgfaq-panel[aria-hidden=\"false\"] {\n      grid-template-rows: 1fr;\n    }\n    .cgfaq-panel-inner {\n      overflow: hidden;\n    }\n    .cgfaq-panel-inner p {\n      margin: 10px 0.5rem 1rem;\n      font-size: 0.95rem;\n      color: #4E3120;\n    }\n  </style>\n\n  <div class=\"cgfaq-list\">\n    <div class=\"cgfaq-item\">\n      <button type=\"button\" class=\"cgfaq-toggle\" aria-expanded=\"false\">\n        <span class=\"cgfaq-question\">Donations</span>\n        <span class=\"cgfaq-arrow\" aria-hidden=\"true\"></span>\n      </button>\n      <div class=\"cgfaq-panel\" aria-hidden=\"true\">\n        <div class=\"cgfaq-panel-inner\">\n          <p>We receive a high volume of donation requests from many deserving organizations. Rather than handling one-off donations, we’ve moved to a more structured fundraising model that allows us to support more groups in a consistent and meaningful way. While we will do our best to support long-standing partners, we’re unable to respond individually to all donation inquiries. We would love to support your organization through our fundraising programs, which often generate more impact than a single donation.</p>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"cgfaq-item\">\n      <button type=\"button\" class=\"cgfaq-toggle\" aria-expanded=\"false\">\n        <span class=\"cgfaq-question\">Pick-Up &amp; Delivery</span>\n        <span class=\"cgfaq-arrow\" aria-hidden=\"true\"></span>\n      </button>\n      <div class=\"cgfaq-panel\" aria-hidden=\"true\">\n        <div class=\"cgfaq-panel-inner\">\n          <p><strong>Year-Round FR Program</strong><br>\nOrdering eight or less boxes for your fundraiser? Visit any Malley's location during store hours for convenient pick up and payment.  \n\nFor orders larger than eight boxes, orders are placed through our Fundraising team using our fundraising form. Pick-up is coordinated weekly at any of our 18 store locations and store locations receive delivery once per week, so order placement deadlines are based on the store's delivery day.  \n\nOrders of 100 boxes or more are eligible for free local delivery. <br> <br>\n\n<strong>Seasonal FR Programs</strong> <br>\nAll delivery dates are first come, first serve depending on timing of the program. Free local delivery is available for orders over $1,000 and orders under $1,000 are able to be picked up at a local Malley's store. </p>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"cgfaq-item\">\n      <button type=\"button\" class=\"cgfaq-toggle\" aria-expanded=\"false\">\n        <span class=\"cgfaq-question\">Payment</span>\n        <span class=\"cgfaq-arrow\" aria-hidden=\"true\"></span>\n      </button>\n      <div class=\"cgfaq-panel\" aria-hidden=\"true\">\n        <div class=\"cgfaq-panel-inner\">\n          <p><strong>Year-Round FR Program</strong><br>\nPayment for the bars is required at time of pick up from one of our stores.  <br>\n\nFor schools that require a purchase order, we extend Net 30 credit terms and ask for a PO number at time of order and prior to pick up. An invoice will be sent after the pickup is made and payment is due 30 days from the invoice date. <br> <br>\n \n<strong>Seasonal FR Programs</strong> <br>\nGroups will collect money with orders that are conducted through utilizing paper forms while sales conducted online through the group website portals will be collected for the group. Payment of fundraising revenue will be distributed to groups by checks once the fundraising orders have been distributed and with difference of any owed money from paper form transactions.  </p>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"cgfaq-item\">\n      <button type=\"button\" class=\"cgfaq-toggle\" aria-expanded=\"false\">\n        <span class=\"cgfaq-question\">What Kinds of Organizations Do We Work With?</span>\n        <span class=\"cgfaq-arrow\" aria-hidden=\"true\"></span>\n      </button>\n      <div class=\"cgfaq-panel\" aria-hidden=\"true\">\n        <div class=\"cgfaq-panel-inner\">\n          <p>Schools, sports teams and athletic departments, band and orchestra, churches, dance groups, 4H groups, animal welfare, non-profits, and personal fundraising activities. Groups raise funds for many reasons including general funds, playground equipment, athletic equipment, travel costs, fees, endowments, and more.</p>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <script>\n    (function () {\n      function initFaq(wrapper) {\n        if (!wrapper || wrapper.dataset.cgfaqInit) return;\n        wrapper.dataset.cgfaqInit = 'true';\n\n        var uid = 'cgfaq-' + Math.random().toString(36).slice(2, 9);\n        var toggles = wrapper.querySelectorAll('.cgfaq-toggle');\n\n        toggles.forEach(function (toggle, index) {\n          var panel = toggle.parentElement.querySelector('.cgfaq-panel');\n          if (!panel) return;\n\n          var toggleId = uid + '-toggle-' + index;\n          var panelId = uid + '-panel-' + index;\n          toggle.id = toggleId;\n          panel.id = panelId;\n          toggle.setAttribute('aria-controls', panelId);\n          panel.setAttribute('aria-labelledby', toggleId);\n          panel.setAttribute('role', 'region');\n\n          toggle.addEventListener('click', function () {\n            var isOpen = toggle.getAttribute('aria-expanded') === 'true';\n            toggle.setAttribute('aria-expanded', String(!isOpen));\n            panel.setAttribute('aria-hidden', String(isOpen));\n          });\n        });\n      }\n\n      function initAll() {\n        document.querySelectorAll('.cgfaq-wrapper').forEach(initFaq);\n      }\n\n      if (document.readyState === 'loading') {\n        document.addEventListener('DOMContentLoaded', initAll);\n      } else {\n        initAll();\n      }\n    })();\n  </script>\n</div>"
+      }
+    },
+    "17842076521b019ee2": {
+      "type": "apps",
+      "blocks": {
+        "powerful_form_builder_app_block_fnn9zA": {
+          "type": "shopify://apps/powerful-form-builder/blocks/app-block/e4bcb1eb-35b2-42e6-bc37-bfe0e1542c9d",
+          "settings": {
+            "shortcode": "<div class=\"globo-formbuilder\" data-id=\"MTQ2NzA=\"></div>"
+          }
+        }
+      },
+      "block_order": [
+        "powerful_form_builder_app_block_fnn9zA"
+      ],
+      "custom_css": [
+        ".globo-formbuilder {margin-top: -90px !important; margin-bottom: 0 !important; padding: 0 !important;}"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "single_banner_slider_corporate_z83adt",
+    "custom_liquid_GbRbDp",
+    "corporate_gifting_image_rows_iJQ7iB",
+    "custom_liquid_4TEXEU",
+    "corporate_gifting_features_xHx68D",
+    "custom_liquid_KCRTTt",
+    "custom_liquid_rHMDEX",
+    "17842076521b019ee2"
+  ]
+}

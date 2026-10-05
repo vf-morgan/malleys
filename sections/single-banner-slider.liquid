@@ -1,0 +1,98 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<section class="single__banner-wrapper">
+  <div class="swiper single__banner-slider">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'slide' %}
+              <div class="swiper-slide">
+                <div class="single__banner-slide--image">
+                  <a href="{{ block.settings.banner_image_url }}" aria-label="{{block.settings.single__slide-image.alt}}">
+                    {%- liquid                                
+                          assign sizes = '120vw'
+                          assign widths = '280 , 350, 450, 550, 660, 900, 1320, 1920'
+                    -%}
+                    {% if block.settings.single__slide-image != blank  %}
+                      {{
+                        block.settings.single__slide-image
+                        | image_url: width: 1920
+                        | image_tag: loading: 'lazy', sizes: sizes, widths: widths
+                      }}    
+                     {% else %}
+                      {{ "image" | placeholder_svg_tag:"placeholder-svg-tag" }}
+                     {% endif %}
+                   </a>
+                </div>
+                <div class="banner__sm-screen">
+                  <a href="{{ block.settings.banner_image_url }}"  aria-label="{{block.settings.single__slide-mobile--image.alt}}">
+                    {%- liquid                                
+                          assign sizes = '120vw'
+                          assign widths = '280 , 350, 450, 550, 660, 900, 1320, 1920'
+                    -%}
+                    {% if block.settings.single__slide-mobile--image != blank  %}
+                      {{
+                        block.settings.single__slide-mobile--image
+                        | image_url: width: 1920
+                        | image_tag: loading: 'lazy', sizes: sizes, widths: widths
+                      }}    
+                     {% else %}
+                      {{ "image" | placeholder_svg_tag:"placeholder-svg-tag" }}
+                     {% endif %}
+                   </a>
+                </div>
+              </div>
+            {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  var swiper = new Swiper(".single__banner-slider", {
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+  });
+</script>
+{% schema %}
+  {
+    "presets": [
+      {
+        "name" : "Single Banner Slider"
+      }
+    ],
+    "name": "Single Banner Slider",
+    "settings": [],
+    "max_blocks": 10,
+    "blocks": [
+       {
+         "name": "Slide",
+         "type": "slide",
+         "settings": [
+           {
+             "type": "image_picker",
+             "id": "single__slide-image",
+             "label": "Image"
+           },
+           {
+             "type": "image_picker",
+             "id": "single__slide-mobile--image",
+             "label": "Mobile Image"
+           },
+           {
+              "type":"url",
+              "id":"banner_image_url",
+              "label":"Link"
+           }
+         ]
+       }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

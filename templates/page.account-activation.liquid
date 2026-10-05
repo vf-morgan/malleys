@@ -1,0 +1,53 @@
+{%- style -%}
+.customer-activate-account{
+  padding:40px 0;
+}
+  .activationForm__message > div{
+    text-align:center;
+    padding:10px 0;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .activationForm__message > .error{color:red;}
+  .activationForm__message > .success{color:green;}
+  .btn-loading{
+    opacity:.6
+  }
+
+  .activationForm__login-link{
+    text-align:center;
+    padding:10px 0;
+  }
+
+  .activationForm__login-link a,
+  .activationForm__message a{
+    color:#510e01;
+  }
+{%- endstyle -%}
+
+<div class="col-md-6 offset-md-3 customer-activate-account">
+	<div class="title-bar custom-font">
+      	<h2 class="main-heading">Activate Account</h2>
+		<div class="clear"></div>
+	</div>
+
+    <div class="activationForm__message"></div>
+    <form method="post" action="/" accept-charset="UTF-8" id="activationForm">
+      <div id="login_email" class="clearfix form-group">
+        <label for="customer_email" class="login" style="display: none;">Email</label>
+        <input type="email" 
+            class="form-control" 
+            placeholder="Email" 
+            name="customer[email]" 
+            id="customer_email" 
+            size="30" 
+            required />
+      </div>
+      <div class="action-bottom">
+        <input class="btn btn-primary btn-block" id="activateAccountButton" type="submit" value="Submit">
+      </div>
+
+      <div class="activationForm__login-link"><a href="/account/login">Go back to the login page</a></div>
+    </form>
+  </div>

@@ -1,0 +1,263 @@
+{{ 'section-search-block.min.css' | asset_url | stylesheet_tag }}
+
+{%- capture search_types -%}
+  {%- if settings.enable-product-results -%}product,{%- endif -%}
+  {%- if settings.enable-page-results -%}page,{%- endif -%}
+  {%- if settings.enable-article-results -%}article,{%- endif -%}
+  {%- if settings.enable-collection-results -%}collection{%- endif -%}
+{%- endcapture -%}
+
+<section class="homepage-sections-wrapper search-block search-block--{{ section.id }}{% if section.settings.background_image %} has-bg{% endif %}{% if section.settings.enable_overlay %} has-overlay{% endif %}">
+
+  <div
+    id="section-search-wrapper"
+    role="dialog"
+    aria-labelledby="search_block_label"
+    aria-modal="true"
+    aria-hidden="true"
+    data-wetheme-section-type="search--block"
+    data-wetheme-section-id="{{ section.id }}"
+  >
+    {% if section.settings.heading != blank or section.settings.text != blank %}
+      <div class="container title-bar custom-font">
+        {% if section.settings.heading != blank %}
+          <h2 class="wow fadeIn{% if section.settings.heading != blank %} delay-1{% endif %}">{{ section.settings.heading | escape }}</h2>
+        {% endif %}
+        {% if section.settings.text != blank %}
+          <div class="wow fadeIn{% if section.settings.text != blank %} typography--padding-bottom{% endif %}">{{ section.settings.text }}</div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="section-search-block"{% if settings.predictive_search_enabled %} data-predictive-search{% endif %}>
+      <form id="search-page-form" action="{{ routes.search_url }}">
+        <input type="hidden" name="type" value="{{ search_types }}" />
+        <div id="block-search-wrapper">
+          <label for="search_text_search_block" class="sr-only" id="search_block_label">{{ 'general.search.title' | t }} {{ shop.name}}</label>
+
+          <input
+            id="search_text_search_block"
+            name="q"
+            type="text"
+            size="20"
+            placeholder="{{ section.settings.placeholder }}"
+            autocomplete="off"
+            autocorrect="off"
+            spellcheck="false"
+            class="{% if settings.predictive_search_enabled %}is-predictive{% else %}not-predictive{% endif %}"
+            data-search-types="{{ search_types }}"
+            data-show-prices="{{ settings.predictive_search_show_price }}"
+            data-show-vendor="{{ settings.predictive_search_show_vendor }}"
+          />
+
+          <button
+            class="search-block__button search-clear alt-focus"
+            id="search-bar-search-block--clear"
+            aria-label="{{ 'general.search.clear_query' | t }}"
+            type="button"
+            tabindex="-1"
+          >
+            {{ 'general.search.clear' | t }}
+          </button>
+
+          {% if settings.predictive_search_enabled %}
+          <div class="predictive-loading hide">
+            <i class="fa fa-circle-o-notch fa-spin fa-2x fa-fw js"></i><span class="sr-only">{{ 'collections.paginate.loading' | t }}</span>
+          </div>
+          {% endif %}
+
+          <div class="search-block--controls">
+            <button
+              id="search_submit_search_block"
+              type="submit"
+              aria-label="{{ 'general.search.search_submit' | t }}"
+              class="search-block__button alt-focus"
+            >
+              {% render 'icon-search' %}
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    {% if settings.predictive_search_enabled %}
+    <div class="search-summary"></div>
+    <div class="search-results-panel"></div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  {% if section.settings.background_image %}
+    {% assign selector = '.search-block--' | append: section.id %}
+    {%- render 'responsive-background-image' with section.settings.background_image, selector: selector -%}
+  {% else %}
+    .search-block {
+      background-color: {{ section.settings.background_color }}
+    }
+  {% endif %}
+
+  .search-block--{{ section.id }} .title-bar h2,
+  .search-block--{{ section.id }} .title-bar p {
+    color: {{ section.settings.text_color }};
+  }
+</style>
+
+
+{% schema %}
+{
+    "name": {
+        "en": "Search block",
+        "de": "Suchblock",
+        "es": "Bloque de búsqueda",
+        "fr": "Bloc de recherche",
+        "pt-PT": "Bloco de pesquisa"
+    },
+    "class": "homepage-section--search-block-wrapper",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": {
+          "en": "Heading",
+          "de": "Überschrift",
+          "es": "Encabezado",
+          "fr": "Rubrique",
+          "pt-PT": "Título"
+        },
+        "default": {
+          "en": "Search",
+          "de": "Suche",
+          "es": "Búsqueda",
+          "fr": "Recherche",
+          "pt-PT": "Pesquisa"
+        }
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": {
+          "en": "Text",
+          "de": "Text",
+          "es": "Texto",
+          "fr": "Texte",
+          "pt-PT": "Texto"
+        },
+        "default": {
+          "en": "<p>Add a powerful site search directly onto your home page</p>",
+          "de": "<p>Fügen Sie eine leistungsstarke Suchmaschine direkt zu Ihrer Startseite hinzu</p>",
+          "es": "<p>Agregue una búsqueda de sitios potente directamente a su página de inicio</p>",
+          "fr": "<p>Ajoutez une recherche de site puissante directement sur votre page d'accueil</p>",
+          "pt-PT": "<p>Adicione uma poderosa função de pesquisa diretamente na página inicial do seu sítio</p>"
+        }
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": {
+            "en": "Text",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Texte",
+            "pt-PT": "Texto"
+        },
+        "default": "#000000"
+      },
+      {
+        "type": "text",
+        "id": "placeholder",
+        "label": {
+          "en": "Placeholder",
+          "de": "Platzhalter",
+          "es": "Marcador de posición",
+          "fr": "Espace réservé",
+          "pt-PT": "Marcador de posição"
+        },
+        "default": {
+          "en": "Search our store",
+          "de": "Durchsuchen Sie unseren Shop",
+          "es": "Buscar en nuestra tienda",
+          "fr": "Rechercher dans la boutique",
+          "pt-PT": "Pesquisar a nossa loja"
+        }
+      },
+      {
+        "type": "image_picker",
+        "id": "background_image",
+        "label": {
+          "en": "Background image",
+          "de": "Hintergrundbild",
+          "es": "Imagen de fondo",
+          "fr": "Image d'arrière-plan",
+          "pt-PT": "Imagem de fundo"
+        }
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": {
+            "en": "Background color",
+            "de": "Hintergrundfarbe",
+            "es": "Color de fondo",
+            "fr": "Couleur de l'arrière plan",
+            "pt-PT": "Cor de fundo"
+        },
+        "default": "#ffffff",
+        "info": {
+          "en": "Displayed if no image is selected",
+          "de": "Wird angezeigt, wenn kein Bild ausgewählt ist",
+          "es": "Se muestra si no se selecciona ninguna imagen",
+          "fr": "S'affiche si aucune image n'est sélectionnée",
+          "pt-PT": "Exibido se não estiver selecionada nenhuma imagem"
+        }
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_overlay",
+        "label": {
+          "en": "Enable overlay",
+          "de": "Overlay aktivieren",
+          "es": "Habilitar superposición",
+          "fr": "Activez la superposition",
+          "pt-PT": "Ativar sobreposição"
+        },
+        "default": false,
+        "info": {
+          "en": "Add a gradient overlay to increase text readability",
+          "de": "Fügen Sie eine Verlaufsüberlagerung hinzu, um die Lesbarkeit des Textes zu verbessern",
+          "es": "Agregue una superposición de degradado para aumentar la legibilidad del texto",
+          "fr": "Ajoutez une superposition en dégradé pour augmenter la lisibilité du texte",
+          "pt-PT": "Adicione uma sobreposição de gradiente para melhorar a legibilidade do texto"
+        }
+      }
+    ],
+    "presets": [
+        {
+            "name": {
+              "en": "Search block",
+              "de": "Suchblock",
+              "es": "Bloque de búsqueda",
+              "fr": "Bloc de recherche",
+              "pt-PT": "Bloco de pesquisa"
+            },
+            "category": {
+              "en": "Search",
+              "de": "Suche",
+              "es": "Búsqueda",
+              "fr": "Recherche",
+              "pt-PT": "Pesquisa"
+            }
+        }
+    ],
+    "templates": [
+      "404",
+      "article",
+      "blog",
+      "cart",
+      "collection",
+      "list-collections",
+      "index",
+      "page",
+      "product"
+    ]
+}
+{% endschema %}

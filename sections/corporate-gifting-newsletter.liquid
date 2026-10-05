@@ -1,0 +1,269 @@
+{{ 'section-newsletter.min.css' | asset_url | stylesheet_tag }}
+
+<section class="homepage-sections-wrapper cgn__wrapper">
+
+{% assign title = false %}
+{% if section.settings.title != blank or
+  section.settings.subheading != blank or
+  section.settings.newsletter_description != blank %}
+  {% assign title = true %}
+{% endif %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 cgn__col">
+        <div class="cgn__inner">
+          <div class="newsletter__title wow cgn__title">
+            {% if title %}
+              <div class="title-bar custom-font cgn__title-bar">
+                {% if section.settings.subheading != blank %}
+                  <h3 class="type-subheading type-subheading--1 wow{% if section.settings.title != blank %} typography--padding-bottom{% endif %}">{{ section.settings.subheading | escape }}</h3>
+                {% endif %}
+                {% if section.settings.title != blank %}
+                  <h2 class="wow cgn__heading">{{ section.settings.title | escape }}</h2>
+                {% endif %}
+                {% if section.settings.newsletter_description != blank %}
+                  <div class="cgn__description">{{ section.settings.newsletter_description }}</div>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="newsletter__item cgn__item">
+            <div class="newsletter_form wow cgn__form-wrap">
+              <news-letter>
+                <div class="klaviyo-form-UK2pdS"></div>
+                {% comment %}{% render 'newsletter-form', form_id: 'newsletter_section_form' %}{% endcomment %}
+              </news-letter>
+            </div>
+          </div>
+
+          {% if section.settings.sms_link_label != blank %}
+            <p class="cgn__sms-line">
+              {%- if section.settings.sms_text != blank -%}{{ section.settings.sms_text }}{%- endif -%}
+              <a href="{{ section.settings.sms_link_url | default: '#' }}" class="cgn__sms-link">{{ section.settings.sms_link_label }}</a>
+            </p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<script>
+  class NewsLetter extends HTMLElement {
+	constructor(){
+		super();
+		// window.addEventListener('load', ()=>{
+  //         this.init()
+  //       }.bind(this))
+      window.addEventListener('load', function(){
+          this.init()
+      }.bind(this))
+	}
+	init(){
+		this.input = this.querySelector('input');
+		this.input.parentElement.parentElement.classList.add('klavio__input')
+
+		this.button = this.querySelector('button');
+		this.button.parentElement.classList.add('klaviyo__btn')
+
+		this.input.closest('div[component]').parentElement.classList.add('klaviyo__container')
+	}
+}
+if(!customElements.get("news-letter")){
+	customElements.define('news-letter', NewsLetter)
+}
+</script>
+
+{% style %}
+  #shopify-section-{{ section.id }} .cgn__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  #shopify-section-{{ section.id }} .cgn__title-bar {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  #shopify-section-{{ section.id }} .cgn__heading {
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .cgn__description {
+    font-weight: 400;
+    font-size: 1em;
+    margin-top: 0.5rem;
+  }
+
+  #shopify-section-{{ section.id }} .cgn__description p {
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .cgn__item {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  #shopify-section-{{ section.id }} .cgn__form-wrap {
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  #shopify-section-{{ section.id }} .klaviyo__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .klavio__input,
+  #shopify-section-{{ section.id }} .klavio__input input {
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .klavio__input input::placeholder {
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  #shopify-section-{{ section.id }} .klaviyo__btn {
+    width: 100%;
+    max-width: 90%;
+    margin-top: 1rem;
+  }
+
+  #shopify-section-{{ section.id }} .klaviyo__btn button {
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  #shopify-section-{{ section.id }} .cgn__sms-line {
+    margin: 1.5rem 0 0;
+  }
+
+  #shopify-section-{{ section.id }} .cgn__sms-link {
+    margin-left: 0.35rem;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .klaviyo__btn {
+      max-width: 100%;
+    }
+
+    #shopify-section-{{ section.id }} .klavio__input,
+    #shopify-section-{{ section.id }} .klavio__input input {
+      width: 100% !important;
+      box-sizing: border-box;
+    }
+
+    #shopify-section-{{ section.id }} .klavio__input {
+      max-width: 100% !important;
+      margin: 0 auto;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+    "name": "Gift Newsletter",
+    "class": "homepage-section--newsletter-wrapper",
+    "settings": [
+        {
+            "type": "text",
+            "id": "subheading",
+            "label": {
+              "en": "Subheading",
+              "de": "Unterüberschrift",
+              "es": "Subencabezado",
+              "fr": "Sous-rubrique",
+              "pt-PT": "Subtítulo"
+            }
+        },
+        {
+            "id": "title",
+            "type": "text",
+            "label": {
+                "en": "Heading",
+                "de": "Überschrift",
+                "es": "Encabezado",
+                "fr": "Rubrique",
+                "pt-PT": "Título"
+            },
+            "default": {
+                "en": "Join our mailing list",
+                "de": "Melden Sie sich bei unserer Mailingliste an",
+                "es": "Únase a nuestra lista de correo electrónico",
+                "fr": "Inscrivez-vous à notre liste d'envoi",
+                "pt-PT": "Aderir à nossa Lista de E-mails"
+            }
+        },
+        {
+            "type": "richtext",
+            "id": "newsletter_description",
+            "label": {
+              "en": "Text",
+              "de": "Text",
+              "es": "Texto",
+              "fr": "Texte",
+              "pt-PT": "Texto"
+            },
+            "default": {
+              "en": "<p>Describe the benefits of your newsletter</p>",
+              "de": "<p>Beschreiben Sie die Vorteile Ihres Newsletters</p>",
+              "es": "<p>Describe las ventajas de tu boletín de noticias</p>",
+              "fr": "<p>Décrivez les avantages de votre newsletter</p>",
+              "pt-PT": "<p>Descreva os benefícios do seu boletim informativo</p>"
+            }
+        },
+        {
+            "type": "header",
+            "content": "SMS signup line"
+        },
+        {
+            "type": "text",
+            "id": "sms_text",
+            "label": "Text before link",
+            "default": "You Can Also"
+        },
+        {
+            "type": "text",
+            "id": "sms_link_label",
+            "label": "Link label",
+            "default": "Sign Up for Tasty Text Message Alerts!"
+        },
+        {
+            "type": "url",
+            "id": "sms_link_url",
+            "label": "Link URL"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Gift Newsletter",
+            "category": "Newsletter"
+        }
+    ],
+    "templates": [
+      "404",
+      "article",
+      "blog",
+      "cart",
+      "collection",
+      "list-collections",
+      "index",
+      "page",
+      "search",
+      "product"
+    ]
+}
+{% endschema %}

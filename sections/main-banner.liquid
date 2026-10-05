@@ -1,0 +1,172 @@
+{% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" /> {% endcomment %}
+<div class="banner__wrapper">
+  <div class="container">
+    <div class="swiper main__banner-slider">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'slide' %}
+              <div class="swiper-slide">
+                <div class="banner__slide-item--row">
+                  <div class="banner__item-image">
+                    {%- liquid                                
+                          assign sizes = '120vw'
+                          assign widths = '280 , 350, 450, 550, 660, 900, 1320'
+                    -%}
+                    {% if block.settings.slide_image != blank  %}
+                      {{
+                        block.settings.slide_image
+                        | image_url: width: 1320
+                        | image_tag: loading: 'lazy', sizes: sizes, widths: widths
+                      }}    
+                       {% else %}
+                        {{ "image" | placeholder_svg_tag:"placeholder-svg-tag" }}
+                       {% endif %}
+                    <!-- <img src="https://cdn.shopify.com/s/files/1/0627/8476/6124/files/banner_img.png?v=1700201877" alt=""> -->
+                  </div>
+                  <div class="banner__item-text">
+                    {% if block.settings.slide_main_heading != blank %}
+                      <h2>{{ block.settings.slide_main_heading }}</h2>
+                    {% endif %}
+                    {% if block.settings.slide_heading != blank %}
+                      <h3>{{ block.settings.slide_heading }}</h3>
+                    {% endif %}
+                    {% if block.settings.slide_sub_heading != blank %}
+                      <h4>{{ block.settings.slide_sub_heading }}</h4>
+                    {% endif %}
+                    {% if block.settings.slide_rich_text != blank %}
+                      {{ block.settings.slide_rich_text }}
+                    {% endif %}
+                    {% if block.settings.slide_button != blank %}
+                      <a href="{{ block.settings.slide_link }}" class="btn">{{ block.settings.slide_button }}</a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            {% endcase %}
+        {% endfor %}
+        <!-- <div class="swiper-slide">
+          <div class="banner__slide-item--row">
+            <div class="banner__item-image">
+              <img src="https://cdn.shopify.com/s/files/1/0627/8476/6124/files/banner_img.png?v=1700201877" alt="">
+            </div>
+            <div class="banner__item-text">
+              <h2><span>$5</span> OFF</h2>
+              <h3>Cranberry Rascals</h3>
+              <h4>For the Month of November</h4>
+              <p>Malley’s Cranberry Rascals, featuring dak chocolate covering salted almonds and tart cranberries in our special-recipe caramel, Sale ends November 30th, 2023.</p>
+              <a href="#." class="btn">Order Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="banner__slide-item--row">
+            <div class="banner__item-image">
+              <img src="https://cdn.shopify.com/s/files/1/0627/8476/6124/files/banner_img.png?v=1700201877" alt="">
+            </div>
+            <div class="banner__item-text">
+              <h2><span>$5</span> OFF</h2>
+              <h3>Cranberry Rascals</h3>
+              <h4>For the Month of November</h4>
+              <p>Malley’s Cranberry Rascals, featuring dak chocolate covering salted almonds and tart cranberries in our special-recipe caramel, Sale ends November 30th, 2023.</p>
+              <a href="#." class="btn">Order Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="banner__slide-item--row">
+            <div class="banner__item-image">
+              <img src="https://cdn.shopify.com/s/files/1/0627/8476/6124/files/banner_img.png?v=1700201877" alt="">
+            </div>
+            <div class="banner__item-text">
+              <h2><span>$5</span> OFF</h2>
+              <h3>Cranberry Rascals</h3>
+              <h4>For the Month of November</h4>
+              <p>Malley’s Cranberry Rascals, featuring dak chocolate covering salted almonds and tart cranberries in our special-recipe caramel, Sale ends November 30th, 2023.</p>
+              <a href="#." class="btn">Order Now</a>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <div class="banner__bg-layer">
+    <img src="https://cdn.shopify.com/s/files/1/0627/8476/6124/files/banner__bg-layer.png?v=1700203870" alt="">
+  </div>
+</div>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> -->
+<script>
+  var swiper = new Swiper(".main__banner-slider", {});
+</script>
+{% schema %}
+  {
+    "presets": [
+      {
+        "name" : "Main Banner"
+      }
+    ],
+    "name": "Main Banner",
+    "settings": [],
+     "max_blocks": 4,
+      "blocks": [
+     {
+       "name": "Slide",
+       "type": "slide",
+       "settings": [
+         {
+           "type": "image_picker",
+           "id": "slide_image",
+           "label": "Image"
+         },
+         {
+           "type":"header",
+           "content":"Show pricing use span tag"
+         },         
+         {
+          "type": "textarea",
+          "id": "slide_main_heading",
+          "label": "Main Heading",
+          "default": "<span>$5</span> OFF",
+           "info": "<span>$5</span> use this for show price"
+         },      
+         {
+           "type": "text",
+           "id": "slide_heading",
+             "label": "Heading",
+           "default":"Cranberry Rascals"
+         },
+         {
+           "type": "text",
+           "id": "slide_sub_heading",
+           "label": "Sub Heading",
+           "default":"For the Month of November"
+         },
+         {
+           "type": "richtext",
+           "id": "slide_rich_text",
+           "label": "Description",
+           "default":"<p>Malley’s Cranberry Rascals, featuring dak chocolate covering salted almonds and tart cranberries in our special-recipe caramel, Sale ends November 30th, 2023.</p>"
+         },
+         {
+           "type": "text",
+           "id": "slide_button",
+           "label": "Button Text",
+           "default":"Order Now"
+         },
+         {
+           "type": "url",
+           "id": "slide_link",
+           "label": "Link"
+         }
+       ]
+     }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
