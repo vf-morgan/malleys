@@ -210,10 +210,6 @@ body.template-cart #cartform .cart__footer {
 	padding-top: 3rem;
 }
 
-body.template-cart #cartform .cart__footer [data-free-shipping-msg] {
-	display: block;
-}
-
 body.template-cart #cartform .cart__footer #checkout-buttons .btn {
 	margin: 0;
 }

@@ -319,23 +319,165 @@ span.cart-cro-recs__image {
   }
 }
 
-#cartform .cart-cro-shipping-slot,
-#cartform .cart-cro-recs {
-  margin: 24px 0;
+/* ---------- Cart page (data-context="page") ----------
+   Everything below is scoped to .cart-cro-shipping-slot--page, .cart-cro-recs--page
+   or #cartform, which only exist on the cart template. Drawer rules above apply
+   unchanged in the drawer. */
+
+/* Progress sits directly above the subtotal it explains: a right-aligned block
+   matching the totals column from 768px, full width below. */
+#cartform .cart-cro-shipping-slot--page {
+  margin: 0 0 1rem;
+  padding: 0;
+  border: 0;
 }
 
-#cartform .cart-cro-shipping-slot:has(+ .cart-cro-recs:not([hidden])) {
-  margin-bottom: 0;
+@media screen and (min-width: 768px) {
+  #cartform .cart-cro-shipping-slot--page {
+    max-width: 20rem;
+    margin-left: auto;
+  }
 }
 
-#cartform .cart-cro-shipping-slot + .cart-cro-recs {
-  margin-top: 0;
+.cart-cro-shipping-slot--page .cart-cro-shipping__status {
+  margin-bottom: 4px;
+  font-size: 18px;
 }
 
-#cartform .cart-cro-shipping {
+.cart-cro-shipping-slot--page .cart-cro-shipping__flat {
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.cart-cro-shipping-slot--page .cart-cro-shipping__track {
+  height: 8px;
+  border-radius: 4px;
+}
+
+.cart-cro-shipping-slot--page .cart-cro-shipping__fill {
+  background-color: var(--color-primary);
+}
+
+.cart-cro-shipping-slot--page .cart-cro-shipping__eligibility {
+  font-size: 14px;
+}
+
+.cart-cro-shipping-slot--page .cart-cro-shipping--unlocked .cart-cro-shipping__status::before {
+  content: '\2713\00a0';
+  content: '\2713\00a0' / '';
+}
+
+.cart-cro-shipping-slot--page .cart-cro-shipping--just-unlocked .cart-cro-shipping__track {
+  animation: cart-cro-unlock 0.6s ease-out;
+}
+
+@keyframes cart-cro-unlock {
+  50% {
+    transform: scaleY(1.75);
+  }
+}
+
+/* Update cart + Continue shopping: theme secondary text (#ffadc7) is 1.7:1 on white */
+#cartform #update_quantities,
+#cartform #continue-shopping,
+#cartform #update_quantities:hover:not([disabled]),
+#cartform #continue-shopping:hover,
+#cartform #update_quantities:focus:not([disabled]),
+#cartform #continue-shopping:focus {
+  color: var(--color-primary);
+  box-shadow: inset 0 0 0 1px var(--button-background-color);
+}
+
+#cartform #update_quantities:hover:not([disabled]),
+#cartform #continue-shopping:hover {
+  background: var(--button-background-hover-color);
+}
+
+#cartform #update_quantities:focus-visible,
+#cartform #continue-shopping:focus-visible,
+#cartform #cart_submit:focus-visible,
+.cart-cro-recs--page .btn:focus-visible,
+.cart-cro-recs--page a:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Recommendations: full-width row under the checkout actions, theme product cards */
+.cart-cro-recs.cart-cro-recs--page {
+  margin: 3rem 0 0;
+  padding: 3rem 0 0;
+  border-top: 1px solid var(--border-color, #d6d6d6);
+  border-bottom: 0;
+}
+
+.cart-cro-recs--page .cart-cro-recs__page-heading {
+  margin: 0 0 1.5rem;
+  color: var(--color-primary);
   text-align: left;
-  min-width: 0;
-  display: block;
+}
+
+.cart-cro-recs--page .cart-cro-recs__card {
+  margin-bottom: 1.5rem;
+  animation: cart-cro-rec-in 0.2s ease-out;
+}
+
+.cart-cro-recs--page .indiv-product-vendor-text {
+  display: none;
+}
+
+/* Quick add is secondary here: outlined, so Checkout stays the only filled CTA */
+.cart-cro-recs--page .quick-add-button,
+.cart-cro-recs--page .quick-add-button-variants {
+  min-height: 44px;
+  background: transparent;
+  color: var(--color-primary);
+  box-shadow: inset 0 0 0 1px var(--button-background-color);
+}
+
+@media screen and (max-width: 575px) {
+  .cart-cro-recs--page .quick-add-button,
+  .cart-cro-recs--page .quick-add-button-variants {
+    padding-left: 8px;
+    padding-right: 8px;
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+}
+
+.cart-cro-recs--page .quick-add-button:hover:not([disabled]),
+.cart-cro-recs--page .quick-add-button:focus-visible:not([disabled]),
+.cart-cro-recs--page .quick-add-button-variants:hover,
+.cart-cro-recs--page .quick-add-button-variants:focus-visible {
+  background: var(--button-background-hover-color);
+  color: var(--color-primary);
+}
+
+.cart-cro-recs--page .quick-add-button[disabled] {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.cart-cro-recs--page .quick-add-button.is-loading,
+.cart-cro-recs--page .quick-add-button.is-added {
+  opacity: 1;
+}
+
+.cart-cro-recs--page .quick-add-button.is-added {
+  background: var(--button-background-hover-color);
+}
+
+.cart-cro-recs--page .cart-cro-recs__error {
+  margin: 8px 0 0;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--color-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cart-cro-shipping-slot--page .cart-cro-shipping--just-unlocked .cart-cro-shipping__track,
+  .cart-cro-recs--page .cart-cro-recs__card {
+    animation: none;
+  }
 }
 
 /* Keep checkout actions visible when CRO modules add height */

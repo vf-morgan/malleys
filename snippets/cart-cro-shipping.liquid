@@ -1,0 +1,18 @@
+{%- comment -%}
+  Free-shipping progress slot for the cart drawer and the cart page.
+  context: 'drawer' (default) | 'page'
+  Only the drawer slot carries data-free-shipping-msg: the theme refetches that
+  section on quantity changes, which would replace the page bar mid-transition.
+  cart-cro.js updates both slots in place.
+{%- endcomment -%}
+{%- if settings.enable_shipping_encouragement and settings.free_shipping_message != blank and settings.free_shipping_amount != blank and settings.free_shipping_achieved != blank -%}
+  {%- if context == 'page' -%}
+    <div class="cart-cro-shipping-slot cart-cro-shipping-slot--page" data-cart-cro-shipping-slot data-context="page">
+      {% render 'free-shipping-message' %}
+    </div>
+  {%- else -%}
+    <div class="cart-cro-shipping-slot" data-free-shipping-msg data-context="drawer">
+      {% render 'free-shipping-message' %}
+    </div>
+  {%- endif -%}
+{%- endif -%}

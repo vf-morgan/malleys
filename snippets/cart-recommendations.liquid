@@ -1,5 +1,13 @@
+{%- comment -%}
+  Cart recommendations for the cart drawer and the cart page.
+  context: 'drawer' (default) | 'page'
+  Selection, ranking and tracking live in cart-cro.js. The page renders theme
+  product cards (sections/cart-recommendations-card.liquid) and must sit outside
+  #cartform, because each card contains its own product form.
+{%- endcomment -%}
 {%- if settings.enable_cart_recommendations -%}
   {%- liquid
+    assign cart_cro_context = context | default: 'drawer'
     assign fallback_collection = settings.cart_recommendations_collection
     assign heading = settings.cart_recommendations_heading | default: 'Add one of these'
     assign ceiling_dollars = settings.cart_recommendations_price_ceiling | default: '15.00' | times: 1.0
@@ -9,8 +17,9 @@
   -%}
 
   <div
-    class="cart-cro-recs"
+    class="cart-cro-recs{% if cart_cro_context == 'page' %} cart-cro-recs--page{% endif %}"
     data-cart-recommendations
+    data-context="{{ cart_cro_context }}"
     data-enabled="true"
     data-heading="{{ heading | escape }}"
     data-ceiling-shop-cents="{{ ceiling_cents }}"
@@ -18,7 +27,7 @@
     data-shop-currency="{{ shop.currency }}"
     data-after-threshold="{{ after_threshold }}"
     data-limit-drawer="2"
-    data-limit-page="3"
+    data-limit-page="4"
     hidden
   >
     <script type="application/json" data-cart-recs-fallback>
@@ -75,7 +84,12 @@
         {%- endif -%}
       ]
     </script>
-    <h3 class="cart-cro-recs__heading" data-cart-recs-heading>{{ heading }}</h3>
-    <ul class="cart-cro-recs__list" data-cart-recs-list></ul>
+    {%- if cart_cro_context == 'page' -%}
+      <h2 class="h4 cart-cro-recs__page-heading" data-cart-recs-heading>{{ heading }}</h2>
+      <div class="row cart-cro-recs__grid" data-cart-recs-list></div>
+    {%- else -%}
+      <h3 class="cart-cro-recs__heading" data-cart-recs-heading>{{ heading }}</h3>
+      <ul class="cart-cro-recs__list" data-cart-recs-list></ul>
+    {%- endif -%}
   </div>
 {%- endif -%}

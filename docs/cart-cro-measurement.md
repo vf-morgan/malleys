@@ -44,6 +44,18 @@ Subscribe in a custom web pixel if you use Shopify’s customer events pipeline.
 
 ---
 
+## Location property
+
+The drawer and the cart page send the **same event names**. Every progress and recommendation event carries a `location` property so you can split them:
+
+| Property | Type | Values |
+| --- | --- | --- |
+| `location` | string | `"drawer"` \| `"cart_page"` |
+
+`free_shipping_pdp_teaser_viewed` has no `location` (it only fires on product pages).
+
+---
+
 ## Events
 
 ### `free_shipping_progress_viewed`
@@ -61,6 +73,7 @@ Subscribe in a custom web pixel if you use Shopify’s customer events pipeline.
 | `qualifying_cents` | number | `7250` | Cart total after discounts, Ice Pack lines excluded. |
 | `currency` | string | `"USD"` | Presentment currency code. |
 | `unlocked` | boolean | `false` | Whether threshold is already met. |
+| `location` | string | `"cart_page"` | `"drawer"` or `"cart_page"`. |
 
 **GTM:** Trigger = Custom Event `free_shipping_progress_viewed`. Map to GA4 event e.g. `free_shipping_progress_viewed`.
 
@@ -77,6 +90,7 @@ Subscribe in a custom web pixel if you use Shopify’s customer events pipeline.
 | `threshold_cents` | number | `8500` |
 | `qualifying_cents` | number | `8900` |
 | `currency` | string | `"USD"` |
+| `location` | string | `"drawer"` |
 
 **Do not treat this as a purchase.** It is a micro-conversion toward free shipping.
 
@@ -96,7 +110,7 @@ Subscribe in a custom web pixel if you use Shopify’s customer events pipeline.
 
 ### `cart_recommendation_impression`
 
-| When | Recommended products are rendered in the drawer or cart page. Deduped per product + position + cart state. |
+| When | Recommended products are rendered in the drawer (up to 2) or cart page (up to 4). Deduped per location + product + position + cart state. |
 | --- | --- |
 | Requires | Cart recommendations enabled. |
 
@@ -107,24 +121,26 @@ Subscribe in a custom web pixel if you use Shopify’s customer events pipeline.
 | `price_cents` | number | `1499` |
 | `position` | number | `1` |
 | `source` | string | `"complementary"` \| `"related"` \| `"collection"` |
+| `location` | string | `"drawer"` \| `"cart_page"` |
 
 ---
 
 ### `cart_recommendation_click`
 
-| When | Shopper clicks a recommendation title or “View” (multi-variant → PDP). |
+| When | Drawer: shopper clicks a recommendation title or “View”. Cart page: shopper clicks a card image, title/price or “View options”. |
 
 | Property | Type | Example |
 | --- | --- | --- |
 | `product_id` | number | `123456789` |
 | `position` | number | `1` |
 | `source` | string | `"complementary"` |
+| `location` | string | `"drawer"` \| `"cart_page"` |
 
 ---
 
 ### `cart_recommendation_add_to_cart`
 
-| When | Shopper uses the in-drawer **Add** button (single-variant products). |
+| When | Shopper uses the drawer **Add** button or the cart page card **Add to cart** button (single-variant products). |
 
 | Property | Type | Example |
 | --- | --- | --- |
@@ -132,6 +148,7 @@ Subscribe in a custom web pixel if you use Shopify’s customer events pipeline.
 | `variant_id` | number | `987654321` |
 | `position` | number | `1` |
 | `source` | string | `"collection"` |
+| `location` | string | `"drawer"` \| `"cart_page"` |
 
 Pair with Shopify’s native `add_to_cart` / purchase funnels in GA4 if you want revenue attribution.
 
@@ -139,7 +156,7 @@ Pair with Shopify’s native `add_to_cart` / purchase funnels in GA4 if you want
 
 ## Suggested GTM setup checklist
 
-1. **Variables** — Data Layer Variables for: `gap_amount`, `gap_cents`, `threshold_cents`, `flat_rate_cents`, `qualifying_cents`, `currency`, `unlocked`, `product_id`, `variant_id`, `price_cents`, `position`, `source`.
+1. **Variables** — Data Layer Variables for: `gap_amount`, `gap_cents`, `threshold_cents`, `flat_rate_cents`, `qualifying_cents`, `currency`, `unlocked`, `product_id`, `variant_id`, `price_cents`, `position`, `source`, `location`.
 2. **Triggers** — one Custom Event trigger per event name above.
 3. **Tags** — GA4 Event tags (or your analytics of choice) firing on those triggers; pass the variables as event parameters.
 4. **Preview** — GTM Preview: open drawer, change qty across $85, add a recommendation; confirm event order and parameters.
@@ -194,3 +211,4 @@ If Shopify admin shipping rates use a different subtotal definition, document th
 6. Lower below $85 → no second “reached” until you cross up again.
 7. Click Add on a single-variant rec → `cart_recommendation_add_to_cart` + cart refresh.
 8. Click View on a multi-variant rec → `cart_recommendation_click`.
+9. Repeat 4–8 on `/cart` → same events with `location: "cart_page"`; quick add updates the line items without opening the drawer.

@@ -1,0 +1,25 @@
+{%- comment -%}
+  One theme product card for the cart page recommendations, fetched by cart-cro.js
+  from /products/{handle}?section_id=cart-recommendations-card.
+  The section id must contain "recommendations": product-grid--indiv-product then
+  renders its fixed title + price layout instead of reading section blocks.
+  No presets, so it cannot be added to templates from the editor.
+{%- endcomment -%}
+{%- if product and product.available -%}
+  <div
+    class="grid__item col-6 col-lg-3 cart-cro-recs__card"
+    data-cart-rec-card
+    data-product-id="{{ product.id }}"
+    data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+    data-price-cents="{{ product.price_min }}"
+  >
+    {%- render 'product-grid--indiv-product', liquidObject: product, section: section -%}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Cart recommendation card",
+  "settings": []
+}
+{% endschema %}

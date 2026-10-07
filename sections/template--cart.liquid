@@ -160,6 +160,8 @@
                </table>
 
                <div class="cart-bottom-box">
+                  {% render 'cart-cro-shipping', context: 'page' %}
+
                   {%- if cart.cart_level_discount_applications != blank -%}
                      <div class="cart--order-discount-wrapper custom-font">
                         {%- for discount_application in cart.cart_level_discount_applications -%}
@@ -177,7 +179,7 @@
                      <div class="row">
                         <div class="col">
                            <!--<div id="cart-total-header">Shipping & Handling</div>-->
-                           <div id="cart-total-final-price">
+                           <div class="cart-total-fees">
                               <span class="mw-hidden-fees"></span>
                            </div>
                         </div>
@@ -246,17 +248,6 @@
 
          <div class="row justify-content-center justify-content-md-end">
 
-            <div class="col-12 col-lg">
-
-               {% if settings.free_shipping_message != blank and settings.free_shipping_amount != blank and settings.free_shipping_achieved != blank and settings.enable_shipping_encouragement %}
-                  <div class="cart-cro-shipping-slot" data-free-shipping-msg>
-                     {% render 'free-shipping-message' %}
-                  </div>
-               {% endif %}
-
-               {% render 'cart-recommendations' %}
-            </div>
-
             <div class="col-12 col-lg-auto">
 
                <div id="checkout-buttons">
@@ -275,6 +266,8 @@
       </div>
 
 	</form>
+
+	{% render 'cart-recommendations', context: 'page' %}
 
 	<script type="application/json" id="initial-cart">
 		{{ cart | json }}
