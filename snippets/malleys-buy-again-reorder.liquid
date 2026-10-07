@@ -1,0 +1,144 @@
+{% doc %}
+  Buy again button for one past order. Adds every available line, skipping variants already in the cart.
+  Renders nothing when the order has no line that can be added.
+  @param {order} source_order - Order to rebuild
+  @param {string} placement - account or order
+  @param {boolean} [as_root] - Wrap the button in its own controller. Set false when a parent already has data-malleys-buy-again.
+  @param {number} [qty_threshold] - Quantity at or above which only 1 is added
+{% enddoc %}
+{%- liquid
+  assign qty_threshold = qty_threshold | default: 10
+  assign placement = placement | default: 'account'
+  if as_root == nil
+    assign as_root = true
+  endif
+  assign picked_variants = '|'
+  assign unavailable_seen = '|'
+  assign items_json = ''
+  assign unavailable_json = ''
+  assign item_count = 0
+  assign line_count = 0
+  assign capped_count = 0
+  assign value_cents = 0
+  assign order_date = source_order.created_at | date: '%B %-d, %Y'
+-%}
+{%- for line_item in source_order.line_items -%}
+  {%- liquid
+    assign product = line_item.product
+    assign variant = line_item.variant
+    assign status = 'ok'
+    assign line_title_down = line_item.title | downcase
+
+    if line_item.gift_card or line_title_down contains 'ice pack' or line_item.selling_plan_allocation
+      assign status = 'silent'
+    elsif product == blank or variant == blank
+      assign status = 'unavailable'
+    else
+      assign product_title_down = product.title | downcase
+      if product.gift_card or product.requires_selling_plan or product_title_down contains 'ice pack'
+        assign status = 'silent'
+      endif
+      if status == 'ok'
+        for tag in product.tags
+          assign tag_down = tag | downcase
+          if tag_down == 'rec-exclude'
+            assign status = 'silent'
+            break
+          endif
+        endfor
+      endif
+      if status == 'ok'
+        for product_collection in product.collections
+          if product_collection.handle == 'corporate-page'
+            assign status = 'silent'
+            break
+          endif
+        endfor
+      endif
+      if status == 'ok'
+        unless product.available and variant.available
+          assign status = 'unavailable'
+        endunless
+      endif
+      if status == 'ok' and product.metafields.custom.location.value.size > 0
+        assign status = 'options'
+      endif
+    endif
+
+    if status == 'silent' or status == 'options'
+      continue
+    endif
+
+    if status == 'unavailable'
+      assign unavailable_token = '|' | append: line_item.title | append: '|'
+      unless unavailable_seen contains unavailable_token
+        assign unavailable_seen = unavailable_seen | append: line_item.title | append: '|'
+        if unavailable_json != ''
+          assign unavailable_json = unavailable_json | append: ','
+        endif
+        assign unavailable_json = unavailable_json | append: line_item.title | json
+      endunless
+      continue
+    endif
+
+    assign variant_token = '|' | append: variant.id | append: '|'
+    if picked_variants contains variant_token
+      continue
+    endif
+    assign picked_variants = picked_variants | append: variant.id | append: '|'
+
+    assign ordered_qty = 0
+    for other_line in source_order.line_items
+      if other_line.variant_id == variant.id
+        assign ordered_qty = ordered_qty | plus: other_line.quantity
+      endif
+    endfor
+
+    assign add_qty = ordered_qty
+    if ordered_qty >= qty_threshold
+      assign add_qty = 1
+      assign capped_count = capped_count | plus: 1
+    endif
+
+    assign line_count = line_count | plus: 1
+    assign item_count = item_count | plus: add_qty
+    assign line_value = variant.price | times: add_qty
+    assign value_cents = value_cents | plus: line_value
+    if items_json != ''
+      assign items_json = items_json | append: ','
+    endif
+    assign product_title_json = product.title | json
+    assign items_json = items_json | append: '{"variant_id":' | append: variant.id | append: ',"product_id":' | append: product.id | append: ',"quantity":' | append: add_qty | append: ',"price_cents":' | append: variant.price | append: ',"title":' | append: product_title_json | append: '}'
+  -%}
+{%- endfor -%}
+{%- if line_count > 0 -%}
+  {%- capture reorder_controls -%}
+    <button type="button" class="btn malleys-buy-again__reorder" data-buy-again-all data-label="Buy again">
+      Buy again
+    </button>
+    {%- if placement == 'order' -%}
+      <p class="note malleys-buy-again__reorder-note">
+        Current prices apply. Shipping addresses, gift messages, and personalization are not copied.
+        {%- if capped_count > 0 %} Large quantities are added as 1 so you can adjust them in your cart.{% endif -%}
+      </p>
+    {%- endif -%}
+    <p class="note malleys-buy-again__status" data-buy-again-status role="status" aria-live="polite"></p>
+    <script type="application/json" data-buy-again-payload>
+      {"items":[{{ items_json }}],"unavailable":[{{ unavailable_json }}]}
+    </script>
+  {%- endcapture -%}
+  {%- if as_root -%}
+    <div
+      class="malleys-buy-again malleys-buy-again--{{ placement }}"
+      data-malleys-buy-again
+      data-placement="{{ placement }}"
+      data-order-date="{{ order_date }}"
+      data-item-count="{{ item_count }}"
+      data-value-cents="{{ value_cents }}"
+    >
+      {{ reorder_controls }}
+    </div>
+  {%- else -%}
+    {{ reorder_controls }}
+  {%- endif -%}
+{%- endif -%}

@@ -44,6 +44,11 @@
 
 		<div class="col-lg-12">
 
+			<div
+				data-malleys-buy-again
+				data-placement="order"
+				data-order-date="{{ order.created_at | date: '%B %-d, %Y' }}"
+			>
 			<table id="order_details">
 				<thead>
 					<tr>
@@ -52,6 +57,7 @@
 						<th>{{ 'customer.order.details.price' | t }}</th>
 						<th class="center">{{ 'customer.order.details.quantity' | t }}</th>
 						<th class="total">{{ 'customer.order.details.total' | t }}</th>
+						<th class="malleys-buy-again-col"><span class="sr-only">{{ 'products.product.add_to_cart' | t }}</span></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -143,6 +149,9 @@
 								{%- endif -%}
 							</div>
 						</td>
+						<td class="malleys-buy-again__line">
+							{% render 'malleys-buy-again-line', line_item: line_item, position: forloop.index %}
+						</td>
 					</tr>
 					{% endfor %}
 				</tbody>
@@ -150,6 +159,7 @@
 					<tr class="order_summary note">
 						<td colspan="4">{{ 'customer.order.details.subtotal' | t }}</td>
 						<td class="total money-styling"><span class="money">{{ order.line_items_subtotal_price | money }}</span></td>
+						<td></td>
 					</tr>
 
 					{%- if order.cart_level_discount_applications != blank -%}
@@ -164,6 +174,7 @@
 								<td class="total money-styling" data-label="{{ 'customer.order.discount' | t }}">
 										<span class="order-discount"><span class="money">{{ discount_application.total_allocated_amount | money }}</span></span>
 								</td>
+								<td></td>
 							{%- endfor -%}
 						</tr>
 					{%- endif -%}
@@ -173,6 +184,7 @@
 					<tr class="order_summary note">
 						<td colspan="4">{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})</td>
 						<td class="total money-styling"><span class="money">{{ shipping_method.price | money }}</span></td>
+						<td></td>
 					</tr>
 					{% endfor %}
 
@@ -180,15 +192,28 @@
 						<tr class="order_summary note">
 							<td colspan="4">{{ 'customer.order.tax' | t }} ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)</td>
 							<td class="total money-styling"><span class="money">{{ tax_line.price | money }}</span></td>
+							<td></td>
 						</tr>
 					{% endfor %}
 
 					<tr class="order_summary order_total">
 						<td colspan="4">{{ 'customer.order.details.total' | t }}</td>
 						<td class="total money-styling"><span class="money">{{ order.total_price | money }}</span> {{ order.currency }}</td>
+						<td></td>
 					</tr>
+					{%- capture reorder_html -%}
+						{%- render 'malleys-buy-again-reorder', source_order: order, placement: 'order', as_root: false -%}
+					{%- endcapture -%}
+					{%- assign reorder_html = reorder_html | strip -%}
+					{%- if reorder_html != blank -%}
+						<tr class="order_summary malleys-buy-again-reorder-row">
+							<td colspan="6" class="malleys-buy-again-reorder-cell">{{ reorder_html }}</td>
+						</tr>
+					{%- endif -%}
 				</tfoot>
 			</table>
+			</div>
+			<script src="{{ 'malleys-buy-again.js' | asset_url }}" defer></script>
 
 		</div>
 

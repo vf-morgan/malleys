@@ -168,7 +168,33 @@
       {% endif %}
     </div>
 
-    {% unless settings.quick_add_position == 'none' %}
+    {% if reorder_variant != blank %}
+      <div class="quick-add-wrapper malleys-buy-again__card-action">
+        {%- if liquidObject.variants.size > 1 -%}
+          <p class="note malleys-buy-again__meta">{{ reorder_variant.title | escape }} &middot; {{ reorder_variant.price | money }}</p>
+        {%- endif -%}
+        {%- if reorder_capped -%}
+          <p class="note malleys-buy-again__meta">You ordered {{ reorder_ordered_qty }}. We'll add 1 &mdash; change the quantity in your cart.</p>
+        {%- elsif reorder_ordered_qty > 1 -%}
+          <p class="note malleys-buy-again__meta">You ordered {{ reorder_ordered_qty }}</p>
+        {%- endif -%}
+        {%- if reorder_status == 'options' -%}
+          <a class="btn quick-add-button-variants alt-focus w-100 my-0" href="{{ reorder_variant.url }}">
+            {{- 'collections.general.view_options' | t }} <span class="sr-only">{{ liquidObject.title | escape }}</span>
+          </a>
+        {%- else -%}
+          <button
+            type="button"
+            class="btn quick-add-button alt-focus w-100 my-0"
+            data-buy-again-add
+            data-label="{% if reorder_qty > 1 %}Add {{ reorder_qty }} again{% else %}Add again{% endif %}"
+          >
+            {%- if reorder_qty > 1 -%}Add {{ reorder_qty }} again{%- else -%}Add again{%- endif -%}
+            <span class="sr-only"> {{ liquidObject.title | escape }}</span>
+          </button>
+        {%- endif -%}
+      </div>
+    {% elsif settings.quick_add_position != 'none' %}
       {% unless hideBtns == true %}
         <div class="quick-add-wrapper{% if liquidObject.variants.size == 1 %} is-singular{% endif %}">
           {% if liquidObject.variants.size > 1 and liquidObject.available %}
@@ -196,7 +222,7 @@
           {% endif %}
         </div>
       {% endunless %}
-    {% endunless %}
+    {% endif %}
   </div>
 
 </article>

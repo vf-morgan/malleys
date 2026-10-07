@@ -1,0 +1,91 @@
+{% doc %}
+  Add-to-cart control for one past order line. Renders nothing for gift cards, ice packs, subscriptions, excluded products, and corporate-page products.
+  @param {line_item} line_item - Order line to reorder
+  @param {number} [position] - 1-based position for analytics
+  @param {number} [qty_threshold] - Quantity at or above which only 1 is added
+{% enddoc %}
+{%- liquid
+  assign qty_threshold = qty_threshold | default: 10
+  assign position = position | default: 1
+  assign product = line_item.product
+  assign variant = line_item.variant
+  assign status = 'ok'
+  assign line_title_down = line_item.title | downcase
+
+  if line_item.gift_card or line_title_down contains 'ice pack' or line_item.selling_plan_allocation
+    assign status = 'silent'
+  elsif product == blank or variant == blank
+    assign status = 'unavailable'
+  else
+    assign product_title_down = product.title | downcase
+    if product.gift_card or product.requires_selling_plan or product_title_down contains 'ice pack'
+      assign status = 'silent'
+    endif
+    if status == 'ok'
+      for tag in product.tags
+        assign tag_down = tag | downcase
+        if tag_down == 'rec-exclude'
+          assign status = 'silent'
+          break
+        endif
+      endfor
+    endif
+    if status == 'ok'
+      for product_collection in product.collections
+        if product_collection.handle == 'corporate-page'
+          assign status = 'silent'
+          break
+        endif
+      endfor
+    endif
+    if status == 'ok'
+      unless product.available and variant.available
+        assign status = 'unavailable'
+      endunless
+    endif
+    if status == 'ok' and product.metafields.custom.location.value.size > 0
+      assign status = 'options'
+    endif
+  endif
+
+  assign add_qty = line_item.quantity
+  assign capped = false
+  if line_item.quantity >= qty_threshold
+    assign add_qty = 1
+    assign capped = true
+  endif
+
+  if add_qty > 1
+    assign button_label = 'Add ' | append: add_qty | append: ' to cart'
+  else
+    assign button_label = 'Add to cart'
+  endif
+-%}
+{%- if status == 'unavailable' -%}
+  <span class="note">Unavailable</span>
+{%- elsif status == 'options' -%}
+  <a class="btn malleys-buy-again__line-btn" href="{{ variant.url }}">{{ 'collections.general.view_options' | t }}</a>
+{%- elsif status == 'ok' -%}
+  <div
+    data-buy-again-card
+    data-product-id="{{ product.id }}"
+    data-variant-id="{{ variant.id }}"
+    data-price-cents="{{ variant.price }}"
+    data-quantity="{{ add_qty }}"
+    data-position="{{ position }}"
+    data-source="past_order"
+  >
+    <button
+      type="button"
+      class="btn malleys-buy-again__line-btn"
+      data-buy-again-add
+      data-label="{{ button_label | escape }}"
+      aria-label="{{ button_label | escape }}: {{ line_item.title | escape }}"
+    >
+      {{ button_label }}
+    </button>
+    {%- if capped -%}
+      <p class="note">You ordered {{ line_item.quantity }}. Adds 1.</p>
+    {%- endif -%}
+  </div>
+{%- endif -%}

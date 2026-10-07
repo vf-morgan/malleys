@@ -90,6 +90,31 @@
       ],
       "settings": {}
     },
+    "malleys_buy_again": {
+      "type": "malleys-buy-again",
+      "blocks": {
+        "product_card_title_buyagain": {
+          "type": "product-card-title",
+          "settings": {}
+        },
+        "product_card_price_buyagain": {
+          "type": "product-card-price",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "product_card_title_buyagain",
+        "product_card_price_buyagain"
+      ],
+      "settings": {
+        "enable": true,
+        "heading": "Buy it again",
+        "products_to_show": 4,
+        "qty_threshold": 10,
+        "show_new": false,
+        "fallback_collection": ""
+      }
+    },
     "collection_featured_collection_JhgmDh": {
       "type": "collection--featured-collection",
       "blocks": {
@@ -443,6 +468,7 @@
   },
   "order": [
     "3a874cce-b06d-4a1e-a47b-0eee6f08e8b4",
+    "malleys_buy_again",
     "collection_featured_collection_JhgmDh",
     "collection_featured_collection_carousel_YPwB69",
     "text_image_with_text_47hLEQ",

@@ -1,0 +1,300 @@
+{%- liquid
+  assign placement = 'homepage'
+  assign source_order = blank
+  if template.name == 'account'
+    assign placement = 'account'
+  elsif template.name == 'order'
+    assign placement = 'order'
+  endif
+
+  if customer and section.settings.enable
+    if placement == 'order'
+      assign source_order = order
+    else
+      assign source_order = customer.last_order
+    endif
+  endif
+
+  assign limit = section.settings.products_to_show | default: 4
+  assign qty_threshold = section.settings.qty_threshold | default: 10
+  if placement == 'account' and limit > 3
+    assign limit = 3
+  endif
+
+  case limit
+    when 2
+      assign grid_class = 'col-6 col-sm-6 col-md-6 two_columns'
+    when 3
+      assign grid_class = 'col-6 col-sm-4 col-md-4 three_columns'
+    else
+      assign grid_class = 'col-6 four_columns'
+  endcase
+
+  assign show_order_link = true
+  if placement == 'order'
+    assign show_order_link = false
+  endif
+-%}
+
+{%- if recommendations.performed -%}
+  {%- comment -%} Candidates for the "Something new to try" slot. The script keeps the first one not in the order. {%- endcomment -%}
+  <div data-buy-again-new-candidates>
+    {%- assign shown = 0 -%}
+    {%- assign picked = '|' -%}
+    {%- for rec in recommendations.products -%}
+      {%- if shown >= 4 -%}{%- break -%}{%- endif -%}
+      {%- capture card_html -%}
+        {%- render 'malleys-pdp-rec-card',
+          rec: rec,
+          seed_id: -1,
+          picked: picked,
+          position: 1,
+          source: 'something_new',
+          intent: 'related',
+          grid_class: '',
+          card_section: section
+        -%}
+      {%- endcapture -%}
+      {%- assign card_html = card_html | strip -%}
+      {%- if card_html != blank -%}
+        {{ card_html }}
+        {%- assign shown = shown | plus: 1 -%}
+        {%- assign picked = picked | append: rec.id | append: '|' -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if shown < 4 and section.settings.fallback_collection != blank -%}
+      {%- for rec in section.settings.fallback_collection.products limit: 24 -%}
+        {%- if shown >= 4 -%}{%- break -%}{%- endif -%}
+        {%- capture card_html -%}
+          {%- render 'malleys-pdp-rec-card',
+            rec: rec,
+            seed_id: -1,
+            picked: picked,
+            position: 1,
+            source: 'something_new_fallback',
+            intent: 'related',
+            grid_class: '',
+            card_section: section
+          -%}
+        {%- endcapture -%}
+        {%- assign card_html = card_html | strip -%}
+        {%- if card_html != blank -%}
+          {{ card_html }}
+          {%- assign shown = shown | plus: 1 -%}
+          {%- assign picked = picked | append: rec.id | append: '|' -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+{%- elsif source_order != blank -%}
+  {%- capture buy_again_html -%}
+    {%- render 'malleys-buy-again-items',
+      source_order: source_order,
+      card_section: section,
+      placement: placement,
+      limit: limit,
+      qty_threshold: qty_threshold,
+      grid_class: grid_class,
+      show_new: section.settings.show_new,
+      show_order_link: show_order_link
+    -%}
+  {%- endcapture -%}
+  {%- assign buy_again_html = buy_again_html | strip -%}
+
+  {%- if buy_again_html != blank -%}
+    {{ 'section-featured-collection.min.css' | asset_url | stylesheet_tag }}
+
+    {%- if placement == 'homepage' -%}
+      <section class="homepage-sections-wrapper">
+        <div class="container" data-wetheme-section-id="{{ section.id }}">
+          <div class="row">
+            <div class="page-width col-md-12">
+              {%- if section.settings.heading != blank -%}
+                <div class="title-bar custom-font">
+                  <h2>{{ section.settings.heading | escape }}</h2>
+                </div>
+              {%- endif -%}
+              {{ buy_again_html }}
+            </div>
+          </div>
+        </div>
+      </section>
+    {%- else -%}
+      <div class="malleys-buy-again-account malleys-buy-again-account--{{ placement }}" data-wetheme-section-id="{{ section.id }}">
+        {%- if section.settings.heading != blank -%}
+          <div class="sub-title-bar">
+            <h2 class="type-subheading type-subheading--1">{{ section.settings.heading | escape }}</h2>
+          </div>
+        {%- endif -%}
+        {{ buy_again_html }}
+      </div>
+    {%- endif -%}
+
+    <script src="{{ 'malleys-buy-again.js' | asset_url }}" defer></script>
+  {%- endif -%}
+{%- elsif request.design_mode and placement == 'homepage' -%}
+  <div class="container">
+    <p class="note malleys-buy-again__editor-note">
+      Buy it again shows here only for logged-in customers with a past order. Guests and customers without orders see nothing.
+    </p>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .malleys-buy-again .homepage-featured-products {
+    margin-bottom: 0;
+  }
+
+  .malleys-buy-again__item {
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .malleys-buy-again__item .indiv-product {
+    flex: 1 1 auto;
+    margin-bottom: 0;
+    min-width: 0;
+  }
+
+  .malleys-buy-again__meta {
+    margin-bottom: 10px;
+  }
+
+  .malleys-buy-again__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+    margin-top: 30px;
+  }
+
+  .malleys-buy-again__notes {
+    margin-top: 15px;
+  }
+
+  .malleys-buy-again__notes .note {
+    margin-bottom: 5px;
+  }
+
+  .malleys-buy-again__status:empty {
+    display: none;
+  }
+
+  .malleys-buy-again__new--loading {
+    min-height: 26rem;
+  }
+
+  .malleys-buy-again__new-label {
+    margin-bottom: 10px;
+  }
+
+  .malleys-buy-again-account {
+    margin-bottom: 30px;
+  }
+
+  .malleys-buy-again-account--order {
+    margin-top: 15px;
+  }
+
+  .malleys-buy-again__editor-note {
+    padding: 15px 0;
+  }
+
+  @media screen and (max-width: 767px) {
+    .malleys-buy-again__all {
+      width: 100%;
+    }
+
+    .malleys-buy-again__new--loading {
+      min-height: 22rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Buy it again",
+  "class": "malleys-buy-again-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "Show Buy it again",
+      "default": true,
+      "info": "Shows only to logged-in customers with a past order. Guests and customers without orders see nothing."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Buy it again"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "label": "Products to show",
+      "default": 4,
+      "info": "Account page shows up to 3. Add all adds every available item from the order, not only the cards shown."
+    },
+    {
+      "type": "range",
+      "id": "qty_threshold",
+      "min": 2,
+      "max": 50,
+      "step": 1,
+      "label": "Large quantity threshold",
+      "default": 10,
+      "info": "Lines ordered at or above this quantity are added as 1 so customers can adjust them in the cart."
+    },
+    {
+      "type": "header",
+      "content": "Something new to try"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_new",
+      "label": "Show one new product next to past items",
+      "default": false,
+      "info": "Uses Search & Discovery recommendations seeded by the order's highest-priced item, then the fallback collection."
+    },
+    {
+      "type": "collection",
+      "id": "fallback_collection",
+      "label": "Fallback collection"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "name": "Product card title",
+      "type": "product-card-title",
+      "limit": 1,
+      "settings": []
+    },
+    {
+      "name": "Product card price",
+      "type": "product-card-price",
+      "limit": 1,
+      "settings": []
+    }
+  ],
+  "default": {
+    "settings": {
+      "enable": true,
+      "heading": "Buy it again",
+      "products_to_show": 4,
+      "qty_threshold": 10,
+      "show_new": false
+    },
+    "blocks": [
+      { "type": "product-card-title" },
+      { "type": "product-card-price" }
+    ]
+  }
+}
+{% endschema %}

@@ -1,0 +1,232 @@
+{% doc %}
+  Renders the "Buy it again" cards, reorder-all control, and reorder payload for one past order.
+  Outputs nothing when the order has no line that can be added again.
+  @param {order} source_order - Order to rebuild
+  @param {section} card_section - Host section, passed through to the product card for title and price blocks
+  @param {string} placement - homepage, account, or order
+  @param {number} limit - Maximum number of cards to show
+  @param {number} qty_threshold - Line quantity at or above which only 1 is pre-filled
+  @param {string} grid_class - Column classes matching the featured collection grid
+  @param {boolean} show_new - Reserve a slot for one "Something new to try" recommendation
+  @param {boolean} show_order_link - Link to the order detail page
+{% enddoc %}
+{%- liquid
+  assign limit = limit | default: 4
+  assign qty_threshold = qty_threshold | default: 10
+  assign shown = 0
+  assign picked_variants = '|'
+  assign unavailable_seen = '|'
+  assign order_product_ids = '|'
+  assign items_json = ''
+  assign unavailable_json = ''
+  assign unavailable_count = 0
+  assign item_count = 0
+  assign line_count = 0
+  assign capped_count = 0
+  assign value_cents = 0
+  assign seed_id = ''
+  assign seed_price = -1
+  assign order_date = source_order.created_at | date: '%B %-d, %Y'
+-%}
+
+{%- capture cards -%}
+  {%- for line_item in source_order.line_items -%}
+    {%- liquid
+      assign product = line_item.product
+      assign variant = line_item.variant
+      assign status = 'ok'
+      assign line_title_down = line_item.title | downcase
+
+      if line_item.gift_card or line_title_down contains 'ice pack' or line_item.selling_plan_allocation
+        assign status = 'silent'
+      elsif product == blank or variant == blank
+        assign status = 'unavailable'
+      else
+        assign product_title_down = product.title | downcase
+        if product.gift_card or product.requires_selling_plan or product_title_down contains 'ice pack'
+          assign status = 'silent'
+        endif
+        if status == 'ok'
+          for tag in product.tags
+            assign tag_down = tag | downcase
+            if tag_down == 'rec-exclude'
+              assign status = 'silent'
+              break
+            endif
+          endfor
+        endif
+        if status == 'ok'
+          for product_collection in product.collections
+            if product_collection.handle == 'corporate-page'
+              assign status = 'silent'
+              break
+            endif
+          endfor
+        endif
+        if status == 'ok'
+          unless product.available and variant.available
+            assign status = 'unavailable'
+          endunless
+        endif
+        if status == 'ok' and product.metafields.custom.location.value.size > 0
+          assign status = 'options'
+        endif
+      endif
+
+      if product != blank
+        assign product_token = '|' | append: product.id | append: '|'
+        unless order_product_ids contains product_token
+          assign order_product_ids = order_product_ids | append: product.id | append: '|'
+        endunless
+      endif
+
+      if status == 'silent'
+        continue
+      endif
+
+      if status == 'unavailable'
+        assign unavailable_token = '|' | append: line_item.title | append: '|'
+        unless unavailable_seen contains unavailable_token
+          assign unavailable_seen = unavailable_seen | append: line_item.title | append: '|'
+          assign unavailable_count = unavailable_count | plus: 1
+          if unavailable_json != ''
+            assign unavailable_json = unavailable_json | append: ','
+          endif
+          assign unavailable_json = unavailable_json | append: line_item.title | json
+        endunless
+        continue
+      endif
+
+      assign variant_token = '|' | append: variant.id | append: '|'
+      if picked_variants contains variant_token
+        continue
+      endif
+      assign picked_variants = picked_variants | append: variant.id | append: '|'
+
+      assign ordered_qty = 0
+      for other_line in source_order.line_items
+        if other_line.variant_id == variant.id
+          assign ordered_qty = ordered_qty | plus: other_line.quantity
+        endif
+      endfor
+
+      assign add_qty = ordered_qty
+      assign capped = false
+      if ordered_qty >= qty_threshold
+        assign add_qty = 1
+        assign capped = true
+      endif
+
+      if status == 'ok'
+        assign line_count = line_count | plus: 1
+        assign item_count = item_count | plus: add_qty
+        assign line_value = variant.price | times: add_qty
+        assign value_cents = value_cents | plus: line_value
+        if capped
+          assign capped_count = capped_count | plus: 1
+        endif
+        if variant.price > seed_price
+          assign seed_price = variant.price
+          assign seed_id = product.id
+        endif
+        if items_json != ''
+          assign items_json = items_json | append: ','
+        endif
+        assign product_title_json = product.title | json
+        assign items_json = items_json | append: '{"variant_id":' | append: variant.id | append: ',"product_id":' | append: product.id | append: ',"quantity":' | append: add_qty | append: ',"price_cents":' | append: variant.price | append: ',"title":' | append: product_title_json | append: '}'
+      endif
+
+      if shown >= limit
+        continue
+      endif
+      assign shown = shown | plus: 1
+    -%}
+    <div
+      class="grid__item {{ grid_class }} zoomIn collection-image-anim no-bottom-margin malleys-buy-again__item"
+      data-buy-again-card
+      data-product-id="{{ product.id }}"
+      data-variant-id="{{ variant.id }}"
+      data-price-cents="{{ variant.price }}"
+      data-quantity="{{ add_qty }}"
+      data-position="{{ shown }}"
+      data-source="past_order"
+    >
+      {%- render 'product-grid--indiv-product',
+        liquidObject: product,
+        section: card_section,
+        hideBtns: true,
+        reorder_variant: variant,
+        reorder_qty: add_qty,
+        reorder_ordered_qty: ordered_qty,
+        reorder_capped: capped,
+        reorder_status: status
+      -%}
+    </div>
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- assign cards = cards | strip -%}
+
+{%- if cards != blank -%}
+  {%- liquid
+    assign has_new_slot = false
+    if show_new and seed_id != '' and shown < limit
+      assign has_new_slot = true
+    endif
+    assign unavailable_names = ''
+    if unavailable_count > 0
+      assign unavailable_names = unavailable_seen | remove_first: '|' | split: '|' | join: ', '
+    endif
+  -%}
+  <div
+    class="malleys-buy-again"
+    data-malleys-buy-again
+    data-placement="{{ placement }}"
+    data-order-date="{{ order_date }}"
+    data-item-count="{{ item_count }}"
+    data-value-cents="{{ value_cents }}"
+    data-order-product-ids="{{ order_product_ids }}"
+    {% if has_new_slot %}
+      data-new-url="{{ routes.product_recommendations_url }}?section_id={{ card_section.id | url_encode }}&product_id={{ seed_id }}&limit=10&intent=related"
+    {% endif %}
+  >
+    <div class="row homepage-featured-products">
+      {{ cards }}
+      {%- if has_new_slot -%}
+        <div
+          class="grid__item {{ grid_class }} no-bottom-margin malleys-buy-again__new malleys-buy-again__new--loading"
+          data-buy-again-new-slot
+          aria-busy="true"
+        ></div>
+      {%- endif -%}
+    </div>
+
+    {%- if line_count > 0 -%}
+      <div class="malleys-buy-again__actions">
+        <button type="button" class="btn malleys-buy-again__all" data-buy-again-all data-label="Add all {{ item_count }} items to cart">
+          Add all {{ item_count }} items to cart
+        </button>
+        {%- if show_order_link -%}
+          <a class="button--text-subdued malleys-buy-again__order-link" href="{{ source_order.customer_url }}">View order {{ source_order.name }}</a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="malleys-buy-again__notes">
+      <p class="note">
+        From your {{ order_date }} order. Current prices apply. Shipping addresses, gift messages, and personalization are not copied.
+        {%- if capped_count > 0 %} Large quantities are added as 1 so you can adjust them in your cart.{% endif -%}
+      </p>
+      {%- if unavailable_count > 0 -%}
+        <p class="note">
+          {%- if unavailable_count == 1 -%}1 item is{%- else -%}{{ unavailable_count }} items are{%- endif %} no longer available: {{ unavailable_names | escape }}.
+        </p>
+      {%- endif -%}
+      <p class="note malleys-buy-again__status" data-buy-again-status role="status" aria-live="polite"></p>
+    </div>
+
+    <script type="application/json" data-buy-again-payload>
+      {"items":[{{ items_json }}],"unavailable":[{{ unavailable_json }}]}
+    </script>
+  </div>
+{%- endif -%}

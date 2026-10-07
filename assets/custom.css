@@ -560,6 +560,40 @@ h1, h2, h3, h4, h5, h6 {
 .homepage-section--text-and-image-wrapper .feature-row__text--inner .btn {
   margin-top: 1.5rem;
 }
+
+/* Buy it again controls on the account list and order summary */
+.malleys-buy-again-col,
+.malleys-buy-again__line {
+  width: 1%;
+  white-space: nowrap;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.malleys-buy-again__line-btn,
+.malleys-buy-again__reorder {
+  padding: 8px 14px;
+  white-space: nowrap;
+}
+
+.malleys-buy-again--account {
+  margin-top: 8px;
+}
+
+.malleys-buy-again-reorder-cell {
+  text-align: right;
+}
+
+.malleys-buy-again__reorder-note,
+.malleys-buy-again__line .note {
+  margin: 8px 0 0;
+  white-space: normal;
+}
+
+.malleys-buy-again__status:empty {
+  display: none;
+}
+
 .btn, .shopify-payment-button__button.shopify-payment-button__button--unbranded {
   border-radius: 0.5rem;
 }

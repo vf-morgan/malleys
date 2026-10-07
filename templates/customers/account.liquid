@@ -45,7 +45,10 @@
               <td><span class="note">{{ order.created_at | date: format: 'long' }}</span></td>
               <td><span class="status_{{ order.financial_status_label }}">{{ order.financial_status_label }}</span></td>
               <td><span class="status_{{ order.fulfillment_status_label }}">{{ order.fulfillment_status_label }}</span></td>
-              <td><span class="total money">{{ order.total_price | money }}</span></td>
+              <td>
+                <span class="total money">{{ order.total_price | money }}</span>
+                {% render 'malleys-buy-again-reorder', source_order: order, placement: 'account' %}
+              </td>
             </tr>
             {% endfor %}
           </tbody>
@@ -54,6 +57,7 @@
           <p>{{ 'customer.orders.none' | t }}</p>
         {% endif %}
         <div>{{ paginate | default_pagination }}</div>
+        <script src="{{ 'malleys-buy-again.js' | asset_url }}" defer></script>
       {% endpaginate %}
     </div>
   </div>
