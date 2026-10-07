@@ -2,15 +2,17 @@
 
 This theme pushes custom events for the free-shipping progress bar, PDP shipping teaser, and cart recommendations. Events are sent to:
 
-1. `window.dataLayer` (Google Tag Manager — containers `GTM-PJMTNH` and `GTM-W69NF44` are already on the storefront)
+1. `window.dataLayer` (the theme loads executable container `GTM-PJMTNH`)
 2. `Shopify.analytics.publish(eventName, payload)` when that API exists (for custom web pixels)
+
+`GTM-W69NF44` currently appears only as a `<noscript>` iframe in `layout/theme.liquid`; it cannot receive these JavaScript events unless its GTM script is loaded elsewhere at runtime. Confirm the receiving container in GTM Preview before configuring tags.
 
 Theme toggles (Theme settings → Cart):
 
 - **Enable free shipping progress bar** (`enable_shipping_encouragement`) — bar + PDP teaser + progress events
 - **Enable cart recommendations** (`enable_cart_recommendations`) — recommendation module + rec events
 
-Both default **off**. Use a duplicate theme to A/B test without shipping code.
+Both schema defaults are **off**, but the current `config/settings_data.json` has both **enabled**. Use a duplicate theme or an experiment tool that actually splits traffic; merely having two themes does not create an A/B test.
 
 ---
 
@@ -114,6 +116,8 @@ The drawer and the cart page send the **same event names**. Every progress and r
 | --- | --- |
 | Requires | Cart recommendations enabled. |
 
+For the drawer, “impression” means rendered into the drawer DOM. Initial cart hydration can render recommendations before the shopper opens the drawer, so this event is an availability/render event, not a guaranteed viewability event.
+
 | Property | Type | Example |
 | --- | --- | --- |
 | `product_id` | number | `123456789` |
@@ -152,6 +156,8 @@ The drawer and the cart page send the **same event names**. Every progress and r
 
 Pair with Shopify’s native `add_to_cart` / purchase funnels in GA4 if you want revenue attribution.
 
+This custom event fires before `cart/add.js` returns, so it measures add intent, not confirmed success. Use Shopify’s successful `add_to_cart` event or cart state to validate completed adds.
+
 ---
 
 ## Suggested GTM setup checklist
@@ -185,7 +191,7 @@ Optional segments: mobile vs desktop, new vs returning, orders with vs without a
 | Method | Use when |
 | --- | --- |
 | Theme setting toggles | Soft launch / kill switch on the live theme. |
-| Duplicate theme (A/B) | Clean experiment: Theme A toggles off, Theme B toggles on; split traffic in Shopify or your A/B tool. |
+| Duplicate themes + traffic splitter | Clean experiment: Theme A toggles off, Theme B toggles on; use Rollouts or another A/B tool to split traffic. |
 
 In analysis, do not mix weeks where toggles changed mid-week without noting the change date.
 

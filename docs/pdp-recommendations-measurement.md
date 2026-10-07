@@ -2,8 +2,10 @@
 
 The “You may also like” shelf on product pages pushes custom events when a recommendation is shown, clicked, or added. Events are sent to:
 
-1. `window.dataLayer` (Google Tag Manager — containers `GTM-PJMTNH` and `GTM-W69NF44` are already on the storefront)
+1. `window.dataLayer` (the theme loads executable container `GTM-PJMTNH`)
 2. `Shopify.analytics.publish(eventName, payload)` when that API exists (for custom web pixels)
+
+`GTM-W69NF44` currently appears only as a `<noscript>` iframe in `layout/theme.liquid`; it cannot receive these JavaScript events unless its GTM script is loaded elsewhere at runtime. Confirm the receiving container in GTM Preview before configuring tags.
 
 Theme control (product template → **You may also like**):
 
@@ -12,6 +14,8 @@ Theme control (product template → **You may also like**):
 - **Fallback collection** — used only after related results and the matching Shop by Taste collection run short
 
 The section is on the default product template, the custom-sleeve template, and the not-purchasable template. Flavorful Fan Favorites stays in those templates with the section **disabled**, so a Rollouts variant can turn it back on and turn this shelf off.
+
+The current template JSON has this shelf enabled on all three templates and Flavorful Fan Favorites disabled.
 
 These events are separate from the cart drawer events in [cart-cro-measurement.md](cart-cro-measurement.md). A PDP quick add can also open the drawer and then fire cart-drawer events. Do not add the two impression streams together.
 
@@ -66,7 +70,7 @@ Subscribe in a custom web pixel if you use Shopify’s customer events pipeline.
 | `source` | string | `"related"` | Where this card came from. See values below. |
 | `product_id` | number | `7404277399724` | Recommended product. |
 | `variant_id` | number | `41234567890` | First available variant on impressions and clicks. On add, the variant submitted with the form. |
-| `price_cents` | number | `2695` | Product price in the shop currency’s cents. |
+| `price_cents` | number | `2695` | Product minimum price in the storefront’s rendered currency minor units. No currency code is included, so add one before combining markets/currencies in reporting. |
 | `position` | number | `1` | 1-based position in the shelf. |
 | `seed_product_id` | number | `7404277498028` | Product page the shopper is on. |
 
@@ -89,7 +93,7 @@ Subscribe in a custom web pixel if you use Shopify’s customer events pipeline.
 | --- | --- |
 | Requires | Section enabled, and at least one product left after exclusions. |
 
-Fired when the injected cards render. Not fired again for the same product, position, section, and seed product during that page view. The shelf loads only as the shopper approaches it, so an impression means the section was near the viewport, not merely present in the template.
+Fired for every injected card when the shelf renders. Not fired again for the same product, position, section, and seed product during that page view. Loading begins within 200px of the viewport; individual cards are not checked for viewability.
 
 **GTM:** Trigger = Custom Event `pdp_recommendation_impression`. Map to a GA4 event of the same name.
 
@@ -114,6 +118,8 @@ Fired when the injected cards render. Not fired again for the same product, posi
 | Requires | Section enabled. |
 
 Fired when the add is submitted, before the cart request returns. This does not replace Shopify’s native `add_to_cart` event. Pair them in GA4 if you want revenue.
+
+The custom event therefore measures add intent, including failed requests. Use Shopify’s successful `add_to_cart` event or cart state to validate completed adds.
 
 The add uses the same cart path as the product grid: `cart/add.js`, then the theme refreshes the cart drawer. On this store the drawer opens and the free-shipping bar updates. A following cart-drawer recommendation impression is a separate event from [cart-cro-measurement.md](cart-cro-measurement.md).
 
@@ -145,7 +151,7 @@ A title or image click stops at `pdp_recommendation_click`.
 | --- | --- |
 | **Impressions** | `pdp_recommendation_impression` events. |
 | **Click-through rate** | Clicks ÷ impressions, using `product_id` + `position` + `seed_product_id` so one shelf view is not counted twice. |
-| **Quick-add rate** | `pdp_recommendation_add_to_cart` ÷ impressions. |
+| **Quick-add intent rate** | `pdp_recommendation_add_to_cart` ÷ impressions. Validate successful adds separately because the custom event fires before the request completes. |
 | **Attach rate** | Orders that contain both the seed product and a product added from this shelf, ÷ orders that viewed a PDP with an impression. GA4 alone cannot see the seed after navigation unless `seed_product_id` is kept on the add and joined to the purchase. |
 | **Items per order** | Primary commercial outcome. |
 | **AOV** | Secondary commercial outcome. |
@@ -187,7 +193,7 @@ Optional segments: mobile vs desktop, `source`, position 1 vs later positions, o
 1. Preview the theme with **Show recommendations** on and Fan Favorites disabled.
 2. Open GTM Preview.
 3. Open Milk Chocolate Covered Pretzels. Before scrolling to the shelf, these PDP events should not have fired.
-4. Scroll to **You may also like**. Expect one `pdp_recommendation_impression` per card. `seed_product_id` is the pretzels product. The pretzels product itself, Ice Pack, sold-out products, and anything tagged `rec-exclude` are absent.
+4. Scroll to within roughly 200px of **You may also like**. Expect one `pdp_recommendation_impression` per rendered card. `seed_product_id` is the pretzels product. The pretzels product itself, Ice Pack, sold-out products, and anything tagged `rec-exclude` are absent.
 5. Click a product title. Expect `pdp_recommendation_click` and no add event.
 6. On a multi-variant card, click **View options**. Expect `pdp_recommendation_click` only.
 7. On a single-variant card, click **Add to cart**. Expect `pdp_recommendation_add_to_cart`, the cart drawer to open, and the free-shipping bar to refresh. Expect no second click event for that same click.
