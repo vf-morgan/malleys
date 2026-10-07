@@ -1,0 +1,259 @@
+{{ 'section-featured-collection.min.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign intent = section.settings.intent | default: 'related'
+  assign limit = section.settings.products_to_show | default: 4
+  assign seed = product
+  assign shown = 0
+  assign picked = '|'
+  assign api_source = 'related'
+  assign analytics_section = 'pdp_you_may_also_like'
+  if intent == 'complementary'
+    assign api_source = 'complementary'
+    assign analytics_section = 'pdp_pairs_well'
+  endif
+
+  case limit
+    when 2
+      assign grid_class = 'col-6 col-sm-6 col-md-6 two_columns'
+    when 3
+      assign grid_class = 'col-6 col-sm-4 col-md-4 three_columns'
+    else
+      assign grid_class = 'col-6 four_columns'
+  endcase
+
+  assign taste_collection = blank
+  if intent == 'related' and seed != blank
+    assign taste_order = 'fruity|dark-chocolate|sweet-salty|nutty|milk-chocolate' | split: '|'
+    for taste_handle in taste_order
+      if taste_collection == blank
+        for seed_collection in seed.collections
+          if seed_collection.handle == taste_handle
+            assign taste_collection = collections[taste_handle]
+            break
+          endif
+        endfor
+      endif
+    endfor
+  endif
+-%}
+
+{%- if section.settings.enable and seed != blank -%}
+  {%- capture rec_cards -%}
+    {%- if recommendations.performed and recommendations.products_count > 0 -%}
+      {%- for rec in recommendations.products -%}
+        {%- if shown >= limit -%}
+          {%- break -%}
+        {%- endif -%}
+        {%- assign next_position = shown | plus: 1 -%}
+        {%- capture card_html -%}
+          {%- render 'malleys-pdp-rec-card',
+            rec: rec,
+            seed_id: seed.id,
+            picked: picked,
+            position: next_position,
+            source: api_source,
+            intent: intent,
+            grid_class: grid_class,
+            card_section: section
+          -%}
+        {%- endcapture -%}
+        {%- assign card_html = card_html | strip -%}
+        {%- if card_html != blank -%}
+          {{ card_html }}
+          {%- assign shown = shown | plus: 1 -%}
+          {%- assign picked = picked | append: rec.id | append: '|' -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+
+    {%- if recommendations.performed and intent == 'related' and shown < limit and taste_collection != blank -%}
+      {%- for rec in taste_collection.products limit: 24 -%}
+        {%- if shown >= limit -%}
+          {%- break -%}
+        {%- endif -%}
+        {%- assign next_position = shown | plus: 1 -%}
+        {%- capture card_html -%}
+          {%- render 'malleys-pdp-rec-card',
+            rec: rec,
+            seed_id: seed.id,
+            picked: picked,
+            position: next_position,
+            source: 'fallback_taste',
+            intent: intent,
+            grid_class: grid_class,
+            card_section: section
+          -%}
+        {%- endcapture -%}
+        {%- assign card_html = card_html | strip -%}
+        {%- if card_html != blank -%}
+          {{ card_html }}
+          {%- assign shown = shown | plus: 1 -%}
+          {%- assign picked = picked | append: rec.id | append: '|' -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+
+    {%- if recommendations.performed and intent == 'related' and shown < limit and section.settings.fallback_collection != blank -%}
+      {%- for rec in section.settings.fallback_collection.products limit: 24 -%}
+        {%- if shown >= limit -%}
+          {%- break -%}
+        {%- endif -%}
+        {%- assign next_position = shown | plus: 1 -%}
+        {%- capture card_html -%}
+          {%- render 'malleys-pdp-rec-card',
+            rec: rec,
+            seed_id: seed.id,
+            picked: picked,
+            position: next_position,
+            source: 'fallback_favorites',
+            intent: intent,
+            grid_class: grid_class,
+            card_section: section
+          -%}
+        {%- endcapture -%}
+        {%- assign card_html = card_html | strip -%}
+        {%- if card_html != blank -%}
+          {{ card_html }}
+          {%- assign shown = shown | plus: 1 -%}
+          {%- assign picked = picked | append: rec.id | append: '|' -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endcapture -%}
+
+  {%- assign rec_cards = rec_cards | strip -%}
+
+  <div
+    class="malleys-pdp-recs"
+    data-malleys-pdp-recs
+    data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id | url_encode }}&product_id={{ seed.id }}&limit=10&intent={{ intent | url_encode }}"
+    data-section="{{ analytics_section }}"
+    data-intent="{{ intent }}"
+    data-seed-product-id="{{ seed.id }}"
+  >
+    <div
+      class="malleys-pdp-recs__slot malleys-pdp-recs--loading"
+      data-malleys-pdp-recs-slot
+      aria-busy="true"
+      {% if recommendations.performed and rec_cards == blank %}
+        data-empty="true"
+      {% endif %}
+    >
+      {%- if recommendations.performed and rec_cards != blank -%}
+        <section class="homepage-sections-wrapper">
+          <div class="container" data-wetheme-section-id="{{ section.id }}">
+            <div class="row">
+              <div class="page-width col-md-12">
+                {%- if section.settings.heading != blank -%}
+                  <div class="title-bar custom-font">
+                    <h2>{{ section.settings.heading | escape }}</h2>
+                  </div>
+                {%- endif -%}
+                <div class="row homepage-featured-products">
+                  {{ rec_cards }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <script src="{{ 'malleys-product-recommendations.js' | asset_url }}" defer></script>
+{%- endif -%}
+
+{% stylesheet %}
+  .malleys-pdp-recs--loading {
+    min-height: 26rem;
+  }
+
+  @media screen and (max-width: 767px) {
+    .malleys-pdp-recs--loading {
+      min-height: 48rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "You may also like",
+  "class": "malleys-pdp-recs-section",
+  "templates": ["product"],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "Show recommendations",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "You may also like",
+      "info": "Use You may also like for similar products. Use Pairs well with only for a curated complementary list. Use Customers also bought only when the products come from real co-purchases."
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "label": "Products to show",
+      "default": 4
+    },
+    {
+      "type": "select",
+      "id": "intent",
+      "label": "Recommendation type",
+      "default": "related",
+      "options": [
+        { "value": "related", "label": "Related (You may also like)" },
+        { "value": "complementary", "label": "Complementary (Pairs well with)" }
+      ],
+      "info": "Related uses Search & Discovery, then a taste collection, then the fallback collection. Complementary shows Search & Discovery pairs only and hides when none exist."
+    },
+    {
+      "type": "collection",
+      "id": "fallback_collection",
+      "label": "Fallback collection",
+      "info": "Used for related recommendations after the matching Shop by Taste collection. Ignored for complementary."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "name": "Product card title",
+      "type": "product-card-title",
+      "limit": 1,
+      "settings": []
+    },
+    {
+      "name": "Product card price",
+      "type": "product-card-price",
+      "limit": 1,
+      "settings": []
+    }
+  ],
+  "presets": [
+    {
+      "name": "You may also like",
+      "category": "Product",
+      "settings": {
+        "enable": true,
+        "heading": "You may also like",
+        "products_to_show": 4,
+        "intent": "related"
+      },
+      "blocks": [
+        { "type": "product-card-title" },
+        { "type": "product-card-price" }
+      ]
+    }
+  ]
+}
+{% endschema %}

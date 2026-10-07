@@ -169,8 +169,36 @@
         "include_margins": true
       }
     },
+    "malleys-pdp-recs": {
+      "type": "malleys-product-recommendations",
+      "blocks": {
+        "malleys-pdp-recs-title": {
+          "type": "product-card-title",
+          "settings": {}
+        },
+        "malleys-pdp-recs-price": {
+          "type": "product-card-price",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "malleys-pdp-recs-title",
+        "malleys-pdp-recs-price"
+      ],
+      "custom_css": [
+        ".homepage-sections-wrapper {margin-top: -42px;}"
+      ],
+      "settings": {
+        "enable": true,
+        "heading": "You may also like",
+        "products_to_show": 4,
+        "intent": "related",
+        "fallback_collection": "customer-favorites"
+      }
+    },
     "featured-collection": {
       "type": "collection--featured-collection",
+      "disabled": true,
       "blocks": {
         "featured-collection-1": {
           "type": "product-card-title",
@@ -231,6 +259,7 @@
     "main",
     "product-recommendations",
     "1656622972007e5cb6",
+    "malleys-pdp-recs",
     "featured-collection",
     "17562297010d1c3fd3",
     "newsletter_newsletter_WteCNE"

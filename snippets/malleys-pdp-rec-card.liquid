@@ -1,0 +1,81 @@
+{% doc %}
+  Renders one PDP recommendation card, or nothing when the product should be excluded.
+  @param {product} rec - Candidate product
+  @param {number} seed_id - Product id of the page being viewed
+  @param {string} picked - Pipe-delimited product ids already shown
+  @param {number} position - 1-based position if this card is shown
+  @param {string} source - related, complementary, fallback_taste, or fallback_favorites
+  @param {string} intent - related or complementary
+  @param {string} grid_class - Column classes matching the featured collection grid
+  @param {section} card_section - Host section, passed through to the product card
+{% enddoc %}
+{%- liquid
+  assign skip = false
+  if rec == blank or seed_id == blank
+    assign skip = true
+  endif
+  if rec.id == seed_id
+    assign skip = true
+  endif
+  unless rec.available
+    assign skip = true
+  endunless
+  if rec.gift_card
+    assign skip = true
+  endif
+  if rec.price == 0
+    assign skip = true
+  endif
+  if rec.requires_selling_plan
+    assign skip = true
+  endif
+  if rec.media.size == 0
+    assign skip = true
+  endif
+  assign title_down = rec.title | downcase
+  if title_down contains 'ice pack'
+    assign skip = true
+  endif
+  assign token = '|' | append: rec.id | append: '|'
+  if picked contains token
+    assign skip = true
+  endif
+  for tag in rec.tags
+    assign tag_down = tag | downcase
+    if tag_down == 'rec-exclude'
+      assign skip = true
+      break
+    endif
+  endfor
+  unless skip
+    for item in cart.items
+      if item.product_id == rec.id
+        assign skip = true
+        break
+      endif
+    endfor
+  endunless
+  unless skip
+    for candidate_collection in rec.collections
+      if candidate_collection.handle == 'corporate-page'
+        assign skip = true
+        break
+      endif
+    endfor
+  endunless
+  assign variant_id = rec.selected_or_first_available_variant.id
+-%}
+{%- unless skip -%}
+  <div
+    class="grid__item {{ grid_class }} zoomIn collection-image-anim no-bottom-margin"
+    data-pdp-rec-card
+    data-product-id="{{ rec.id }}"
+    data-variant-id="{{ variant_id }}"
+    data-price-cents="{{ rec.price }}"
+    data-position="{{ position }}"
+    data-source="{{ source }}"
+    data-intent="{{ intent }}"
+  >
+    {%- render 'product-grid--indiv-product', liquidObject: rec, section: card_section -%}
+  </div>
+{%- endunless -%}
