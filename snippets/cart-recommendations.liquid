@@ -1,0 +1,81 @@
+{%- if settings.enable_cart_recommendations -%}
+  {%- liquid
+    assign fallback_collection = settings.cart_recommendations_collection
+    assign heading = settings.cart_recommendations_heading | default: 'Add one of these'
+    assign ceiling_dollars = settings.cart_recommendations_price_ceiling | default: '15.00' | times: 1.0
+    assign ceiling_cents = settings.cart_recommendations_price_ceiling | default: '15.00' | times: 100 | round
+    assign after_threshold = settings.cart_recommendations_after_threshold | default: 'show_low_priced'
+    assign threshold_cents = settings.free_shipping_amount | times: 100 | round
+  -%}
+
+  <div
+    class="cart-cro-recs"
+    data-cart-recommendations
+    data-enabled="true"
+    data-heading="{{ heading | escape }}"
+    data-ceiling-shop-cents="{{ ceiling_cents }}"
+    data-threshold-shop-cents="{{ threshold_cents }}"
+    data-shop-currency="{{ shop.currency }}"
+    data-after-threshold="{{ after_threshold }}"
+    data-limit-drawer="2"
+    data-limit-page="3"
+    hidden
+  >
+    <script type="application/json" data-cart-recs-fallback>
+      [
+        {%- if fallback_collection != blank -%}
+          {%- assign shown = 0 -%}
+          {%- for product in fallback_collection.products limit: 24 -%}
+            {%- liquid
+              assign skip = false
+              unless product.available
+                assign skip = true
+              endunless
+              if product.gift_card
+                assign skip = true
+              endif
+              if product.requires_selling_plan
+                assign skip = true
+              endif
+              assign product_title_down = product.title | downcase
+              if product_title_down contains 'ice pack'
+                assign skip = true
+              endif
+              assign product_type_down = product.type | downcase
+              if product_type_down contains 'gift card' or product_type_down contains 'giftcard'
+                assign skip = true
+              endif
+              for item in cart.items
+                if item.product_id == product.id
+                  assign skip = true
+                  break
+                endif
+              endfor
+            -%}
+            {%- unless skip -%}
+              {%- if shown > 0 -%},{%- endif -%}
+              {%- assign first_available = product.selected_or_first_available_variant -%}
+              {
+                "id": {{ product.id | json }},
+                "title": {{ product.title | json }},
+                "handle": {{ product.handle | json }},
+                "url": {{ product.url | json }},
+                "available": {{ product.available | json }},
+                "price": {{ product.price_min | json }},
+                "featured_image": {% if product.featured_image %}{{ product.featured_image | image_url: width: 128 | json }}{% else %}null{% endif %},
+                "variants_count": {{ product.variants.size | json }},
+                "first_variant_id": {{ first_available.id | json }},
+                "gift_card": {{ product.gift_card | json }},
+                "requires_selling_plan": {{ product.requires_selling_plan | json }},
+                "source": "collection"
+              }
+              {%- assign shown = shown | plus: 1 -%}
+            {%- endunless -%}
+          {%- endfor -%}
+        {%- endif -%}
+      ]
+    </script>
+    <h3 class="cart-cro-recs__heading" data-cart-recs-heading>{{ heading }}</h3>
+    <ul class="cart-cro-recs__list" data-cart-recs-list></ul>
+  </div>
+{%- endif -%}

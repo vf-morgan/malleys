@@ -1,38 +1,110 @@
-{% assign free_shipping_msg = settings.free_shipping_message %}
-{% assign free_shipping_amount_percent = settings.free_shipping_amount | times: 1 %}
-{% assign free_shipping_amount = settings.free_shipping_amount | times: 100 %}
-{% assign free_shipping_achieved = settings.free_shipping_achieved %}
-{% assign cart_total_price = cart.total_price %}
-{% assign cart_has_ice_pack = false %}
+{%- comment -%}
+  Free shipping progress bar. Qualifying total = cart.total_price (after discounts)
+  minus Ice Pack line totals (final_line_price). Hidden when cart is empty.
+{%- endcomment -%}
 
-{% for item in cart.items %}
-  {% if item.product.title contains "Ice Pack" %}
-    {% assign cart_has_ice_pack = item %}
-    {% break %}
-  {% endif %}
-{% endfor %}
+{%- liquid
+  assign threshold_dollars = settings.free_shipping_amount | times: 1
+  assign threshold_cents = settings.free_shipping_amount | times: 100 | round
+  assign flat_rate_dollars = settings.flat_rate_shipping_amount | default: '15.00' | times: 1
+  assign flat_rate_cents = settings.flat_rate_shipping_amount | default: '15.00' | times: 100 | round
 
-{% if cart_has_ice_pack %}
-  {% assign cart_total_price = cart.total_price | minus: cart_has_ice_pack.final_price %}
-{% endif %}
+  assign qualifying_total = cart.total_price
+  for item in cart.items
+    if item.product.title contains 'Ice Pack'
+      assign qualifying_total = qualifying_total | minus: item.final_line_price
+    endif
+  endfor
+  if qualifying_total < 0
+    assign qualifying_total = 0
+  endif
 
-{% assign amount_difference = free_shipping_amount | minus: cart_total_price %}
-{% assign amount_difference_money = amount_difference | money %}
-{% assign bar = amount_difference | divided_by: free_shipping_amount_percent %}
-{% assign bar_percentage = 100 | minus: bar %}
+  assign amount_difference = threshold_cents | minus: qualifying_total
+  if amount_difference < 0
+    assign amount_difference = 0
+  endif
+  assign amount_difference_money = amount_difference | money | strip_html
 
-<div class="cart-free-shipping-encouragement">
+  if threshold_cents > 0
+    assign bar_percentage = qualifying_total | times: 100.0 | divided_by: threshold_cents
+  else
+    assign bar_percentage = 100
+  endif
+  if bar_percentage > 100
+    assign bar_percentage = 100
+  endif
+  if bar_percentage < 0
+    assign bar_percentage = 0
+  endif
 
-  <div class="cart-free-shipping-encouragement__text">
-    {% if cart_total_price < free_shipping_amount %}
-      <p>{{ free_shipping_msg | replace: "<price>", amount_difference_money }}</p>
-    {% else %}
-      <p>{{ free_shipping_achieved }}</p>
-    {% endif %}
+  assign unlocked = false
+  if qualifying_total >= threshold_cents
+    assign unlocked = true
+  endif
+
+  assign progress_now = qualifying_total
+  if progress_now > threshold_cents
+    assign progress_now = threshold_cents
+  endif
+
+  assign below_msg = settings.free_shipping_message | replace: '</price>', '' | replace: '</threshold>', '' | replace: '</flat_rate>', ''
+  assign achieved_msg = settings.free_shipping_achieved | replace: '</price>', '' | replace: '</threshold>', '' | replace: '</flat_rate>', ''
+  assign flat_msg = settings.free_shipping_flat_rate_message | replace: '</price>', '' | replace: '</threshold>', '' | replace: '</flat_rate>', ''
+  assign eligibility = settings.free_shipping_eligibility
+
+  if unlocked
+    assign status_text = achieved_msg
+  else
+    assign status_text = below_msg | replace: '<price>', amount_difference_money
+  endif
+
+  assign flat_line = flat_msg | replace: '<threshold>', threshold_dollars | replace: '<flat_rate>', flat_rate_dollars
+-%}
+
+{%- if cart.item_count > 0 -%}
+  <div
+    class="cart-cro-shipping{% if unlocked %} cart-cro-shipping--unlocked{% endif %}"
+    data-cart-cro-shipping
+    data-threshold-shop-cents="{{ threshold_cents }}"
+    data-flat-rate-shop-cents="{{ flat_rate_cents }}"
+    data-shop-currency="{{ shop.currency }}"
+    data-cart-currency="{{ cart.currency.iso_code }}"
+    data-qualifying-total="{{ qualifying_total }}"
+    data-unlocked="{{ unlocked }}"
+    data-msg-below="{{ below_msg | escape }}"
+    data-msg-achieved="{{ achieved_msg | escape }}"
+    data-msg-flat="{{ flat_msg | escape }}"
+  >
+    <p
+      class="cart-cro-shipping__status"
+      data-cart-cro-status
+      aria-live="polite"
+    >{{ status_text }}</p>
+
+    {%- unless unlocked -%}
+      {%- if flat_msg != blank -%}
+        <p class="cart-cro-shipping__flat" data-cart-cro-flat>{{ flat_line }}</p>
+      {%- endif -%}
+    {%- endunless -%}
+
+    <div
+      class="cart-cro-shipping__track"
+      role="progressbar"
+      aria-valuemin="0"
+      aria-valuemax="{{ threshold_cents }}"
+      aria-valuenow="{{ progress_now }}"
+      aria-label="Free shipping progress"
+      data-cart-cro-progressbar
+    >
+      <div
+        class="cart-cro-shipping__fill"
+        data-cart-cro-fill
+        style="--cart-cro-progress: {{ bar_percentage }}%;"
+      ></div>
+    </div>
+
+    {%- if eligibility != blank -%}
+      <p class="cart-cro-shipping__eligibility">{{ eligibility }}</p>
+    {%- endif -%}
   </div>
-
-  <div class="cart-free-shipping-encouragement__bar--bg">
-    <div class="cart-free-shipping-encouragement__bar--progress" style="width: {{ bar_percentage }}%;"></div>
-  </div>
-
-</div>
+{%- endif -%}

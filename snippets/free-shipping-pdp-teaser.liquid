@@ -1,0 +1,19 @@
+{%- if settings.enable_shipping_encouragement -%}
+  {%- liquid
+    assign threshold = settings.free_shipping_amount | default: '85.00'
+    assign flat_rate = settings.flat_rate_shipping_amount | default: '15.00'
+    assign teaser = settings.free_shipping_pdp_teaser | replace: '</threshold>', '' | replace: '</flat_rate>', '' | replace: '</price>', ''
+    if teaser == blank
+      assign teaser = 'Free UPS Ground shipping on orders $' | append: threshold | append: '+. Under $' | append: threshold | append: ', flat $' | append: flat_rate | append: '.'
+    else
+      assign teaser = teaser | replace: '<threshold>', threshold | replace: '<flat_rate>', flat_rate
+    endif
+    assign eligibility = settings.free_shipping_eligibility
+  -%}
+  <div class="cart-cro-pdp-teaser" data-cart-cro-pdp-teaser>
+    <p class="cart-cro-pdp-teaser__offer">{{ teaser }}</p>
+    {%- if eligibility != blank -%}
+      <p class="cart-cro-pdp-teaser__eligibility">{{ eligibility }}</p>
+    {%- endif -%}
+  </div>
+{%- endif -%}

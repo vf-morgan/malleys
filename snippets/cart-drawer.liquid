@@ -19,13 +19,6 @@
       aria-modal="true"
     >
 
-    {% if settings.free_shipping_message != blank and settings.free_shipping_amount != blank and settings.free_shipping_achieved != blank and settings.enable_shipping_encouragement %}
-      <div data-free-shipping-msg >
-        {% render 'free-shipping-message' %}
-      </div>
-    {% endif %}
-
-
       <div class="cart-drawer__top">
         <div class="cart-drawer__empty-div"></div>
         <h2
@@ -120,6 +113,14 @@
       </script>
 
       <ul class="cart-items"></ul>
+
+      {% if settings.free_shipping_message != blank and settings.free_shipping_amount != blank and settings.free_shipping_achieved != blank and settings.enable_shipping_encouragement %}
+        <div class="cart-cro-shipping-slot" data-free-shipping-msg>
+          {% render 'free-shipping-message' %}
+        </div>
+      {% endif %}
+
+      {% render 'cart-recommendations' %}
 
       <div class="ajax-cart--top-wrapper">
 

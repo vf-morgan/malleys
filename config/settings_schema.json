@@ -1048,85 +1048,316 @@
       {
         "type": "header",
         "content": {
-          "en": "Encouragement",
-          "fr": "Encouragement",
-          "de": "Ermutigung",
-          "es": "Estímulo",
-          "pt-PT": "Encorajamento"
+          "en": "Free shipping progress",
+          "fr": "Progression de la livraison gratuite",
+          "de": "Kostenloser Versand Fortschritt",
+          "es": "Progreso de envío gratis",
+          "pt-PT": "Progresso de envio gratuito"
         }
       },
       {
         "type": "checkbox",
         "id": "enable_shipping_encouragement",
         "label": {
-          "en": "Enable free shipping encouragement",
-          "fr": "Activer l'encouragement à la livraison gratuite",
-          "de": "Ermöglichung des kostenlosen Versands Ermutigung",
-          "es": "Habilitar el estímulo para el envío gratuito",
-          "pt-PT": "Ativar o incentivo ao envio gratuito"
+          "en": "Enable free shipping progress bar",
+          "fr": "Activer la barre de progression de livraison gratuite",
+          "de": "Fortschrittsbalken für kostenlosen Versand aktivieren",
+          "es": "Habilitar barra de progreso de envío gratis",
+          "pt-PT": "Ativar barra de progresso de envio gratuito"
         },
-        "default": true
+        "info": {
+          "en": "Also shows the short shipping offer on product pages. Must match shipping rates in Shopify admin.",
+          "fr": "Affiche aussi l'offre d'expédition sur les pages produit. Doit correspondre aux tarifs dans l'admin Shopify.",
+          "de": "Zeigt auch das Versandangebot auf Produktseiten. Muss den Versandtarifen im Shopify-Admin entsprechen.",
+          "es": "También muestra la oferta de envío en las páginas de producto. Debe coincidir con las tarifas en el admin de Shopify.",
+          "pt-PT": "Também mostra a oferta de envio nas páginas de produto. Deve corresponder às tarifas no admin Shopify."
+        },
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "free_shipping_amount",
+        "label": {
+          "en": "Free shipping threshold",
+          "de": "Schwelle für kostenlosen Versand",
+          "es": "Umbral de envío gratis",
+          "fr": "Seuil de livraison gratuite",
+          "pt-PT": "Limiar de envio gratuito"
+        },
+        "info": {
+          "en": "Must match the free shipping rate in Shopify admin (shop currency). Default 85.00.",
+          "fr": "Doit correspondre au tarif de livraison gratuite dans l'admin Shopify (devise de la boutique). Par défaut 85.00.",
+          "de": "Muss dem kostenlosen Versandtarif im Shopify-Admin entsprechen (Shop-Währung). Standard 85.00.",
+          "es": "Debe coincidir con la tarifa de envío gratis en el admin de Shopify (moneda de la tienda). Predeterminado 85.00.",
+          "pt-PT": "Deve corresponder à tarifa de envio gratuito no admin Shopify (moeda da loja). Predefinição 85.00."
+        },
+        "default": {
+          "en": "85.00",
+          "de": "85.00",
+          "es": "85.00",
+          "fr": "85.00",
+          "pt-PT": "85.00"
+        }
+      },
+      {
+        "type": "text",
+        "id": "flat_rate_shipping_amount",
+        "label": {
+          "en": "Flat rate when under threshold",
+          "fr": "Tarif forfaitaire sous le seuil",
+          "de": "Pauschale unter der Schwelle",
+          "es": "Tarifa plana bajo el umbral",
+          "pt-PT": "Tarifa fixa abaixo do limiar"
+        },
+        "info": {
+          "en": "Must match the flat-rate shipping amount in Shopify admin (shop currency). Default 15.00.",
+          "fr": "Doit correspondre au tarif forfaitaire dans l'admin Shopify. Par défaut 15.00.",
+          "de": "Muss dem Pauschaltarif im Shopify-Admin entsprechen. Standard 15.00.",
+          "es": "Debe coincidir con la tarifa plana en el admin de Shopify. Predeterminado 15.00.",
+          "pt-PT": "Deve corresponder à tarifa fixa no admin Shopify. Predefinição 15.00."
+        },
+        "default": {
+          "en": "15.00",
+          "de": "15.00",
+          "es": "15.00",
+          "fr": "15.00",
+          "pt-PT": "15.00"
+        }
       },
       {
         "type": "text",
         "id": "free_shipping_message",
         "label": {
-          "en": "Free shipping message",
-          "fr": "Message de livraison gratuite",
-          "de": "Kostenlose Versandnachricht",
-          "es": "Mensaje de envío gratis",
-          "pt-PT": "Mensagem de envio gratuito"
+          "en": "Below threshold message",
+          "fr": "Message sous le seuil",
+          "de": "Nachricht unter der Schwelle",
+          "es": "Mensaje bajo el umbral",
+          "pt-PT": "Mensagem abaixo do limiar"
         },
         "info": {
-          "en": "Please ensure the <price> placeholder remains in your text",
-          "fr": "Veuillez vous assurer que l'espace réservé <price> reste dans votre texte",
-          "de": "Bitte stellen Sie sicher, dass der <price>-Platzhalter in Ihrem Text bleibt",
-          "es": "Asegúrese de que el marcador de posición <price> permanece en su texto",
-          "pt-PT": "Assegure-se de que o <price>'placeholder' permanece no seu texto"
+          "en": "Keep the <price> placeholder for the remaining amount.",
+          "fr": "Conservez le placeholder <price> pour le montant restant.",
+          "de": "Behalten Sie den Platzhalter <price> für den Restbetrag bei.",
+          "es": "Mantenga el marcador <price> para el importe restante.",
+          "pt-PT": "Mantenha o marcador <price> para o valor restante."
         },
         "default": {
-          "en": "Spend <price> more and get free shipping!",
-          "fr": "Dépensez <price> de plus et bénéficiez de la livraison gratuite !",
-          "de": "Geben Sie <price> mehr aus und erhalten Sie kostenlosen Versand!",
-          "es": "Gaste más de <price> y obtenga envíos gratis",
-          "pt-PT": "Gaste <price> mais e obtenha envio gratuito!"
+          "en": "You're <price> away from free shipping",
+          "fr": "Il vous reste <price> pour la livraison gratuite",
+          "de": "Noch <price> bis zum kostenlosen Versand",
+          "es": "Te faltan <price> para el envío gratis",
+          "pt-PT": "Faltam <price> para envio gratuito"
         }
       },
       {
         "type": "text",
         "id": "free_shipping_achieved",
         "label": {
-          "en": "Free shipping achieved message",
-          "fr": "Message de livraison gratuite réalisée",
-          "de": "Kostenloser Versand erreicht Nachricht",
-          "es": "Mensaje de envío gratis logrado",
-          "pt-PT": "Mensagem de obtenção de envio gratuito"
+          "en": "Threshold reached message",
+          "fr": "Message seuil atteint",
+          "de": "Nachricht bei erreichtem Schwellenwert",
+          "es": "Mensaje de umbral alcanzado",
+          "pt-PT": "Mensagem de limiar atingido"
         },
         "default": {
-          "en": "Your cart qualifies for free shipping!",
-          "fr": "Votre panier remplit les conditions requises pour la livraison gratuite !",
-          "de": "Ihr Warenkorb ist für kostenlosen Versand qualifiziert!",
-          "es": "¡Su carrito cumple los requisitos para tener envío gratuito!",
-          "pt-PT": "O seu carrinho tem direito a envio gratuito!"
+          "en": "You've unlocked free shipping",
+          "fr": "Vous avez débloqué la livraison gratuite",
+          "de": "Sie haben kostenlosen Versand freigeschaltet",
+          "es": "Has desbloqueado el envío gratis",
+          "pt-PT": "Desbloqueou o envio gratuito"
         }
       },
       {
         "type": "text",
-        "id": "free_shipping_amount",
+        "id": "free_shipping_flat_rate_message",
         "label": {
-          "en": "Free shipping when cart total is equal or larger than: ",
-          "de": "Kostenloser Versand, wenn die Warenkorbsumme gleich oder größer als ist:",
-          "es": "Envío gratis cuando el total del carrito sea igual o mayor que:",
-          "fr": "Livraison gratuite lorsque le total du panier est égal ou supérieur à :",
-          "pt-PT": "Envio gratuito quando o total do carrinho for igual ou maior do que:"
+          "en": "Under-threshold flat rate note",
+          "fr": "Note tarif forfaitaire sous le seuil",
+          "de": "Hinweis Pauschale unter der Schwelle",
+          "es": "Nota de tarifa plana bajo el umbral",
+          "pt-PT": "Nota de tarifa fixa abaixo do limiar"
+        },
+        "info": {
+          "en": "Use <threshold> and <flat_rate> placeholders. Shown only while under the free-shipping threshold.",
+          "fr": "Utilisez les placeholders <threshold> et <flat_rate>. Affiché uniquement sous le seuil.",
+          "de": "Verwenden Sie die Platzhalter <threshold> und <flat_rate>. Nur unter der Schwelle angezeigt.",
+          "es": "Use los marcadores <threshold> y <flat_rate>. Solo se muestra bajo el umbral.",
+          "pt-PT": "Use os marcadores <threshold> e <flat_rate>. Mostrado apenas abaixo do limiar."
         },
         "default": {
-          "en": "30.00",
-          "de": "30.00",
-          "es": "30.00",
-          "fr": "30.00",
-          "pt-PT": "30.00"
+          "en": "Orders under $<threshold> ship for a flat $<flat_rate>",
+          "fr": "Les commandes de moins de $<threshold> sont expédiées pour un forfait de $<flat_rate>",
+          "de": "Bestellungen unter $<threshold> werden pauschal für $<flat_rate> versendet",
+          "es": "Los pedidos de menos de $<threshold> se envían por una tarifa plana de $<flat_rate>",
+          "pt-PT": "Encomendas abaixo de $<threshold> têm envio à tarifa fixa de $<flat_rate>"
         }
+      },
+      {
+        "type": "textarea",
+        "id": "free_shipping_eligibility",
+        "label": {
+          "en": "Shipping offer eligibility",
+          "fr": "Conditions de l'offre d'expédition",
+          "de": "Berechtigung für Versandangebot",
+          "es": "Elegibilidad de la oferta de envío",
+          "pt-PT": "Elegibilidade da oferta de envio"
+        },
+        "default": {
+          "en": "Offers apply to online orders shipped to a single address in the contiguous U.S. via UPS Ground.",
+          "fr": "Les offres s'appliquent aux commandes en ligne expédiées à une seule adresse dans les États-Unis contigus via UPS Ground.",
+          "de": "Angebote gelten für Online-Bestellungen an eine einzelne Adresse in den zusammenhängenden USA per UPS Ground.",
+          "es": "Las ofertas aplican a pedidos en línea enviados a una sola dirección en EE. UU. continental vía UPS Ground.",
+          "pt-PT": "As ofertas aplicam-se a encomendas online enviadas para um único endereço nos EUA continentais via UPS Ground."
+        }
+      },
+      {
+        "type": "text",
+        "id": "free_shipping_pdp_teaser",
+        "label": {
+          "en": "Product page shipping teaser",
+          "fr": "Teaser d'expédition page produit",
+          "de": "Versand-Teaser Produktseite",
+          "es": "Teaser de envío en página de producto",
+          "pt-PT": "Teaser de envio na página de produto"
+        },
+        "info": {
+          "en": "Optional. Use <threshold> and <flat_rate>. Leave blank for the default offer line. Shown when the progress bar is enabled.",
+          "fr": "Facultatif. Utilisez <threshold> et <flat_rate>. Laissez vide pour la ligne par défaut.",
+          "de": "Optional. Verwenden Sie <threshold> und <flat_rate>. Leer lassen für die Standardzeile.",
+          "es": "Opcional. Use <threshold> y <flat_rate>. Déjelo en blanco para la línea predeterminada.",
+          "pt-PT": "Opcional. Use <threshold> e <flat_rate>. Deixe em branco para a linha predefinida."
+        },
+        "default": {
+          "en": "Free UPS Ground shipping on orders $<threshold>+. Under $<threshold>, flat $<flat_rate>.",
+          "fr": "Livraison UPS Ground gratuite dès $<threshold>. Sous $<threshold>, forfait $<flat_rate>.",
+          "de": "Kostenloser UPS-Ground-Versand ab $<threshold>. Unter $<threshold> pauschal $<flat_rate>.",
+          "es": "Envío UPS Ground gratis en pedidos de $<threshold>+. Bajo $<threshold>, tarifa plana $<flat_rate>.",
+          "pt-PT": "Envio UPS Ground grátis em encomendas de $<threshold>+. Abaixo de $<threshold>, tarifa fixa $<flat_rate>."
+        }
+      },
+      {
+        "type": "header",
+        "content": {
+          "en": "Cart recommendations",
+          "fr": "Recommandations du panier",
+          "de": "Warenkorb-Empfehlungen",
+          "es": "Recomendaciones del carrito",
+          "pt-PT": "Recomendações do carrinho"
+        }
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_cart_recommendations",
+        "label": {
+          "en": "Enable cart recommendations",
+          "fr": "Activer les recommandations du panier",
+          "de": "Warenkorb-Empfehlungen aktivieren",
+          "es": "Habilitar recomendaciones del carrito",
+          "pt-PT": "Ativar recomendações do carrinho"
+        },
+        "info": {
+          "en": "Independent of the progress bar. Can be A/B tested via a duplicate theme.",
+          "fr": "Indépendant de la barre de progression. Testable A/B via un thème en double.",
+          "de": "Unabhängig vom Fortschrittsbalken. A/B-testbar über ein Duplikat-Theme.",
+          "es": "Independiente de la barra de progreso. Se puede probar A/B con un tema duplicado.",
+          "pt-PT": "Independente da barra de progresso. Pode ser testado A/B com um tema duplicado."
+        },
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "cart_recommendations_heading",
+        "label": {
+          "en": "Recommendations heading",
+          "fr": "Titre des recommandations",
+          "de": "Überschrift Empfehlungen",
+          "es": "Título de recomendaciones",
+          "pt-PT": "Título das recomendações"
+        },
+        "default": {
+          "en": "Add one of these",
+          "fr": "Ajoutez l'un de ces produits",
+          "de": "Fügen Sie einen dieser Artikel hinzu",
+          "es": "Añade uno de estos",
+          "pt-PT": "Adicione um destes"
+        }
+      },
+      {
+        "type": "collection",
+        "id": "cart_recommendations_collection",
+        "label": {
+          "en": "Fallback add-ons collection",
+          "fr": "Collection de compléments de secours",
+          "de": "Fallback-Add-on-Kollektion",
+          "es": "Colección de complementos de respaldo",
+          "pt-PT": "Coleção de add-ons de recurso"
+        },
+        "info": {
+          "en": "Merchant-curated products merged with Search & Discovery complementary/related results so the module is rarely empty.",
+          "fr": "Produits sélectionnés fusionnés avec les résultats complémentaires/associés de Search & Discovery.",
+          "de": "Händlerkuratierte Produkte, zusammengeführt mit Search-&-Discovery-Ergebnissen.",
+          "es": "Productos seleccionados fusionados con resultados complementarios/relacionados de Search & Discovery.",
+          "pt-PT": "Produtos selecionados fundidos com resultados complementares/relacionados do Search & Discovery."
+        }
+      },
+      {
+        "type": "text",
+        "id": "cart_recommendations_price_ceiling",
+        "label": {
+          "en": "Max amount over the gap to recommend",
+          "fr": "Montant max au-dessus de l'écart à recommander",
+          "de": "Max. Betrag über der Lücke zum Empfehlen",
+          "es": "Importe máximo sobre la brecha a recomendar",
+          "pt-PT": "Valor máximo acima da diferença a recomendar"
+        },
+        "info": {
+          "en": "Do not push a $90 item to close a $5 gap. Default 15.00 (shop currency).",
+          "fr": "N'incitez pas un article à 90 $ pour combler un écart de 5 $. Par défaut 15.00.",
+          "de": "Empfehlen Sie keinen 90-$-Artikel, um eine 5-$-Lücke zu schließen. Standard 15.00.",
+          "es": "No recomiende un artículo de $90 para cerrar una brecha de $5. Predeterminado 15.00.",
+          "pt-PT": "Não recomende um artigo de $90 para fechar uma diferença de $5. Predefinição 15.00."
+        },
+        "default": {
+          "en": "15.00",
+          "de": "15.00",
+          "es": "15.00",
+          "fr": "15.00",
+          "pt-PT": "15.00"
+        }
+      },
+      {
+        "type": "select",
+        "id": "cart_recommendations_after_threshold",
+        "label": {
+          "en": "After free shipping is unlocked",
+          "fr": "Après déblocage de la livraison gratuite",
+          "de": "Nach Freischaltung des kostenlosen Versands",
+          "es": "Después de desbloquear el envío gratis",
+          "pt-PT": "Após desbloquear o envio gratuito"
+        },
+        "options": [
+          {
+            "value": "show_low_priced",
+            "label": {
+              "en": "Show low-priced complementary items",
+              "fr": "Afficher des articles complémentaires à bas prix",
+              "de": "Günstige Komplementärartikel anzeigen",
+              "es": "Mostrar complementos de bajo precio",
+              "pt-PT": "Mostrar complementares de baixo preço"
+            }
+          },
+          {
+            "value": "hide",
+            "label": {
+              "en": "Hide recommendations",
+              "fr": "Masquer les recommandations",
+              "de": "Empfehlungen ausblenden",
+              "es": "Ocultar recomendaciones",
+              "pt-PT": "Ocultar recomendações"
+            }
+          }
+        ],
+        "default": "show_low_priced"
       }
     ]
   },

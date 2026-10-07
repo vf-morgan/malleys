@@ -249,10 +249,12 @@
             <div class="col-12 col-lg">
 
                {% if settings.free_shipping_message != blank and settings.free_shipping_amount != blank and settings.free_shipping_achieved != blank and settings.enable_shipping_encouragement %}
-                  <div data-free-shipping-msg >
+                  <div class="cart-cro-shipping-slot" data-free-shipping-msg>
                      {% render 'free-shipping-message' %}
                   </div>
                {% endif %}
+
+               {% render 'cart-recommendations' %}
             </div>
 
             <div class="col-12 col-lg-auto">
