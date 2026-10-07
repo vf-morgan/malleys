@@ -1,0 +1,278 @@
+/* Cart icon count + hover preview.
+   Sizes are px: custom.css sets the root font-size to 18px.
+   The preview sits inside .header-icons, whose theme rules turn every nested ul into a
+   flex row and every li a into a 44px square, and custom.css forces top-bar links white.
+   Selectors below are prefixed with .header-icons .header-cart-popup to outrank those.
+*/
+
+.header-cart {
+  position: relative;
+  z-index: 3;
+}
+
+.header-cart:hover,
+.header-cart:focus-within {
+  z-index: 30;
+}
+
+.header-wrapper .header-content--top-bar {
+  position: relative;
+  z-index: 5;
+}
+
+/* ---------- Count next to the icon ---------- */
+
+.header-cart-count[hidden] {
+  display: none !important;
+}
+
+.header-cart-count.is-updated {
+  display: inline-block;
+  animation: header-cart-count-pop 280ms ease;
+}
+
+@keyframes header-cart-count-pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+/* ---------- Preview panel ---------- */
+
+.header-cart-popup {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 40;
+  width: min(360px, calc(100vw - 32px));
+  padding: 24px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(77, 48, 31, 0.08), 0 16px 32px rgba(77, 48, 31, 0.14);
+  text-align: left;
+  text-transform: none;
+  letter-spacing: 0;
+  white-space: normal;
+  font-family: var(--body-font-stack, "omnes-variable", sans-serif);
+  font-size: 16px;
+  font-variation-settings: "wght" 500, "wdth" 53;
+  line-height: 1.4;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition: opacity 160ms ease, transform 160ms ease, visibility 160ms;
+}
+
+/* Bridges the gap between icon and panel so the pointer can travel into it. */
+.header-cart-popup::before {
+  content: "";
+  position: absolute;
+  top: -16px;
+  right: 0;
+  left: 0;
+  height: 16px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .header-cart:hover .header-cart-popup {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+  }
+}
+
+.header-cart:focus-within .header-cart-popup {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+}
+
+.slideout-open .header-cart-popup {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.header-wrapper .header-icons .header-cart-popup,
+.header-wrapper .header-icons .header-cart-popup a,
+.header-wrapper .header-icons .header-cart-popup span,
+.header-wrapper .header-icons .header-cart-popup p {
+  color: #4d301f !important;
+}
+
+.header-wrapper .header-icons .header-cart-popup__title {
+  margin: 0 0 16px;
+  font-family: var(--header-font-stack, "corsario-variable", sans-serif);
+  font-size: 20px;
+  font-variation-settings: "wght" 800, "opsz" 16;
+  line-height: 1.2;
+}
+
+.header-wrapper .header-icons .header-cart-popup__empty {
+  margin: 0;
+  font-size: 16px;
+}
+
+.header-cart-popup__empty[hidden],
+.header-cart-popup__items[hidden],
+.header-cart-popup__footer[hidden] {
+  display: none !important;
+}
+
+/* ---------- Line items: one per row ---------- */
+
+.header-wrapper .header-icons .header-cart-popup__items {
+  display: block;
+  list-style: none;
+  margin: 0 -8px 0 0;
+  padding: 0 8px 0 0;
+  max-height: 320px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.header-wrapper .header-icons .header-cart-popup__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin: 0;
+  padding: 16px 0;
+  border-top: 1px solid #f2e8e3;
+  font-size: 16px;
+}
+
+.header-wrapper .header-icons .header-cart-popup__item:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.header-wrapper .header-icons .header-cart-popup__link {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: auto;
+  height: auto;
+  text-decoration: none;
+}
+
+.header-wrapper .header-icons .header-cart-popup__image {
+  display: block;
+  flex: 0 0 56px;
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 4px;
+  background: #fdf1f5;
+}
+
+.header-cart-popup__details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.header-wrapper .header-icons .header-cart-popup__name {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  font-size: 16px;
+  font-variation-settings: "wght" 650, "wdth" 53;
+  line-height: 1.25;
+}
+
+.header-wrapper .header-icons .header-cart-popup__link:hover .header-cart-popup__name {
+  color: #e34a8a !important;
+}
+
+.header-wrapper .header-icons .header-cart-popup__variant,
+.header-wrapper .header-icons .header-cart-popup__qty {
+  font-size: 14px;
+  color: #7a5a48 !important;
+}
+
+.header-wrapper .header-icons .header-cart-popup__line {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.header-wrapper .header-icons .header-cart-popup__line-price {
+  font-size: 16px;
+  font-variation-settings: "wght" 650, "wdth" 53;
+}
+
+.header-wrapper .header-icons .header-cart-popup__compare {
+  font-size: 14px;
+  color: #7a5a48 !important;
+}
+
+/* ---------- Footer ---------- */
+
+.header-cart-popup__footer {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #f2e8e3;
+}
+
+.header-cart-popup__total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.header-wrapper .header-icons .header-cart-popup__total > span:first-child {
+  font-size: 14px;
+  color: #7a5a48 !important;
+}
+
+.header-wrapper .header-icons .header-cart-popup__amount {
+  font-size: 20px;
+  font-variation-settings: "wght" 750, "wdth" 53;
+}
+
+.header-wrapper .header-icons .header-cart-popup a.header-cart-popup__action {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 16px;
+  padding: 12px 16px;
+  background: #ffadc7;
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-variation-settings: "wght" 700, "wdth" 53;
+  line-height: 1.25;
+  transition: background-color 160ms ease;
+}
+
+.header-wrapper .header-icons .header-cart-popup a.header-cart-popup__action:hover {
+  background: #ffd5e2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header-cart-popup,
+  .header-cart-count.is-updated {
+    transition: none;
+    animation: none;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .header-cart-popup {
+    display: none !important;
+  }
+}

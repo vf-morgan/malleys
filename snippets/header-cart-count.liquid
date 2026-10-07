@@ -1,0 +1,23 @@
+{% comment %}
+  Item count on the cart control. The order total is in the hover preview.
+  icon: true — basket followed by the count. icon: false — text label and count.
+{% endcomment %}
+{% if icon %}
+  <span class="header-icon">
+    {% render 'icon-basket' %}
+  </span>
+  {% unless section.settings.cart-number == 'none' %}
+    <span
+      class="header--supporting-text header-cart-count cart-item-count-header cart-item-count-header--quantity"
+      {% if cart.item_count == 0 %}hidden{% endif %}
+      aria-hidden="true"
+    >{{ cart.item_count }}</span>
+  {% endunless %}
+{% else %}
+  <span class="header--supporting-text">
+    {{ 'layout.header.your_cart' | t }}
+    {% unless section.settings.cart-number == 'none' %}
+      - <span class="cart-item-count-header cart-item-count-header--quantity">{{ cart.item_count }}</span>
+    {% endunless %}
+  </span>
+{% endif %}

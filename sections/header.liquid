@@ -247,18 +247,15 @@
         <button
           type="button"
           class="alt-focus header-link header-link--button slide-menu slide-menu-cart"
-          aria-label="toggle menu"
+          data-header-cart-label="{{ 'layout.header.your_cart' | t | escape }}"
+          aria-label="{{ 'layout.header.your_cart' | t }}{% if cart.item_count > 0 %}, {{ cart.item_count }}{% endif %}"
           aria-controls="cartSlideoutAside"
         >
-          <span class="header-icon">
-            {% render 'icon-basket' %}
-          </span>
+          {% render 'header-cart-count', icon: true %}
         </button>
       {% else %}
-        <a href="{{ routes.cart_url }}" class="alt-focus header-link slide-menu">
-          <span class="header-icon">
-            {% render 'icon-basket' %}
-          </span>
+        <a href="{{ routes.cart_url }}" class="alt-focus header-link slide-menu" data-header-cart-label="{{ 'layout.header.your_cart' | t | escape }}" aria-label="{{ 'layout.header.your_cart' | t }}{% if cart.item_count > 0 %}, {{ cart.item_count }}{% endif %}">
+          {% render 'header-cart-count', icon: true %}
         </a>
       {% endif %}
     </div>
@@ -272,9 +269,7 @@
         </a>
 
         <a href="{{ routes.cart_url }}" class="alt-focus header-link slide-menu">
-          <span class="header-icon">
-            {% render 'icon-basket' %}
-          </span>
+          {% render 'header-cart-count', icon: true %}
         </a>
       </div>
     </noscript>
@@ -282,13 +277,13 @@
   </div>
 
   {% assign class = 'search-expanded--top-links' %}
-      {% render 'search-bar' with section: section, class: class %}
+      {% render 'search-bar', section: section, class: class %}
 </div>
 
 
 
 {% capture locale %}
-  {% render 'localization-form' with show_currency_selector: section.settings.show_currency_selector, show_locale_selector: section.settings.show_locale_selector %}
+  {% render 'localization-form', show_currency_selector: section.settings.show_currency_selector, show_locale_selector: section.settings.show_locale_selector %}
 {% endcapture %}
 
 {% capture locale_alternative %}
@@ -371,59 +366,23 @@
                     </li>
                 {% endif %}
             {% endif %}
-            <li>
+            <li class="header-cart">
                 {% if settings.cart-type != 'page' %}
                   <button
                     type="button"
                     class="icons--inline alt-focus header-link header-link--button btn-normalize slide-menu{% if settings.cart-type != 'page' %} slide-menu-cart{% endif %}"
-                    aria-label="toggle menu"
+                    data-header-cart-label="{{ 'layout.header.your_cart' | t | escape }}"
+                    aria-label="{{ 'layout.header.your_cart' | t }}{% if cart.item_count > 0 %}, {{ cart.item_count }}{% endif %}"
                     aria-controls="cartSlideoutAside"
                   >
-                    {% if section.settings.icon-enable %}
-                      <span class="header-icon">
-                        {% render 'icon-basket' %}
-                      </span>
-                      {% case section.settings.cart-number %}
-                          {% when 'quantity' %}
-                              <span class="header--supporting-text"><span class="cart-item-count-header cart-item-count-header--quantity">{{ cart.item_count }}</span></span>
-                          {% when 'total' %}
-                              <span class="header--supporting-text"><span class="cart-item-count-header cart-item-count-header--total js-cart-total">{{ cart.total_price | money }}</span></span>
-                      {% endcase %}
-                    {% else %}
-                      <span class="header--supporting-text">{{ 'layout.header.your_cart' | t }}
-                          {% case section.settings.cart-number %}
-                          {% when 'quantity' %}
-                              - <span class="cart-item-count-header cart-item-count-header--quantity">{{ cart.item_count }}</span>
-                          {% when 'total' %}
-                              - <span class="cart-item-count-header cart-item-count-header--total js-cart-total">{{ cart.total_price | money }}</span>
-                          {% endcase %}
-                      </span>
-                    {% endif %}
+                    {% render 'header-cart-count', icon: section.settings.icon-enable %}
                   </button>
                 {% else %}
-                  <a href="{{ routes.cart_url }}" class="icons--inline header-link slide-menu{% if settings.cart-type != 'page' %} slide-menu-cart{% endif %}" title="{{ 'layout.header.your_cart' | t }}">
-                      {% if section.settings.icon-enable %}
-                        <span class="header-icon">
-                          {% render 'icon-basket' %}
-                        </span>
-                          {% case section.settings.cart-number %}
-                              {% when 'quantity' %}
-                                  <span class="header--supporting-text"><span class="cart-item-count-header cart-item-count-header--quantity">{{ cart.item_count }}</span></span>
-                              {% when 'total' %}
-                                  <span class="header--supporting-text"><span class="cart-item-count-header cart-item-count-header--total js-cart-total">{{ cart.total_price | money }}</span></span>
-                          {% endcase %}
-                      {% else %}
-                        <span class="header--supporting-text">{{ 'layout.header.your_cart' | t }}
-                            {% case section.settings.cart-number %}
-                            {% when 'quantity' %}
-                                - <span class="cart-item-count-header cart-item-count-header--quantity">{{ cart.item_count }}</span>
-                            {% when 'total' %}
-                                - <span class="cart-item-count-header cart-item-count-header--total js-cart-total">{{ cart.total_price | money }}</span>
-                            {% endcase %}
-                        </span>
-                      {% endif %}
+                  <a href="{{ routes.cart_url }}" class="icons--inline header-link slide-menu{% if settings.cart-type != 'page' %} slide-menu-cart{% endif %}" title="{{ 'layout.header.your_cart' | t }}" data-header-cart-label="{{ 'layout.header.your_cart' | t | escape }}" aria-label="{{ 'layout.header.your_cart' | t }}{% if cart.item_count > 0 %}, {{ cart.item_count }}{% endif %}">
+                    {% render 'header-cart-count', icon: section.settings.icon-enable %}
                   </a>
                 {% endif %}
+                {% render 'header-cart-popup' %}
             </li>
         </ul>
     </div>
@@ -480,29 +439,11 @@
               </li>
             {% endif %}
           {% endif %}
-          <li>
+          <li class="header-cart">
             <a href="{{ routes.cart_url }}" class="icons--inline header-link slide-menu{% if settings.cart-type != 'page' %} slide-menu-cart{% endif %}" title="{{ 'layout.header.your_cart' | t }}">
-                {% if section.settings.icon-enable %}
-                  <span class="header-icon">
-                    {% render 'icon-basket' %}
-                  </span>
-                    {% case section.settings.cart-number %}
-                        {% when 'quantity' %}
-                            <span class="header--supporting-text"><span class="cart-item-count-header cart-item-count-header--quantity">{{ cart.item_count }}</span></span>
-                        {% when 'total' %}
-                            <span class="header--supporting-text"><span class="cart-item-count-header cart-item-count-header--total js-cart-total">{{ cart.total_price | money }}</span></span>
-                    {% endcase %}
-                {% else %}
-                  <span class="header--supporting-text">{{ 'layout.header.your_cart' | t }}
-                      {% case section.settings.cart-number %}
-                      {% when 'quantity' %}
-                          - <span class="cart-item-count-header cart-item-count-header--quantity">{{ cart.item_count }}</span>
-                      {% when 'total' %}
-                          - <span class="cart-item-count-header cart-item-count-header--total js-cart-total">{{ cart.total_price | money }}</span>
-                      {% endcase %}
-                  </span>
-                {% endif %}
+              {% render 'header-cart-count', icon: section.settings.icon-enable %}
             </a>
+            {% render 'header-cart-popup' %}
           </li>
         </ul>
       </div>
@@ -560,7 +501,7 @@
           {% else %}
             {% if expanded_search_display == 'top' %}
               {% assign class = 'search-expanded--top-links' %}
-              {% render 'search-bar' with section: section, class: class %}
+              {% render 'search-bar', section: section, class: class %}
             {% endif %}
           {% endif %}
         </div>
@@ -572,7 +513,7 @@
   </header>
 
   {% if section.settings.search-expand == false %}
-    {% render 'search-bar' with section: section %}
+    {% render 'search-bar', section: section %}
   {% endif %}
 
   </div>
@@ -590,7 +531,7 @@
     </div>
 
     {% if expanded_search_display == 'bottom' %}
-      {% render 'search-bar' with section: section %}
+      {% render 'search-bar', section: section %}
     {% endif %}
 
   </div>
@@ -944,7 +885,14 @@
                     }
                 }
             ],
-            "default": "quantity"
+            "default": "quantity",
+            "info": {
+                "en": "Shows how many items are in the cart. Hover the cart icon to see the items and order total.",
+                "de": "Zeigt, wie viele Artikel im Warenkorb sind. Beim Darüberfahren werden die Artikel und die Bestellsumme angezeigt.",
+                "es": "Muestra cuántos artículos hay en el carrito. Pasa el cursor por el icono para ver los artículos y el total.",
+                "fr": "Affiche le nombre d'articles dans le panier. Survolez l'icône pour voir les articles et le total.",
+                "pt-PT": "Mostra quantos artigos estão no carrinho. Passe o cursor no ícone para ver os artigos e o total."
+            }
         },
         {
           "type": "header",

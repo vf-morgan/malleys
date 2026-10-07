@@ -38,7 +38,8 @@
         {%- assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
       {%- endif %}
       {% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}
-      {% unless page_title | strip contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+      {% assign page_title_stripped = page_title | strip %}
+      {% unless page_title_stripped contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
     </title>
 
     <script type="text/javascript">
@@ -81,6 +82,7 @@
     {% endif %}
 
     {{ 'custom.css' | asset_url | stylesheet_tag }}
+    {{ 'header-cart-preview.css' | asset_url | stylesheet_tag }}
     {{ 'main-banner.css' | asset_url | stylesheet_tag }}
 
     {% render 'font-links' %}
@@ -270,6 +272,7 @@
 
     <script defer type="module" src="{{ 'theme.js' | asset_url }}"></script>
     <script defer nomodule src="{{ 'theme.legacy.js' | asset_url }}"></script>
+    <script src="{{ 'header-cart-preview.js' | asset_url }}" defer></script>
 
     {% if settings.enable_shipping_encouragement or settings.enable_cart_recommendations %}
       {{ 'cart-cro.css' | asset_url | stylesheet_tag }}
@@ -410,7 +413,7 @@ AddHiddenTitleToNewWindowLink();
 </script>
 
 
-{% render ‘navistone-page-visit-event-snippet’ %}
+{% render 'navistone-page-visit-event-snippet' %}
 
 
 <script>

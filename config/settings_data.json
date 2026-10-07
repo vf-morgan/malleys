@@ -136,7 +136,7 @@
           "search-expand": true,
           "search-message": "Search our store...",
           "icon-enable": true,
-          "cart-number": "total",
+          "cart-number": "quantity",
           "show_currency_selector": false,
           "show_locale_selector": false,
           "main_linklist": "main-menu-2024",

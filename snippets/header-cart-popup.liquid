@@ -1,0 +1,53 @@
+{% comment %}
+  Hover preview for the desktop cart icon. Server-rendered, then refreshed after cart changes.
+{% endcomment %}
+<div
+  class="header-cart-popup"
+  data-header-cart-popup
+  data-money-format="{{ shop.money_format | escape }}"
+  role="region"
+  aria-label="{{ 'cart.general.title' | t }}"
+>
+  <p class="header-cart-popup__title">{{ 'cart.general.title' | t }}</p>
+  <p class="header-cart-popup__empty"{% if cart.item_count > 0 %} hidden{% endif %}>{{ 'cart.general.empty' | t }}</p>
+  <ul class="header-cart-popup__items"{% if cart.item_count == 0 %} hidden{% endif %}>
+    {% for item in cart.items %}
+      <li class="header-cart-popup__item">
+        <a class="header-cart-popup__link" href="{{ item.url }}">
+          {% if item.image %}
+            <img
+              class="header-cart-popup__image"
+              src="{{ item.image | image_url: width: 128 }}"
+              alt=""
+              width="52"
+              height="52"
+              loading="lazy"
+            >
+          {% else %}
+            <span class="header-cart-popup__image header-cart-popup__image--empty"></span>
+          {% endif %}
+          <span class="header-cart-popup__details">
+            <span class="header-cart-popup__name">{{ item.product.title | default: item.title }}</span>
+            {% unless item.variant.title == blank or item.variant.title == 'Default Title' %}
+              <span class="header-cart-popup__variant">{{ item.variant.title }}</span>
+            {% endunless %}
+            <span class="header-cart-popup__qty">{{ item.quantity }} &times; {{ item.final_price | money }}</span>
+          </span>
+        </a>
+        <span class="header-cart-popup__line">
+          {% if item.original_line_price > item.final_line_price %}
+            <s class="header-cart-popup__compare">{{ item.original_line_price | money }}</s>
+          {% endif %}
+          <span class="header-cart-popup__line-price">{{ item.final_line_price | money }}</span>
+        </span>
+      </li>
+    {% endfor %}
+  </ul>
+  <div class="header-cart-popup__footer"{% if cart.item_count == 0 %} hidden{% endif %}>
+    <div class="header-cart-popup__total">
+      <span>{{ 'cart.general.subtotal' | t }}</span>
+      <span class="header-cart-popup__amount">{{ cart.total_price | money }}</span>
+    </div>
+    <a class="header-cart-popup__action" href="{{ routes.cart_url }}">View cart</a>
+  </div>
+</div>
